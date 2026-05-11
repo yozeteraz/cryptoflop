@@ -19,7 +19,7 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 
 ## Stan obecny
 
-- `mockup.html` — statyczny HTML z dummy data, demonstrujący docelowy UI
+- `index.html` — statyczny HTML z dummy data, demonstrujący docelowy UI (deployowany na Vercel)
 - `colors.md` — pełna paleta kolorów + uzasadnienie + CSS variables
 - **Implementacja jeszcze nie rozpoczęta** — to ostatni krok przed etapem 1 (zbudowanie skryptu Python który zasili HTML prawdziwymi danymi)
 
@@ -120,4 +120,4 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 
 ---
 
-**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `mockup.html` i wskocz w rozmowę zakładając, że plan jest zatwierdzony, czekamy na zielone światło użytkownika do startu etapu 1.
+**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `index.html` i wskocz w rozmowę zakładając, że plan jest zatwierdzony, czekamy na zielone światło użytkownika do startu etapu 1.
