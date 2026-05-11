@@ -292,11 +292,14 @@ function scoreColor(s){
 }
 
 function deltaPill(delta) {
-  if (delta === 0 || delta === null || delta === undefined) {
-    return { cls:"flat", text:"→ bez zmian" };
-  }
+  if (delta === 0 || delta === null || delta === undefined) return null;
   if (delta > 0) return { cls:"up",   text:`↑ ${delta}` };
   return                 { cls:"down", text:`↓ ${Math.abs(delta)}` };
+}
+
+function trendSpanHtml(delta) {
+  const d = deltaPill(delta);
+  return d ? `<span class="cell-trend ${d.cls}">${d.text}</span>` : "";
 }
 
 function sparklineSvg(values, w=100, h=22) {
@@ -323,12 +326,11 @@ function renderCell(container, item) {
   const div = document.createElement("div");
   div.className = "cell";
   div.style.setProperty("--cell-color", scoreColor(item.score));
-  const d = deltaPill(item.delta);
   div.innerHTML = `
     <div class="cell-name">${item.name} ${item.sub ? `<span style="opacity:.6">· ${item.sub}</span>` : ""}</div>
     <div class="cell-score-row">
       <div class="cell-score">${item.score}</div>
-      <span class="cell-trend ${d.cls}">${d.text}</span>
+      ${trendSpanHtml(item.delta)}
     </div>
     ${sparklineSvg(item.history)}
     <div class="cell-mood">${item.mood}</div>
@@ -343,12 +345,11 @@ function renderAssetRow(container, item) {
   const cell = document.createElement("div");
   cell.className = "cell";
   cell.style.setProperty("--cell-color", scoreColor(item.score));
-  const d = deltaPill(item.delta);
   cell.innerHTML = `
     <div class="cell-name">${item.name} ${item.sub ? `<span style="opacity:.6">· ${item.sub}</span>` : ""}</div>
     <div class="cell-score-row">
       <div class="cell-score">${item.score}</div>
-      <span class="cell-trend ${d.cls}">${d.text}</span>
+      ${trendSpanHtml(item.delta)}
     </div>
     ${sparklineSvg(item.history)}
     <div class="cell-mood">${item.mood}</div>
@@ -396,10 +397,15 @@ function render(data) {
   const heroCard = document.getElementById("hero-card");
   heroCard.style.setProperty("--cell-color", scoreColor(data.hero.score));
   document.getElementById("hero-score").textContent = data.hero.score;
-  const ht = deltaPill(data.hero.delta);
   const heroTrend = document.getElementById("hero-trend");
-  heroTrend.className = `cell-trend ${ht.cls}`;
-  heroTrend.textContent = ht.text;
+  const ht = deltaPill(data.hero.delta);
+  if (ht) {
+    heroTrend.className = `cell-trend ${ht.cls}`;
+    heroTrend.textContent = ht.text;
+    heroTrend.style.display = "";
+  } else {
+    heroTrend.style.display = "none";
+  }
   document.getElementById("hero-mood").textContent = data.hero.mood;
   document.getElementById("hero-spark-mount").innerHTML =
     sparklineSvg(data.hero.history, 260, 44).replace('class="cell-spark"', 'class="hero-spark"');
