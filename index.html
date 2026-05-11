@@ -171,8 +171,8 @@
 
   footer {
     margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border);
-    color: var(--muted-2); font-size: 11px; display: flex; flex-wrap: wrap; gap: 16px;
-    justify-content: space-between; align-items: center;
+    color: var(--muted-2); font-size: 11px;
+    display: flex; flex-direction: column; gap: 10px;
   }
   .legend { display: flex; gap: 4px; align-items: center; }
   .legend .swatch { display: inline-block; width: 26px; height: 12px; border-radius: 2px; }
@@ -272,6 +272,9 @@
       <span class="swatch" style="background:var(--c-85)"></span>
       <span class="swatch" style="background:var(--c-100)"></span>
       <span class="lbl">0 strach · 50 spokój · 100 mania</span>
+    </div>
+    <div class="legend">
+      Skala zmian: <strong>↑ 5</strong><span class="lbl">wzrost</span>·<strong>↓ 5</strong><span class="lbl">spadek</span>·<span class="lbl">brak strzałki = bez zmian</span>
     </div>
     <div class="copyright">© 2026 Marcin Gałęcki</div>
   </footer>
