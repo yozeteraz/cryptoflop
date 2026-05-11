@@ -1,0 +1,31 @@
+name: Refresh data
+
+on:
+  schedule:
+    # 06:00, 12:00, 19:00 UTC — w czasie letnim (CEST, UTC+2) to 8:00 / 14:00 / 21:00 Warszawa
+    - cron: '0 6,12,19 * * *'
+  workflow_dispatch:  # ręczny trigger z GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python fetch.py
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json history.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "refresh: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi

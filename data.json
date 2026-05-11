@@ -1,0 +1,160 @@
+{
+  "fetched_at": "2026-05-11T21:09:46.384732+00:00",
+  "header_label": "poniedziałek, 11 maja",
+  "hero": {
+    "score": 51,
+    "delta": 0,
+    "mood": "Spokój",
+    "history": [
+      51
+    ]
+  },
+  "dca": {
+    "decision": "TAK",
+    "history": [
+      1
+    ]
+  },
+  "time": [
+    {
+      "key": "dzis",
+      "name": "Dziś",
+      "sub": "24h",
+      "score": 51,
+      "delta": 0,
+      "mood": "Spokój",
+      "history": [
+        51
+      ]
+    },
+    {
+      "key": "tydzien",
+      "name": "Tydzień",
+      "sub": "7d",
+      "score": 61,
+      "delta": 0,
+      "mood": "Wzmocnienie",
+      "history": [
+        61
+      ]
+    },
+    {
+      "key": "miesiac",
+      "name": "Miesiąc",
+      "sub": "30d",
+      "score": 76,
+      "delta": 0,
+      "mood": "Hossa",
+      "history": [
+        76
+      ]
+    },
+    {
+      "key": "kwartal",
+      "name": "Kwartał",
+      "sub": "90d",
+      "score": 82,
+      "delta": 0,
+      "mood": "Hossa",
+      "history": [
+        82
+      ]
+    },
+    {
+      "key": "cykl",
+      "name": "od halvingu",
+      "sub": null,
+      "score": 56,
+      "delta": 0,
+      "mood": "Wzmocnienie",
+      "history": [
+        56
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "key": "btc",
+      "name": "BTC",
+      "sub": "Bitcoin",
+      "score": 51,
+      "delta": 0,
+      "mood": "Spokój",
+      "history": [
+        51
+      ],
+      "stats": [
+        {
+          "label": "Cena",
+          "value": "$81 774",
+          "changes": [
+            {
+              "tf": "24h",
+              "val": 1.2
+            },
+            {
+              "tf": "7d",
+              "val": 2.4
+            },
+            {
+              "tf": "30d",
+              "val": 12.0
+            }
+          ]
+        },
+        {
+          "label": "Wolumen 24h",
+          "value": "$1,3B",
+          "change": 12
+        },
+        {
+          "label": "Dominacja",
+          "value": "58,3%",
+          "change": null
+        }
+      ]
+    },
+    {
+      "key": "bnb",
+      "name": "BNB",
+      "sub": "Binance Coin",
+      "score": 52,
+      "delta": 0,
+      "mood": "Spokój",
+      "history": [
+        52
+      ],
+      "stats": [
+        {
+          "label": "Cena",
+          "value": "$663",
+          "changes": [
+            {
+              "tf": "24h",
+              "val": 1.6
+            },
+            {
+              "tf": "7d",
+              "val": 6.5
+            },
+            {
+              "tf": "30d",
+              "val": 9.2
+            }
+          ]
+        },
+        {
+          "label": "Wolumen 24h",
+          "value": "$116M",
+          "change": 25
+        },
+        {
+          "label": "BNB / BTC",
+          "value": "+4,0%",
+          "change": 4.0,
+          "changeUnit": "7d"
+        }
+      ]
+    }
+  ]
+}

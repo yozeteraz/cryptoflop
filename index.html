@@ -200,24 +200,24 @@
   </header>
 
   <section class="hero">
-    <div class="hero-card" style="--cell-color: var(--c-30);">
+    <div class="hero-card" id="hero-card">
       <div>
-        <div class="hero-label">poniedziałek, 11 maja</div>
+        <div class="hero-label" id="hero-label"></div>
         <div class="hero-score-row">
-          <div class="hero-score">42</div>
-          <span class="cell-trend down">↓ 8</span>
+          <div class="hero-score" id="hero-score"></div>
+          <span class="cell-trend" id="hero-trend"></span>
         </div>
         <div id="hero-spark-mount"></div>
       </div>
       <div>
-        <div class="hero-mood">Lekkie osłabienie</div>
+        <div class="hero-mood" id="hero-mood"></div>
       </div>
     </div>
     <div class="dca-bridge">
       <div>
         <div class="dca-label">Kupić dziś?</div>
         <div class="dca-answer">
-          <span class="dca-value">TAK</span>
+          <span class="dca-value" id="dca-value"></span>
         </div>
       </div>
       <div class="dca-history">
@@ -280,80 +280,6 @@
 </div>
 
 <script>
-const TIME = [
-  { key:"dzis", name:"Dziś", sub:"24h", score:34, delta:-9, ref:"vs wczoraj", mood:"Słabość",
-    history:[48, 50, 47, 43, 45, 43, 34],
-    why:"Korekta po teście $93k. Wolumen rośnie, ale rozkład 60/40 sprzedaż/kupno — kontrolowana wyprzedaż, nie panika. Krótki horyzont, słabszy niż reszta interwałów.",
-    dims:[
-      { name:"Cena",     score:34, raw:"BTC −3,2%, BNB −2,1%" },
-      { name:"Wolumen",  score:58, raw:"+22% vs średnia 7d" }
-    ]
-  },
-  { key:"tydzien", name:"Tydzień", sub:"7d", score:52, delta:-3, ref:"vs tydzień temu", mood:"Spokój",
-    history:[58, 56, 55, 54, 53, 54, 52],
-    why:"Konsolidacja po kwietniowym rajdzie. BNB nieznacznie mocniejsze od BTC. Nic dramatycznego w jedną ani w drugą stronę.",
-    dims:[
-      { name:"Cena",     score:48, raw:"BTC −1,4%, BNB +0,8%" },
-      { name:"Wolumen",  score:62, raw:"+9% vs średnia 30d" }
-    ]
-  },
-  { key:"miesiac", name:"Miesiąc", sub:"30d", score:67, delta:+5, ref:"vs miesiąc temu", mood:"Siła",
-    history:[60, 61, 63, 64, 65, 66, 67],
-    why:"Wyraźny trend wzrostowy podtrzymany. BNB outperform vs BTC. ETF-y BTC w 22/30 dni z napływem netto.",
-    dims:[
-      { name:"Cena",     score:65, raw:"BTC +8,4%, BNB +12,1%" },
-      { name:"Wolumen",  score:70, raw:"+24% vs poprz. miesiąc" }
-    ]
-  },
-  { key:"kwartal", name:"Kwartał", sub:"90d", score:74, delta:+8, ref:"vs kwartał temu", mood:"Hossa",
-    history:[62, 65, 68, 70, 71, 73, 74],
-    why:"Wyraźna faza wzrostowa po I/Q akumulacji. Rynek się rozkręca, kapitał wraca, instytucje aktywne.",
-    dims:[
-      { name:"Cena",     score:72, raw:"BTC +22%, BNB +31%" },
-      { name:"Wolumen",  score:81, raw:"+47% vs poprz. kwartał" }
-    ]
-  },
-  { key:"cykl", name:"od halvingu", sub:null, score:64, delta:+2, ref:"vs miesiąc temu", mood:"Hossa wczesna",
-    history:[58, 60, 61, 62, 63, 63, 64],
-    why:"13 miesięcy po halvingu — historycznie szczyt cyklu wypada między 14. a 20. miesiącem. Daleko od ATH ($3,2T z grudnia 2024), ale trend nienaruszony.",
-    dims:[
-      { name:"Cena",     score:64, raw:"BTC +112% od halvingu" },
-      { name:"Wolumen",  score:71, raw:"powyżej średniej cyklu" }
-    ]
-  }
-];
-
-const ASSETS = [
-  { key:"btc", name:"BTC", sub:"Bitcoin", score:42, delta:-7, ref:"vs wczoraj", mood:"Słabość krótkoterminowa",
-    history:[55, 53, 52, 50, 48, 49, 42],
-    stats:[
-      { label:"Cena", value:"$89 420", changes:[{tf:"24h",val:-3.2},{tf:"7d",val:-1.4},{tf:"30d",val:+8.4}] },
-      { label:"Wolumen 24h", value:"$32B",    change:+18 },
-      { label:"Dominacja",   value:"56,8%",   change:+0.4, unit:"p.p." }
-    ],
-    why:"Korekta po teście $93k. Wsparcie w okolicy $86k (200-dniowa MA). Wolumen sprzedażowy umiarkowany — większy rynek dalej kupuje dipy.",
-    dims:[
-      { name:"Cena",     score:42, raw:"$89 420 (−3,2% 24h)" },
-      { name:"Wolumen",  score:58, raw:"$32B (+18% vs 7d avg)" },
-      { name:"Siła vs rynek", score:55, raw:"BTC dominacja 56,8% (+0,4 p.p.)" }
-    ]
-  },
-  { key:"bnb", name:"BNB", sub:"Binance Coin", score:60, delta:+3, ref:"vs wczoraj", mood:"Stabilna siła",
-    history:[55, 56, 57, 56, 58, 58, 60],
-    stats:[
-      { label:"Cena", value:"$612", changes:[{tf:"24h",val:-2.1},{tf:"7d",val:+0.8},{tf:"30d",val:+12.1}] },
-      { label:"Wolumen 24h", value:"$1,8B",   change:+27 },
-      { label:"BNB / BTC",   value:"+1,1%",   change:+1.1, unit:"7d" }
-    ],
-    why:"Korekta płytsza niż BTC — fundament Binance trzyma cenę. Wolumen powyżej średniej, brak panicznej wyprzedaży. Burn za ~23 dni szacowany na ~$840M.",
-    dims:[
-      { name:"Cena",     score:56, raw:"$612 (−2,1% 24h)" },
-      { name:"Wolumen",  score:64, raw:"$1,8B (+27% vs 7d avg)" },
-      { name:"Siła vs BTC", score:70, raw:"BNB/BTC +1,1% 7d" }
-    ]
-  }
-];
-
 function scoreColor(s){
   if (s<15)  return "var(--c-0)";
   if (s<30)  return "var(--c-15)";
@@ -415,7 +341,6 @@ function renderAssetRow(container, item) {
   const row = document.createElement("div");
   row.className = "asset-row";
 
-  // Score cell (same as time cell)
   const cell = document.createElement("div");
   cell.className = "cell";
   cell.style.setProperty("--cell-color", scoreColor(item.score));
@@ -431,7 +356,6 @@ function renderAssetRow(container, item) {
   `;
   row.appendChild(cell);
 
-  // Stat blocks
   item.stats.forEach(s => {
     const stat = document.createElement("div");
     stat.className = "stat";
@@ -451,12 +375,11 @@ function renderAssetRow(container, item) {
       const valStr = (typeof s.change === "number") ? String(s.change).replace(".", ",") : s.change;
       changeHtml = `<div class="stat-change ${cls}">${sign}${valStr} ${unit}</div>`;
     }
-    const subHtml = s.sub ? `<div class="stat-sub">${s.sub}</div>` : "";
     stat.innerHTML = `
       <div class="stat-label">${s.label}</div>
       <div>
         <div class="stat-value">${s.value}</div>
-        ${changeHtml}${subHtml}
+        ${changeHtml}
       </div>
     `;
     row.appendChild(stat);
@@ -465,35 +388,49 @@ function renderAssetRow(container, item) {
   container.appendChild(row);
 }
 
-const timeStrip = document.getElementById("time-strip");
-TIME.forEach(t => renderCell(timeStrip, t));
-const assetGrid = document.getElementById("asset-grid");
-ASSETS.forEach(a => renderAssetRow(assetGrid, a));
+function render(data) {
+  // Header label + hero
+  document.getElementById("hero-label").textContent = data.header_label;
+  const heroCard = document.getElementById("hero-card");
+  heroCard.style.setProperty("--cell-color", scoreColor(data.hero.score));
+  document.getElementById("hero-score").textContent = data.hero.score;
+  const ht = deltaPill(data.hero.delta);
+  const heroTrend = document.getElementById("hero-trend");
+  heroTrend.className = `cell-trend ${ht.cls}`;
+  heroTrend.textContent = ht.text;
+  document.getElementById("hero-mood").textContent = data.hero.mood;
+  document.getElementById("hero-spark-mount").innerHTML =
+    sparklineSvg(data.hero.history, 260, 44).replace('class="cell-spark"', 'class="hero-spark"');
 
-// Hero sparkline — recent score history (illustrative)
-const HERO_HISTORY = [55, 52, 50, 48, 46, 50, 42];
-const heroSparkMount = document.getElementById("hero-spark-mount");
-if (heroSparkMount) {
-  heroSparkMount.innerHTML = sparklineSvg(HERO_HISTORY, 260, 44).replace('class="cell-spark"', 'class="hero-spark"');
+  // DCA
+  const dcaValue = document.getElementById("dca-value");
+  dcaValue.textContent = data.dca.decision;
+  dcaValue.className = data.dca.decision === "TAK" ? "dca-value" : "dca-value no";
+  const days = data.dca.history.map(v => `<span class="day ${v ? 'yes' : 'no'}"></span>`).join("");
+  document.getElementById("dca-history-mount").innerHTML = `<div class="dca-strip">${days}</div>`;
+  const yes = data.dca.history.filter(v => v === 1).length;
+  const no = data.dca.history.length - yes;
+  document.getElementById("dca-history-summary").innerHTML =
+    `<strong>${yes}</strong> dni TAK · <strong>${no}</strong> NIE`;
+
+  // Time strip + assets
+  const timeStrip = document.getElementById("time-strip");
+  timeStrip.innerHTML = "";
+  data.time.forEach(t => renderCell(timeStrip, t));
+
+  const assetGrid = document.getElementById("asset-grid");
+  assetGrid.innerHTML = "";
+  data.assets.forEach(a => renderAssetRow(assetGrid, a));
 }
 
-// DCA history — last 30 days (1 = TAK / kupić, 0 = NIE / skip)
-const DCA_HISTORY = [
-  1,1,1,0,1,1,1,1,0,1,
-  1,1,1,1,0,1,1,1,1,1,
-  0,1,1,1,1,1,1,0,1,1
-];
-const dcaHistoryMount = document.getElementById("dca-history-mount");
-const dcaHistorySummary = document.getElementById("dca-history-summary");
-if (dcaHistoryMount) {
-  const days = DCA_HISTORY.map(v => `<span class="day ${v ? 'yes' : 'no'}"></span>`).join("");
-  dcaHistoryMount.innerHTML = `<div class="dca-strip">${days}</div>`;
-  const yes = DCA_HISTORY.filter(v => v === 1).length;
-  const no = DCA_HISTORY.length - yes;
-  if (dcaHistorySummary) {
-    dcaHistorySummary.innerHTML = `<strong>${yes}</strong> dni TAK · <strong>${no}</strong> NIE`;
-  }
-}
+fetch("data.json?_t=" + Date.now())
+  .then(r => r.json())
+  .then(render)
+  .catch(err => {
+    console.error("Failed to load data.json:", err);
+    const el = document.getElementById("hero-mood");
+    if (el) el.textContent = "Błąd ładowania danych";
+  });
 </script>
 </body>
 </html>
