@@ -76,7 +76,7 @@
   .hero-card .hero-ref { font-size: 11px; color: var(--muted-2); margin-top: 4px; }
   .hero-narrative {
     background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 22px 24px; display: flex; align-items: center;
+    padding: 22px 24px; margin-bottom: 32px; display: flex; align-items: center;
   }
   .hero-narrative .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 8px; }
   .hero-narrative h2 { margin: 0 0 10px; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
@@ -86,7 +86,8 @@
   /* DCA bridge — same card style as "Co się dzieje" */
   .dca-bridge {
     background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 22px 24px; margin-bottom: 32px;
+    padding: 22px 24px;
+    display: flex; flex-direction: column; justify-content: center;
   }
   .dca-bridge .dca-label {
     font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
@@ -224,19 +225,19 @@
         <div class="hero-mood">Lekkie osłabienie</div>
       </div>
     </div>
-    <div class="hero-narrative">
-      <div>
-        <div class="label">Co się dzieje</div>
-        <p>BTC <strong>−3,2%</strong> po jastrzębich sygnałach z Fed, ale wolumen sprzedażowy umiarkowany — to korekta, nie kapitulacja. Cykl dalej konstruktywny, a <strong>BNB</strong> trzyma się lepiej od rynku: Binance kwartalnie zarobił rekordowo, burn za ~23 dni.</p>
+    <div class="dca-bridge">
+      <div class="dca-label">Kupić dziś?</div>
+      <div class="dca-answer">
+        <span class="dca-value">TAK</span>
+        <span class="dca-amount">$100</span>
       </div>
     </div>
   </section>
 
-  <section class="dca-bridge">
-    <div class="dca-label">Kupić dziś?</div>
-    <div class="dca-answer">
-      <span class="dca-value">TAK</span>
-      <span class="dca-amount">$100</span>
+  <section class="hero-narrative">
+    <div>
+      <div class="label">Co się dzieje</div>
+      <p>BTC <strong>−3,2%</strong> po jastrzębich sygnałach z Fed, ale wolumen sprzedażowy umiarkowany — to korekta, nie kapitulacja. Cykl dalej konstruktywny, a <strong>BNB</strong> trzyma się lepiej od rynku: Binance kwartalnie zarobił rekordowo, burn za ~23 dni.</p>
     </div>
   </section>
 
