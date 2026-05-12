@@ -1,21 +1,23 @@
 {
-  "fetched_at": "2026-05-11T21:20:13.352227+00:00",
-  "header_label": "poniedziałek, 11 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+1,1%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+1,6%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>48</strong> (rynek neutralny). 24 miesięcy po halvingu — cykl w fazie schłodzenia.",
+  "fetched_at": "2026-05-12T12:29:21.164099+00:00",
+  "header_label": "wtorek, 12 maja",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-0,6%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+1,2%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>49</strong> (rynek neutralny). 24 miesiące po halvingu — cykl po szczycie historycznym.",
   "hero": {
-    "score": 51,
-    "delta": 0,
+    "score": 50,
+    "delta": -1,
     "mood": "Spokój",
     "history": [
       51,
       51,
       51,
-      51
+      51,
+      50
     ]
   },
   "dca": {
     "decision": "TAK",
     "history": [
+      1,
       1,
       1,
       1,
@@ -27,56 +29,60 @@
       "key": "dzis",
       "name": "Dziś",
       "sub": "24h",
-      "score": 51,
-      "delta": 0,
+      "score": 50,
+      "delta": -1,
       "mood": "Spokój",
       "history": [
         51,
         51,
         51,
-        51
+        51,
+        50
       ]
     },
     {
       "key": "tydzien",
       "name": "Tydzień",
       "sub": "7d",
-      "score": 61,
-      "delta": 0,
+      "score": 56,
+      "delta": -5,
       "mood": "Wzmocnienie",
       "history": [
         61,
         61,
         61,
-        61
+        61,
+        56
       ]
     },
     {
       "key": "miesiac",
       "name": "Miesiąc",
       "sub": "30d",
-      "score": 76,
-      "delta": 0,
+      "score": 82,
+      "delta": 6,
       "mood": "Hossa",
       "history": [
         76,
         76,
         76,
-        76
+        76,
+        82
       ]
     },
     {
       "key": "kwartal",
       "name": "Kwartał",
       "sub": "90d",
-      "score": 82,
-      "delta": 0,
-      "mood": "Hossa",
+      "score": 86,
+      "delta": 4,
+      "mood": "Mocna hossa",
       "history": [
         82,
         82,
         82,
-        82
+        82,
+        86
       ]
     },
     {
@@ -90,6 +96,7 @@
         56,
         56,
         56,
+        56,
         56
       ]
     }
@@ -99,38 +106,39 @@
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "score": 51,
-      "delta": 0,
+      "score": 48,
+      "delta": -3,
       "mood": "Spokój",
       "history": [
         51,
         51,
         51,
-        51
+        51,
+        48
       ],
       "stats": [
         {
           "label": "Cena",
-          "value": "$81 687",
+          "value": "$80 754",
           "changes": [
             {
               "tf": "24h",
-              "val": 1.1
+              "val": -0.6
             },
             {
               "tf": "7d",
-              "val": 2.3
+              "val": -0.2
             },
             {
               "tf": "30d",
-              "val": 11.8
+              "val": 14.1
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$38,7B",
-          "change": 5
+          "value": "$31,9B",
+          "change": -5
         },
         {
           "label": "Dominacja",
@@ -143,43 +151,44 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 52,
-      "delta": 0,
+      "score": 51,
+      "delta": -1,
       "mood": "Spokój",
       "history": [
         52,
         52,
         52,
-        52
+        52,
+        51
       ],
       "stats": [
         {
           "label": "Cena",
-          "value": "$663",
+          "value": "$664",
           "changes": [
             {
               "tf": "24h",
-              "val": 1.6
+              "val": 1.2
             },
             {
               "tf": "7d",
-              "val": 6.5
+              "val": 5.2
             },
             {
               "tf": "30d",
-              "val": 9.1
+              "val": 12.0
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$1,2B",
-          "change": -1
+          "value": "$1,1B",
+          "change": -2
         },
         {
           "label": "BNB / BTC",
-          "value": "+4,0%",
-          "change": 4.0,
+          "value": "+5,4%",
+          "change": 5.4,
           "changeUnit": "7d"
         }
       ]
