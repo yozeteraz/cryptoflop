@@ -433,39 +433,43 @@
   .sheet-close:hover { background: var(--panel); color: var(--text); }
 
   @media (max-width: 600px) {
-    .wrap { padding: 16px 12px 60px; }
-    .widgets { gap: 12px; margin-bottom: 18px; }
+    .wrap { padding: 10px 12px 60px; }
+    header.top { margin-bottom: 14px; gap: 12px; }
+    header.top .brand .brand-logo { height: 22px; }
+    header.top .date { font-size: 12px; }
+    .widgets { gap: 10px; margin-bottom: 14px; }
 
-    /* Compact widget: keep side-by-side, tighten everything */
+    /* Compact widget: side-by-side, very tight */
     .asset-card { grid-template-columns: 1fr 1fr; }
     .asset-card .score-pane { border-right: 1px solid var(--border); border-bottom: none; }
-    .asset-card .pane { padding: 14px 14px; }
-    .asset-card .pane-head { font-size: 10px; margin-bottom: 10px; letter-spacing: 0.1em; }
+    .asset-card .pane { padding: 12px 12px; }
+    .asset-card .pane-head { font-size: 9px; margin-bottom: 8px; letter-spacing: 0.1em; }
 
     /* Score pane compact */
-    .asset-card .score-pane .asset-score { font-size: 42px; }
-    .asset-card .score-pane .asset-trend { font-size: 16px; }
-    .asset-card .score-pane .asset-spark { height: 26px; margin-top: 8px; }
-    .asset-card .score-pane .asset-mood { font-size: 13px; margin-top: 10px; }
+    .asset-card .score-pane .asset-score { font-size: 36px; }
+    .asset-card .score-pane .asset-trend { font-size: 14px; }
+    .asset-card .score-pane .asset-spark { height: 22px; margin-top: 6px; }
+    .asset-card .score-pane .asset-mood { font-size: 12px; margin-top: 8px; }
     .asset-card .score-pane .forecast-badge {
-      font-size: 10px; margin-top: 4px; gap: 4px;
+      font-size: 9px; margin-top: 4px; gap: 4px;
     }
-    .asset-card .score-pane .forecast-badge .arrow { font-size: 12px; }
+    .asset-card .score-pane .forecast-badge .arrow { font-size: 11px; }
     .asset-card .score-pane .forecast-badge .badge-prefix,
     .asset-card .score-pane .forecast-badge .badge-sep,
     .asset-card .score-pane .forecast-badge .conf { display: none; }
-    .asset-card .score-pane .asset-price-row { padding-top: 10px; }
-    .asset-card .score-pane .asset-price { font-size: 13px; }
+    .asset-card .score-pane .asset-price-row { padding-top: 8px; }
+    .asset-card .score-pane .asset-price { font-size: 12px; }
     .asset-card .score-pane .asset-price-change { font-size: 10px; }
 
-    /* DCA pane: stack DZIŚ / ZA 7 DNI vertically (tighter for narrow column) */
+    /* DCA pane: stack DZIŚ / ZA 7 DNI vertically */
     .asset-card .dca-pane .dca-two-col {
       grid-template-columns: 1fr;
-      gap: 10px; margin-bottom: 12px;
+      gap: 8px; margin-bottom: 10px;
     }
-    .asset-card .dca-pane .dca-value { font-size: 24px; }
+    .asset-card .dca-pane .dca-value { font-size: 22px; }
     .asset-card .dca-pane .dca-col-label { font-size: 9px; }
-    .asset-card .dca-pane .dca-strip { height: 10px; }
+    .asset-card .dca-pane .dca-strip { height: 8px; margin-bottom: 6px; }
+    .asset-card .dca-pane .dca-history-label { font-size: 9px; margin-bottom: 4px; }
     .asset-card .dca-pane .dca-history-summary { font-size: 10px; }
 
     /* Detail page mobile */
