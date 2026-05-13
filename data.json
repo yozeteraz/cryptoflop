@@ -209,7 +209,51 @@
           "change": 5.7,
           "changeUnit": "7d"
         }
-      ]
+      ],
+      "dca": {
+        "decision": "TAK",
+        "history": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "forecast": {
+        "horizon_days": 7,
+        "score_now": 49,
+        "score_expected": 51,
+        "score_range": [
+          45,
+          57
+        ],
+        "mood_range": "Spokój → Wzmocnienie",
+        "direction": "up",
+        "confidence": "medium",
+        "total_delta": 2,
+        "rules": [
+          {
+            "name": "Wolumen",
+            "delta": 5,
+            "note": "Ruch w górę z wolumenem +35% vs średnia 30d — potwierdzenie"
+          },
+          {
+            "name": "Mean reversion",
+            "delta": -3,
+            "note": "Cena w top decylu 90d range (91%) — presja w dół"
+          },
+          {
+            "name": "Momentum",
+            "delta": 3,
+            "note": "1 dzień z rzędu w górę — kontynuacja prawdopodobna"
+          },
+          {
+            "name": "Cykl",
+            "delta": -3,
+            "note": "24 mies. po halvingu — cykl po szczycie historycznym (bearish)"
+          }
+        ]
+      }
     }
   ]
 }

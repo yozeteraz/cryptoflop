@@ -47,11 +47,18 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 ### Czego świadomie nie pokazujemy
 - Dominacji BTC jako głównego wymiaru (zrzucone do detali, drugorzędny sygnał dla DCA)
 - Funding rates / MVRV / Pi Cycle na pierwszym widoku (advanced, w detalach po kliknięciu)
-- Predykcji cenowych — **nigdy**
+- **Predykcji cenowych — nigdy**. Nie liczymy, nie pokazujemy, nie sugerujemy konkretnych target-prices.
 - Sygnałów typu „buy/sell" intraday
+
+### Co pokazujemy z przyszłości (od 2026-05-13)
+- **Forecast pasma sentymentu w 7d** — rules-based, transparentny, z explicit konwikcją (low/medium/high). To NIE predykcja ceny, tylko probabilistyczna ekstrapolacja widocznego setupu (volume confirmation, mean reversion, momentum streak, cykl).
+- Zasady: zawsze pasmo (nie pojedynczy punkt), zawsze z konwikcją, zawsze z rozbiciem regła-po-regle na detalu, zawsze z disclaimerem.
+- Szczegóły implementacji w `design.md` → sekcja "Rules-based forecast".
 
 ## Konwencje UI/UX — z uzasadnieniem
 
+> **Naczelna zasada estetyki: iOS.** Pełna specyfikacja w `design.md` (cards, hairlines vs gap, typografia, animacje). Każda zmiana UI musi być z tym zgodna.
+>
 > **Why:** te zasady wynikają z konkretnych iteracji w rozmowie. Nie zmieniaj ich bez ponownego pytania.
 > **How to apply:** każde nowe miejsce/element musi się tych zasad trzymać.
 
