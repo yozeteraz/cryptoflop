@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-05-15T20:54:33.909376+00:00",
+  "fetched_at": "2026-05-15T20:57:08.175472+00:00",
   "header_label": "piątek, 15 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-2,9%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-1,0%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>43</strong> (strach). 24 miesiące po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-2,8%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-1,0%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>43</strong> (strach). 24 miesiące po halvingu — cykl po szczycie historycznym.",
   "events": [
     {
       "title": "SpaceX targets June 11 IPO pricing, picks Nasdaq for historic market debut",
@@ -199,11 +199,12 @@
         42,
         48,
         43,
+        43,
         43
       ],
-      "price": "$79 033",
-      "price_change_24h": -2.9,
-      "narrative": "BTC <strong>-2,9%</strong> w 24h, <strong>-1,4%</strong> w 7d. Wolumen <strong>+14,1%</strong> względem średniej z 7 dni. Dominacja <strong>58,3%</strong> rynku. Fear &amp; Greed: <strong>43</strong> (strach).",
+      "price": "$79 064",
+      "price_change_24h": -2.8,
+      "narrative": "BTC <strong>-2,8%</strong> w 24h, <strong>-1,4%</strong> w 7d. Wolumen <strong>+14,0%</strong> względem średniej z 7 dni. Dominacja <strong>58,3%</strong> rynku. Fear &amp; Greed: <strong>43</strong> (strach).",
       "time": [
         {
           "key": "dzis",
@@ -217,6 +218,7 @@
             44,
             40,
             44,
+            43,
             43,
             43
           ]
@@ -234,6 +236,7 @@
             48,
             54,
             46,
+            46,
             46
           ]
         },
@@ -250,6 +253,7 @@
             67,
             74,
             64,
+            64,
             64
           ]
         },
@@ -265,6 +269,7 @@
             100,
             88,
             96,
+            83,
             83,
             83
           ]
@@ -286,6 +291,7 @@
             56,
             56,
             56,
+            56,
             56
           ]
         }
@@ -293,11 +299,11 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$79 033",
+          "value": "$79 064",
           "changes": [
             {
               "tf": "24h",
-              "val": -2.9
+              "val": -2.8
             },
             {
               "tf": "7d",
@@ -305,7 +311,7 @@
             },
             {
               "tf": "30d",
-              "val": 5.6
+              "val": 5.7
             }
           ]
         },
@@ -380,7 +386,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "score": 46,
-      "delta": 1,
+      "delta": 0,
       "mood": "Spokój",
       "history": [
         52,
@@ -392,11 +398,12 @@
         42,
         46,
         45,
+        46,
         46
       ],
       "price": "$673",
       "price_change_24h": -1.0,
-      "narrative": "BNB <strong>-1,0%</strong> w 24h, <strong>+3,7%</strong> w 7d. Wolumen <strong>+10,5%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+5,3%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "narrative": "BNB <strong>-1,0%</strong> w 24h, <strong>+3,8%</strong> w 7d. Wolumen <strong>+4,2%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+5,2%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
@@ -410,6 +417,7 @@
             47,
             40,
             43,
+            45,
             45,
             45
           ]
@@ -427,6 +435,7 @@
             64,
             67,
             59,
+            59,
             59
           ]
         },
@@ -443,6 +452,7 @@
             73,
             77,
             70,
+            70,
             70
           ]
         },
@@ -451,7 +461,7 @@
           "name": "Kwartał",
           "sub": "90d",
           "score": 66,
-          "delta": 1,
+          "delta": 0,
           "mood": "Siła",
           "history": [
             74,
@@ -459,6 +469,7 @@
             71,
             75,
             65,
+            66,
             66
           ]
         },
@@ -470,6 +481,7 @@
           "delta": 0,
           "mood": "Wzmocnienie",
           "history": [
+            56,
             56,
             56,
             56,
@@ -494,7 +506,7 @@
             },
             {
               "tf": "7d",
-              "val": 3.7
+              "val": 3.8
             },
             {
               "tf": "30d",
@@ -505,12 +517,12 @@
         {
           "label": "Wolumen 24h",
           "value": "$1,1B",
-          "change": 10
+          "change": 4
         },
         {
           "label": "BNB / BTC",
-          "value": "+5,3%",
-          "change": 5.3,
+          "value": "+5,2%",
+          "change": 5.2,
           "changeUnit": "7d"
         }
       ],
@@ -541,12 +553,12 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+9% vs 30d)"
+            "note": "Ruch w górę z umiarkowanym wolumenem (+3% vs 30d)"
           },
           {
             "name": "Mean reversion",
             "delta": -3,
-            "note": "Cena w top decylu 90d range (93%) — presja w dół"
+            "note": "Cena w top decylu 90d range (94%) — presja w dół"
           },
           {
             "name": "Momentum",

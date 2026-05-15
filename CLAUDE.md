@@ -133,15 +133,20 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 2. ⚙️ **Etap 1.5 — wzmocnienie MVP** (ukończone 2026-05-14):
    - Restruktura UI: 2 widgety BTC/BNB hairline-połączone, detail pages jako iOS modal sheet (drag handle, blur Material, slide-up), forecast 7d rules-based z 4 regułami (volume/mean-reversion/momentum/cykl), DCA per-asset (Dziś / Za 7 dni), header z czasem ostatniej aktualizacji.
 3. ❌ **Sentyment z Claude API** — **ODRZUCONE 2026-05-14**. Zostajemy na rules-based scoring + template narrative. Powód: użytkownik nie chce płacić za API. Patrz [[feedback_no_paid_apis]].
-4. ⬜ **On-chain BTC/BNB** — net flows do Binance (mempool.space + hardcoded lista wallet'ów Binance), aktywność BSC przez BSC RPC. Darmowe źródła. Mini-placeholder „Niebawem: on-chain" już teaserowany na detalach.
-5. ⬜ **Newsy i wydarzenia** — RSS (CoinDesk + CoinTelegraph) + Binance announcements JSON. **Bez LLM streszczeń** — tylko surowe nagłówki + link out, albo template-based brief. Mini-placeholder „Niebawem: newsy" już teaserowany.
-6. ⬜ **Alerty zdarzeniowe** (opcjonalne) — Telegram bot (darmowy) push przy progowych zmianach.
+3. ❌ **Sentyment z Claude API** — **ODRZUCONE 2026-05-14** (jw.).
+4. ✅ **On-chain BTC/BNB** (ukończone 2026-05-15) — net flows na/z portfeli Binance: BTC przez mempool.space (4 publiczne adresy, funded/spent txo delta), BNB przez BSC RPC eth_getBalance (3 adresy). Ring buffer snapshotów ~24h. Sekcja „On-chain · ostatnie Nh" na detalu z sygnałem inflow/outflow.
+5. ✅ **Newsy i wydarzenia** (ukończone 2026-05-14) — RSS CoinDesk + CoinTelegraph + Binance announcements JSON. Rules-based tagging (Binance/Regulacje/Makro/On-chain), per-asset filtering. Sekcja „Wydarzenia · 24h" na detalu, top 6 nagłówków z linkami. Bez LLM.
+6. ✅ **Alerty zdarzeniowe** (ukończone 2026-05-15, opcjonalne/opt-in) — Telegram bot. Triggery: DCA flip, F&G band do ekstremum, ruch ceny ±5% 24h, duży on-chain net flow (>500 BTC). Dedupe przez `alert_state` w history.json. **Aktywne tylko gdy ustawione GitHub Secrets `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`** — bez nich `fetch.py` cicho pomija.
 
-## Otwarte — do potwierdzenia z użytkownikiem przed startem etapu 1
+## Status: plan wykonany
 
-- Klucz API Claude (`console.anthropic.com` → załóż konto, dodaj $5 → starczy na 3+ miesiące). Potrzebny dopiero w etapie 2.
-- Python 3.10+ na Macu — sprawdzić przy starcie, jeśli brak → instalacja przez `uv`.
-- Konkretne godziny odświeżeń — domyślnie proponowane 8:00 / 14:00 / 21:00.
+Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost.
+
+**Aktywacja Telegram (opcjonalna, gdy użytkownik zechce):**
+1. Telegram → @BotFather → `/newbot` → skopiuj token
+2. Napisz coś do swojego bota, potem otwórz `https://api.telegram.org/bot<TOKEN>/getUpdates` → znajdź swój `chat.id`
+3. GitHub repo → Settings → Secrets and variables → Actions → dodaj `TELEGRAM_BOT_TOKEN` i `TELEGRAM_CHAT_ID`
+4. Od następnego cron-runa alerty działają. Zero zmian w kodzie.
 
 ## Nazwa, branding
 
@@ -151,4 +156,4 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 
 ---
 
-**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `index.html` i wskocz w rozmowę zakładając, że plan jest zatwierdzony, czekamy na zielone światło użytkownika do startu etapu 1.
+**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `design.md` + `index.html`. Plan jest **wykonany** (etapy 1, 1.5, 3, 4, 5 gotowe; etap 2 odrzucony — zero płatnych API). Projekt działa i jest zdeployowany na cryptobeacon.vercel.app. Dalsze prace to iteracje/polish na życzenie użytkownika, nie nowe etapy.

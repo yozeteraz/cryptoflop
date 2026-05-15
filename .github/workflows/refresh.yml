@@ -18,6 +18,9 @@ jobs:
         with:
           python-version: '3.12'
       - run: python fetch.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"

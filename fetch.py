@@ -8,7 +8,9 @@ więc na GitHub Actions używamy CoinGecko (działa globalnie).
 """
 
 import json
+import os
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
 import xml.etree.ElementTree as ET
@@ -586,6 +588,86 @@ def bnb_netflow_block(history, snap):
     }
 
 
+# ---------- Telegram alerty (etap 5, opt-in) ----------
+
+def send_telegram(text):
+    """Wyślij wiadomość na Telegram. No-op jeśli brak env TELEGRAM_BOT_TOKEN/CHAT_ID."""
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        return False
+    try:
+        data = urllib.parse.urlencode({
+            "chat_id": chat_id, "text": text,
+            "parse_mode": "HTML", "disable_web_page_preview": "true",
+        }).encode()
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=data, headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return json.loads(r.read()).get("ok", False)
+    except Exception as e:
+        print(f"  Telegram send failed: {e}")
+        return False
+
+
+def fng_band(fng):
+    if fng < 20: return "extreme-fear"
+    if fng < 40: return "fear"
+    if fng < 60: return "neutral"
+    if fng < 80: return "greed"
+    return "extreme-greed"
+
+
+def build_and_send_alerts(history, btc_24h, bnb_24h, fng, btc_dca, bnb_dca,
+                          btc_onchain, bnb_onchain):
+    """Porównaj stan vs last_alert_state, wyślij tylko zmiany progowe."""
+    if not os.environ.get("TELEGRAM_BOT_TOKEN"):
+        print("  Telegram: pominięte (brak TELEGRAM_BOT_TOKEN)")
+        return
+
+    prev = history.get("alert_state", {})
+    cur = {
+        "btc_dca": btc_dca, "bnb_dca": bnb_dca,
+        "fng_band": fng_band(fng),
+        "btc_big": abs(btc_24h) >= 5, "bnb_big": abs(bnb_24h) >= 5,
+    }
+    msgs = []
+
+    if prev.get("btc_dca") and prev["btc_dca"] != btc_dca:
+        msgs.append(f"🟠 <b>BTC DCA: {prev['btc_dca']} → {btc_dca}</b>")
+    if prev.get("bnb_dca") and prev["bnb_dca"] != bnb_dca:
+        msgs.append(f"🟡 <b>BNB DCA: {prev['bnb_dca']} → {bnb_dca}</b>")
+
+    if prev.get("fng_band") and prev["fng_band"] != cur["fng_band"]:
+        if cur["fng_band"] in ("extreme-fear", "extreme-greed"):
+            label = "ekstremalny strach" if cur["fng_band"] == "extreme-fear" else "ekstremalna chciwość"
+            msgs.append(f"📊 <b>Fear &amp; Greed: {fng} ({label})</b>")
+
+    if cur["btc_big"] and not prev.get("btc_big"):
+        msgs.append(f"⚡ <b>BTC {btc_24h:+.1f}% w 24h</b>")
+    if cur["bnb_big"] and not prev.get("bnb_big"):
+        msgs.append(f"⚡ <b>BNB {bnb_24h:+.1f}% w 24h</b>")
+
+    if btc_onchain.get("available") and abs(btc_onchain.get("net_btc", 0)) >= 500:
+        net = btc_onchain["net_btc"]
+        kier = "napływ na Binance" if net > 0 else "odpływ z Binance"
+        msgs.append(f"🔗 <b>BTC on-chain: {net:+} BTC ({kier})</b>")
+
+    if msgs:
+        body = "<b>CryptoBeacon — alert</b>\n\n" + "\n".join(msgs) + \
+               "\n\nhttps://cryptobeacon.vercel.app/"
+        if send_telegram(body):
+            print(f"  Telegram: wysłano {len(msgs)} alert(ów)")
+        else:
+            print("  Telegram: send nieudany")
+    else:
+        print("  Telegram: brak progowych zmian")
+
+    history["alert_state"] = cur
+
+
 # ---------- main ----------
 
 
@@ -729,6 +811,10 @@ def main():
         print(f"  BTC net flow {btc_onchain['window_h']}h: {btc_onchain['net_btc']:+} BTC")
     if bnb_onchain.get("available"):
         print(f"  BNB net flow {bnb_onchain['window_h']}h: {bnb_onchain['net_bnb']:+} BNB")
+
+    print("Telegram alerts (etap 5)...")
+    build_and_send_alerts(history, btc_24h, bnb_24h, fng, btc_dca, bnb_dca,
+                          btc_onchain, bnb_onchain)
 
     now_local = datetime.now()
     header_label = f"{DAY_NAMES_PL[now_local.weekday()]}, {now_local.day} {MONTHS_PL[now_local.month - 1]}"
