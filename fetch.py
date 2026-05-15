@@ -8,7 +8,9 @@ więc na GitHub Actions używamy CoinGecko (działa globalnie).
 """
 
 import json
+import time
 import urllib.request
+import urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
@@ -26,10 +28,20 @@ MONTHS_PL = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
              "lipca", "sierpnia", "września", "października", "listopada", "grudnia"]
 
 
-def fetch_json(url, timeout=20):
+def fetch_json(url, timeout=20, retries=3):
+    """GET JSON z prostym retry na transient 429/5xx (exponential backoff)."""
     req = urllib.request.Request(url, headers={"User-Agent": "cryptobeacon/0.1"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read())
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < retries - 1:
+                wait = 5 * (2 ** attempt)  # 5s, 10s, 20s
+                print(f"  HTTP {e.code} z {url[:50]}… — retry za {wait}s")
+                time.sleep(wait)
+                continue
+            raise
 
 
 def mood_label(score):
@@ -448,6 +460,132 @@ def fetch_all_events(max_total=15, max_age_hours=24):
     return events[:max_total]
 
 
+# ---------- On-chain net flows (etap 3) ----------
+
+# Publicznie udokumentowane adresy Binance (cold + hot). Net flow = zmiana
+# zagregowanego salda. Inflow (dodatni) = krypto trafia na giełdę = możliwa
+# presja sprzedażowa. Outflow (ujemny) = odpływ = akumulacja.
+BINANCE_BTC_ADDRESSES = [
+    "34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo",                                  # Binance cold (largest)
+    "bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97",      # Binance hot
+    "1NDyJtNTjmwk5xPNhjgAMu4HDHigtobu1s",                                  # Binance
+    "3M219KR5vEneNb47ewrPfWyb5jQ2DjxRP6",                                  # Binance
+]
+BINANCE_BSC_ADDRESSES = [
+    "0xF977814e90dA44bFA03b6295A0616a897441aceC",                          # Binance 8 (duży holder BNB)
+    "0x8894E0a0c962CB723c1976a4421c95949bE2D4E3",                          # Binance hot
+    "0x28C6c06298d514Db089934071355E5743bf21d60",                          # Binance 14
+]
+ONCHAIN_HISTORY_LEN = 25  # ~24h przy cron co 1h
+
+
+def fetch_btc_onchain():
+    """Zsumuj funded/spent across Binance BTC addresses (mempool.space)."""
+    funded = 0
+    spent = 0
+    ok = 0
+    for addr in BINANCE_BTC_ADDRESSES:
+        try:
+            d = fetch_json(f"https://mempool.space/api/address/{addr}", timeout=15)
+            cs = d.get("chain_stats", {})
+            funded += cs.get("funded_txo_sum", 0)
+            spent += cs.get("spent_txo_sum", 0)
+            ok += 1
+        except Exception as e:
+            print(f"  mempool.space {addr[:12]}… failed: {e}")
+    if ok == 0:
+        return None
+    return {"funded": funded, "spent": spent}
+
+
+def fetch_bnb_onchain():
+    """Zsumuj balansy Binance BSC addresses (BSC RPC eth_getBalance)."""
+    total_wei = 0
+    ok = 0
+    for addr in BINANCE_BSC_ADDRESSES:
+        try:
+            req = urllib.request.Request(
+                "https://bsc-dataseed.binance.org",
+                data=json.dumps({
+                    "jsonrpc": "2.0", "method": "eth_getBalance",
+                    "params": [addr, "latest"], "id": 1,
+                }).encode(),
+                headers={"Content-Type": "application/json", "User-Agent": NEWS_USER_AGENT},
+            )
+            with urllib.request.urlopen(req, timeout=15) as r:
+                res = json.loads(r.read())
+            total_wei += int(res["result"], 16)
+            ok += 1
+        except Exception as e:
+            print(f"  BSC RPC {addr[:12]}… failed: {e}")
+    if ok == 0:
+        return None
+    return {"balance_wei": total_wei}
+
+
+def push_onchain_snapshot(history, key, snapshot):
+    arr = history.setdefault(key, [])
+    arr.append({"ts": datetime.now(timezone.utc).isoformat(), **snapshot})
+    if len(arr) > ONCHAIN_HISTORY_LEN:
+        del arr[: len(arr) - ONCHAIN_HISTORY_LEN]
+    return list(arr)
+
+
+def btc_netflow_block(history, snap):
+    """Build on-chain block for BTC. snap = {funded, spent} lub None."""
+    if snap is None:
+        return {"available": False, "note": "Brak danych on-chain (mempool.space niedostępny)"}
+    arr = push_onchain_snapshot(history, "onchain_btc", snap)
+    if len(arr) < 2:
+        return {"available": False, "note": "Zbieram dane on-chain — pierwszy snapshot"}
+    oldest = arr[0]
+    d_funded = snap["funded"] - oldest["funded"]
+    d_spent = snap["spent"] - oldest["spent"]
+    inflow_btc = d_funded / 1e8
+    outflow_btc = d_spent / 1e8
+    net_btc = inflow_btc - outflow_btc  # dodatni = napływ na Binance
+    hours = max(1, round((datetime.now(timezone.utc) -
+                          datetime.fromisoformat(oldest["ts"])).total_seconds() / 3600))
+    if net_btc > 50:
+        signal = "napływ na giełdę — możliwa presja sprzedażowa"
+    elif net_btc < -50:
+        signal = "odpływ z giełdy — akumulacja / mniejsza podaż"
+    else:
+        signal = "ruch netto bliski zera — bez wyraźnego sygnału"
+    return {
+        "available": True,
+        "net_btc": round(net_btc),
+        "inflow_btc": round(inflow_btc),
+        "outflow_btc": round(outflow_btc),
+        "window_h": hours,
+        "signal": signal,
+    }
+
+
+def bnb_netflow_block(history, snap):
+    if snap is None:
+        return {"available": False, "note": "Brak danych on-chain (BSC RPC niedostępny)"}
+    arr = push_onchain_snapshot(history, "onchain_bnb", snap)
+    if len(arr) < 2:
+        return {"available": False, "note": "Zbieram dane on-chain — pierwszy snapshot"}
+    oldest = arr[0]
+    net_bnb = (snap["balance_wei"] - oldest["balance_wei"]) / 1e18  # dodatni = wzrost salda Binance
+    hours = max(1, round((datetime.now(timezone.utc) -
+                          datetime.fromisoformat(oldest["ts"])).total_seconds() / 3600))
+    if net_bnb > 2000:
+        signal = "saldo Binance rośnie — możliwa presja sprzedażowa"
+    elif net_bnb < -2000:
+        signal = "saldo Binance maleje — odpływ / akumulacja"
+    else:
+        signal = "zmiana salda bliska zera — bez wyraźnego sygnału"
+    return {
+        "available": True,
+        "net_bnb": round(net_bnb),
+        "window_h": hours,
+        "signal": signal,
+    }
+
+
 # ---------- main ----------
 
 
@@ -584,6 +722,14 @@ def main():
     btc_time = asset_time_block("btc", history, btc_24h, btc_7d, btc_30d, btc_90d, fng, cyc)
     bnb_time = asset_time_block("bnb", history, bnb_24h, bnb_7d, bnb_30d, bnb_90d, fng, cyc)
 
+    print("Fetching on-chain (etap 3)...")
+    btc_onchain = btc_netflow_block(history, fetch_btc_onchain())
+    bnb_onchain = bnb_netflow_block(history, fetch_bnb_onchain())
+    if btc_onchain.get("available"):
+        print(f"  BTC net flow {btc_onchain['window_h']}h: {btc_onchain['net_btc']:+} BTC")
+    if bnb_onchain.get("available"):
+        print(f"  BNB net flow {bnb_onchain['window_h']}h: {bnb_onchain['net_bnb']:+} BNB")
+
     now_local = datetime.now()
     header_label = f"{DAY_NAMES_PL[now_local.weekday()]}, {now_local.day} {MONTHS_PL[now_local.month - 1]}"
 
@@ -617,6 +763,7 @@ def main():
                 ],
                 "dca": {"decision": btc_dca, "history": btc_dca_hist},
                 "forecast": btc_forecast,
+                "onchain": btc_onchain,
             },
             {
                 "key": "bnb",
@@ -644,6 +791,7 @@ def main():
                 ],
                 "dca": {"decision": bnb_dca, "history": bnb_dca_hist},
                 "forecast": bnb_forecast,
+                "onchain": bnb_onchain,
             },
         ],
     }

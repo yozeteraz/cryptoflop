@@ -272,13 +272,21 @@
     font-size: 12px; color: var(--muted-2); font-style: italic;
   }
 
-  /* Mini hint for upcoming features (etap 3) */
-  .upcoming-hint {
-    margin-top: 18px; padding: 10px 14px;
-    font-size: 11px; color: var(--muted-2);
-    text-align: center; font-style: italic;
-    border-top: 1px solid var(--border);
+  /* On-chain block (etap 3) */
+  .onchain-block {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 20px;
   }
+  .onchain-block .oc-flow {
+    display: flex; align-items: baseline; gap: 10px;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .onchain-block .oc-flow .oc-label { font-size: 13px; font-weight: 500; color: var(--muted); }
+  .onchain-block .oc-flow .oc-value.inflow { color: var(--neg); }
+  .onchain-block .oc-flow .oc-value.outflow { color: var(--pos); }
+  .onchain-block .oc-flow .oc-value.flat { color: var(--text); }
+  .onchain-block .oc-signal { margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .onchain-block .oc-pending { font-size: 12px; color: var(--muted-2); font-style: italic; }
 
   footer {
     margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border);
@@ -781,6 +789,39 @@ function renderEventsBlock(asset, allEvents) {
   `;
 }
 
+function renderOnchainBlock(asset) {
+  const oc = asset.onchain;
+  if (!oc) return "";
+  if (!oc.available) {
+    return `
+      <h3 class="section">On-chain · Binance</h3>
+      <div class="onchain-block"><div class="oc-pending">${oc.note || "Brak danych on-chain."}</div></div>
+    `;
+  }
+  let net, cls;
+  if (asset.key === "btc") {
+    net = oc.net_btc;
+    cls = net > 50 ? "inflow" : net < -50 ? "outflow" : "flat";
+  } else {
+    net = oc.net_bnb;
+    cls = net > 2000 ? "inflow" : net < -2000 ? "outflow" : "flat";
+  }
+  const sign = net > 0 ? "+" : "";
+  const unit = asset.key === "btc" ? "BTC" : "BNB";
+  const netStr = (sign + net.toLocaleString("pl-PL")).replace(/,/g, " ");
+  return `
+    <h3 class="section">On-chain · ostatnie ${oc.window_h}h</h3>
+    <p class="section-sub">Net flow ${asset.name} na/z portfeli Binance (publiczne adresy, mempool.space / BSC RPC).</p>
+    <div class="onchain-block">
+      <div class="oc-flow">
+        <span class="oc-label">Net flow → Binance:</span>
+        <span class="oc-value ${cls}">${netStr} ${unit}</span>
+      </div>
+      <div class="oc-signal">${oc.signal}</div>
+    </div>
+  `;
+}
+
 function renderForecastBlock(asset) {
   const f = asset.forecast;
   if (!f) return "";
@@ -852,15 +893,15 @@ function renderDetailPanel(panelEl, asset, allEvents) {
   forecast.className = "block";
   forecast.innerHTML = renderForecastBlock(asset);
 
+  // On-chain (etap 3)
+  const onchain = document.createElement("section");
+  onchain.className = "block";
+  onchain.innerHTML = renderOnchainBlock(asset);
+
   // Events / Wydarzenia (etap 4)
   const events = document.createElement("section");
   events.className = "block";
   events.innerHTML = renderEventsBlock(asset, allEvents);
-
-  // Mini placeholder for remaining upcoming features (on-chain only)
-  const upcoming = document.createElement("div");
-  upcoming.className = "upcoming-hint";
-  upcoming.innerHTML = `Niebawem: on-chain ${asset.name} (net flows na Binance, whale tx).`;
 
   panelEl.innerHTML = "";
   panelEl.appendChild(widget);
@@ -868,8 +909,8 @@ function renderDetailPanel(panelEl, asset, allEvents) {
   panelEl.appendChild(timeBlock);
   panelEl.appendChild(metrics);
   panelEl.appendChild(forecast);
+  panelEl.appendChild(onchain);
   panelEl.appendChild(events);
-  panelEl.appendChild(upcoming);
 }
 
 function renderDetail(data) {
