@@ -150,10 +150,10 @@ Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane
 
 ## Nazwa, branding
 
-- Nazwa: **CryptoFlop** (wcześniej CryptoBeacon — pełna ścieżka: Foglight → Mgielnik → Beacon → CryptoBeacon → CryptoFlop)
+- Nazwa: **CryptoFlop**
 - Brand color: `#c4a878` (złoto-piaskowy, motyw latarni)
 - Paleta: patrz `colors.md` (kompletna z uzasadnieniem)
 
 ---
 
-**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `design.md` + `index.html`. Plan jest **wykonany** (etapy 1, 1.5, 3, 4, 5 gotowe; etap 2 odrzucony — zero płatnych API). Projekt działa i jest zdeployowany na cryptoflop.vercel.app (po renamie 2026-05-20; stary URL cryptobeacon.vercel.app pozostaje aktywny dopóki nie zmienisz w Vercel). Dalsze prace to iteracje/polish na życzenie użytkownika, nie nowe etapy.
+**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `design.md` + `index.html`. Plan jest **wykonany** (etapy 1, 1.5, 3, 4, 5 gotowe; etap 2 odrzucony — zero płatnych API). Projekt działa i jest zdeployowany na cryptoflop.vercel.app. Dalsze prace to iteracje/polish na życzenie użytkownika, nie nowe etapy.
