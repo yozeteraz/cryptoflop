@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CryptoBeacon — fetch market data, compute scores, write data.json.
+"""CryptoFlop — fetch market data, compute scores, write data.json.
 
 Runs 3x/day via GitHub Actions. No external deps (stdlib only).
 
@@ -32,7 +32,7 @@ MONTHS_PL = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
 
 def fetch_json(url, timeout=20, retries=3):
     """GET JSON z prostym retry na transient 429/5xx (exponential backoff)."""
-    req = urllib.request.Request(url, headers={"User-Agent": "cryptobeacon/0.1"})
+    req = urllib.request.Request(url, headers={"User-Agent": "cryptoflop/0.1"})
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -333,7 +333,7 @@ def asset_time_block(asset_key, history, pct_24h, pct_7d, pct_30d, pct_90d, fng,
 
 # ---------- News & events (etap 4) ----------
 
-NEWS_USER_AGENT = "Mozilla/5.0 (cryptobeacon/0.2; +https://cryptobeacon.vercel.app)"
+NEWS_USER_AGENT = "Mozilla/5.0 (cryptoflop/0.2; +https://cryptoflop.vercel.app)"
 
 TAG_KEYWORDS = {
     "Binance": ["binance", "bnb", "changpeng", "cz "],
@@ -656,8 +656,8 @@ def build_and_send_alerts(history, btc_24h, bnb_24h, fng, btc_dca, bnb_dca,
         msgs.append(f"🔗 <b>BTC on-chain: {net:+} BTC ({kier})</b>")
 
     if msgs:
-        body = "<b>CryptoBeacon — alert</b>\n\n" + "\n".join(msgs) + \
-               "\n\nhttps://cryptobeacon.vercel.app/"
+        body = "<b>CryptoFlop — alert</b>\n\n" + "\n".join(msgs) + \
+               "\n\nhttps://cryptoflop.vercel.app/"
         if send_telegram(body):
             print(f"  Telegram: wysłano {len(msgs)} alert(ów)")
         else:

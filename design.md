@@ -1,4 +1,4 @@
-# CryptoBeacon — design rules
+# CryptoFlop — design rules
 
 > Estetyka iOS. Każda decyzja UI/CSS musi być zgodna z tym dokumentem. Jeśli nowa propozycja koliduje — najpierw pytanie do użytkownika.
 

@@ -1,4 +1,4 @@
-# Crypto Beacon — paleta kolorów
+# CryptoFlop — paleta kolorów
 
 Pełna paleta używana w mockupie dashboardu. Podzielona na warstwy: brand, UI/tło, skala sentymentu, wskaźniki zmian.
 
@@ -8,7 +8,7 @@ Pełna paleta używana w mockupie dashboardu. Podzielona na warstwy: brand, UI/t
 
 | Rola | Hex | Opis |
 |---|---|---|
-| **Accent / Brand** | `#c4a878` | Złoto-piaskowy — tytuł "CRYPTO BEACON", etykieta DCA, tag Binance. Charakter: latarnia, ciepło, dyskretny luksus |
+| **Accent / Brand** | `#c4a878` | Złoto-piaskowy — tytuł "CRYPTOFLOP", etykieta DCA, tag Binance. Charakter: latarnia, ciepło, dyskretny luksus |
 
 ## Tło i karty (dark mode)
 

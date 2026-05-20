@@ -1,4 +1,4 @@
-# CryptoBeacon — kontekst projektu
+# CryptoFlop — kontekst projektu
 
 > Ten plik czytany jest automatycznie przy starcie Claude Code w tym katalogu. Zawiera ustalenia i decyzje z rozmowy planistycznej, której nie ma już w pamięci konwersacji.
 
@@ -6,7 +6,7 @@
 
 ## Co to jest
 
-**CryptoBeacon** to osobiste narzędzie do codziennej obserwacji „mgły" rynku krypto — pomoc w budowaniu intuicji o nastroju rynku, **nie** silnik predykcyjny. Generuje statyczny HTML dashboard aktualizowany 3× dziennie (rano / południe / wieczór).
+**CryptoFlop** to osobiste narzędzie do codziennej obserwacji „mgły" rynku krypto — pomoc w budowaniu intuicji o nastroju rynku, **nie** silnik predykcyjny. Generuje statyczny HTML dashboard aktualizowany 3× dziennie (rano / południe / wieczór).
 
 Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, więc nie próbujemy go „przewidywać". Zamiast tego pokazujemy **sentyment w warstwach czasowych**, żeby użytkownik mógł sam wyrobić sobie wyczucie.
 
@@ -67,7 +67,7 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 - **Strzałka delty obok wielkiej liczby** (nie przy etykiecie). Wcześniej próbowaliśmy umieszczać ją przy labelu — testowo wróciliśmy, ale po stronie użytkownika lepiej się czyta gdy jest tuż obok wyniku. Strzałka w kolorze wyniku (`--cell-color`), nie w klasycznym czerwono-zielonym — kierunek niesie sam symbol ↑↓.
 - **Hero w tym samym stylu co komórki**, tylko większy. Bez okrągłych dialów / wskazówek — to nie jest gauge. Spójność wizualna z resztą. Hero też ma własny sparkline (większy, ~44px wysokości).
 - **Sparkline w każdej komórce** — ostatnie 7 odświeżeń, cienka linia w kolorze sentymentu, z kropką na ostatnim punkcie. Daje kontekst „trendu" bez konieczności klikania.
-- **Nagłówek strony minimalistyczny**: brand „CRYPTO BEACON" po lewej, **tylko data** po prawej. Bez „ostatnia aktualizacja / kolejna", bez info o cyklu (cykl ma własną komórkę w siatce czasu).
+- **Nagłówek strony minimalistyczny**: brand „CRYPTOFLOP" po lewej, **tylko data** po prawej. Bez „ostatnia aktualizacja / kolejna", bez info o cyklu (cykl ma własną komórkę w siatce czasu).
 - **Sekcje mają jednozdaniowy podtytuł** wyjaśniający kontekst. Użytkownik nie jest tradera, każdy techniczny termin (np. „Aktywa") wymaga krótkiego doprecyzowania.
 - **Sekcja Aktywa to wiersz: kafelek wyniku + 3 stat blocki** (Cena, Wolumen, vs rynek). Nie szerokie 2 komórki obok siebie — to wyglądało niezbalansowane vs siatka czasu.
 - **Pomost decyzyjny „DCA na dziś"** pod hero — 1-zdaniowa synteza danych → rekomendacja. Bez tego użytkownik czyta liczby, ale nie wie *co z tego*. Skrót DCA = Dollar-Cost Averaging (stała kwota w regularnych odstępach).
@@ -150,10 +150,10 @@ Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane
 
 ## Nazwa, branding
 
-- Nazwa: **CryptoBeacon** (wybrana ze ścieżki Foglight → Mgielnik → Beacon → CryptoBeacon)
+- Nazwa: **CryptoFlop** (wcześniej CryptoBeacon — pełna ścieżka: Foglight → Mgielnik → Beacon → CryptoBeacon → CryptoFlop)
 - Brand color: `#c4a878` (złoto-piaskowy, motyw latarni)
 - Paleta: patrz `colors.md` (kompletna z uzasadnieniem)
 
 ---
 
-**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `design.md` + `index.html`. Plan jest **wykonany** (etapy 1, 1.5, 3, 4, 5 gotowe; etap 2 odrzucony — zero płatnych API). Projekt działa i jest zdeployowany na cryptobeacon.vercel.app. Dalsze prace to iteracje/polish na życzenie użytkownika, nie nowe etapy.
+**Kiedy ktokolwiek startuje Claude Code w tym katalogu:** przeczytaj ten plik + `colors.md` + `design.md` + `index.html`. Plan jest **wykonany** (etapy 1, 1.5, 3, 4, 5 gotowe; etap 2 odrzucony — zero płatnych API). Projekt działa i jest zdeployowany na cryptoflop.vercel.app (po renamie 2026-05-20; stary URL cryptobeacon.vercel.app pozostaje aktywny dopóki nie zmienisz w Vercel). Dalsze prace to iteracje/polish na życzenie użytkownika, nie nowe etapy.
