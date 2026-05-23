@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-05-23T21:53:09.581674+00:00",
+  "fetched_at": "2026-05-23T22:52:02.727114+00:00",
   "header_label": "sobota, 23 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+0,9%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+0,5%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+1,1%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+0,7%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
     {
       "title": "Bitcoin heads higher as President Trump announces Iran peace agreement",
@@ -182,7 +182,6 @@
       "delta": 0,
       "mood": "Słabość",
       "history": [
-        41,
         43,
         43,
         43,
@@ -205,11 +204,12 @@
         40,
         41,
         44,
+        44,
         44
       ],
-      "price": "$76 646",
-      "price_change_24h": 0.9,
-      "narrative": "BTC <strong>+0,9%</strong> w 24h, <strong>-1,9%</strong> w 7d. Wolumen <strong>+9,9%</strong> względem średniej z 7 dni. Dominacja <strong>58,1%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
+      "price": "$76 488",
+      "price_change_24h": 1.1,
+      "narrative": "BTC <strong>+1,1%</strong> w 24h, <strong>-2,1%</strong> w 7d. Wolumen <strong>+9,0%</strong> względem średniej z 7 dni. Dominacja <strong>58,0%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
       "time": [
         {
           "key": "dzis",
@@ -219,7 +219,6 @@
           "delta": 0,
           "mood": "Słabość",
           "history": [
-            38,
             40,
             39,
             39,
@@ -241,6 +240,7 @@
             37,
             37,
             38,
+            40,
             40,
             40
           ]
@@ -253,7 +253,6 @@
           "delta": 0,
           "mood": "Spokój",
           "history": [
-            38,
             40,
             39,
             40,
@@ -276,6 +275,7 @@
             42,
             43,
             45,
+            45,
             45
           ]
         },
@@ -283,11 +283,10 @@
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 45,
-          "delta": 0,
-          "mood": "Spokój",
+          "score": 44,
+          "delta": -1,
+          "mood": "Słabość",
           "history": [
-            53,
             55,
             54,
             54,
@@ -310,18 +309,18 @@
             41,
             42,
             45,
-            45
+            45,
+            44
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 84,
-          "delta": 0,
+          "score": 83,
+          "delta": -1,
           "mood": "Hossa",
           "history": [
-            84,
             87,
             86,
             86,
@@ -344,7 +343,8 @@
             79,
             81,
             84,
-            84
+            84,
+            83
           ]
         },
         {
@@ -367,7 +367,7 @@
             55,
             55,
             55,
-            55,
+            54,
             54,
             54,
             54,
@@ -385,30 +385,30 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$76 646",
+          "value": "$76 488",
           "changes": [
             {
               "tf": "24h",
-              "val": 0.9
+              "val": 1.1
             },
             {
               "tf": "7d",
-              "val": -1.9
+              "val": -2.1
             },
             {
               "tf": "30d",
-              "val": -2.1
+              "val": -2.3
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$32,9B",
-          "change": 10
+          "value": "$32,6B",
+          "change": 9
         },
         {
           "label": "Dominacja",
-          "value": "58,1%",
+          "value": "58,0%",
           "change": null
         }
       ],
@@ -471,7 +471,7 @@
         "net_btc": 0,
         "inflow_btc": 0,
         "outflow_btc": 0,
-        "window_h": 59,
+        "window_h": 56,
         "signal": "ruch netto bliski zera — bez wyraźnego sygnału"
       }
     },
@@ -479,11 +479,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 43,
-      "delta": -1,
+      "score": 44,
+      "delta": 1,
       "mood": "Słabość",
       "history": [
-        43,
         45,
         45,
         45,
@@ -506,21 +505,21 @@
         40,
         42,
         44,
-        43
+        43,
+        44
       ],
       "price": "$656",
-      "price_change_24h": 0.5,
-      "narrative": "BNB <strong>+0,5%</strong> w 24h, <strong>+0,0%</strong> w 7d. Wolumen <strong>+6,4%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+2,0%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "price_change_24h": 0.7,
+      "narrative": "BNB <strong>+0,7%</strong> w 24h, <strong>-0,0%</strong> w 7d. Wolumen <strong>+5,9%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+2,1%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 39,
-          "delta": -1,
+          "score": 40,
+          "delta": 1,
           "mood": "Słabość",
           "history": [
-            40,
             41,
             41,
             41,
@@ -543,7 +542,8 @@
             37,
             39,
             40,
-            39
+            39,
+            40
           ]
         },
         {
@@ -554,7 +554,6 @@
           "delta": 0,
           "mood": "Spokój",
           "history": [
-            40,
             43,
             42,
             43,
@@ -577,6 +576,7 @@
             46,
             48,
             50,
+            50,
             50
           ]
         },
@@ -588,7 +588,6 @@
           "delta": 0,
           "mood": "Wzmocnienie",
           "history": [
-            58,
             60,
             60,
             60,
@@ -611,6 +610,7 @@
             53,
             55,
             57,
+            57,
             57
           ]
         },
@@ -622,7 +622,6 @@
           "delta": 0,
           "mood": "Siła",
           "history": [
-            60,
             63,
             63,
             63,
@@ -644,6 +643,7 @@
             63,
             63,
             65,
+            67,
             67,
             67
           ]
@@ -668,7 +668,7 @@
             55,
             55,
             55,
-            55,
+            54,
             54,
             54,
             54,
@@ -690,11 +690,11 @@
           "changes": [
             {
               "tf": "24h",
-              "val": 0.5
+              "val": 0.7
             },
             {
               "tf": "7d",
-              "val": 0.0
+              "val": -0.0
             },
             {
               "tf": "30d",
@@ -704,13 +704,13 @@
         },
         {
           "label": "Wolumen 24h",
-          "value": "$769M",
+          "value": "$765M",
           "change": 6
         },
         {
           "label": "BNB / BTC",
-          "value": "+2,0%",
-          "change": 2.0,
+          "value": "+2,1%",
+          "change": 2.1,
           "changeUnit": "7d"
         }
       ],
@@ -735,11 +735,11 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 43,
-        "score_expected": 43,
+        "score_now": 44,
+        "score_expected": 44,
         "score_range": [
-          37,
-          49
+          38,
+          50
         ],
         "mood_range": "Słabość → Spokój",
         "direction": "flat",
@@ -770,8 +770,8 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": -9045,
-        "window_h": 59,
+        "net_bnb": -12359,
+        "window_h": 56,
         "signal": "saldo Binance maleje — odpływ / akumulacja"
       }
     }
