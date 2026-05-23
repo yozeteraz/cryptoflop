@@ -1,8 +1,42 @@
 {
-  "fetched_at": "2026-05-23T13:21:05.864614+00:00",
+  "fetched_at": "2026-05-23T14:59:09.593450+00:00",
   "header_label": "sobota, 23 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-3,2%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-3,0%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-1,6%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-1,6%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
+    {
+      "title": "Crypto trader sees Hyperliquid, AI tokens leading next altcoin rally",
+      "url": "https://www.coindesk.com/markets/2026/05/23/crypto-trader-sees-hyperliquid-ai-tokens-leading-next-altcoin-rally",
+      "published_at": "2026-05-23T14:19:18+00:00",
+      "source": "CoinDesk",
+      "tags": [],
+      "assets": [
+        "btc",
+        "bnb"
+      ]
+    },
+    {
+      "title": "Binance denies new WSJ report alleging $850M in Iran-linked transactions",
+      "url": "https://cointelegraph.com/news/binance-denies-new-wsj-report-alleging-850m-in-iran-linked-transactions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-05-23T14:03:36+00:00",
+      "source": "CoinTelegraph",
+      "tags": [
+        "Binance"
+      ],
+      "assets": [
+        "bnb"
+      ]
+    },
+    {
+      "title": "Here’s what happened in crypto today",
+      "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-05-23T14:02:22+00:00",
+      "source": "CoinTelegraph",
+      "tags": [],
+      "assets": [
+        "btc",
+        "bnb"
+      ]
+    },
     {
       "title": "Clarity Act could spark a boom in crypto ‘yield-as-a-service’",
       "url": "https://www.coindesk.com/policy/2026/05/23/clarity-act-could-spark-a-boom-in-crypto-yield-as-a-service",
@@ -141,41 +175,6 @@
         "btc",
         "bnb"
       ]
-    },
-    {
-      "title": "SEC Commissioner Peirce counters views that crypto rule will foster synthetic tokens",
-      "url": "https://www.coindesk.com/news-analysis/2026/05/22/sec-commissioner-peirce-counters-views-that-crypto-rule-will-foster-synthetic-tokens",
-      "published_at": "2026-05-22T18:20:32+00:00",
-      "source": "CoinDesk",
-      "tags": [
-        "Regulacje"
-      ],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
-    },
-    {
-      "title": "Why Minnesota is empowering local banks to fight Wall Street for crypto revenue",
-      "url": "https://www.coindesk.com/business/2026/05/22/why-minnesota-is-empowering-local-banks-to-fight-wall-street-for-crypto-revenue",
-      "published_at": "2026-05-22T17:53:41+00:00",
-      "source": "CoinDesk",
-      "tags": [],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
-    },
-    {
-      "title": "US House lawmakers launch probe into Kalshi, Polymarket insider trading",
-      "url": "https://cointelegraph.com/news/us-house-probe-kalshi-polymarket-insider-trading?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "published_at": "2026-05-22T17:20:49+00:00",
-      "source": "CoinTelegraph",
-      "tags": [],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
     }
   ],
   "assets": [
@@ -183,11 +182,10 @@
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "score": 37,
-      "delta": 0,
+      "score": 40,
+      "delta": 3,
       "mood": "Słabość",
       "history": [
-        43,
         43,
         45,
         44,
@@ -210,21 +208,21 @@
         38,
         37,
         37,
-        37
+        37,
+        40
       ],
-      "price": "$74 878",
-      "price_change_24h": -3.2,
-      "narrative": "BTC <strong>-3,2%</strong> w 24h, <strong>-4,2%</strong> w 7d. Wolumen <strong>+98,4%</strong> względem średniej z 7 dni. Dominacja <strong>58,0%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
+      "price": "$75 501",
+      "price_change_24h": -1.6,
+      "narrative": "BTC <strong>-1,6%</strong> w 24h, <strong>-3,4%</strong> w 7d. Wolumen <strong>+100,0%</strong> względem średniej z 7 dni. Dominacja <strong>58,1%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 35,
-          "delta": 0,
+          "score": 37,
+          "delta": 2,
           "mood": "Słabość",
           "history": [
-            39,
             39,
             41,
             40,
@@ -247,18 +245,18 @@
             35,
             35,
             35,
-            35
+            35,
+            37
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 40,
-          "delta": 1,
+          "score": 42,
+          "delta": 2,
           "mood": "Słabość",
           "history": [
-            45,
             44,
             40,
             40,
@@ -281,18 +279,18 @@
             41,
             39,
             39,
-            40
+            40,
+            42
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 39,
-          "delta": 0,
+          "score": 41,
+          "delta": 2,
           "mood": "Słabość",
           "history": [
-            56,
             55,
             55,
             54,
@@ -315,18 +313,18 @@
             40,
             38,
             39,
-            39
+            39,
+            41
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 77,
-          "delta": 1,
+          "score": 79,
+          "delta": 2,
           "mood": "Hossa",
           "history": [
-            90,
             89,
             87,
             86,
@@ -349,7 +347,8 @@
             78,
             76,
             76,
-            77
+            77,
+            79
           ]
         },
         {
@@ -377,7 +376,7 @@
             55,
             55,
             55,
-            55,
+            54,
             54,
             54,
             54,
@@ -390,30 +389,30 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$74 878",
+          "value": "$75 501",
           "changes": [
             {
               "tf": "24h",
-              "val": -3.2
+              "val": -1.6
             },
             {
               "tf": "7d",
-              "val": -4.2
+              "val": -3.4
             },
             {
               "tf": "30d",
-              "val": -4.3
+              "val": -3.5
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$59,4B",
-          "change": 98
+          "value": "$59,9B",
+          "change": 100
         },
         {
           "label": "Dominacja",
-          "value": "58,0%",
+          "value": "58,1%",
           "change": null
         }
       ],
@@ -438,21 +437,21 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 37,
-        "score_expected": 26,
+        "score_now": 40,
+        "score_expected": 32,
         "score_range": [
-          22,
-          30
+          28,
+          36
         ],
         "mood_range": "Wyprzedaż → Słabość",
         "direction": "down",
         "confidence": "high",
-        "total_delta": -11,
+        "total_delta": -8,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w dół z wolumenem +78% vs średnia 30d — potwierdzenie"
+            "note": "Ruch w dół z wolumenem +79% vs średnia 30d — potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -461,8 +460,8 @@
           },
           {
             "name": "Momentum",
-            "delta": -3,
-            "note": "2 dni z rzędu w dół — kontynuacja prawdopodobna"
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego"
           },
           {
             "name": "Cykl",
@@ -476,7 +475,7 @@
         "net_btc": 0,
         "inflow_btc": 0,
         "outflow_btc": 0,
-        "window_h": 66,
+        "window_h": 65,
         "signal": "ruch netto bliski zera — bez wyraźnego sygnału"
       }
     },
@@ -484,11 +483,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 38,
-      "delta": 0,
+      "score": 40,
+      "delta": 2,
       "mood": "Słabość",
       "history": [
-        45,
         44,
         47,
         45,
@@ -511,21 +509,21 @@
         40,
         38,
         38,
-        38
+        38,
+        40
       ],
-      "price": "$642",
-      "price_change_24h": -3.0,
-      "narrative": "BNB <strong>-3,0%</strong> w 24h, <strong>-2,2%</strong> w 7d. Wolumen <strong>+201,0%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+2,1%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "price": "$646",
+      "price_change_24h": -1.6,
+      "narrative": "BNB <strong>-1,6%</strong> w 24h, <strong>-1,5%</strong> w 7d. Wolumen <strong>+191,7%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+2,0%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 35,
-          "delta": -1,
+          "score": 37,
+          "delta": 2,
           "mood": "Słabość",
           "history": [
-            40,
             40,
             42,
             41,
@@ -548,18 +546,18 @@
             37,
             35,
             36,
-            35
+            35,
+            37
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 45,
+          "score": 46,
           "delta": 1,
           "mood": "Spokój",
           "history": [
-            42,
             41,
             41,
             40,
@@ -582,18 +580,18 @@
             46,
             44,
             44,
-            45
+            45,
+            46
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 51,
-          "delta": 1,
+          "score": 53,
+          "delta": 2,
           "mood": "Spokój",
           "history": [
-            58,
             57,
             59,
             58,
@@ -616,18 +614,18 @@
             53,
             50,
             50,
-            51
+            51,
+            53
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 61,
-          "delta": 0,
+          "score": 63,
+          "delta": 2,
           "mood": "Wzmocnienie",
           "history": [
-            67,
             67,
             62,
             61,
@@ -650,7 +648,8 @@
             63,
             60,
             61,
-            61
+            61,
+            63
           ]
         },
         {
@@ -678,7 +677,7 @@
             55,
             55,
             55,
-            55,
+            54,
             54,
             54,
             54,
@@ -691,31 +690,31 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$642",
+          "value": "$646",
           "changes": [
             {
               "tf": "24h",
-              "val": -3.0
+              "val": -1.6
             },
             {
               "tf": "7d",
-              "val": -2.2
+              "val": -1.5
             },
             {
               "tf": "30d",
-              "val": 0.5
+              "val": 1.2
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$2,2B",
-          "change": 201
+          "value": "$2,1B",
+          "change": 192
         },
         {
           "label": "BNB / BTC",
-          "value": "+2,1%",
-          "change": 2.1,
+          "value": "+2,0%",
+          "change": 2.0,
           "changeUnit": "7d"
         }
       ],
@@ -740,11 +739,11 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 38,
-        "score_expected": 27,
+        "score_now": 40,
+        "score_expected": 29,
         "score_range": [
-          23,
-          31
+          25,
+          33
         ],
         "mood_range": "Wyprzedaż → Słabość",
         "direction": "down",
@@ -754,7 +753,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w dół z wolumenem +133% vs średnia 30d — potwierdzenie"
+            "note": "Ruch w dół z wolumenem +125% vs średnia 30d — potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -775,8 +774,8 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": -4201,
-        "window_h": 66,
+        "net_bnb": -4991,
+        "window_h": 65,
         "signal": "saldo Binance maleje — odpływ / akumulacja"
       }
     }
