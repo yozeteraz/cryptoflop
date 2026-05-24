@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-05-24T21:54:45.702075+00:00",
+  "fetched_at": "2026-05-24T22:56:27.048951+00:00",
   "header_label": "niedziela, 24 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-0,6%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-0,9%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>25</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+0,3%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-0,3%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>25</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
     {
       "title": "Buterin fires back at Ethereum Foundation critics, recommits to neutrality",
@@ -71,7 +71,7 @@
     {
       "title": "Here’s what happened in crypto today",
       "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "published_at": "2026-05-24T14:02:22+00:00",
+      "published_at": "2026-05-24T14:28:00+00:00",
       "source": "CoinTelegraph",
       "tags": [],
       "assets": [
@@ -176,11 +176,10 @@
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "score": 40,
-      "delta": -3,
+      "score": 42,
+      "delta": 2,
       "mood": "Słabość",
       "history": [
-        38,
         38,
         38,
         38,
@@ -203,55 +202,55 @@
         44,
         44,
         43,
-        40
+        40,
+        42
       ],
-      "price": "$76 143",
-      "price_change_24h": -0.6,
-      "narrative": "BTC <strong>-0,6%</strong> w 24h, <strong>-1,7%</strong> w 7d. Wolumen <strong>-28,4%</strong> względem średniej z 7 dni. Dominacja <strong>58,2%</strong> rynku. Fear &amp; Greed: <strong>25</strong> (ekstremalny strach).",
+      "price": "$76 731",
+      "price_change_24h": 0.3,
+      "narrative": "BTC <strong>+0,3%</strong> w 24h, <strong>-0,9%</strong> w 7d. Wolumen <strong>-25,7%</strong> względem średniej z 7 dni. Dominacja <strong>58,2%</strong> rynku. Fear &amp; Greed: <strong>25</strong> (ekstremalny strach).",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 36,
-          "delta": -2,
+          "score": 38,
+          "delta": 2,
           "mood": "Słabość",
           "history": [
             36,
+            35,
+            35,
+            35,
+            35,
+            35,
+            37,
+            37,
+            38,
+            40,
+            40,
+            40,
+            41,
+            39,
+            40,
+            41,
+            41,
+            41,
+            39,
+            39,
+            39,
+            38,
             36,
-            35,
-            35,
-            35,
-            35,
-            35,
-            37,
-            37,
-            38,
-            40,
-            40,
-            40,
-            41,
-            39,
-            40,
-            41,
-            41,
-            41,
-            39,
-            39,
-            39,
-            38,
-            36
+            38
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 46,
-          "delta": -1,
+          "score": 48,
+          "delta": 2,
           "mood": "Spokój",
           "history": [
-            40,
             39,
             42,
             41,
@@ -274,18 +273,18 @@
             47,
             47,
             47,
-            46
+            46,
+            48
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 46,
-          "delta": -1,
+          "score": 48,
+          "delta": 2,
           "mood": "Spokój",
           "history": [
-            42,
             41,
             41,
             40,
@@ -308,18 +307,18 @@
             47,
             47,
             47,
-            46
+            46,
+            48
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 95,
-          "delta": -2,
+          "score": 97,
+          "delta": 2,
           "mood": "Mania",
           "history": [
-            79,
             78,
             79,
             78,
@@ -342,7 +341,8 @@
             96,
             97,
             97,
-            95
+            95,
+            97
           ]
         },
         {
@@ -353,7 +353,7 @@
           "delta": 0,
           "mood": "Spokój",
           "history": [
-            55,
+            54,
             54,
             54,
             54,
@@ -383,26 +383,26 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$76 143",
+          "value": "$76 731",
           "changes": [
             {
               "tf": "24h",
-              "val": -0.6
+              "val": 0.3
             },
             {
               "tf": "7d",
-              "val": -1.7
+              "val": -0.9
             },
             {
               "tf": "30d",
-              "val": -1.7
+              "val": -0.9
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$22,2B",
-          "change": -28
+          "value": "$23,0B",
+          "change": -26
         },
         {
           "label": "Dominacja",
@@ -432,21 +432,21 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 40,
-        "score_expected": 37,
+        "score_now": 42,
+        "score_expected": 42,
         "score_range": [
-          31,
-          43
+          36,
+          48
         ],
-        "mood_range": "Słabość",
-        "direction": "down",
+        "mood_range": "Słabość → Spokój",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": -3,
+        "total_delta": 0,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół bez wolumenu (wolumen -33% vs 30d) — divergencja"
+            "note": "Ruch w dół bez wolumenu (wolumen -31% vs 30d) — divergencja"
           },
           {
             "name": "Mean reversion",
@@ -455,8 +455,8 @@
           },
           {
             "name": "Momentum",
-            "delta": -3,
-            "note": "1 dzień z rzędu w dół — kontynuacja prawdopodobna"
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego"
           },
           {
             "name": "Cykl",
@@ -478,11 +478,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 40,
-      "delta": -2,
+      "score": 41,
+      "delta": 1,
       "mood": "Słabość",
       "history": [
-        41,
         40,
         40,
         40,
@@ -505,21 +504,21 @@
         44,
         43,
         42,
-        40
+        40,
+        41
       ],
-      "price": "$650",
-      "price_change_24h": -0.9,
-      "narrative": "BNB <strong>-0,9%</strong> w 24h, <strong>+0,4%</strong> w 7d. Wolumen <strong>-15,1%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+2,1%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "price": "$654",
+      "price_change_24h": -0.3,
+      "narrative": "BNB <strong>-0,3%</strong> w 24h, <strong>+1,0%</strong> w 7d. Wolumen <strong>-14,6%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+1,9%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 36,
-          "delta": -2,
+          "score": 37,
+          "delta": 1,
           "mood": "Słabość",
           "history": [
-            38,
             37,
             37,
             37,
@@ -542,18 +541,18 @@
             39,
             39,
             38,
-            36
+            36,
+            37
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 51,
-          "delta": -2,
+          "score": 52,
+          "delta": 1,
           "mood": "Spokój",
           "history": [
-            42,
             42,
             48,
             46,
@@ -576,18 +575,18 @@
             53,
             53,
             53,
-            51
+            51,
+            52
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 55,
-          "delta": -2,
+          "score": 57,
+          "delta": 2,
           "mood": "Wzmocnienie",
           "history": [
-            55,
             55,
             54,
             53,
@@ -610,18 +609,18 @@
             58,
             57,
             57,
-            55
+            55,
+            57
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 73,
-          "delta": -2,
+          "score": 74,
+          "delta": 1,
           "mood": "Siła",
           "history": [
-            60,
             59,
             65,
             63,
@@ -644,7 +643,8 @@
             75,
             75,
             75,
-            73
+            73,
+            74
           ]
         },
         {
@@ -655,7 +655,7 @@
           "delta": 0,
           "mood": "Spokój",
           "history": [
-            55,
+            54,
             54,
             54,
             54,
@@ -685,31 +685,31 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$650",
+          "value": "$654",
           "changes": [
             {
               "tf": "24h",
-              "val": -0.9
+              "val": -0.3
             },
             {
               "tf": "7d",
-              "val": 0.4
+              "val": 1.0
             },
             {
               "tf": "30d",
-              "val": 2.1
+              "val": 2.7
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$604M",
+          "value": "$607M",
           "change": -15
         },
         {
           "label": "BNB / BTC",
-          "value": "+2,1%",
-          "change": 2.1,
+          "value": "+1,9%",
+          "change": 1.9,
           "changeUnit": "7d"
         }
       ],
@@ -735,21 +735,21 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 40,
-        "score_expected": 34,
+        "score_now": 41,
+        "score_expected": 32,
         "score_range": [
-          30,
-          38
+          28,
+          36
         ],
-        "mood_range": "Słabość",
+        "mood_range": "Wyprzedaż → Słabość",
         "direction": "down",
         "confidence": "high",
-        "total_delta": -6,
+        "total_delta": -9,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały by oceniać potwierdzenie wolumenem"
+            "delta": -3,
+            "note": "Ruch w górę bez wolumenu (wolumen -34% vs 30d) — divergencja"
           },
           {
             "name": "Mean reversion",
@@ -770,9 +770,9 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": -344,
+        "net_bnb": -2430,
         "window_h": 49,
-        "signal": "zmiana salda bliska zera — bez wyraźnego sygnału"
+        "signal": "saldo Binance maleje — odpływ / akumulacja"
       }
     }
   ]
