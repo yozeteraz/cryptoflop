@@ -1,8 +1,31 @@
 {
-  "fetched_at": "2026-05-31T16:05:54.369764+00:00",
+  "fetched_at": "2026-05-31T17:59:59.200737+00:00",
   "header_label": "niedziela, 31 maja",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-0,3%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+3,3%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-0,4%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+0,1%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>28</strong> (strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
+    {
+      "title": "How Stellar became part of DTCC's tokenization push for Wall Street securities onchain",
+      "url": "https://www.coindesk.com/business/2026/05/31/how-stellar-became-part-of-dtcc-s-tokenization-push-for-wall-street-securities-onchain",
+      "published_at": "2026-05-31T17:00:00+00:00",
+      "source": "CoinDesk",
+      "tags": [
+        "On-chain"
+      ],
+      "assets": [
+        "btc",
+        "bnb"
+      ]
+    },
+    {
+      "title": "Bitcoin preps 3% May downside, but US PMI data may boost BTC price",
+      "url": "https://cointelegraph.com/markets/bitcoin-price-preps-3-may-downside-as-us-pmi-data-preps-potential-btc-price-boost?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-05-31T16:39:40+00:00",
+      "source": "CoinTelegraph",
+      "tags": [],
+      "assets": [
+        "btc"
+      ]
+    },
     {
       "title": "The institutional edge: moomoo targets Wall Street-grade trading tools for retail crypto investors",
       "url": "https://www.coindesk.com/business/2026/05/28/the-institutional-edge-moomoo-pushes-to-offer-wall-street-grade-crypto-tools-to-retail-investors",
@@ -129,19 +152,6 @@
         "btc",
         "bnb"
       ]
-    },
-    {
-      "title": "SEC sues Texas man over $12.3 million alleged crypto scheme built on fake AI trading bots",
-      "url": "https://www.coindesk.com/business/2026/05/30/sec-sues-texas-man-over-usd12-3-million-alleged-crypto-scheme-built-on-fake-ai-trading-bots",
-      "published_at": "2026-05-30T17:27:34+00:00",
-      "source": "CoinDesk",
-      "tags": [
-        "Regulacje"
-      ],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
     }
   ],
   "assets": [
@@ -153,7 +163,6 @@
       "delta": 0,
       "mood": "Słabość",
       "history": [
-        40,
         41,
         41,
         42,
@@ -176,11 +185,12 @@
         43,
         43,
         42,
+        42,
         42
       ],
-      "price": "$73 576",
-      "price_change_24h": -0.3,
-      "narrative": "BTC <strong>-0,3%</strong> w 24h, <strong>-4,4%</strong> w 7d. Wolumen <strong>-47,5%</strong> względem średniej z 7 dni. Dominacja <strong>57,3%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
+      "price": "$73 587",
+      "price_change_24h": -0.4,
+      "narrative": "BTC <strong>-0,4%</strong> w 24h, <strong>-4,4%</strong> w 7d. Wolumen <strong>-47,5%</strong> względem średniej z 7 dni. Dominacja <strong>57,3%</strong> rynku. Fear &amp; Greed: <strong>28</strong> (strach).",
       "time": [
         {
           "key": "dzis",
@@ -190,7 +200,6 @@
           "delta": 0,
           "mood": "Słabość",
           "history": [
-            36,
             36,
             37,
             37,
@@ -212,6 +221,7 @@
             39,
             39,
             39,
+            38,
             38,
             38
           ]
@@ -225,7 +235,6 @@
           "mood": "Słabość",
           "history": [
             43,
-            43,
             44,
             43,
             44,
@@ -246,6 +255,7 @@
             40,
             39,
             40,
+            39,
             39,
             39
           ]
@@ -258,7 +268,6 @@
           "delta": 0,
           "mood": "Słabość",
           "history": [
-            42,
             42,
             43,
             42,
@@ -281,6 +290,7 @@
             36,
             36,
             35,
+            35,
             35
           ]
         },
@@ -292,7 +302,6 @@
           "delta": 0,
           "mood": "Siła",
           "history": [
-            73,
             74,
             74,
             74,
@@ -314,6 +323,7 @@
             68,
             68,
             68,
+            67,
             67,
             67
           ]
@@ -356,11 +366,11 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$73 576",
+          "value": "$73 587",
           "changes": [
             {
               "tf": "24h",
-              "val": -0.3
+              "val": -0.4
             },
             {
               "tf": "7d",
@@ -375,7 +385,7 @@
         {
           "label": "Wolumen 24h",
           "value": "$16,0B",
-          "change": -48
+          "change": -47
         },
         {
           "label": "Dominacja",
@@ -450,7 +460,7 @@
         "net_btc": 0,
         "inflow_btc": 0,
         "outflow_btc": 0,
-        "window_h": 65,
+        "window_h": 63,
         "signal": "ruch netto bliski zera — bez wyraźnego sygnału"
       }
     },
@@ -458,11 +468,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 48,
-      "delta": -3,
-      "mood": "Spokój",
+      "score": 42,
+      "delta": -6,
+      "mood": "Słabość",
       "history": [
-        39,
         41,
         43,
         42,
@@ -485,21 +494,21 @@
         54,
         54,
         51,
-        48
+        48,
+        42
       ],
-      "price": "$720",
-      "price_change_24h": 3.3,
-      "narrative": "BNB <strong>+3,3%</strong> w 24h, <strong>+9,8%</strong> w 7d. Wolumen <strong>+208,1%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+14,9%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "price": "$713",
+      "price_change_24h": 0.1,
+      "narrative": "BNB <strong>+0,1%</strong> w 24h, <strong>+8,7%</strong> w 7d. Wolumen <strong>+189,9%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+13,7%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 43,
-          "delta": -2,
+          "score": 39,
+          "delta": -4,
           "mood": "Słabość",
           "history": [
-            35,
             37,
             38,
             37,
@@ -522,18 +531,18 @@
             48,
             48,
             45,
-            43
+            43,
+            39
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 75,
-          "delta": 1,
-          "mood": "Hossa",
+          "score": 72,
+          "delta": -3,
+          "mood": "Siła",
           "history": [
-            44,
             45,
             45,
             45,
@@ -556,18 +565,18 @@
             75,
             75,
             74,
-            75
+            75,
+            72
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 93,
-          "delta": 1,
+          "score": 90,
+          "delta": -3,
           "mood": "Mocna hossa",
           "history": [
-            57,
             57,
             58,
             58,
@@ -590,18 +599,18 @@
             94,
             93,
             92,
-            93
+            93,
+            90
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 83,
-          "delta": 1,
+          "score": 80,
+          "delta": -3,
           "mood": "Hossa",
           "history": [
-            57,
             57,
             58,
             58,
@@ -624,7 +633,8 @@
             83,
             83,
             82,
-            83
+            83,
+            80
           ]
         },
         {
@@ -665,31 +675,31 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$720",
+          "value": "$713",
           "changes": [
             {
               "tf": "24h",
-              "val": 3.3
+              "val": 0.1
             },
             {
               "tf": "7d",
-              "val": 9.8
+              "val": 8.7
             },
             {
               "tf": "30d",
-              "val": 17.1
+              "val": 15.9
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$3,4B",
-          "change": 208
+          "value": "$3,2B",
+          "change": 190
         },
         {
           "label": "BNB / BTC",
-          "value": "+14,9%",
-          "change": 14.9,
+          "value": "+13,7%",
+          "change": 13.7,
           "changeUnit": "7d"
         }
       ],
@@ -722,31 +732,31 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 48,
-        "score_expected": 50,
+        "score_now": 42,
+        "score_expected": 38,
         "score_range": [
-          44,
-          56
+          32,
+          44
         ],
-        "mood_range": "Słabość → Wzmocnienie",
-        "direction": "up",
+        "mood_range": "Słabość",
+        "direction": "down",
         "confidence": "medium",
-        "total_delta": 2,
+        "total_delta": -4,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w górę z wolumenem +244% vs średnia 30d — potwierdzenie"
+            "note": "Ruch w górę z wolumenem +223% vs średnia 30d — potwierdzenie"
           },
           {
             "name": "Mean reversion",
             "delta": -3,
-            "note": "Cena w top decylu 90d range (100%) — presja w dół"
+            "note": "Cena w top decylu 90d range (96%) — presja w dół"
           },
           {
             "name": "Momentum",
-            "delta": 3,
-            "note": "3 dni z rzędu w górę — kontynuacja prawdopodobna"
+            "delta": -3,
+            "note": "1 dzień z rzędu w dół — kontynuacja prawdopodobna"
           },
           {
             "name": "Cykl",
@@ -757,8 +767,8 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": 52721,
-        "window_h": 65,
+        "net_bnb": 53437,
+        "window_h": 63,
         "signal": "saldo Binance rośnie — możliwa presja sprzedażowa"
       }
     }
