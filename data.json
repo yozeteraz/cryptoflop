@@ -1,8 +1,52 @@
 {
-  "fetched_at": "2026-06-04T20:03:12.626437+00:00",
+  "fetched_at": "2026-06-04T22:19:51.898804+00:00",
   "header_label": "czwartek, 4 czerwca",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-2,7%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-2,5%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>12</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>-2,9%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>-4,2%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>12</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
+    {
+      "title": "Comptroller says only Democrats pressuring over crypto trust charter",
+      "url": "https://cointelegraph.com/news/occ-gould-political-pressure-democrats-world-liberty-financial?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-06-04T21:54:37+00:00",
+      "source": "CoinTelegraph",
+      "tags": [],
+      "assets": [
+        "btc",
+        "bnb"
+      ]
+    },
+    {
+      "title": "Bitcoin fell 21% after Strategy’s debt buyback news— Is a Terra Luna-style doom loop next?",
+      "url": "https://cointelegraph.com/markets/bitcoin-fell-21-after-strategys-debt-buyback-news-is-a-terra-luna-style-doom-loop-next?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-06-04T20:37:58+00:00",
+      "source": "CoinTelegraph",
+      "tags": [],
+      "assets": [
+        "btc"
+      ]
+    },
+    {
+      "title": "Russia targets British 17-year-old for alleging digital assets were skirting sanctions",
+      "url": "https://cointelegraph.com/news/russia-sanctions-british-teenager-ruble-stablecoin-ukraine-war?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-06-04T20:21:55+00:00",
+      "source": "CoinTelegraph",
+      "tags": [],
+      "assets": [
+        "btc",
+        "bnb"
+      ]
+    },
+    {
+      "title": "Professional investors dumped 52K BTC worth of ETFs in Q1, filings show",
+      "url": "https://cointelegraph.com/news/bitcoin-etf-ownership-shifts-hedge-funds-sell-banks-buy-coinshares?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-06-04T19:53:33+00:00",
+      "source": "CoinTelegraph",
+      "tags": [
+        "On-chain"
+      ],
+      "assets": [
+        "btc"
+      ]
+    },
     {
       "title": "Crypto Clarity Act in spotlight for bad-actor provisions as Senate process grinds forward",
       "url": "https://www.coindesk.com/policy/2026/06/04/crypto-clarity-act-in-spotlight-for-bad-actor-provisions-as-senate-process-grinds-forward",
@@ -93,10 +137,10 @@
       ]
     },
     {
-      "title": "Crypto for Advisors: The crypto due diligence questions you forgot to ask",
-      "url": "https://www.coindesk.com/coindesk-indices/2026/06/03/crypto-for-advisors-the-crypto-due-diligence-questions-you-forgot-to-ask",
-      "published_at": "2026-06-04T15:00:00+00:00",
-      "source": "CoinDesk",
+      "title": "Here’s what happened in crypto today",
+      "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "published_at": "2026-06-04T15:02:00+00:00",
+      "source": "CoinTelegraph",
       "tags": [],
       "assets": [
         "btc",
@@ -104,10 +148,10 @@
       ]
     },
     {
-      "title": "Here’s what happened in crypto today",
-      "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "published_at": "2026-06-04T14:58:17+00:00",
-      "source": "CoinTelegraph",
+      "title": "Crypto for Advisors: The crypto due diligence questions you forgot to ask",
+      "url": "https://www.coindesk.com/coindesk-indices/2026/06/03/crypto-for-advisors-the-crypto-due-diligence-questions-you-forgot-to-ask",
+      "published_at": "2026-06-04T15:00:00+00:00",
+      "source": "CoinDesk",
       "tags": [],
       "assets": [
         "btc",
@@ -123,54 +167,6 @@
       "assets": [
         "btc"
       ]
-    },
-    {
-      "title": "Why tokenization is an ETF-style market structure revolution",
-      "url": "https://www.coindesk.com/opinion/2026/06/04/why-tokenization-is-an-etf-style-market-structure-revolution",
-      "published_at": "2026-06-04T14:44:07+00:00",
-      "source": "CoinDesk",
-      "tags": [
-        "On-chain"
-      ],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
-    },
-    {
-      "title": "Not all Ethereum layer 2s are dying, but many general-purpose chains no longer have a reason to exist",
-      "url": "https://www.coindesk.com/tech/2026/06/04/not-all-ethereum-layer-2s-are-dying-but-many-general-purpose-chains-no-longer-have-a-reason-to-exist",
-      "published_at": "2026-06-04T13:52:21+00:00",
-      "source": "CoinDesk",
-      "tags": [],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
-    },
-    {
-      "title": "Tom Lee’s $250,000 ether target: Here’s what math says about this crazy prediction",
-      "url": "https://www.coindesk.com/markets/2026/06/04/tom-lee-s-usd250-000-ether-target-runs-into-a-usd30-trillion-problem",
-      "published_at": "2026-06-04T13:30:02+00:00",
-      "source": "CoinDesk",
-      "tags": [],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
-    },
-    {
-      "title": "Apex, Archax join Goldman Sachs tokenized real estate fund project",
-      "url": "https://cointelegraph.com/news/apex-group-tokenized-real-estate-fund-goldman-sachs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "published_at": "2026-06-04T13:25:56+00:00",
-      "source": "CoinTelegraph",
-      "tags": [
-        "On-chain"
-      ],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
     }
   ],
   "assets": [
@@ -179,10 +175,9 @@
       "name": "BTC",
       "sub": "Bitcoin",
       "score": 32,
-      "delta": 2,
+      "delta": 0,
       "mood": "Słabość",
       "history": [
-        43,
         41,
         39,
         38,
@@ -205,21 +200,21 @@
         26,
         30,
         30,
+        32,
         32
       ],
-      "price": "$63 478",
-      "price_change_24h": -2.7,
-      "narrative": "BTC <strong>-2,7%</strong> w 24h, <strong>-13,7%</strong> w 7d. Wolumen <strong>+73,4%</strong> względem średniej z 7 dni. Dominacja <strong>55,6%</strong> rynku. Fear &amp; Greed: <strong>12</strong> (ekstremalny strach).",
+      "price": "$63 304",
+      "price_change_24h": -2.9,
+      "narrative": "BTC <strong>-2,9%</strong> w 24h, <strong>-13,9%</strong> w 7d. Wolumen <strong>+70,0%</strong> względem średniej z 7 dni. Dominacja <strong>55,7%</strong> rynku. Fear &amp; Greed: <strong>12</strong> (ekstremalny strach).",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
           "score": 27,
-          "delta": 2,
+          "delta": 0,
           "mood": "Wyprzedaż",
           "history": [
-            39,
             38,
             36,
             36,
@@ -242,6 +237,7 @@
             22,
             25,
             25,
+            27,
             27
           ]
         },
@@ -249,11 +245,10 @@
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 16,
-          "delta": 2,
+          "score": 15,
+          "delta": -1,
           "mood": "Wyprzedaż",
           "history": [
-            39,
             37,
             33,
             31,
@@ -276,7 +271,8 @@
             12,
             17,
             14,
-            16
+            16,
+            15
           ]
         },
         {
@@ -287,7 +283,6 @@
           "delta": 0,
           "mood": "Krew",
           "history": [
-            36,
             33,
             29,
             27,
@@ -310,6 +305,7 @@
             0,
             0,
             0,
+            0,
             0
           ]
         },
@@ -317,11 +313,10 @@
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 33,
-          "delta": 2,
+          "score": 32,
+          "delta": -1,
           "mood": "Słabość",
           "history": [
-            67,
             68,
             64,
             62,
@@ -344,7 +339,8 @@
             29,
             34,
             31,
-            33
+            33,
+            32
           ]
         },
         {
@@ -372,7 +368,7 @@
             53,
             53,
             53,
-            53,
+            52,
             52,
             52,
             52,
@@ -385,30 +381,30 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$63 478",
+          "value": "$63 304",
           "changes": [
             {
               "tf": "24h",
-              "val": -2.7
+              "val": -2.9
             },
             {
               "tf": "7d",
-              "val": -13.7
+              "val": -13.9
             },
             {
               "tf": "30d",
-              "val": -21.6
+              "val": -21.8
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$68,1B",
-          "change": 73
+          "value": "$66,8B",
+          "change": 70
         },
         {
           "label": "Dominacja",
-          "value": "55,6%",
+          "value": "55,7%",
           "change": null
         }
       ],
@@ -459,7 +455,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w dół z wolumenem +97% vs średnia 30d — potwierdzenie"
+            "note": "Ruch w dół z wolumenem +94% vs średnia 30d — potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -483,7 +479,7 @@
         "net_btc": 8093,
         "inflow_btc": 8093,
         "outflow_btc": 0,
-        "window_h": 95,
+        "window_h": 96,
         "signal": "napływ na giełdę — możliwa presja sprzedażowa"
       }
     },
@@ -491,11 +487,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 33,
-      "delta": 3,
+      "score": 30,
+      "delta": -3,
       "mood": "Słabość",
       "history": [
-        41,
         33,
         35,
         39,
@@ -518,21 +513,21 @@
         26,
         28,
         30,
-        33
+        33,
+        30
       ],
-      "price": "$606",
-      "price_change_24h": -2.5,
-      "narrative": "BNB <strong>-2,5%</strong> w 24h, <strong>-5,0%</strong> w 7d. Wolumen <strong>+9,5%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+10,0%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
+      "price": "$601",
+      "price_change_24h": -4.2,
+      "narrative": "BNB <strong>-4,2%</strong> w 24h, <strong>-5,8%</strong> w 7d. Wolumen <strong>+4,2%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>+9,4%</strong> w 7d — <strong>silniejszy od BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 28,
-          "delta": 3,
+          "score": 25,
+          "delta": -3,
           "mood": "Wyprzedaż",
           "history": [
-            38,
             32,
             34,
             36,
@@ -555,18 +550,18 @@
             22,
             24,
             25,
-            28
+            28,
+            25
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 37,
-          "delta": 2,
+          "score": 35,
+          "delta": -2,
           "mood": "Słabość",
           "history": [
-            70,
             62,
             61,
             62,
@@ -589,18 +584,18 @@
             33,
             36,
             35,
-            37
+            37,
+            35
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 40,
-          "delta": 2,
+          "score": 38,
+          "delta": -2,
           "mood": "Słabość",
           "history": [
-            88,
             81,
             80,
             81,
@@ -623,18 +618,18 @@
             35,
             39,
             38,
-            40
+            40,
+            38
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 41,
-          "delta": 2,
+          "score": 39,
+          "delta": -2,
           "mood": "Słabość",
           "history": [
-            78,
             74,
             73,
             74,
@@ -657,7 +652,8 @@
             37,
             40,
             39,
-            41
+            41,
+            39
           ]
         },
         {
@@ -685,7 +681,7 @@
             53,
             53,
             53,
-            53,
+            52,
             52,
             52,
             52,
@@ -698,31 +694,31 @@
       "stats": [
         {
           "label": "Cena",
-          "value": "$606",
+          "value": "$601",
           "changes": [
             {
               "tf": "24h",
-              "val": -2.5
+              "val": -4.2
             },
             {
               "tf": "7d",
-              "val": -5.0
+              "val": -5.8
             },
             {
               "tf": "30d",
-              "val": -4.0
+              "val": -4.8
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$2,0B",
-          "change": 9
+          "value": "$1,9B",
+          "change": 4
         },
         {
           "label": "BNB / BTC",
-          "value": "+10,0%",
-          "change": 10.0,
+          "value": "+9,4%",
+          "change": 9.4,
           "changeUnit": "7d"
         }
       ],
@@ -759,11 +755,11 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 33,
-        "score_expected": 28,
+        "score_now": 30,
+        "score_expected": 25,
         "score_range": [
-          18,
-          38
+          15,
+          35
         ],
         "mood_range": "Wyprzedaż → Słabość",
         "direction": "down",
@@ -773,7 +769,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w dół z wolumenem +77% vs średnia 30d — potwierdzenie"
+            "note": "Ruch w dół z wolumenem +68% vs średnia 30d — potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -794,7 +790,7 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": -25368,
+        "net_bnb": -30596,
         "window_h": 94,
         "signal": "saldo Binance maleje — odpływ / akumulacja"
       }
