@@ -34,15 +34,18 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 - **Sentyment w warstwach czasowych**: Dziś (24h) · Tydzień · Miesiąc · Kwartał · Cykl (od halvingu)
 - **Aktywa**: BTC i BNB osobno, każde z 3 surowymi metrykami (cena, wolumen 24h, dominacja/BNB-BTC ratio)
 - **Hero**: agregowany sentyment dnia + 2-zdaniowa narracja „co się dzieje"
-- **DCA na dziś**: jednolinijkowa rekomendacja zakupowa
+- **DCA na dziś**: werdykt **3-stopniowy** (od 2026-06-12): `okazja` (rynek w strachu: F&G ≤ 20 lub -15%/30d) / `tak` (normalny dzień) / `wstrzymaj` → NIE (rynek rozgrzany: F&G ≥ 75 lub +15%/30d). Stary binarny próg (NIE gdy score ≥ 80) był martwy — 0 wystąpień NIE w całej historii. Pasek 30 dni ma 3 kolory (zielony/złoty/czerwony).
+- **Karta „Czy warto dziś kupić?"** na detalu (dla wzrokowca, nie krypto-speca): werdykt + pasek skali 0–100 z markerem + 4 sygnały prostym językiem (nastrój F&G, cena vs zakres 90d, trend 30d, prognoza 7d), każdy z kropką zielona/szara/czerwona. Treść generuje `fetch.py` (`verdict` w data.json) — JS tylko renderuje. Sekcje eksperckie (narracja, siatka czasu, metryki, forecast, on-chain, newsy) schowane pod zwijanym „Szczegóły i metryki".
 - **Wydarzenia z 24h**: top newsy z tagami (Binance / Regulacje / Makro / On-chain)
 - **Panel szczegółów**: po kliknięciu komórki — rozbicie wyniku na wymiary (cena, wolumen) + krótki komentarz „dlaczego"
 
 ### Skala sentymentu
 - **0–100**, jeden wynik per komórka (nie split na wymiary)
 - Mood labele: Krew / Wyprzedaż / Słabość / Spokój / Wzmocnienie / Siła / Hossa / Mocna hossa / Mania
-- **Delta** względem poprzedniego okresu (dla 24h vs wczoraj, dla 7d vs tydzień temu, itd.)
-- Sparkline z ostatnich 7 odświeżeń w każdej komórce
+- **Skala % → score jest per-horyzont** (od 2026-06-12): 24h ±6%, 7d ±12%, 30d ±25%, 90d ±40% na pełną skalę. Jedna wspólna skala ±20% zamrażała komórkę 30d na 0 przy -20%/30d, a 24h trzymała wiecznie przy 50.
+- **Delta** = vs poprzednie odświeżenie (realnie ~2–5h, GitHub Actions throttluje cron). NIE "vs wczoraj" — legenda w stopce mówi to wprost.
+- Sparkline z ostatnich 24 odświeżeń (~2–4 dni) w każdej komórce
+- Komórka "Dziś" używa **tego samego wzoru co score widgetu** (BTC: (F&G + 2·s24)//3, BNB: (F&G + 3·s24)//4 — mniejsza waga F&G, bo indeks jest BTC-centryczny)
 
 ### Czego świadomie nie pokazujemy
 - Dominacji BTC jako głównego wymiaru (zrzucone do detali, drugorzędny sygnał dla DCA)
@@ -137,6 +140,17 @@ Filozofia: rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny, 
 4. ✅ **On-chain BTC/BNB** (ukończone 2026-05-15) — net flows na/z portfeli Binance: BTC przez mempool.space (4 publiczne adresy, funded/spent txo delta), BNB przez BSC RPC eth_getBalance (3 adresy). Ring buffer snapshotów ~24h. Sekcja „On-chain · ostatnie Nh" na detalu z sygnałem inflow/outflow.
 5. ✅ **Newsy i wydarzenia** (ukończone 2026-05-14) — RSS CoinDesk + CoinTelegraph + Binance announcements JSON. Rules-based tagging (Binance/Regulacje/Makro/On-chain), per-asset filtering. Sekcja „Wydarzenia · 24h" na detalu, top 6 nagłówków z linkami. Bez LLM.
 6. ✅ **Alerty zdarzeniowe** (ukończone 2026-05-15, opcjonalne/opt-in) — Telegram bot. Triggery: DCA flip, F&G band do ekstremum, ruch ceny ±5% 24h, duży on-chain net flow (>500 BTC). Dedupe przez `alert_state` w history.json. **Aktywne tylko gdy ustawione GitHub Secrets `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`** — bez nich `fetch.py` cicho pomija.
+
+## Audyt 2026-06-12 — poprawki logiki predykcji
+
+Wieloagentowy audyt (16 potwierdzonych findingów) wykazał m.in.: martwy binarny próg DCA (0× NIE w historii), zamrożoną komórkę 30d (jedna skala ±20%), forecast zakotwiczony w szumie 24h z fikcyjną precyzją pasma, dwa różne wzory na "dziś" na jednym ekranie, tipy przewidujące CENĘ wbrew zasadom, on-chain BTC jako martwy czujnik + bug częściowego fetchu (fantomowe +248k BTC), BNB net flow alarmujący na szumie operacyjnym. Wdrożone poprawki:
+
+- DCA: werdykt 3-stopniowy (okazja/tak/wstrzymaj), progi na F&G + trend 30d, backtest na 230 rewizjach git: maj = "tak", od 3 czerwca (krach) = "okazja"
+- Skale per-horyzont; komórka "Dziś" = score widgetu (jeden wzór)
+- Forecast: baza wygładzona (średnia ostatnich refreshy), min. szerokość pasma 12, konwikcja wymaga ≥2 aktywnych reguł, momentum tylko na pełnych zamknięciach (min. 2 dni), rampa F&G zamiast klifu; BNB: reguła BNB/BTC zamiast cyklu halvingu; `dca_in_7d` liczone w Pythonie (nie w JS)
+- Detal forecastu przywrócony do spec z design.md: pasmo + konwikcja + rozbicie reguł + disclaimer; usunięte tipy "wkrótce taniej/droższe"
+- On-chain: fetch wszystko-albo-nic + sanityzacja ring buffera (kumulatywne sumy nie mogą maleć), sygnał "coverage low" gdy śledzone adresy nieaktywne, progi znormalizowane per 24h (BNB: 0,5% śledzonego salda), etykieta "zmiana salda śledzonych portfeli" zamiast "net flow → Binance"
+- cycle_score spójny z forecast_cycle (od mies. 24 opada z 50 o 4/mies. — poniżej pasma "Spokój" od ~25,4 mies.; wcześniej wisiał przy 51 mimo narracji "po szczycie, bearish")
 
 ## Status: plan wykonany
 

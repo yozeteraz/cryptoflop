@@ -123,6 +123,11 @@
   .asset-card .dca-pane .dca-strip .day { flex: 1; border-radius: 1.5px; }
   .asset-card .dca-pane .dca-strip .day.yes { background: var(--pos); }
   .asset-card .dca-pane .dca-strip .day.no { background: var(--neg); }
+  .asset-card .dca-pane .dca-strip .day.opp { background: var(--accent); }
+  .asset-card .dca-pane .dca-flag {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); font-weight: 700; margin-top: 4px;
+  }
   .asset-card .dca-pane .dca-history-summary { font-size: 11px; color: var(--muted); }
   .asset-card .dca-pane .dca-history-summary strong { color: var(--text); font-weight: 600; }
 
@@ -216,22 +221,96 @@
   .stat-tf-val.down { color: #f87171; }
   .stat-tf-val.flat { color: var(--muted-2); }
 
-  /* Forecast block (detail page) — uproszczone: 1 linia + DCA tip */
+  /* Verdict card — "Czy warto dziś kupić?" (prosty widok dla nie-tradera) */
+  .verdict-block {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .verdict-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .verdict-word { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--pos); }
+  .verdict-word.no { color: var(--neg); }
+  .verdict-sub { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .verdict-sub.opp { color: var(--accent); }
+  .verdict-headline { margin: 12px 0 0; font-size: 14px; color: #c8cdd9; line-height: 1.6; }
+  .scale-wrap { margin-top: 18px; }
+  .scale-bar {
+    position: relative; height: 8px; border-radius: 4px;
+    background: linear-gradient(90deg, #dc2626 0%, #ef4444 15%, #f97316 30%, #9ca3af 45%, #9ca3af 55%, #84cc16 62%, #4ade80 70%, #22c55e 78%, #16a34a 88%, #15803d 100%);
+    opacity: 0.85;
+  }
+  .scale-marker {
+    position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%;
+    transform: translate(-50%, -50%); border: 2.5px solid #fff; box-sizing: border-box;
+  }
+  .scale-labels {
+    display: flex; justify-content: space-between; margin-top: 6px;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-2);
+  }
+  .signal-list { list-style: none; margin: 16px 0 0; padding: 0; }
+  .signal-list li {
+    display: flex; align-items: baseline; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid var(--border); font-size: 13px;
+  }
+  .signal-list li:last-child { border-bottom: none; padding-bottom: 2px; }
+  .sig-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; align-self: center; }
+  .sig-dot.good { background: var(--pos); }
+  .sig-dot.warn { background: var(--neg); }
+  .sig-dot.neutral { background: var(--c-45); }
+  .sig-label {
+    color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+    flex-shrink: 0; width: 92px;
+  }
+  .sig-text { color: var(--text); line-height: 1.45; }
+  .verdict-foot {
+    margin-top: 14px; font-size: 11px; color: var(--muted-2); font-style: italic; line-height: 1.5;
+  }
+
+  /* Details expander (iOS Settings-style row) */
+  .details-toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--text);
+    transition: background 120ms, transform 120ms ease;
+  }
+  .details-toggle:hover { background: var(--panel-2); }
+  .details-toggle:active { transform: scale(0.997); }
+  .details-toggle .chevron {
+    color: var(--muted-2); font-size: 17px; font-weight: 600;
+    transition: transform 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .details-toggle.open .chevron { transform: rotate(90deg); }
+  .details-content { display: none; margin-top: 20px; }
+  .details-content.open { display: block; }
+
+  /* Forecast block (w Szczegółach) — pełna spec z design.md: pasmo +
+     konwikcja + rozbicie reguł + disclaimer */
   .forecast-block {
     background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
     padding: 16px 20px;
   }
-  .forecast-block .fc-line {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 16px; color: var(--text); font-weight: 500;
-    letter-spacing: -0.01em;
+  .forecast-block .fc-head {
+    display: flex; align-items: baseline; gap: 10px;
+    font-size: 16px; color: var(--text); font-weight: 600; letter-spacing: -0.01em;
   }
-  .forecast-block .fc-line .fc-arrow {
-    font-size: 22px; color: var(--cell-color); font-weight: 700; line-height: 1;
+  .forecast-block .fc-head .fc-arrow {
+    font-size: 20px; color: var(--cell-color); font-weight: 700; line-height: 1;
   }
-  .forecast-block .fc-tip {
-    margin-top: 10px; font-size: 13px;
-    color: var(--muted); line-height: 1.5;
+  .forecast-block .fc-head .fc-conf { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .fc-rules { list-style: none; margin: 12px 0 0; padding: 0; }
+  .fc-rules li {
+    display: flex; gap: 10px; align-items: baseline; padding: 8px 0;
+    border-bottom: 1px solid var(--border); font-size: 12.5px;
+  }
+  .fc-rules li:last-child { border-bottom: none; }
+  .fc-rule-name { color: var(--muted); width: 104px; flex-shrink: 0; }
+  .fc-rule-delta { font-weight: 700; width: 28px; flex-shrink: 0; text-align: right; }
+  .fc-rule-delta.pos { color: var(--pos); }
+  .fc-rule-delta.neg { color: var(--neg); }
+  .fc-rule-delta.zero { color: var(--muted-2); }
+  .fc-rule-note { color: var(--muted); line-height: 1.4; }
+  .fc-sum { margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .fc-disclaimer {
+    margin-top: 12px; font-size: 11px; font-style: italic; color: var(--muted-2); line-height: 1.5;
   }
 
   /* Events / Wydarzenia (etap 4) */
@@ -285,6 +364,7 @@
   .onchain-block .oc-flow .oc-value.inflow { color: var(--neg); }
   .onchain-block .oc-flow .oc-value.outflow { color: var(--pos); }
   .onchain-block .oc-flow .oc-value.flat { color: var(--text); }
+  .onchain-block .oc-flow .oc-value.muted { color: var(--muted-2); }
   .onchain-block .oc-signal { margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.5; }
   .onchain-block .oc-pending { font-size: 12px; color: var(--muted-2); font-style: italic; }
 
@@ -419,9 +499,10 @@
       font-size: 9px; margin-top: 4px; gap: 4px;
     }
     .asset-card .score-pane .forecast-badge .arrow { font-size: 11px; }
+    /* Konwikcja (.conf) zostaje widoczna także na mobile — pasmo bez
+       konwikcji łamie zasady forecastu z design.md */
     .asset-card .score-pane .forecast-badge .badge-prefix,
-    .asset-card .score-pane .forecast-badge .badge-sep,
-    .asset-card .score-pane .forecast-badge .conf { display: none; }
+    .asset-card .score-pane .forecast-badge .badge-sep { display: none; }
     .asset-card .score-pane .asset-price-row { padding-top: 8px; }
     .asset-card .score-pane .asset-price { font-size: 12px; }
     .asset-card .score-pane .asset-price-change { font-size: 10px; }
@@ -520,7 +601,7 @@
           <span class="lbl">0 strach · 50 spokój · 100 mania</span>
         </div>
         <div class="legend">
-          Skala zmian: <strong>↑ 5</strong><span class="lbl">wzrost</span>·<strong>↓ 5</strong><span class="lbl">spadek</span>·<span class="lbl">brak strzałki = bez zmian</span>
+          Skala zmian: <strong>↑ 5</strong><span class="lbl">wzrost</span>·<strong>↓ 5</strong><span class="lbl">spadek</span>·<span class="lbl">vs poprzednie odświeżenie (zwykle 2–5h)</span>
         </div>
         <div class="copyright">© 2026 Marcin Gałęcki</div>
       </footer>
@@ -616,15 +697,25 @@ function forecastBadgeHtml(forecast) {
 
 function dcaIn7d(asset) {
   if (!asset.forecast) return null;
+  // Decyzję liczy fetch.py (jedno źródło prawdy); fallback dla starego
+  // data.json używa tego samego progu 80, co reguła w build_forecast.
+  if (asset.forecast.dca_in_7d) return asset.forecast.dca_in_7d;
   return asset.forecast.score_expected >= 80 ? "NIE" : "TAK";
 }
 
 function assetCardInnerHtml(asset) {
   const pctCls = pctChangeClass(asset.price_change_24h);
   const dca = asset.dca || { decision: "—", history: [] };
-  const yes = dca.history.filter(v => v === 1).length;
+  const yes = dca.history.filter(v => v >= 1).length;
   const no = dca.history.length - yes;
-  const days = dca.history.map(v => `<span class="day ${v ? 'yes' : 'no'}"></span>`).join("");
+  // 0 = NIE, 1 = TAK, 2 = TAK-okazja (złoty)
+  const days = dca.history.map(v => `<span class="day ${v === 0 ? 'no' : v === 2 ? 'opp' : 'yes'}"></span>`).join("");
+  const flagText = asset.verdict
+    ? (asset.verdict.flag !== undefined
+        ? asset.verdict.flag
+        : (asset.verdict.level === "okazja" ? "wyjątkowa okazja" : ""))
+    : "";
+  const dcaFlag = flagText ? `<div class="dca-flag">${flagText}</div>` : "";
   const dca7d = dcaIn7d(asset);
   const dca7dCol = dca7d ? `
     <div class="dca-col">
@@ -656,6 +747,7 @@ function assetCardInnerHtml(asset) {
         <div class="dca-col">
           <div class="dca-col-label">Dziś</div>
           <div class="dca-value ${dca.decision === 'TAK' ? '' : 'no'}">${dca.decision}</div>
+          ${dcaFlag}
         </div>
         ${dca7dCol}
       </div>
@@ -784,7 +876,7 @@ function renderEventsBlock(asset, allEvents) {
   }
   return `
     <h3 class="section">Wydarzenia · ostatnie 24h</h3>
-    <p class="section-sub">Top nagłówki z CoinDesk, CoinTelegraph i Binance, filtrowane pod ${asset.name}.</p>
+    <p class="section-sub">Top nagłówki z CoinDesk, CoinTelegraph i Binance z ostatnich 24h (tagowanie automatyczne).</p>
     <div class="events-block">${inner}</div>
   `;
 }
@@ -798,23 +890,25 @@ function renderOnchainBlock(asset) {
       <div class="onchain-block"><div class="oc-pending">${oc.note || "Brak danych on-chain."}</div></div>
     `;
   }
-  let net, cls;
-  if (asset.key === "btc") {
-    net = oc.net_btc;
-    cls = net > 50 ? "inflow" : net < -50 ? "outflow" : "flat";
-  } else {
-    net = oc.net_bnb;
-    cls = net > 2000 ? "inflow" : net < -2000 ? "outflow" : "flat";
-  }
+  // Kolor wg wartości znormalizowanej do 24h i progu z fetch.py (okno
+  // bywa 2-4 dni). Wyciszony szary (muted), gdy stan to "brak danych":
+  // śledzone adresy nieaktywne albo okno pomiaru za krótkie.
+  const net = asset.key === "btc" ? oc.net_btc : oc.net_bnb;
+  const per24 = oc.net_per24 !== undefined ? oc.net_per24 : net;
+  const thr = oc.threshold_24h || (asset.key === "btc" ? 50 : 2000);
+  let cls;
+  if (oc.short_window || (asset.key === "btc" && oc.coverage === "low")) cls = "muted";
+  else cls = per24 > thr ? "inflow" : per24 < -thr ? "outflow" : "flat";
   const sign = net > 0 ? "+" : "";
   const unit = asset.key === "btc" ? "BTC" : "BNB";
   const netStr = (sign + net.toLocaleString("pl-PL")).replace(/,/g, " ");
+  const srcCount = asset.key === "btc" ? "4" : "3";
   return `
     <h3 class="section">On-chain · ostatnie ${oc.window_h}h</h3>
-    <p class="section-sub">Net flow ${asset.name} na/z portfeli Binance (publiczne adresy, mempool.space / BSC RPC).</p>
+    <p class="section-sub">Zmiana salda ${srcCount} publicznych portfeli Binance — przybliżenie (wycinek przepływów giełdy), mempool.space / BSC RPC.</p>
     <div class="onchain-block">
       <div class="oc-flow">
-        <span class="oc-label">Net flow → Binance:</span>
+        <span class="oc-label">Zmiana salda śledzonych portfeli:</span>
         <span class="oc-value ${cls}">${netStr} ${unit}</span>
       </div>
       <div class="oc-signal">${oc.signal}</div>
@@ -822,36 +916,79 @@ function renderOnchainBlock(asset) {
   `;
 }
 
+function renderVerdictBlock(asset) {
+  // Karta "Czy warto dziś kupić?" — werdykt + skala + 4 sygnały prostym
+  // językiem (treść generuje fetch.py). Brak verdict = stary data.json.
+  const v = asset.verdict;
+  if (!v) return null;
+  const section = document.createElement("section");
+  section.className = "block";
+  const wordCls = v.decision === "NIE" ? "no" : "";
+  // Etykiety poziomu emituje fetch.py (sublabel/flag); subMap to tylko
+  // fallback dla data.json sprzed tej zmiany.
+  const subMap = {
+    okazja: "dobry moment — rynek w strachu",
+    tak: "normalny dzień DCA",
+    wstrzymaj: "rynek rozgrzany — przeczekaj",
+  };
+  const sublabel = v.sublabel || subMap[v.level] || "";
+  const subCls = v.level === "okazja" ? "opp" : "";
+  // Marker = Fear & Greed (to on niesie werdykt i pasuje do podpisów
+  // strach/spokój/mania); score widgetu to inna, mieszana metryka.
+  const scaleVal = v.fng !== undefined ? v.fng : asset.score;
+  const rows = (v.signals || []).map(s => `
+    <li>
+      <span class="sig-dot ${s.tone}"></span>
+      <span class="sig-label">${s.label}</span>
+      <span class="sig-text">${s.text}</span>
+    </li>`).join("");
+  section.innerHTML = `
+    <h3 class="section">Czy warto dziś kupić?</h3>
+    <p class="section-sub">Cztery sygnały, które wystarczą: nastrój rynku, czy jest tanio, trend miesiąca i najbliższy tydzień.</p>
+    <div class="verdict-block">
+      <div class="verdict-row">
+        <span class="verdict-word ${wordCls}">${v.decision}</span>
+        <span class="verdict-sub ${subCls}">${sublabel}</span>
+      </div>
+      <p class="verdict-headline">${v.headline}</p>
+      <div class="scale-wrap">
+        <div class="scale-bar"><div class="scale-marker" style="left:clamp(8px, ${scaleVal}%, calc(100% - 8px)); background:${scoreColor(scaleVal)}"></div></div>
+        <div class="scale-labels"><span>strach</span><span>spokój</span><span>mania</span></div>
+      </div>
+      <ul class="signal-list">${rows}</ul>
+      <div class="verdict-foot">Zielona kropka — sprzyja zakupowi · szara — neutralna · czerwona — przemawia przeciw. Rules-based odczyt nastroju rynku — nie porada inwestycyjna i nie prognoza ceny.</div>
+    </div>
+  `;
+  return section;
+}
+
 function renderForecastBlock(asset) {
+  // Pełna spec z design.md: pasmo + konwikcja + rozbicie regła-po-regle +
+  // stały disclaimer. Bez tipów sugerujących kierunek CENY.
   const f = asset.forecast;
   if (!f) return "";
   const [lo, hi] = f.score_range;
   const midColor = scoreColor(Math.round((lo + hi) / 2));
   const arrow = forecastArrow(f.direction);
-
-  let headline, dcaTip;
-  if (f.direction === "up") {
-    headline = "Sentyment wzmacnia się w tygodniu";
-    dcaTip = hi >= 75 ? "Rynek się grzeje — DCA dziś OK, ale następne tygodnie mogą być droższe." : "DCA dziś OK, jutro też prawdopodobnie dobra okazja.";
-  } else if (f.direction === "down") {
-    headline = "Sentyment cofa się w tygodniu";
-    dcaTip = "DCA dziś OK — możesz też poczekać, prawdopodobnie wkrótce taniej.";
-  } else {
-    headline = "Sentyment stabilny w tygodniu";
-    dcaTip = "DCA dziś bezpieczny — sytuacja bez większych zmian.";
-  }
-  if (f.confidence === "low") {
-    dcaTip += " (sygnał chwiejny)";
-  }
-
+  const rules = (f.rules || []).map(r => {
+    const cls = r.delta > 0 ? "pos" : r.delta < 0 ? "neg" : "zero";
+    const sign = r.delta > 0 ? "+" : "";
+    return `<li><span class="fc-rule-name">${r.name}</span><span class="fc-rule-delta ${cls}">${sign}${r.delta}</span><span class="fc-rule-note">${r.note}</span></li>`;
+  }).join("");
+  const base = f.score_base !== undefined ? f.score_base : f.score_now;
+  const totalSign = f.total_delta > 0 ? "+" : "";
   return `
-    <h3 class="section">Za 7 dni</h3>
+    <h3 class="section">Prognoza sentymentu · 7 dni</h3>
+    <p class="section-sub">Dokąd może przesunąć się nastrój (0–100) w tydzień — zawsze pasmo, nie punkt.</p>
     <div class="forecast-block" style="--cell-color:${midColor}">
-      <div class="fc-line">
+      <div class="fc-head">
         <span class="fc-arrow">${arrow}</span>
-        <span class="fc-text">${headline}</span>
+        <span>pasmo ${lo}–${hi}</span>
+        <span class="fc-conf">pewność: ${confLabelPl(f.confidence)}</span>
       </div>
-      <div class="fc-tip">${dcaTip}</div>
+      <ul class="fc-rules">${rules}</ul>
+      <div class="fc-sum">Suma reguł: ${totalSign}${f.total_delta} od bazy ${base} (baza = średnia score z ostatnich odświeżeń, odporna na szum 24h)</div>
+      <div class="fc-disclaimer">Forecast to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku.</div>
     </div>
   `;
 }
@@ -861,6 +998,9 @@ function renderDetailPanel(panelEl, asset, allEvents) {
 
   // Widget (same as home: score + DCA hairline-joined)
   const widget = renderDetailWidget(asset);
+
+  // Karta "Czy warto dziś kupić?" — jedyna rzecz, którą nie-trader musi przeczytać
+  const verdict = renderVerdictBlock(asset);
 
   // Narrative
   const narr = document.createElement("section");
@@ -888,7 +1028,7 @@ function renderDetailPanel(panelEl, asset, allEvents) {
   const statsGrid = metrics.querySelector(".stats-grid");
   asset.stats.forEach(s => statsGrid.appendChild(renderStat(s)));
 
-  // Forecast 7d
+  // Forecast 7d (pełna spec: pasmo + konwikcja + reguły + disclaimer)
   const forecast = document.createElement("section");
   forecast.className = "block";
   forecast.innerHTML = renderForecastBlock(asset);
@@ -905,12 +1045,31 @@ function renderDetailPanel(panelEl, asset, allEvents) {
 
   panelEl.innerHTML = "";
   panelEl.appendChild(widget);
-  panelEl.appendChild(narr);
-  panelEl.appendChild(timeBlock);
-  panelEl.appendChild(metrics);
-  panelEl.appendChild(forecast);
-  panelEl.appendChild(onchain);
-  panelEl.appendChild(events);
+  if (verdict) panelEl.appendChild(verdict);
+
+  // Sekcje eksperckie schowane pod "Szczegóły i metryki" (iOS Settings-style).
+  // Stary data.json (bez verdict): pokazujemy wszystko rozwinięte jak dawniej.
+  const content = document.createElement("div");
+  content.className = "details-content";
+  [narr, timeBlock, metrics, forecast, onchain, events].forEach(el => content.appendChild(el));
+
+  if (verdict) {
+    const wrap = document.createElement("section");
+    wrap.className = "block";
+    const toggle = document.createElement("button");
+    toggle.className = "details-toggle";
+    toggle.innerHTML = `<span>Szczegóły i metryki</span><span class="chevron">›</span>`;
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("open");
+      content.classList.toggle("open");
+    });
+    wrap.appendChild(toggle);
+    wrap.appendChild(content);
+    panelEl.appendChild(wrap);
+  } else {
+    content.classList.add("open");
+    panelEl.appendChild(content);
+  }
 }
 
 function renderDetail(data) {

@@ -61,16 +61,26 @@
 4. Czy interakcja używa natywnego gestu, czy wymyśla coś nowego? (Nowe = zła droga.)
 5. Czy w stanie pustym/błędu element nadal wygląda spokojnie? (Pełne danych ≠ jedyny stan.)
 
+## Karta „Czy warto dziś kupić?" (dodane 2026-06-12)
+
+Pierwsza sekcja pod widgetem na detalu — jedyne, co nie-trader musi przeczytać. Reszta (narracja, siatka czasu, metryki, forecast, on-chain, newsy) żyje pod zwijanym wierszem „Szczegóły i metryki" (wzorzec iOS Settings, chevron).
+
+1. **Werdykt słowem**: TAK (zielony) / NIE (czerwony) + podtytuł poziomu: „dobry moment — rynek w strachu" (okazja, złoty akcent) / „normalny dzień DCA" / „rynek rozgrzany — przeczekaj".
+2. **Pasek skali 0–100** (gradient palety, marker w kolorze score) z podpisami strach/spokój/mania — wizualna kotwica zamiast gołej liczby. To pasek, nie gauge/dial.
+3. **4 sygnały prostym językiem**, każdy z kropką: zielona = sprzyja zakupowi, szara = neutralna, czerwona = przemawia przeciw. Stały zestaw: Nastrój rynku (F&G) · Cena vs 3 mies. (pozycja w zakresie 90d) · Trend 30 dni · Prognoza 7 dni (zawsze szara — prognoza to nie fakt).
+4. **Stopka**: legenda kropek + „nie porada inwestycyjna i nie prognoza ceny". Nie znika.
+5. Cała treść (werdykt, headline, sygnały) generowana w `fetch.py` → `verdict` w data.json. JS niczego nie interpretuje.
+
 ## Rules-based forecast (dodane 2026-05-13)
 
-Predykcja kierunku **sentymentu** (nie ceny) w horyzoncie 7 dni. To nie szklana kula — to probabilistyczna ekstrapolacja czterech składowych: wolumen, mean reversion, momentum, cykl. Frame'ujemy ostro żeby user nie traktował tego jak sygnał handlowy.
+Predykcja kierunku **sentymentu** (nie ceny) w horyzoncie 7 dni. To nie szklana kula — to probabilistyczna ekstrapolacja czterech składowych: wolumen, mean reversion, momentum oraz cykl halvingu (BTC) / siła relatywna BNB/BTC (BNB). Baza prognozy to średnia score z ostatnich odświeżeń (odporna na szum 24h). Frame'ujemy ostro żeby user nie traktował tego jak sygnał handlowy.
 
 ### Co MUSI być na ekranie kiedy pokazujemy forecast
 
 1. **Pasmo, nie pojedynczy punkt**. Nigdy „score będzie 48". Zawsze „pasmo 42–56".
 2. **Konwikcja jawna**. Zawsze obok pasma: `low / medium / high`. Konwikcja wynika z agreement między regułami — im bardziej zgodne, tym węższe pasmo i wyższa konwikcja.
 3. **Rozbicie regła-po-regle na detalu**. Cztery wiersze: nazwa reguły · delta · krótka note wyjaśniająca. Suma. To jest "show your work" — user widzi *dlaczego* forecast jest taki.
-4. **Disclaimer**. 11px, italic, muted. Tekst: „Forecast to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy. Konwikcja medium oznacza wyraźny rozjazd reguł; spodziewaj się odchyleń przy szybkich zmianach rynku." Disclaimer nie znika nigdy.
+4. **Disclaimer**. 11px, italic, muted. Tekst: „Forecast to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku." Disclaimer nie znika nigdy.
 
 ### Czego NIE robimy
 

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """CryptoFlop — fetch market data, compute scores, write data.json.
 
-Runs 3x/day via GitHub Actions. No external deps (stdlib only).
+Uruchamiane przez GitHub Actions (cron '0 * * * *'). Uwaga: Actions throttluje
+scheduled runy — realna kadencja to ~1,5–5h, nie 1h. Żadne okno/bufor nie może
+więc zakładać "N wpisów = N godzin". No external deps (stdlib only).
 
 Note: Binance API jest zablokowane dla US data centerów (HTTP 451),
 więc na GitHub Actions używamy CoinGecko (działa globalnie).
@@ -21,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 DATA_FILE = ROOT / "data.json"
 HISTORY_FILE = ROOT / "history.json"
-SPARKLINE_LEN = 24      # last 24 entries — przy cron co 1h to last 24h trendu
+SPARKLINE_LEN = 24      # last 24 entries — przy realnej kadencji ~1,5-5h to ~2-4 dni trendu
 DCA_HISTORY_LEN = 30    # 30 dni (push_dca dedupluje po dacie)
 HALVING_DATE = datetime(2024, 4, 19)  # Bitcoin 4th halving
 
@@ -58,9 +60,15 @@ def mood_label(score):
     return "Mania"
 
 
-def score_from_pct(pct):
-    """Map a % price change to 0-100 score. -20% = 0, 0% = 50, +20% = 100."""
-    return int(max(0, min(100, round(50 + pct * 2.5))))
+# Pełna skala (|pct|, przy którym score sięga 0/100) dobrana do typowej
+# zmienności horyzontu (~sqrt(t)). Jedna wspólna skala ±20% zamrażała komórkę
+# 30d na 0 przy -20%/30d, a komórkę 24h trzymała wiecznie w paśmie 45-55.
+PCT_FULL_SCALE = {"24h": 6.0, "7d": 12.0, "30d": 25.0, "90d": 40.0}
+
+
+def score_from_pct(pct, full_scale=20.0):
+    """Map a % price change to 0-100 score. -full_scale% = 0, 0% = 50, +full_scale% = 100."""
+    return int(max(0, min(100, round(50 + pct / full_scale * 50))))
 
 
 def pct_change_from_prices(prices, days):
@@ -70,12 +78,16 @@ def pct_change_from_prices(prices, days):
 
 
 def cycle_score(now):
-    """Halving = 30. Peak ~month 18 = 90. Decay after."""
+    """Halving = 30. Peak ~month 18 = 90. Mies. 24 = 50, potem -4/mies.
+    Progi spójne z forecast_cycle: od mies. 24 ("po szczycie, bearish")
+    score schodzi poniżej pasma "Spokój" zamiast w nim wisieć."""
     months = (now - HALVING_DATE).days / 30.4
     if months < 18:
         s = 30 + (months / 18) * 60
+    elif months < 24:
+        s = 90 - (months - 18) * (40 / 6)
     else:
-        s = 90 - (months - 18) * 5
+        s = 50 - (months - 24) * 4
     return int(max(0, min(100, round(s))))
 
 
@@ -114,14 +126,15 @@ def push_score(history, key, score):
     return list(arr)
 
 
-def push_dca(history, key, decision):
+def push_dca(history, key, decision, level="tak"):
     """One entry per calendar day. Same-day reruns update the latest entry
-    (so the strip shows last 30 actual days, not last 30 refreshes)."""
+    (so the strip shows last 30 actual days, not last 30 refreshes).
+    Wartości: 0 = NIE, 1 = TAK, 2 = TAK-okazja (pasek ma 3 stany)."""
     today = datetime.now().strftime("%Y-%m-%d")
     date_key = f"{key}_last_date"
     last_date = history.get(date_key)
     arr = history.setdefault(key, [])
-    val = 1 if decision == "TAK" else 0
+    val = 0 if decision != "TAK" else (2 if level == "okazja" else 1)
     if last_date == today and arr:
         arr[-1] = val
     else:
@@ -170,15 +183,21 @@ def forecast_volume(price_change_7d, vol_now, vol_30d_avg):
         return (delta_v, f"Ruch {kierunek_s} z umiarkowanym wolumenem ({pct_str} vs 30d)")
 
 
-def forecast_mean_reversion(score_now, fng, prices):
+def forecast_mean_reversion(fng, prices):
     delta_v = 0
     notes = []
-    if fng < 25:
-        delta_v += 4
-        notes.append(f"F&G {fng} (ekstremalny strach) — presja w górę")
-    elif fng > 75:
-        delta_v -= 4
-        notes.append(f"F&G {fng} (ekstremalna chciwość) — presja w dół")
+    # Liniowa rampa zamiast klifu (stary kod: fng 24 → +4, fng 27 → 0).
+    # 35..15 → 0..+4 oraz 65..85 → 0..-4.
+    if fng <= 35:
+        d = min(4, round((35 - fng) * 0.2))
+        if d:
+            delta_v += d
+            notes.append(f"F&G {fng} (strach) — presja powrotu w górę")
+    elif fng >= 65:
+        d = min(4, round((fng - 65) * 0.2))
+        if d:
+            delta_v -= d
+            notes.append(f"F&G {fng} (chciwość) — presja powrotu w dół")
 
     if len(prices) >= 90:
         window = prices[-90:]
@@ -198,13 +217,18 @@ def forecast_mean_reversion(score_now, fng, prices):
 
 
 def forecast_momentum(prices):
-    if len(prices) < 4:
+    """Streak na PEŁNYCH zamknięciach dziennych — ostatni punkt market_chart
+    to dzień częściowy (cena "teraz"), więc go pomijamy; inaczej wynik reguły
+    zależał od godziny runa. Wymagamy >= 2 pełnych dni, bo streak=1 to szum,
+    który i tak ma już wagę w score (zmiana 24h)."""
+    closes = prices[:-1]
+    if len(closes) < 4:
         return (0, "Za mało historii do oceny streaku")
     threshold = 0.002  # 0.2%
     streak = 0
     direction = 0
-    for i in range(len(prices) - 1, 0, -1):
-        change = (prices[i] - prices[i - 1]) / prices[i - 1]
+    for i in range(len(closes) - 1, 0, -1):
+        change = (closes[i] - closes[i - 1]) / closes[i - 1]
         if abs(change) < threshold:
             break
         sign = 1 if change > 0 else -1
@@ -216,11 +240,11 @@ def forecast_momentum(prices):
         else:
             break
 
-    if streak == 0 or direction == 0:
-        return (0, "Brak wyraźnego streaku cenowego")
+    if streak < 2 or direction == 0:
+        return (0, "Brak wyraźnego streaku cenowego (min. 2 pełne dni)")
 
     kierunek_s = "w górę" if direction > 0 else "w dół"
-    dni_word = "dzień" if streak == 1 else "dni"
+    dni_word = "dni"
     if streak <= 3:
         return (direction * 3, f"{streak} {dni_word} z rzędu {kierunek_s} — kontynuacja prawdopodobna")
     elif streak <= 5:
@@ -240,30 +264,47 @@ def forecast_cycle(months):
         return (-3, f"{months} mies. po halvingu — cykl po szczycie historycznym (bearish)")
 
 
-def compose_forecast(score_now, deltas_with_notes):
-    """deltas_with_notes: list of dicts {name, delta, note}. Returns forecast dict."""
+def forecast_relative_strength(rel_7d):
+    """Reguła tylko dla BNB: siła relatywna do BTC w 7d (zamiast reguły cyklu
+    halvingu, która jest faktem o BTC, nie o BNB)."""
+    if rel_7d > 3:
+        return (2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna siła vs rynek")
+    if rel_7d < -3:
+        return (-2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna słabość vs rynek")
+    return (0, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — porusza się z rynkiem")
+
+
+def compose_forecast(score_base, deltas_with_notes):
+    """deltas_with_notes: list of dicts {name, delta, note}. Returns forecast dict.
+
+    score_base to WYGŁADZONA baza (średnia z ostatnich refreshy), nie chwilowy
+    score zdominowany przez zmianę 24h — pasmo nie może być węższe niż szum
+    samej bazy między odświeżeniami (min. 12 pkt)."""
     deltas = [r["delta"] for r in deltas_with_notes]
     total = max(-30, min(30, sum(deltas)))
-    expected = max(0, min(100, score_now + total))
+    expected = max(0, min(100, score_base + total))
+    active = sum(1 for d in deltas if d != 0)
 
     spread = max(deltas) - min(deltas)
     all_same_sign = all(d >= 0 for d in deltas) or all(d <= 0 for d in deltas)
     if all_same_sign and spread <= 5:
-        width = 8
-    elif spread <= 8:
         width = 12
+    elif spread <= 8:
+        width = 16
     else:
-        width = 20
+        width = 22
 
     lo = max(0, expected - width // 2)
     hi = min(100, expected + width // 2)
 
-    if width <= 8:
-        confidence = "high"
-    elif width <= 16:
-        confidence = "medium"
-    else:
+    # Konwikcja wymaga zgody między AKTYWNYMI regułami — milczące reguły
+    # (delta 0) to brak głosu, nie zgoda. [0,0,0,-3] ma być "low", nie "high".
+    if active <= 1 or width >= 22:
         confidence = "low"
+    elif active >= 3 and width <= 12 and abs(total) >= 6:
+        confidence = "high"
+    else:
+        confidence = "medium"
 
     if total > 1:
         direction_s = "up"
@@ -278,7 +319,8 @@ def compose_forecast(score_now, deltas_with_notes):
 
     return {
         "horizon_days": 7,
-        "score_now": score_now,
+        "score_now": score_base,
+        "score_base": score_base,
         "score_expected": expected,
         "score_range": [lo, hi],
         "mood_range": mood_range,
@@ -289,27 +331,44 @@ def compose_forecast(score_now, deltas_with_notes):
     }
 
 
-def build_forecast(score_now, prices, vol_now, vol_30d_avg, fng, months_since_halving):
+def build_forecast(score_base, prices, vol_now, vol_30d_avg, fng,
+                   months_since_halving=None, rel_strength_7d=None):
+    """Cykl halvingu wchodzi tylko do BTC; BNB zamiast tego dostaje regułę
+    siły relatywnej BNB/BTC."""
     pct_7d = pct_change_from_prices(prices, 7) if len(prices) >= 8 else 0.0
     d_vol, n_vol = forecast_volume(pct_7d, vol_now, vol_30d_avg)
-    d_mr, n_mr = forecast_mean_reversion(score_now, fng, prices)
+    d_mr, n_mr = forecast_mean_reversion(fng, prices)
     d_mom, n_mom = forecast_momentum(prices)
-    d_cyc, n_cyc = forecast_cycle(months_since_halving)
     rules = [
         {"name": "Wolumen",        "delta": d_vol, "note": n_vol},
         {"name": "Mean reversion", "delta": d_mr,  "note": n_mr},
         {"name": "Momentum",       "delta": d_mom, "note": n_mom},
-        {"name": "Cykl",           "delta": d_cyc, "note": n_cyc},
     ]
-    return compose_forecast(score_now, rules)
+    if months_since_halving is not None:
+        d_cyc, n_cyc = forecast_cycle(months_since_halving)
+        rules.append({"name": "Cykl", "delta": d_cyc, "note": n_cyc})
+    if rel_strength_7d is not None:
+        d_rel, n_rel = forecast_relative_strength(rel_strength_7d)
+        rules.append({"name": "BNB/BTC", "delta": d_rel, "note": n_rel})
+    fc = compose_forecast(score_base, rules)
+    # Decyzja "Za 7 dni" liczona TU (jedno źródło prawdy), nie w JS.
+    # Próg 80 = ten sam co noga score'owa progu "wstrzymaj" w dca_verdict_level
+    # (i co fallback w JS) — inny próg dawałby "Dziś TAK / Za 7 dni NIE"
+    # przy płaskiej prognozie.
+    fc["dca_in_7d"] = "NIE" if fc["score_expected"] >= 80 else "TAK"
+    return fc
 
 
-def asset_time_block(asset_key, history, pct_24h, pct_7d, pct_30d, pct_90d, fng, cyc_score):
-    """Build the time strip for a single asset."""
-    s_24h = (fng + score_from_pct(pct_24h)) // 2
-    s_7d = score_from_pct(pct_7d)
-    s_30d = score_from_pct(pct_30d)
-    s_90d = score_from_pct(pct_90d)
+def asset_time_block(asset_key, history, s_today, pct_7d, pct_30d, pct_90d, cyc_score):
+    """Build the time strip for a single asset.
+
+    s_today = ten sam wynik co nagłówkowy score widgetu — wcześniej komórka
+    "Dziś" miała własny wzór i na jednym ekranie wisiały dwie różne liczby
+    "sentymentu dziś" (42 vs 35) bez wyjaśnienia."""
+    s_24h = s_today
+    s_7d = score_from_pct(pct_7d, PCT_FULL_SCALE["7d"])
+    s_30d = score_from_pct(pct_30d, PCT_FULL_SCALE["30d"])
+    s_90d = score_from_pct(pct_90d, PCT_FULL_SCALE["90d"])
 
     h_24h = push_score(history, f"{asset_key}_dzis", s_24h)
     h_7d = push_score(history, f"{asset_key}_tydzien", s_7d)
@@ -331,13 +390,109 @@ def asset_time_block(asset_key, history, pct_24h, pct_7d, pct_30d, pct_90d, fng,
     ]
 
 
+# ---------- Werdykt DCA (3 stany + proste sygnały dla nie-tradera) ----------
+
+
+def position_in_range(prices, days=90):
+    """Pozycja aktualnej ceny w zakresie min-max ostatnich `days` dni (0..1)."""
+    if not prices:
+        return 0.5
+    window = prices[-days:]
+    lo, hi = min(window), max(window)
+    if hi <= lo:
+        return 0.5
+    return (prices[-1] - lo) / (hi - lo)
+
+
+def dca_verdict_level(score, fng, s_30d):
+    """Ocena STANU rynku (nie przyszłości) w 3 stopniach.
+
+    Stary binarny próg (NIE gdy score >= 80) był martwy: wymagał jednocześnie
+    ekstremalnej chciwości i pompy +8-18%/24h — 0 wystąpień NIE w całej
+    historii projektu. Nowe progi oparte o F&G i trend 30d, nie o szum 24h:
+    - wstrzymaj: rynek rozgrzany (F&G >= 75 lub +15%/30d, tj. s_30d >= 80)
+    - okazja: rynek w strachu (F&G <= 20 lub -15%/30d, tj. s_30d <= 20)
+    - tak: normalny dzień DCA
+    """
+    if fng >= 75 or s_30d >= 80 or score >= 80:
+        return "wstrzymaj"
+    if fng <= 20 or s_30d <= 20:
+        return "okazja"
+    return "tak"
+
+
+def build_verdict(name, level, decision, fng, pct_30d, pos_90d, forecast):
+    """Karta "Czy warto dziś kupić?" — werdykt + 4 sygnały prostym językiem.
+    Tone: good = sprzyja zakupowi dziś, warn = przemawia przeciw, neutral.
+    Generowane w Pythonie, żeby JS niczego nie interpretował (jedno źródło prawdy)."""
+    signals = []
+
+    if fng <= 25:
+        t, txt = "good", f"skrajny strach ({fng}/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+    elif fng <= 45:
+        t, txt = "good", f"strach ({fng}/100) — sprzyja regularnym zakupom"
+    elif fng < 55:
+        t, txt = "neutral", f"neutralnie ({fng}/100)"
+    elif fng < 75:
+        t, txt = "neutral", f"chciwość ({fng}/100) — kupuj wg planu, bez zwiększania kwot"
+    else:
+        t, txt = "warn", f"ekstremalna chciwość ({fng}/100) — rynek rozgrzany"
+    signals.append({"label": "Nastrój rynku", "tone": t, "text": txt})
+
+    ppct = round(pos_90d * 100)
+    if pos_90d <= 0.25:
+        t, txt = "good", f"nisko w zakresie 3 mies. ({ppct}%) — kupujesz blisko lokalnego dołka"
+    elif pos_90d >= 0.75:
+        t, txt = "warn", f"blisko szczytu zakresu 3 mies. ({ppct}%) — kupujesz wysoko"
+    else:
+        t, txt = "neutral", f"w środku zakresu 3 mies. ({ppct}%)"
+    signals.append({"label": "Cena vs 3 mies.", "tone": t, "text": txt})
+
+    if pct_30d <= -10:
+        t, txt = "good", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz taniej niż miesiąc temu"
+    elif pct_30d >= 10:
+        t, txt = "warn", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz drożej niż miesiąc temu"
+    else:
+        t, txt = "neutral", f"{fmt_pct(pct_30d)} przez miesiąc — bez dużych zmian"
+    signals.append({"label": "Trend 30 dni", "tone": t, "text": txt})
+
+    dir_txt = {"up": "nastrój może się wzmacniać", "down": "nastrój może się osłabiać",
+               "flat": "nastrój raczej stabilny"}[forecast["direction"]]
+    conf_txt = {"low": "niska", "medium": "średnia", "high": "wysoka"}[forecast["confidence"]]
+    signals.append({"label": "Prognoza 7 dni", "tone": "neutral",
+                    "text": f"{dir_txt} (pewność: {conf_txt}) — odczyt nastroju, nie ceny"})
+
+    if level == "okazja":
+        # "stoi nisko" tylko gdy dane to potwierdzają — okazja może wynikać
+        # z samego F&G przy cenie wysoko w zakresie (laggy indeks po odbiciu).
+        if pos_90d <= 0.5 or pct_30d <= -10:
+            headline = (f"Rynek jest w strachu, a {name} stoi nisko — dla strategii stałych "
+                        f"zakupów (DCA) to statystycznie lepszy dzień niż zwykle.")
+        else:
+            headline = ("Rynek jest w strachu — dla strategii stałych zakupów (DCA) "
+                        "to statystycznie lepszy dzień niż zwykle.")
+        sublabel, flag = "dobry moment — rynek w strachu", "wyjątkowa okazja"
+    elif level == "wstrzymaj":
+        headline = (f"Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy {name} "
+                    f"i poczekać na spokojniejszy moment.")
+        sublabel, flag = "rynek rozgrzany — przeczekaj", ""
+    else:
+        headline = (f"Zwykły dzień na rynku — ani okazja, ani przegrzanie. "
+                    f"Regularna, stała kwota DCA w {name} to tu najlepsza strategia.")
+        sublabel, flag = "normalny dzień DCA", ""
+
+    return {"decision": decision, "level": level, "sublabel": sublabel, "flag": flag,
+            "fng": fng, "headline": headline, "signals": signals}
+
+
 # ---------- News & events (etap 4) ----------
 
 NEWS_USER_AGENT = "Mozilla/5.0 (cryptoflop/0.2; +https://cryptoflop.vercel.app)"
 
 TAG_KEYWORDS = {
     "Binance": ["binance", "bnb", "changpeng", "cz "],
-    "Regulacje": ["sec ", "cftc", "regulat", "lawsuit", "approve", "ruling", "court", "fine ", "clarity act", " ban "],
+    "Regulacje": ["sec ", "cftc", "regulat", "lawsuit", "approve", "ruling", "court", "fine ", "clarity act", " ban ",
+                  "bill", "congress", "senate", "legislation", "sanction"],
     "Makro": ["fed ", "fomc", " rate", "inflation", "cpi", "treasury", "powell", "dollar", "fed's", "interest rate"],
     "On-chain": ["etf", "wallet", "flow", "transfer", "halving", "mempool", "tokeniz", "spot bitcoin", "spot ether", "whale"],
 }
@@ -478,32 +633,37 @@ BINANCE_BSC_ADDRESSES = [
     "0x8894E0a0c962CB723c1976a4421c95949bE2D4E3",                          # Binance hot
     "0x28C6c06298d514Db089934071355E5743bf21d60",                          # Binance 14
 ]
-ONCHAIN_HISTORY_LEN = 25  # ~24h przy cron co 1h
+ONCHAIN_HISTORY_LEN = 25  # ~2-4 dni przy realnej kadencji ~1,5-5h (okno raportowane w window_h)
 
 
 def fetch_btc_onchain():
-    """Zsumuj funded/spent across Binance BTC addresses (mempool.space)."""
+    """Zsumuj funded/spent across Binance BTC addresses (mempool.space).
+
+    Wszystko-albo-nic: częściowa suma (np. bez cold walleta) zapisana do ring
+    buffera wygląda potem jak fantomowy przepływ setek tysięcy BTC."""
     funded = 0
     spent = 0
-    ok = 0
     for addr in BINANCE_BTC_ADDRESSES:
         try:
             d = fetch_json(f"https://mempool.space/api/address/{addr}", timeout=15)
-            cs = d.get("chain_stats", {})
-            funded += cs.get("funded_txo_sum", 0)
-            spent += cs.get("spent_txo_sum", 0)
-            ok += 1
         except Exception as e:
-            print(f"  mempool.space {addr[:12]}… failed: {e}")
-    if ok == 0:
-        return None
-    return {"funded": funded, "spent": spent}
+            print(f"  mempool.space {addr[:12]}… failed: {e} — pomijam cały snapshot")
+            return None
+        cs = d.get("chain_stats")
+        if not cs or not cs.get("funded_txo_sum"):
+            # Odpowiedź bez chain_stats / z zerem to zdegradowany fetch, nie
+            # "adres bez historii" — te adresy mają lata aktywności.
+            print(f"  mempool.space {addr[:12]}… puste chain_stats — pomijam cały snapshot")
+            return None
+        funded += cs["funded_txo_sum"]
+        spent += cs.get("spent_txo_sum", 0)
+    return {"funded": funded, "spent": spent, "n": len(BINANCE_BTC_ADDRESSES)}
 
 
 def fetch_bnb_onchain():
-    """Zsumuj balansy Binance BSC addresses (BSC RPC eth_getBalance)."""
+    """Zsumuj balansy Binance BSC addresses (BSC RPC eth_getBalance).
+    Wszystko-albo-nic — jak w fetch_btc_onchain."""
     total_wei = 0
-    ok = 0
     for addr in BINANCE_BSC_ADDRESSES:
         try:
             req = urllib.request.Request(
@@ -517,11 +677,9 @@ def fetch_bnb_onchain():
             with urllib.request.urlopen(req, timeout=15) as r:
                 res = json.loads(r.read())
             total_wei += int(res["result"], 16)
-            ok += 1
         except Exception as e:
-            print(f"  BSC RPC {addr[:12]}… failed: {e}")
-    if ok == 0:
-        return None
+            print(f"  BSC RPC {addr[:12]}… failed: {e} — pomijam cały snapshot")
+            return None
     return {"balance_wei": total_wei}
 
 
@@ -538,6 +696,26 @@ def btc_netflow_block(history, snap):
     if snap is None:
         return {"available": False, "note": "Brak danych on-chain (mempool.space niedostępny)"}
     arr = push_onchain_snapshot(history, "onchain_btc", snap)
+    # chain_stats są kumulatywne (nigdy nie maleją) — wpis z niższą sumą niż
+    # poprzedni to skutek częściowego faila fetchu (suma podzbioru adresów).
+    # Wyrzucamy takie wpisy, zanim staną się bazą porównania (arr[0]).
+    clean = []
+    for e in arr:
+        if "n" in e and e["n"] != len(BINANCE_BTC_ADDRESSES):
+            print(f"  on-chain BTC: odrzucam snapshot z niepełną listą adresów {e['ts']}")
+            continue
+        if clean and (e["funded"] < clean[-1]["funded"] or e["spent"] < clean[-1]["spent"]):
+            print(f"  on-chain BTC: odrzucam skorumpowany snapshot {e['ts']}")
+            continue
+        clean.append(e)
+    # Filtr parowy nie weryfikuje bazy (arr[0]). Realny przyrost kumulatywnych
+    # sum w oknie 2-4 dni jest mikroskopijny — baza odstająca o >1% od
+    # bieżącego snapa to na pewno częściowa suma (legacy), nie ruch rynkowy.
+    while clean and (snap["funded"] - clean[0]["funded"]) > snap["funded"] * 0.01:
+        print(f"  on-chain BTC: odrzucam podejrzaną bazę {clean[0]['ts']}")
+        clean.pop(0)
+    history["onchain_btc"] = clean
+    arr = clean
     if len(arr) < 2:
         return {"available": False, "note": "Zbieram dane on-chain — pierwszy snapshot"}
     oldest = arr[0]
@@ -548,15 +726,31 @@ def btc_netflow_block(history, snap):
     net_btc = inflow_btc - outflow_btc  # dodatni = napływ na Binance
     hours = max(1, round((datetime.now(timezone.utc) -
                           datetime.fromisoformat(oldest["ts"])).total_seconds() / 3600))
-    if net_btc > 50:
-        signal = "napływ na giełdę — możliwa presja sprzedażowa"
-    elif net_btc < -50:
-        signal = "odpływ z giełdy — akumulacja / mniejsza podaż"
+    # Progi per 24h (okno przy realnej kadencji cron ma ~2-4 dni, nie 24h).
+    # Z okna <12h NIE ekstrapolujemy ×24 — jednorazowy ruch 30 BTC w 1h
+    # wyglądałby jak 720 BTC/24h i odpalał fałszywy alert.
+    short_window = hours < 12
+    net_per24 = 0.0 if short_window else net_btc * 24 / hours
+    activity_btc = inflow_btc + outflow_btc
+    coverage = "low" if (activity_btc < 5 or short_window) else "ok"
+    if short_window:
+        signal = f"okno pomiaru dopiero {hours}h — za wcześnie na ocenę"
+    elif activity_btc < 5:
+        signal = ("śledzone adresy prawie nieaktywne w tym oknie — znikome pokrycie "
+                  "realnych przepływów Binance, traktuj jako brak danych")
+    elif net_per24 > 50:
+        signal = "napływ na śledzone portfele — możliwa presja sprzedażowa"
+    elif net_per24 < -50:
+        signal = "odpływ ze śledzonych portfeli — akumulacja / mniejsza podaż"
     else:
         signal = "ruch netto bliski zera — bez wyraźnego sygnału"
     return {
         "available": True,
         "net_btc": round(net_btc),
+        "net_per24": round(net_per24),
+        "threshold_24h": 50,
+        "coverage": coverage,
+        "short_window": short_window,
         "inflow_btc": round(inflow_btc),
         "outflow_btc": round(outflow_btc),
         "window_h": hours,
@@ -567,22 +761,54 @@ def btc_netflow_block(history, snap):
 def bnb_netflow_block(history, snap):
     if snap is None:
         return {"available": False, "note": "Brak danych on-chain (BSC RPC niedostępny)"}
+    # Najpierw walidujemy SNAP względem mediany istniejącego bufora — odstający
+    # odczyt (zdegradowane RPC) nie może ani wejść do historii, ani jej czyścić.
+    prev = history.get("onchain_bnb", [])
+    if prev:
+        med = sorted(e["balance_wei"] for e in prev)[len(prev) // 2]
+        if abs(snap["balance_wei"] - med) > med * 0.15:
+            print("  on-chain BNB: odczyt salda odstaje >15% od mediany — pomijam snapshot")
+            return {"available": False, "note": "Odczyt salda odstaje od historii — pomijam ten snapshot"}
     arr = push_onchain_snapshot(history, "onchain_bnb", snap)
+    # Sanity parami (jak w BTC): saldo skarbca nie skacze o >10% między
+    # KOLEJNYMI snapshotami — kumulatywny dryf w całym oknie to sygnał,
+    # nie korupcja, więc nie wolno go przycinać do bieżącego snapa.
+    clean = []
+    for e in arr:
+        if clean and abs(e["balance_wei"] - clean[-1]["balance_wei"]) > clean[-1]["balance_wei"] * 0.10:
+            print(f"  on-chain BNB: odrzucam skorumpowany snapshot {e['ts']}")
+            continue
+        clean.append(e)
+    history["onchain_bnb"] = clean
+    arr = clean
     if len(arr) < 2:
         return {"available": False, "note": "Zbieram dane on-chain — pierwszy snapshot"}
     oldest = arr[0]
-    net_bnb = (snap["balance_wei"] - oldest["balance_wei"]) / 1e18  # dodatni = wzrost salda Binance
+    net_bnb = (snap["balance_wei"] - oldest["balance_wei"]) / 1e18  # dodatni = wzrost salda
     hours = max(1, round((datetime.now(timezone.utc) -
                           datetime.fromisoformat(oldest["ts"])).total_seconds() / 3600))
-    if net_bnb > 2000:
-        signal = "saldo Binance rośnie — możliwa presja sprzedażowa"
-    elif net_bnb < -2000:
-        signal = "saldo Binance maleje — odpływ / akumulacja"
+    # To delta SALDA 3 portfeli (w tym rezerwa korporacyjna), nie przepływ
+    # klientów — dolewki między portfelami Binance wyglądają jak "flow".
+    # Próg względny: 0,5% śledzonego salda na 24h; poniżej = szum operacyjny.
+    # Z okna <12h nie ekstrapolujemy ×24 (fałszywe alarmy z 1-2h okien).
+    short_window = hours < 12
+    net_per24 = 0.0 if short_window else net_bnb * 24 / hours
+    tracked_bnb = snap["balance_wei"] / 1e18
+    threshold_24h = round(tracked_bnb * 0.005)
+    if short_window:
+        signal = f"okno pomiaru dopiero {hours}h — za wcześnie na ocenę"
+    elif net_per24 > threshold_24h:
+        signal = "saldo śledzonych portfeli rośnie wyraźnie — możliwy podwyższony napływ na giełdę"
+    elif net_per24 < -threshold_24h:
+        signal = "saldo śledzonych portfeli maleje wyraźnie — możliwy odpływ z giełdy"
     else:
-        signal = "zmiana salda bliska zera — bez wyraźnego sygnału"
+        signal = "zmiana w granicach normalnego ruchu operacyjnego skarbca"
     return {
         "available": True,
         "net_bnb": round(net_bnb),
+        "net_per24": round(net_per24),
+        "threshold_24h": threshold_24h,
+        "short_window": short_window,
         "window_h": hours,
         "signal": signal,
     }
@@ -650,10 +876,11 @@ def build_and_send_alerts(history, btc_24h, bnb_24h, fng, btc_dca, bnb_dca,
     if cur["bnb_big"] and not prev.get("bnb_big"):
         msgs.append(f"⚡ <b>BNB {bnb_24h:+.1f}% w 24h</b>")
 
-    if btc_onchain.get("available") and abs(btc_onchain.get("net_btc", 0)) >= 500:
-        net = btc_onchain["net_btc"]
+    if (btc_onchain.get("available") and btc_onchain.get("coverage") != "low"
+            and abs(btc_onchain.get("net_per24", 0)) >= 500):
+        net = btc_onchain["net_per24"]
         kier = "napływ na Binance" if net > 0 else "odpływ z Binance"
-        msgs.append(f"🔗 <b>BTC on-chain: {net:+} BTC ({kier})</b>")
+        msgs.append(f"🔗 <b>BTC on-chain: {net:+} BTC/24h ({kier})</b>")
 
     if msgs:
         body = "<b>CryptoFlop — alert</b>\n\n" + "\n".join(msgs) + \
@@ -733,11 +960,22 @@ def main():
     print(f"  BTC dominance: {btc_dom:.1f}%   F&G: {fng}")
 
     cyc = cycle_score(datetime.now())
-    btc_score = (fng + score_from_pct(btc_24h) * 2) // 3
-    bnb_score = (fng + score_from_pct(bnb_24h) * 2) // 3
+    # Score "dziś": F&G + zmiana 24h (skala ±6%). BNB z mniejszą wagą F&G —
+    # indeks jest BTC-centryczny, a BNB ma własną dynamikę.
+    s24_btc = score_from_pct(btc_24h, PCT_FULL_SCALE["24h"])
+    s24_bnb = score_from_pct(bnb_24h, PCT_FULL_SCALE["24h"])
+    btc_score = (fng + 2 * s24_btc) // 3
+    bnb_score = (fng + 3 * s24_bnb) // 4
 
-    btc_dca = "NIE" if btc_score >= 80 else "TAK"
-    bnb_dca = "NIE" if bnb_score >= 80 else "TAK"
+    s30_btc = score_from_pct(btc_30d, PCT_FULL_SCALE["30d"])
+    s30_bnb = score_from_pct(bnb_30d, PCT_FULL_SCALE["30d"])
+    pos90_btc = position_in_range(btc_prices)
+    pos90_bnb = position_in_range(bnb_prices)
+
+    btc_level = dca_verdict_level(btc_score, fng, s30_btc)
+    bnb_level = dca_verdict_level(bnb_score, fng, s30_bnb)
+    btc_dca = "NIE" if btc_level == "wstrzymaj" else "TAK"
+    bnb_dca = "NIE" if bnb_level == "wstrzymaj" else "TAK"
 
     fng_pl_map = {
         "Extreme Fear": "ekstremalny strach",
@@ -788,9 +1026,6 @@ def main():
     btc_vol_30d_avg = sum(btc_vols[-31:-1]) / 30 if len(btc_vols) >= 31 else btc_vol_7d_avg
     bnb_vol_30d_avg = sum(bnb_vols[-31:-1]) / 30 if len(bnb_vols) >= 31 else bnb_vol_7d_avg
 
-    btc_forecast = build_forecast(btc_score, btc_prices, btc_vol, btc_vol_30d_avg, fng, months_since_halving)
-    bnb_forecast = build_forecast(bnb_score, bnb_prices, bnb_vol, bnb_vol_30d_avg, fng, months_since_halving)
-
     print("Fetching news (etap 4)...")
     events = fetch_all_events()
     print(f"  Got {len(events)} events from last 24h")
@@ -798,11 +1033,23 @@ def main():
     history = load_history()
     btc_hist = push_score(history, "btc", btc_score)
     bnb_hist = push_score(history, "bnb", bnb_score)
-    btc_dca_hist = push_dca(history, "btc_dca", btc_dca)
-    bnb_dca_hist = push_dca(history, "bnb_dca", bnb_dca)
+    btc_dca_hist = push_dca(history, "btc_dca", btc_dca, btc_level)
+    bnb_dca_hist = push_dca(history, "bnb_dca", bnb_dca, bnb_level)
 
-    btc_time = asset_time_block("btc", history, btc_24h, btc_7d, btc_30d, btc_90d, fng, cyc)
-    bnb_time = asset_time_block("bnb", history, bnb_24h, bnb_7d, bnb_30d, bnb_90d, fng, cyc)
+    # Baza forecastu = średnia z ostatnich refreshy (~1-2 dni), nie chwilowy
+    # score zdominowany przez zmianę 24h, która jutro resetuje się do szumu.
+    btc_base = round(sum(btc_hist[-7:]) / len(btc_hist[-7:]))
+    bnb_base = round(sum(bnb_hist[-7:]) / len(bnb_hist[-7:]))
+    btc_forecast = build_forecast(btc_base, btc_prices, btc_vol, btc_vol_30d_avg, fng,
+                                  months_since_halving=months_since_halving)
+    bnb_forecast = build_forecast(bnb_base, bnb_prices, bnb_vol, bnb_vol_30d_avg, fng,
+                                  rel_strength_7d=bnb_vs_btc_7d)
+
+    btc_verdict = build_verdict("BTC", btc_level, btc_dca, fng, btc_30d, pos90_btc, btc_forecast)
+    bnb_verdict = build_verdict("BNB", bnb_level, bnb_dca, fng, bnb_30d, pos90_bnb, bnb_forecast)
+
+    btc_time = asset_time_block("btc", history, btc_score, btc_7d, btc_30d, btc_90d, cyc)
+    bnb_time = asset_time_block("bnb", history, bnb_score, bnb_7d, bnb_30d, bnb_90d, cyc)
 
     print("Fetching on-chain (etap 3)...")
     btc_onchain = btc_netflow_block(history, fetch_btc_onchain())
@@ -848,6 +1095,7 @@ def main():
                     {"label": "Dominacja", "value": f"{btc_dom:.1f}%".replace(".", ","), "change": None},
                 ],
                 "dca": {"decision": btc_dca, "history": btc_dca_hist},
+                "verdict": btc_verdict,
                 "forecast": btc_forecast,
                 "onchain": btc_onchain,
             },
@@ -876,6 +1124,7 @@ def main():
                      "change": round(bnb_vs_btc_7d, 1), "changeUnit": "7d"},
                 ],
                 "dca": {"decision": bnb_dca, "history": bnb_dca_hist},
+                "verdict": bnb_verdict,
                 "forecast": bnb_forecast,
                 "onchain": bnb_onchain,
             },
@@ -885,8 +1134,8 @@ def main():
     DATA_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2))
 
-    print(f"BTC: {btc_score}/100 ({mood_label(btc_score)}), DCA: {btc_dca}")
-    print(f"BNB: {bnb_score}/100 ({mood_label(bnb_score)}), DCA: {bnb_dca}")
+    print(f"BTC: {btc_score}/100 ({mood_label(btc_score)}), DCA: {btc_dca} ({btc_level})")
+    print(f"BNB: {bnb_score}/100 ({mood_label(bnb_score)}), DCA: {bnb_dca} ({bnb_level})")
     print(f"Wrote {DATA_FILE.name} and {HISTORY_FILE.name}")
 
 
