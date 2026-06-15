@@ -1,8 +1,40 @@
 {
-  "fetched_at": "2026-06-14T23:07:31.301903+00:00",
-  "header_label": "niedziela, 14 czerwca",
-  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+1,3%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+0,6%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>18</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
+  "fetched_at": "2026-06-15T04:04:59.802532+00:00",
+  "header_label": "poniedziałek, 15 czerwca",
+  "narrative": "<span class=\"coin-btc\">BTC</span> <strong>+2,0%</strong>, <span class=\"coin-bnb\">BNB</span> <strong>+1,3%</strong> w ostatnich 24h. Fear &amp; Greed: <strong>20</strong> (ekstremalny strach). 25 miesięcy po halvingu — cykl po szczycie historycznym.",
   "events": [
+    {
+      "title": "Bitcoin hits a two-week high above $65,500 as the US-Iran deal sends oil sliding",
+      "url": "https://www.coindesk.com/markets/2026/06/15/bitcoin-hits-a-two-week-high-above-usd65-500-as-the-us-iran-deal-sends-oil-sliding",
+      "published_at": "2026-06-15T03:56:27+00:00",
+      "source": "CoinDesk",
+      "tags": [],
+      "assets": [
+        "btc"
+      ]
+    },
+    {
+      "title": "Word of the Day: Test Your Knowledge on “bStocks” to Unlock BNB Rewards!",
+      "url": "https://www.binance.com/en/support/announcement/ff84d61931b44acabd8e6b3011c51ad8",
+      "published_at": "2026-06-15T02:00:02.982000+00:00",
+      "source": "Binance",
+      "tags": [
+        "Binance"
+      ],
+      "assets": [
+        "bnb"
+      ]
+    },
+    {
+      "title": "Bitcoin shoots higher on Iran peace deal, with Strait of Hormuz set to open",
+      "url": "https://www.coindesk.com/markets/2026/06/14/bitcoin-shoots-higher-on-iran-deal-with-strait-of-hormuz-set-to-open",
+      "published_at": "2026-06-15T00:08:10+00:00",
+      "source": "CoinDesk",
+      "tags": [],
+      "assets": [
+        "btc"
+      ]
+    },
     {
       "title": "Here’s what happened in crypto today",
       "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
@@ -126,17 +158,6 @@
         "btc",
         "bnb"
       ]
-    },
-    {
-      "title": "Amazon warning triggered US crackdown on Anthropic AI models: Reports",
-      "url": "https://cointelegraph.com/news/amazon-warning-triggered-us-crackdown-on-anthropic-ai-models-reports?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "published_at": "2026-06-14T03:36:49+00:00",
-      "source": "CoinTelegraph",
-      "tags": [],
-      "assets": [
-        "btc",
-        "bnb"
-      ]
     }
   ],
   "assets": [
@@ -144,11 +165,10 @@
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "score": 46,
-      "delta": 9,
+      "score": 51,
+      "delta": 5,
       "mood": "Spokój",
       "history": [
-        38,
         42,
         48,
         38,
@@ -171,21 +191,21 @@
         38,
         36,
         37,
-        46
+        46,
+        51
       ],
-      "price": "$65 265",
-      "price_change_24h": 1.3,
-      "narrative": "BTC <strong>+1,3%</strong> w 24h, <strong>+3,2%</strong> w 7d. Wolumen <strong>-28,7%</strong> względem średniej z 7 dni. Dominacja <strong>56,6%</strong> rynku. Fear &amp; Greed: <strong>18</strong> (ekstremalny strach).",
+      "price": "$65 792",
+      "price_change_24h": 2.0,
+      "narrative": "BTC <strong>+2,0%</strong> w 24h, <strong>+4,3%</strong> w 7d. Wolumen <strong>-11,9%</strong> względem średniej z 7 dni. Dominacja <strong>56,7%</strong> rynku. Fear &amp; Greed: <strong>20</strong> (ekstremalny strach).",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 46,
-          "delta": 9,
+          "score": 51,
+          "delta": 5,
           "mood": "Spokój",
           "history": [
-            32,
             35,
             48,
             38,
@@ -208,18 +228,18 @@
             38,
             36,
             37,
-            46
+            46,
+            51
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 63,
-          "delta": 8,
-          "mood": "Wzmocnienie",
+          "score": 68,
+          "delta": 5,
+          "mood": "Siła",
           "history": [
-            45,
             50,
             70,
             68,
@@ -242,19 +262,19 @@
             54,
             53,
             55,
-            63
+            63,
+            68
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 15,
+          "score": 18,
           "delta": 3,
           "mood": "Wyprzedaż",
           "history": [
             0,
-            0,
             11,
             10,
             10,
@@ -276,18 +296,18 @@
             12,
             11,
             12,
-            15
+            15,
+            18
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 34,
+          "score": 36,
           "delta": 2,
           "mood": "Słabość",
           "history": [
-            20,
             25,
             37,
             37,
@@ -310,19 +330,19 @@
             32,
             32,
             32,
-            34
+            34,
+            36
           ]
         },
         {
           "key": "cykl",
           "name": "od halvingu",
           "sub": null,
-          "score": 43,
-          "delta": 0,
+          "score": 42,
+          "delta": -1,
           "mood": "Słabość",
           "history": [
             51,
-            51,
             43,
             43,
             43,
@@ -344,37 +364,38 @@
             43,
             43,
             43,
-            43
+            43,
+            42
           ]
         }
       ],
       "stats": [
         {
           "label": "Cena",
-          "value": "$65 265",
+          "value": "$65 792",
           "changes": [
             {
               "tf": "24h",
-              "val": 1.3
+              "val": 2.0
             },
             {
               "tf": "7d",
-              "val": 3.2
+              "val": 4.3
             },
             {
               "tf": "30d",
-              "val": -17.5
+              "val": -15.8
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$22,0B",
-          "change": -29
+          "value": "$25,3B",
+          "change": -12
         },
         {
           "label": "Dominacja",
-          "value": "56,6%",
+          "value": "56,7%",
           "change": null
         }
       ],
@@ -407,7 +428,7 @@
           1,
           1,
           1,
-          1,
+          2,
           2,
           2,
           2
@@ -418,59 +439,59 @@
         "level": "okazja",
         "sublabel": "dobry moment — rynek w strachu",
         "flag": "wyjątkowa okazja",
-        "fng": 18,
+        "fng": 20,
         "headline": "Rynek jest w strachu, a BTC stoi nisko — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (18/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (20/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
             "tone": "good",
-            "text": "nisko w zakresie 3 mies. (21%) — kupujesz blisko lokalnego dołka"
+            "text": "nisko w zakresie 3 mies. (23%) — kupujesz blisko lokalnego dołka"
           },
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-17,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-15,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "nastrój może się osłabiać (pewność: średnia) — odczyt nastroju, nie ceny"
+            "text": "nastrój raczej stabilny (pewność: średnia) — odczyt nastroju, nie ceny"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_now": 40,
-        "score_base": 40,
-        "score_expected": 37,
+        "score_now": 41,
+        "score_base": 41,
+        "score_expected": 41,
         "score_range": [
-          29,
-          45
+          33,
+          49
         ],
-        "mood_range": "Wyprzedaż → Spokój",
-        "direction": "down",
+        "mood_range": "Słabość → Spokój",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": -3,
+        "total_delta": 0,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę bez wolumenu (wolumen -38% vs 30d) — divergencja"
+            "note": "Ruch w górę bez wolumenu (wolumen -28% vs 30d) — divergencja"
           },
           {
             "name": "Mean reversion",
             "delta": 3,
-            "note": "F&G 18 (strach) — presja powrotu w górę"
+            "note": "F&G 20 (strach) — presja powrotu w górę"
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)"
+            "delta": 3,
+            "note": "2 dni z rzędu w górę — kontynuacja prawdopodobna"
           },
           {
             "name": "Cykl",
@@ -489,7 +510,7 @@
         "short_window": false,
         "inflow_btc": 0,
         "outflow_btc": 0,
-        "window_h": 82,
+        "window_h": 83,
         "signal": "śledzone adresy prawie nieaktywne w tym oknie — znikome pokrycie realnych przepływów Binance, traktuj jako brak danych"
       }
     },
@@ -497,11 +518,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "score": 45,
-      "delta": 8,
+      "score": 50,
+      "delta": 5,
       "mood": "Spokój",
       "history": [
-        39,
         42,
         49,
         40,
@@ -524,21 +544,21 @@
         40,
         39,
         37,
-        45
+        45,
+        50
       ],
-      "price": "$613",
-      "price_change_24h": 0.6,
-      "narrative": "BNB <strong>+0,6%</strong> w 24h, <strong>+1,5%</strong> w 7d. Wolumen <strong>-1,8%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>-1,6%</strong> w 7d — <strong>słabszy niż BTC</strong> w ostatnim tygodniu.",
+      "price": "$617",
+      "price_change_24h": 1.3,
+      "narrative": "BNB <strong>+1,3%</strong> w 24h, <strong>+2,6%</strong> w 7d. Wolumen <strong>+2,1%</strong> vs średnia tygodniowa. BNB/BTC ratio <strong>-1,6%</strong> w 7d — <strong>słabszy niż BTC</strong> w ostatnim tygodniu.",
       "time": [
         {
           "key": "dzis",
           "name": "Dziś",
           "sub": "24h",
-          "score": 45,
-          "delta": 8,
+          "score": 50,
+          "delta": 5,
           "mood": "Spokój",
           "history": [
-            32,
             34,
             49,
             40,
@@ -561,18 +581,18 @@
             40,
             39,
             37,
-            45
+            45,
+            50
           ]
         },
         {
           "key": "tydzien",
           "name": "Tydzień",
           "sub": "7d",
-          "score": 56,
+          "score": 61,
           "delta": 5,
           "mood": "Wzmocnienie",
           "history": [
-            47,
             51,
             76,
             73,
@@ -595,18 +615,18 @@
             52,
             50,
             51,
-            56
+            56,
+            61
           ]
         },
         {
           "key": "miesiac",
           "name": "Miesiąc",
           "sub": "30d",
-          "score": 32,
-          "delta": 2,
+          "score": 38,
+          "delta": 6,
           "mood": "Słabość",
           "history": [
-            25,
             28,
             31,
             30,
@@ -629,18 +649,18 @@
             31,
             30,
             30,
-            32
+            32,
+            38
           ]
         },
         {
           "key": "kwartal",
           "name": "Kwartał",
           "sub": "90d",
-          "score": 38,
+          "score": 40,
           "delta": 2,
           "mood": "Słabość",
           "history": [
-            28,
             31,
             40,
             40,
@@ -663,19 +683,19 @@
             37,
             36,
             36,
-            38
+            38,
+            40
           ]
         },
         {
           "key": "cykl",
           "name": "od halvingu",
           "sub": null,
-          "score": 43,
-          "delta": 0,
+          "score": 42,
+          "delta": -1,
           "mood": "Słabość",
           "history": [
             51,
-            51,
             43,
             43,
             43,
@@ -697,33 +717,34 @@
             43,
             43,
             43,
-            43
+            43,
+            42
           ]
         }
       ],
       "stats": [
         {
           "label": "Cena",
-          "value": "$613",
+          "value": "$617",
           "changes": [
             {
               "tf": "24h",
-              "val": 0.6
+              "val": 1.3
             },
             {
               "tf": "7d",
-              "val": 1.5
+              "val": 2.6
             },
             {
               "tf": "30d",
-              "val": -8.8
+              "val": -5.9
             }
           ]
         },
         {
           "label": "Wolumen 24h",
-          "value": "$698M",
-          "change": -2
+          "value": "$678M",
+          "change": 2
         },
         {
           "label": "BNB / BTC",
@@ -761,7 +782,7 @@
           1,
           1,
           1,
-          1,
+          2,
           2,
           2,
           2
@@ -772,28 +793,28 @@
         "level": "okazja",
         "sublabel": "dobry moment — rynek w strachu",
         "flag": "wyjątkowa okazja",
-        "fng": 18,
+        "fng": 20,
         "headline": "Rynek jest w strachu, a BNB stoi nisko — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (18/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (20/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
             "tone": "neutral",
-            "text": "w środku zakresu 3 mies. (28%)"
+            "text": "w środku zakresu 3 mies. (31%)"
           },
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-8,8% przez miesiąc — bez dużych zmian"
+            "text": "-5,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "nastrój raczej stabilny (pewność: średnia) — odczyt nastroju, nie ceny"
+            "text": "nastrój może się wzmacniać (pewność: średnia) — odczyt nastroju, nie ceny"
           }
         ]
       },
@@ -801,30 +822,30 @@
         "horizon_days": 7,
         "score_now": 42,
         "score_base": 42,
-        "score_expected": 42,
+        "score_expected": 45,
         "score_range": [
-          34,
-          50
+          37,
+          53
         ],
         "mood_range": "Słabość → Spokój",
-        "direction": "flat",
+        "direction": "up",
         "confidence": "medium",
-        "total_delta": 0,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę bez wolumenu (wolumen -37% vs 30d) — divergencja"
+            "note": "Ruch w górę bez wolumenu (wolumen -38% vs 30d) — divergencja"
           },
           {
             "name": "Mean reversion",
             "delta": 3,
-            "note": "F&G 18 (strach) — presja powrotu w górę"
+            "note": "F&G 20 (strach) — presja powrotu w górę"
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)"
+            "delta": 3,
+            "note": "2 dni z rzędu w górę — kontynuacja prawdopodobna"
           },
           {
             "name": "BNB/BTC",
@@ -836,11 +857,11 @@
       },
       "onchain": {
         "available": true,
-        "net_bnb": -1932,
-        "net_per24": -566,
-        "threshold_24h": 32178,
+        "net_bnb": 2563,
+        "net_per24": 741,
+        "threshold_24h": 32197,
         "short_window": false,
-        "window_h": 82,
+        "window_h": 83,
         "signal": "zmiana w granicach normalnego ruchu operacyjnego skarbca"
       }
     }
