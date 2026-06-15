@@ -72,9 +72,10 @@ Jeden kafelek na asset (BTC, BNB), full-width, stackowane. Zawartość:
 1. **Nagłówek**: `BTC · Bitcoin` (lewo) + cena + zmiana 24h **wyciszona szarym** (prawo).
 2. **Hero**: wielka liczba okazji 0–100 w kolorze skali (zielony = kupuj) + słowo-werdykt **OKAZJA / KUP / CZEKAJ** w tym samym kolorze + `/100`.
 3. **Podtytuł 1-zdaniowy**: „dobry moment na zakup — rynek w strachu" (okazja, złoty akcent) / „zwykły dzień DCA" / „drogo — rozważ przeczekanie".
-4. **Dokładnie 2 sygnały** (hairline): **Nastrój** (F&G) i **Cena** (pozycja w 90d · zmiana 30d), każdy z kropką zielona/szara/czerwona.
+4. **Dokładnie 2 sygnały** (hairline): **Nastrój** (F&G) i **Cena** (trend 30d — „−14,7%/30d · taniej niż miesiąc temu"), każdy z kropką zielona/szara/czerwona. Kropka i tekst „Cena" liczone z jednego progu `CHEAP_30D_PCT=−8%`, więc kolor zawsze pasuje do słów. Pozycja w zakresie 90d zeszła na detal (sygnał „Cena vs 3 mies.").
+5. **Pasek „ostatnie 30 dni"** (przywrócony 2026-06-15 na życzenie): 30 kostek = okazja dzień po dniu, kolor na skali okazji (zielona seria = okres dobrych okazji, czerwona = drogo), oś „30 dni temu → dziś". Daje kontekst pod dzisiejszą liczbę. Dane: dzienna seria `*_opp_daily` w history.json (1 wpis/dzień), zbackfillowana realną historią cen+F&G.
 
-Usunięte z home (było „za dużo"): sparkline, mood label, badge forecastu, panel DCA, pasek 30 dni, narracja „Co się dzieje".
+Usunięte z home (było „za dużo"): sparkline, mood label, badge forecastu, panel DCA (werdykt Dziś / Za 7 dni), narracja „Co się dzieje".
 
 ### Detal coina — max 4 metryki
 

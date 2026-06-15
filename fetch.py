@@ -22,6 +22,7 @@ ROOT = Path(__file__).parent
 DATA_FILE = ROOT / "data.json"
 HISTORY_FILE = ROOT / "history.json"
 SPARKLINE_LEN = 24      # last 24 entries — przy realnej kadencji ~1,5-5h to ~2-4 dni trendu
+DAILY_OPP_LEN = 30      # pasek "ostatnie 30 dni" — jeden wpis okazji na dzień kalendarzowy
 SCORE_VERSION = "opportunity_v1"  # sens serii score (sentyment -> okazja); zmiana => reset baz
 HALVING_DATE = datetime(2024, 4, 19)  # Bitcoin 4th halving
 
@@ -63,11 +64,19 @@ OPP_WEIGHTS = {
 }
 OPP_TREND30_FULL = 25.0   # -25%/30d => maks. okazja z tej składowej (jak skala 30d)
 
+# Próg "taniości" 30d — JEDNO źródło prawdy dla: kropki "Cena" na home, tekstu
+# tej kropki, sygnału "Trend 30 dni" na detalu ORAZ nagłówka okazji. Wcześniej
+# każde z nich miało własny próg (pos<=0,5 vs pos<=0,25 vs -10%), co dawało
+# zieloną kropkę obok "śr. zakresu" i nagłówek "stoi nisko" przy pozycji 27%.
+CHEAP_30D_PCT = -8.0
+
 # Progi werdyktu — skalibrowane backtestem na 6 mies. realnych cen + F&G.
-# Daje sensowny rozkład (BTC ~30/53/15%, BNB ~40/46/13% okazja/tak/wstrzymaj):
-# OKAZJA jest wyjątkowa (głęboki strach + tanio), KUP to codzienność,
-# CZEKAJ realnie zapala się na szczytach (np. cena na 100% zakresu 90d).
-OPP_OKAZJA = 74    # >= => "okazja" (rynek w strachu i tanio — dokup śmielej)
+# OKAZJA podniesiona do 84, by była realnie WYJĄTKOWA (~8-13% dni: BTC 13/71/16,
+# BNB 8/79/13 okazja/tak/wstrzymaj) — przy 74 padała w 31-40% dni i słowo traciło
+# wagę (78 to OKAZJA, 70 to KUP wyglądało arbitralnie). KUP to codzienność,
+# CZEKAJ zapala się na szczytach. OPP_TAK=42 sprawdzony (34 prawie zabija
+# wstrzymaj, 50 odpala je za często).
+OPP_OKAZJA = 84    # >= => "okazja" (głęboki strach + tanio — rzadki, wyjątkowy dzień)
 OPP_TAK = 42       # >= => "tak" (zwykły dzień DCA); poniżej => "wstrzymaj"
 
 
@@ -100,13 +109,25 @@ def opp_word(level):
 
 
 def opp_label(opp):
-    if opp >= 85: return "Wyjątkowa okazja"
-    if opp >= 74: return "Dobra okazja"
+    # Górne pasma kluczone do OPP_OKAZJA/OPP_TAK, żeby etykieta nigdy nie
+    # przebijała słowa-werdyktu (np. "Dobra okazja" w dniu, gdy słowo to KUP).
+    if opp >= 90: return "Wyjątkowa okazja"
+    if opp >= OPP_OKAZJA: return "Dobra okazja"
     if opp >= 60: return "Sprzyja zakupom"
-    if opp >= 42: return "Zwykły dzień"
+    if opp >= OPP_TAK: return "Zwykły dzień"
     if opp >= 28: return "Raczej drogo"
     if opp >= 16: return "Drogo"
     return "Przegrzane"
+
+
+def pos_band(pos):
+    """Kanoniczne pasma pozycji ceny w zakresie 90d — jedno źródło prawdy
+    (nisko / środek / wysoko), używane przez sygnał 'Cena vs 3 mies.' na detalu."""
+    if pos <= 0.33:
+        return "nisko"
+    if pos >= 0.66:
+        return "wysoko"
+    return "srodek"
 
 
 def pct_change_from_prices(prices, days):
@@ -146,6 +167,23 @@ def push_score(history, key, score):
     arr.append(score)
     if len(arr) > SPARKLINE_LEN:
         del arr[: len(arr) - SPARKLINE_LEN]
+    return list(arr)
+
+
+def push_daily_opp(history, key, opp):
+    """Jedna wartość OKAZJI na dzień kalendarzowy (ostatnie 30 dni) — pasek
+    "30 dni do tyłu". Re-run tego samego dnia aktualizuje ostatni wpis, więc
+    pasek pokazuje 30 realnych dni, nie 30 ostatnich odświeżeń."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    date_key = f"{key}_last_date"
+    arr = history.setdefault(key, [])
+    if history.get(date_key) == today and arr:
+        arr[-1] = opp
+    else:
+        arr.append(opp)
+        if len(arr) > DAILY_OPP_LEN:
+            del arr[: len(arr) - DAILY_OPP_LEN]
+    history[date_key] = today
     return list(arr)
 
 
@@ -380,18 +418,19 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, 
     signals.append({"label": "Nastrój rynku", "tone": t, "text": txt})
     nastroj_signal = {"label": "Nastrój", "tone": t, "text": f"{fng_word} · {fng}/100"}
 
-    # 2. Cena vs 3 mies. (pozycja w zakresie 90d)
+    # 2. Cena vs 3 mies. (pozycja w zakresie 90d) — pasma z pos_band()
     ppct = round(pos_90d * 100)
-    if pos_90d <= 0.25:
+    band = pos_band(pos_90d)
+    if band == "nisko":
         t2, txt = "good", f"nisko w zakresie 3 mies. ({ppct}%) — kupujesz blisko lokalnego dołka"
-    elif pos_90d >= 0.75:
+    elif band == "wysoko":
         t2, txt = "warn", f"blisko szczytu zakresu 3 mies. ({ppct}%) — kupujesz wysoko"
     else:
         t2, txt = "neutral", f"w środku zakresu 3 mies. ({ppct}%)"
     signals.append({"label": "Cena vs 3 mies.", "tone": t2, "text": txt})
 
-    # 3. Trend 30 dni
-    if pct_30d <= -10:
+    # 3. Trend 30 dni — próg "good" = CHEAP_30D_PCT (ten sam co kropka "Cena" na home)
+    if pct_30d <= CHEAP_30D_PCT:
         t3, txt = "good", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz taniej niż miesiąc temu"
     elif pct_30d >= 10:
         t3, txt = "warn", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz drożej niż miesiąc temu"
@@ -407,32 +446,24 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, 
     signals.append({"label": "Prognoza 7 dni", "tone": "neutral",
                     "text": f"{dir_txt} (pewność: {conf_txt}) — prognoza okazji, nie ceny"})
 
-    # Skrótowa "Cena" na home: łączy pozycję w 90d i trend 30d w jednej linijce.
-    # Kropka (tone) pochodzi WPROST z dwóch detalowych sygnałów cenowych (jedno
-    # źródło prawdy) — zielona tylko gdy któryś sprzyja i żaden nie przemawia
-    # przeciw — żeby kolor na home zgadzał się z kolorem o jedno tapnięcie dalej.
-    if pos_90d <= 0.25:
-        pos_word = "nisko w 90d"
-    elif pos_90d >= 0.75:
-        pos_word = "wysoko w 90d"
+    # Skrótowa "Cena" na home: kropka I tekst liczone z TEGO SAMEGO (trend 30d,
+    # próg CHEAP_30D_PCT), więc kolor zawsze zgadza się z tekstem. "Taniej niż
+    # miesiąc temu" to pojęcie, które nie-trader rozumie od ręki; pozycja w
+    # zakresie 90d zostaje tylko na detalu (sygnał "Cena vs 3 mies.").
+    if pct_30d <= CHEAP_30D_PCT:
+        price_tone, price_txt = "good", f"{fmt_pct(pct_30d)}/30d · taniej niż miesiąc temu"
+    elif pct_30d >= 10:
+        price_tone, price_txt = "warn", f"{fmt_pct(pct_30d)}/30d · drożej niż miesiąc temu"
     else:
-        pos_word = "śr. zakresu 90d"
-    price_tones = {t2, t3}
-    if "good" in price_tones and "warn" not in price_tones:
-        price_tone = "good"
-    elif "warn" in price_tones and "good" not in price_tones:
-        price_tone = "warn"
-    else:
-        price_tone = "neutral"
-    price_signal = {"label": "Cena", "tone": price_tone,
-                    "text": f"{pos_word} · {fmt_pct(pct_30d)}/30d"}
+        price_tone, price_txt = "neutral", f"{fmt_pct(pct_30d)}/30d · bez dużych zmian"
+    price_signal = {"label": "Cena", "tone": price_tone, "text": price_txt}
 
     if level == "okazja":
-        # "stoi nisko" tylko gdy dane to potwierdzają — okazja może wynikać
-        # z samego F&G przy cenie wysoko w zakresie (laggy indeks po odbiciu).
-        if pos_90d <= 0.5 or pct_30d <= -10:
-            headline = (f"Rynek jest w strachu, a {name} stoi nisko — dla strategii stałych "
-                        f"zakupów (DCA) to statystycznie lepszy dzień niż zwykle.")
+        # Wariant "tańszy niż miesiąc temu" odpalany TYM SAMYM progiem co kropka
+        # "Cena" na home (CHEAP_30D_PCT) — nagłówek i kropka nie mogą się kłócić.
+        if pct_30d <= CHEAP_30D_PCT:
+            headline = (f"Rynek jest w strachu, a {name} jest tańszy niż miesiąc temu — dla strategii "
+                        f"stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.")
         else:
             headline = ("Rynek jest w strachu — dla strategii stałych zakupów (DCA) "
                         "to statystycznie lepszy dzień niż zwykle.")
@@ -816,6 +847,8 @@ def main():
     history = load_history()
     btc_hist = push_score(history, "btc", opp_btc)
     bnb_hist = push_score(history, "bnb", opp_bnb)
+    btc_opp_daily = push_daily_opp(history, "btc_opp_daily", opp_btc)
+    bnb_opp_daily = push_daily_opp(history, "bnb_opp_daily", opp_bnb)
 
     # Baza prognozy = średnia wyniku okazji z ostatnich refreshy (odporna na
     # szum 24h), nie chwilowa wartość zdominowana przez ruch 24h.
@@ -859,6 +892,7 @@ def main():
                 "price_change_24h": round(btc_24h, 1),
                 "opp": opp_btc,
                 "opp_label": opp_label(opp_btc),
+                "opp_30d": btc_opp_daily,
                 "verdict": btc_verdict,
                 "forecast": btc_forecast,
             },
@@ -870,6 +904,7 @@ def main():
                 "price_change_24h": round(bnb_24h, 1),
                 "opp": opp_bnb,
                 "opp_label": opp_label(opp_bnb),
+                "opp_30d": bnb_opp_daily,
                 "verdict": bnb_verdict,
                 "forecast": bnb_forecast,
             },

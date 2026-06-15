@@ -89,6 +89,13 @@
   .sig-dot.warn { background: var(--neg); }
   .sig-dot.neutral { background: var(--c-45); }
 
+  /* Pasek "ostatnie 30 dni" — okazja dzień po dniu (kolor na skali okazji) */
+  .ac-strip-wrap { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .ac-strip-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-2); margin-bottom: 8px; }
+  .ac-strip { display: flex; gap: 2px; height: 16px; }
+  .ac-strip .ac-day { flex: 1; border-radius: 1.5px; }
+  .ac-strip-axis { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--muted-2); letter-spacing: 0.02em; }
+
   /* DETAIL panels (swipe pager) */
   .swipe-container { overflow: hidden; touch-action: pan-y; user-select: none; }
   .swipe-track { display: flex; width: 200%; transform: translateX(0); will-change: transform; }
@@ -390,6 +397,17 @@ function homeSignalsHtml(v) {
     </div>`).join("");
 }
 
+function strip30Html(opp30) {
+  if (!opp30 || opp30.length < 2) return "";
+  const days = opp30.map(o => `<span class="ac-day" style="background:${scoreColor(o)}"></span>`).join("");
+  return `
+    <div class="ac-strip-wrap">
+      <div class="ac-strip-label">Ostatnie 30 dni — okazja</div>
+      <div class="ac-strip">${days}</div>
+      <div class="ac-strip-axis"><span>30 dni temu</span><span>dziś</span></div>
+    </div>`;
+}
+
 function assetCardInnerHtml(asset) {
   const v = asset.verdict || {};
   const subCls = v.level === "okazja" ? "opp" : "";
@@ -405,6 +423,7 @@ function assetCardInnerHtml(asset) {
     </div>
     <div class="ac-sub ${subCls}">${v.sublabel || asset.opp_label || ""}</div>
     <div class="ac-signals">${homeSignalsHtml(v)}</div>
+    ${strip30Html(asset.opp_30d)}
   `;
 }
 
