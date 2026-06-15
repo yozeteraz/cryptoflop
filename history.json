@@ -1,10 +1,12 @@
 {
   "scores": {
     "btc": [
-      77
+      77,
+      78
     ],
     "bnb": [
-      68
+      68,
+      70
     ]
   },
   "score_version": "opportunity_v1"
