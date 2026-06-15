@@ -15,16 +15,14 @@ import time
 import urllib.parse
 import urllib.request
 import urllib.error
-import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
-from email.utils import parsedate_to_datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 DATA_FILE = ROOT / "data.json"
 HISTORY_FILE = ROOT / "history.json"
 SPARKLINE_LEN = 24      # last 24 entries — przy realnej kadencji ~1,5-5h to ~2-4 dni trendu
-DCA_HISTORY_LEN = 30    # 30 dni (push_dca dedupluje po dacie)
+SCORE_VERSION = "opportunity_v1"  # sens serii score (sentyment -> okazja); zmiana => reset baz
 HALVING_DATE = datetime(2024, 4, 19)  # Bitcoin 4th halving
 
 DAY_NAMES_PL = ["poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota", "niedziela"]
@@ -48,47 +46,73 @@ def fetch_json(url, timeout=20, retries=3):
             raise
 
 
-def mood_label(score):
-    if score < 15: return "Krew"
-    if score < 30: return "Wyprzedaż"
-    if score < 45: return "Słabość"
-    if score < 55: return "Spokój"
-    if score < 65: return "Wzmocnienie"
-    if score < 75: return "Siła"
-    if score < 85: return "Hossa"
-    if score < 95: return "Mocna hossa"
-    return "Mania"
+# ---------- Wynik OKAZJI do kupna (0-100, 100 = najlepszy moment na zakup) ----------
+# Narzędzie służy DO JEDNEGO: "czy warto dziś dokupić w ramach DCA". Wynik jest
+# więc kontrariański — wysoki, gdy rynek jest w strachu (niski F&G), gdy cena
+# stoi nisko w zakresie 90 dni i spadła przez ostatni miesiąc. Dzięki temu
+# istniejąca skala kolorów (high = zielony) niesie wprost jedno znaczenie:
+# ZIELONY = największa szansa na zakup. To zastępuje dawny "sentyment" jako
+# główną, jedyną liczbę 0-100 w całej aplikacji (home, werdykt, prognoza).
+
+# Wagi per-asset: F&G to indeks BTC-centryczny, więc dla BTC waży najwięcej;
+# BNB ma własną dynamikę cenową, więc sygnały cenowe (pozycja, trend) ważą tam
+# mocniej, a wspólny F&G mniej.
+OPP_WEIGHTS = {
+    "btc": {"fng": 0.45, "pos": 0.30, "trend30": 0.25},
+    "bnb": {"fng": 0.35, "pos": 0.35, "trend30": 0.30},
+}
+OPP_TREND30_FULL = 25.0   # -25%/30d => maks. okazja z tej składowej (jak skala 30d)
+
+# Progi werdyktu — skalibrowane backtestem na 6 mies. realnych cen + F&G.
+# Daje sensowny rozkład (BTC ~30/53/15%, BNB ~40/46/13% okazja/tak/wstrzymaj):
+# OKAZJA jest wyjątkowa (głęboki strach + tanio), KUP to codzienność,
+# CZEKAJ realnie zapala się na szczytach (np. cena na 100% zakresu 90d).
+OPP_OKAZJA = 74    # >= => "okazja" (rynek w strachu i tanio — dokup śmielej)
+OPP_TAK = 42       # >= => "tak" (zwykły dzień DCA); poniżej => "wstrzymaj"
 
 
-# Pełna skala (|pct|, przy którym score sięga 0/100) dobrana do typowej
-# zmienności horyzontu (~sqrt(t)). Jedna wspólna skala ±20% zamrażała komórkę
-# 30d na 0 przy -20%/30d, a komórkę 24h trzymała wiecznie w paśmie 45-55.
-PCT_FULL_SCALE = {"24h": 6.0, "7d": 12.0, "30d": 25.0, "90d": 40.0}
+def opp_from_pct(pct, full_scale=OPP_TREND30_FULL):
+    """Spadek ceny = wyższa okazja. -full% => 100, 0% => 50, +full% => 0."""
+    return int(max(0, min(100, round(50 - pct / full_scale * 50))))
 
 
-def score_from_pct(pct, full_scale=20.0):
-    """Map a % price change to 0-100 score. -full_scale% = 0, 0% = 50, +full_scale% = 100."""
-    return int(max(0, min(100, round(50 + pct / full_scale * 50))))
+def opportunity_score(asset_key, fng, pos_90d, pct_30d):
+    """Złożony wynik okazji 0-100 z trzech kontrariańskich składowych."""
+    w = OPP_WEIGHTS[asset_key]
+    opp_fng = 100 - fng                       # strach => wysoka okazja
+    opp_pos = 100 - round(pos_90d * 100)      # nisko w zakresie 90d => wysoka okazja
+    opp_trend = opp_from_pct(pct_30d)         # spadek 30d => wysoka okazja
+    raw = w["fng"] * opp_fng + w["pos"] * opp_pos + w["trend30"] * opp_trend
+    return int(max(0, min(100, round(raw))))
+
+
+def opp_level(opp):
+    """3-stopniowy werdykt z wyniku okazji (jedno źródło prawdy)."""
+    if opp >= OPP_OKAZJA:
+        return "okazja"
+    if opp >= OPP_TAK:
+        return "tak"
+    return "wstrzymaj"
+
+
+def opp_word(level):
+    return {"okazja": "OKAZJA", "tak": "KUP", "wstrzymaj": "CZEKAJ"}[level]
+
+
+def opp_label(opp):
+    if opp >= 85: return "Wyjątkowa okazja"
+    if opp >= 74: return "Dobra okazja"
+    if opp >= 60: return "Sprzyja zakupom"
+    if opp >= 42: return "Zwykły dzień"
+    if opp >= 28: return "Raczej drogo"
+    if opp >= 16: return "Drogo"
+    return "Przegrzane"
 
 
 def pct_change_from_prices(prices, days):
     if len(prices) < days + 1:
         return 0.0
     return (prices[-1] - prices[-1 - days]) / prices[-1 - days] * 100
-
-
-def cycle_score(now):
-    """Halving = 30. Peak ~month 18 = 90. Mies. 24 = 50, potem -4/mies.
-    Progi spójne z forecast_cycle: od mies. 24 ("po szczycie, bearish")
-    score schodzi poniżej pasma "Spokój" zamiast w nim wisieć."""
-    months = (now - HALVING_DATE).days / 30.4
-    if months < 18:
-        s = 30 + (months / 18) * 60
-    elif months < 24:
-        s = 90 - (months - 18) * (40 / 6)
-    else:
-        s = 50 - (months - 24) * 4
-    return int(max(0, min(100, round(s))))
 
 
 def fmt_price(p):
@@ -99,23 +123,22 @@ def fmt_price(p):
     return f"${p:,.2f}".replace(",", " ").replace(".", ",")
 
 
-def fmt_volume(v):
-    if v >= 1e9:
-        return f"${v / 1e9:.1f}B".replace(".", ",")
-    if v >= 1e6:
-        return f"${v / 1e6:.0f}M"
-    return f"${v / 1e3:.0f}K"
-
-
 def fmt_pct(p):
     sign = "+" if p >= 0 else ""
     return f"{sign}{p:.1f}%".replace(".", ",")
 
 
 def load_history():
-    if HISTORY_FILE.exists():
-        return json.loads(HISTORY_FILE.read_text())
-    return {"scores": {}, "btc_dca": [], "bnb_dca": []}
+    h = json.loads(HISTORY_FILE.read_text()) if HISTORY_FILE.exists() else {"scores": {}}
+    h.setdefault("scores", {})
+    # Serie score 'btc'/'bnb' zmieniły sens (sentyment -> okazja do kupna).
+    # Gdy marker wersji nie pasuje, zresetuj je, by baza prognozy nie mieszała
+    # niekompatybilnych skal — wymuszone kodem, nie ręczną migracją pliku.
+    if h.get("score_version") != SCORE_VERSION:
+        h["scores"]["btc"] = []
+        h["scores"]["bnb"] = []
+        h["score_version"] = SCORE_VERSION
+    return h
 
 
 def push_score(history, key, score):
@@ -126,78 +149,41 @@ def push_score(history, key, score):
     return list(arr)
 
 
-def push_dca(history, key, decision, level="tak"):
-    """One entry per calendar day. Same-day reruns update the latest entry
-    (so the strip shows last 30 actual days, not last 30 refreshes).
-    Wartości: 0 = NIE, 1 = TAK, 2 = TAK-okazja (pasek ma 3 stany)."""
-    today = datetime.now().strftime("%Y-%m-%d")
-    date_key = f"{key}_last_date"
-    last_date = history.get(date_key)
-    arr = history.setdefault(key, [])
-    val = 0 if decision != "TAK" else (2 if level == "okazja" else 1)
-    if last_date == today and arr:
-        arr[-1] = val
-    else:
-        arr.append(val)
-        if len(arr) > DCA_HISTORY_LEN:
-            del arr[: len(arr) - DCA_HISTORY_LEN]
-    history[date_key] = today
-    return list(arr)
-
-
-def delta(arr):
-    if len(arr) < 2:
-        return 0
-    return int(arr[-1] - arr[-2])
-
-
-def months_pl(n):
-    if n == 1:
-        return "miesiąc"
-    last_two = n % 100
-    if 12 <= last_two <= 14:
-        return "miesięcy"
-    last_one = n % 10
-    if 2 <= last_one <= 4:
-        return "miesiące"
-    return "miesięcy"
-
-
 def forecast_volume(price_change_7d, vol_now, vol_30d_avg):
+    """Wolumen POTWIERDZA ruch ceny. Cena w górę z wolumenem => okazja maleje
+    (drożeje przekonująco); cena w dół z wolumenem => okazja rośnie. Delta
+    dotyczy OKAZJI, więc jest przeciwna do kierunku ceny."""
     direction = 1 if price_change_7d > 0.5 else -1 if price_change_7d < -0.5 else 0
     if direction == 0 or vol_30d_avg == 0:
-        return (0, "Ruch w cenie zbyt mały by oceniać potwierdzenie wolumenem")
+        return (0, "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem")
     ratio = vol_now / vol_30d_avg
-    pct_str = f"{(ratio - 1) * 100:+.0f}%".replace("+", "+")
+    pct_str = f"{(ratio - 1) * 100:+.0f}%"
+    kierunek_s = "w górę" if direction > 0 else "w dół"
+    okno_s = "okno zakupowe się domyka" if direction > 0 else "okno zakupowe się otwiera"
     if ratio > 1.2:
-        delta_v = 5 * direction
-        kierunek_s = "w górę" if direction > 0 else "w dół"
-        return (delta_v, f"Ruch {kierunek_s} z wolumenem {pct_str} vs średnia 30d — potwierdzenie")
+        return (-5 * direction, f"Ruch {kierunek_s} z wolumenem {pct_str} vs 30d — {okno_s} przekonująco")
     elif ratio < 0.9:
-        delta_v = -3 * direction
-        kierunek_s = "w górę" if direction > 0 else "w dół"
-        return (delta_v, f"Ruch {kierunek_s} bez wolumenu (wolumen {pct_str} vs 30d) — divergencja")
+        return (-2 * direction, f"Ruch {kierunek_s} bez wolumenu ({pct_str} vs 30d) — słabe potwierdzenie")
     else:
-        delta_v = 2 * direction
-        kierunek_s = "w górę" if direction > 0 else "w dół"
-        return (delta_v, f"Ruch {kierunek_s} z umiarkowanym wolumenem ({pct_str} vs 30d)")
+        return (-3 * direction, f"Ruch {kierunek_s} z umiarkowanym wolumenem ({pct_str} vs 30d)")
 
 
 def forecast_mean_reversion(fng, prices):
+    """Skrajności wracają do średniej. Strach/tanio (wysoka okazja DZIŚ) zwykle
+    odbija => okazja MALEJE (okno się domyka). Chciwość/drogo => korekta może
+    OTWORZYĆ lepsze okno => okazja rośnie. Delta dotyczy okazji."""
     delta_v = 0
     notes = []
-    # Liniowa rampa zamiast klifu (stary kod: fng 24 → +4, fng 27 → 0).
-    # 35..15 → 0..+4 oraz 65..85 → 0..-4.
     if fng <= 35:
         d = min(4, round((35 - fng) * 0.2))
         if d:
-            delta_v += d
-            notes.append(f"F&G {fng} (strach) — presja powrotu w górę")
+            delta_v -= d
+            notes.append(f"F&G {fng} (strach) — rynek wyprzedany, odbicie domyka okno")
     elif fng >= 65:
         d = min(4, round((fng - 65) * 0.2))
         if d:
-            delta_v -= d
-            notes.append(f"F&G {fng} (chciwość) — presja powrotu w dół")
+            delta_v += d
+            notes.append(f"F&G {fng} (chciwość) — korekta może otworzyć lepsze okno")
 
     if len(prices) >= 90:
         window = prices[-90:]
@@ -205,11 +191,11 @@ def forecast_mean_reversion(fng, prices):
         if hi > lo:
             pos = (prices[-1] - lo) / (hi - lo)
             if pos > 0.9:
-                delta_v -= 3
-                notes.append(f"Cena w top decylu 90d range ({pos*100:.0f}%) — presja w dół")
-            elif pos < 0.1:
                 delta_v += 3
-                notes.append(f"Cena w bottom decylu 90d range ({pos*100:.0f}%) — presja w górę")
+                notes.append(f"Cena w szczycie zakresu 90d ({pos*100:.0f}%) — przestrzeń do spadku")
+            elif pos < 0.1:
+                delta_v -= 3
+                notes.append(f"Cena w dnie zakresu 90d ({pos*100:.0f}%) — odbicie prawdopodobne")
 
     if not notes:
         return (0, f"F&G {fng} i pozycja w 90d range neutralne")
@@ -243,34 +229,40 @@ def forecast_momentum(prices):
     if streak < 2 or direction == 0:
         return (0, "Brak wyraźnego streaku cenowego (min. 2 pełne dni)")
 
+    # Delta dotyczy OKAZJI, więc przeciwna do kierunku ceny: cena rośnie =>
+    # okazja maleje (drożeje). Przy wyczerpaniu długiego streaku spodziewamy się
+    # odwrócenia ceny, więc znak się zmienia.
     kierunek_s = "w górę" if direction > 0 else "w dół"
-    dni_word = "dni"
+    taniej_s = "drożeje" if direction > 0 else "tanieje"
     if streak <= 3:
-        return (direction * 3, f"{streak} {dni_word} z rzędu {kierunek_s} — kontynuacja prawdopodobna")
+        return (-direction * 3, f"{streak} dni z rzędu {kierunek_s} — kontynuacja, rynek {taniej_s}")
     elif streak <= 5:
-        return (direction * 1, f"{streak} {dni_word} z rzędu {kierunek_s} — ostygnięcie momentum")
+        return (-direction * 1, f"{streak} dni z rzędu {kierunek_s} — momentum stygnie")
     else:
-        return (-direction * 3, f"{streak} {dni_word} z rzędu {kierunek_s} — wyczerpanie, reversal prawdopodobny")
+        return (direction * 3, f"{streak} dni z rzędu {kierunek_s} — wyczerpanie, odwrócenie prawdopodobne")
 
 
 def forecast_cycle(months):
+    """Faza cyklu vs okazja: wczesna hossa => okazje raczej znikają (okna
+    drożeją); po szczycie => bearish bias => okna zakupowe raczej się poprawiają."""
     if months < 12:
-        return (3, f"{months} mies. po halvingu — wczesna faza wzrostu (bullish bias)")
+        return (-3, f"{months} mies. po halvingu — wczesna hossa, okazje raczej znikają")
     elif months < 18:
         return (0, f"{months} mies. po halvingu — dojrzała faza wzrostu (neutralnie)")
     elif months < 24:
-        return (-2, f"{months} mies. po halvingu — bliski szczyt cyklu (bearish bias)")
+        return (2, f"{months} mies. po halvingu — bliski szczyt cyklu, ryzyko korekty rośnie")
     else:
-        return (-3, f"{months} mies. po halvingu — cykl po szczycie historycznym (bearish)")
+        return (3, f"{months} mies. po halvingu — cykl po szczycie, okna zakupowe raczej się poprawiają")
 
 
 def forecast_relative_strength(rel_7d):
-    """Reguła tylko dla BNB: siła relatywna do BTC w 7d (zamiast reguły cyklu
-    halvingu, która jest faktem o BTC, nie o BNB)."""
+    """Reguła tylko dla BNB: siła relatywna do BTC w 7d. Relatywna siła => BNB
+    drożeje względem BTC => mniejszy rabat (okazja maleje); słabość => większy
+    rabat względem BTC (okazja rośnie)."""
     if rel_7d > 3:
-        return (2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna siła vs rynek")
+        return (-2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna siła, mniejszy rabat")
     if rel_7d < -3:
-        return (-2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna słabość vs rynek")
+        return (2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna słabość, większy rabat vs BTC")
     return (0, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — porusza się z rynkiem")
 
 
@@ -306,6 +298,7 @@ def compose_forecast(score_base, deltas_with_notes):
     else:
         confidence = "medium"
 
+    # direction "up" = OKAZJA rośnie (lepsze okno zakupowe), "down" = okno się domyka.
     if total > 1:
         direction_s = "up"
     elif total < -1:
@@ -313,17 +306,10 @@ def compose_forecast(score_base, deltas_with_notes):
     else:
         direction_s = "flat"
 
-    mood_lo = mood_label(lo)
-    mood_hi = mood_label(hi)
-    mood_range = mood_lo if mood_lo == mood_hi else f"{mood_lo} → {mood_hi}"
-
     return {
         "horizon_days": 7,
-        "score_now": score_base,
         "score_base": score_base,
-        "score_expected": expected,
         "score_range": [lo, hi],
-        "mood_range": mood_range,
         "direction": direction_s,
         "confidence": confidence,
         "total_delta": total,
@@ -333,8 +319,9 @@ def compose_forecast(score_base, deltas_with_notes):
 
 def build_forecast(score_base, prices, vol_now, vol_30d_avg, fng,
                    months_since_halving=None, rel_strength_7d=None):
-    """Cykl halvingu wchodzi tylko do BTC; BNB zamiast tego dostaje regułę
-    siły relatywnej BNB/BTC."""
+    """Prognoza OKAZJI (nie ceny, nie sentymentu) na 7 dni: czy okno zakupowe
+    raczej się poprawi czy domknie. Cykl halvingu wchodzi tylko do BTC; BNB
+    zamiast tego dostaje regułę siły relatywnej BNB/BTC."""
     pct_7d = pct_change_from_prices(prices, 7) if len(prices) >= 8 else 0.0
     d_vol, n_vol = forecast_volume(pct_7d, vol_now, vol_30d_avg)
     d_mr, n_mr = forecast_mean_reversion(fng, prices)
@@ -350,47 +337,10 @@ def build_forecast(score_base, prices, vol_now, vol_30d_avg, fng,
     if rel_strength_7d is not None:
         d_rel, n_rel = forecast_relative_strength(rel_strength_7d)
         rules.append({"name": "BNB/BTC", "delta": d_rel, "note": n_rel})
-    fc = compose_forecast(score_base, rules)
-    # Decyzja "Za 7 dni" liczona TU (jedno źródło prawdy), nie w JS.
-    # Próg 80 = ten sam co noga score'owa progu "wstrzymaj" w dca_verdict_level
-    # (i co fallback w JS) — inny próg dawałby "Dziś TAK / Za 7 dni NIE"
-    # przy płaskiej prognozie.
-    fc["dca_in_7d"] = "NIE" if fc["score_expected"] >= 80 else "TAK"
-    return fc
+    return compose_forecast(score_base, rules)
 
 
-def asset_time_block(asset_key, history, s_today, pct_7d, pct_30d, pct_90d, cyc_score):
-    """Build the time strip for a single asset.
-
-    s_today = ten sam wynik co nagłówkowy score widgetu — wcześniej komórka
-    "Dziś" miała własny wzór i na jednym ekranie wisiały dwie różne liczby
-    "sentymentu dziś" (42 vs 35) bez wyjaśnienia."""
-    s_24h = s_today
-    s_7d = score_from_pct(pct_7d, PCT_FULL_SCALE["7d"])
-    s_30d = score_from_pct(pct_30d, PCT_FULL_SCALE["30d"])
-    s_90d = score_from_pct(pct_90d, PCT_FULL_SCALE["90d"])
-
-    h_24h = push_score(history, f"{asset_key}_dzis", s_24h)
-    h_7d = push_score(history, f"{asset_key}_tydzien", s_7d)
-    h_30d = push_score(history, f"{asset_key}_miesiac", s_30d)
-    h_90d = push_score(history, f"{asset_key}_kwartal", s_90d)
-    h_cyc = push_score(history, "cykl", cyc_score) if asset_key == "btc" else list(history["scores"].get("cykl", [cyc_score]))
-
-    return [
-        {"key": "dzis", "name": "Dziś", "sub": "24h", "score": s_24h,
-         "delta": delta(h_24h), "mood": mood_label(s_24h), "history": h_24h},
-        {"key": "tydzien", "name": "Tydzień", "sub": "7d", "score": s_7d,
-         "delta": delta(h_7d), "mood": mood_label(s_7d), "history": h_7d},
-        {"key": "miesiac", "name": "Miesiąc", "sub": "30d", "score": s_30d,
-         "delta": delta(h_30d), "mood": mood_label(s_30d), "history": h_30d},
-        {"key": "kwartal", "name": "Kwartał", "sub": "90d", "score": s_90d,
-         "delta": delta(h_90d), "mood": mood_label(s_90d), "history": h_90d},
-        {"key": "cykl", "name": "od halvingu", "sub": None, "score": cyc_score,
-         "delta": delta(h_cyc), "mood": mood_label(cyc_score), "history": h_cyc},
-    ]
-
-
-# ---------- Werdykt DCA (3 stany + proste sygnały dla nie-tradera) ----------
+# ---------- Werdykt okazji (3 stany + proste sygnały dla nie-tradera) ----------
 
 
 def position_in_range(prices, days=90):
@@ -404,63 +354,78 @@ def position_in_range(prices, days=90):
     return (prices[-1] - lo) / (hi - lo)
 
 
-def dca_verdict_level(score, fng, s_30d):
-    """Ocena STANU rynku (nie przyszłości) w 3 stopniach.
-
-    Stary binarny próg (NIE gdy score >= 80) był martwy: wymagał jednocześnie
-    ekstremalnej chciwości i pompy +8-18%/24h — 0 wystąpień NIE w całej
-    historii projektu. Nowe progi oparte o F&G i trend 30d, nie o szum 24h:
-    - wstrzymaj: rynek rozgrzany (F&G >= 75 lub +15%/30d, tj. s_30d >= 80)
-    - okazja: rynek w strachu (F&G <= 20 lub -15%/30d, tj. s_30d <= 20)
-    - tak: normalny dzień DCA
-    """
-    if fng >= 75 or s_30d >= 80 or score >= 80:
-        return "wstrzymaj"
-    if fng <= 20 or s_30d <= 20:
-        return "okazja"
-    return "tak"
-
-
-def build_verdict(name, level, decision, fng, pct_30d, pos_90d, forecast):
-    """Karta "Czy warto dziś kupić?" — werdykt + 4 sygnały prostym językiem.
-    Tone: good = sprzyja zakupowi dziś, warn = przemawia przeciw, neutral.
-    Generowane w Pythonie, żeby JS niczego nie interpretował (jedno źródło prawdy)."""
+def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, forecast):
+    """Karta "Czy warto dziś kupić?" — werdykt + 4 sygnały prostym językiem,
+    plus 2 skrótowe sygnały na home (Nastrój + Cena). Tone: good = sprzyja
+    zakupowi dziś, warn = przemawia przeciw, neutral. Wszystko generuje Python
+    (jedno źródło prawdy), JS tylko renderuje."""
     signals = []
 
+    # 1. Nastrój rynku (Fear & Greed)
     if fng <= 25:
-        t, txt = "good", f"skrajny strach ({fng}/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+        fng_word, t = "skrajny strach", "good"
+        txt = f"skrajny strach ({fng}/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
     elif fng <= 45:
-        t, txt = "good", f"strach ({fng}/100) — sprzyja regularnym zakupom"
+        fng_word, t = "strach", "good"
+        txt = f"strach ({fng}/100) — sprzyja regularnym zakupom"
     elif fng < 55:
-        t, txt = "neutral", f"neutralnie ({fng}/100)"
+        fng_word, t = "neutralnie", "neutral"
+        txt = f"neutralnie ({fng}/100)"
     elif fng < 75:
-        t, txt = "neutral", f"chciwość ({fng}/100) — kupuj wg planu, bez zwiększania kwot"
+        fng_word, t = "chciwość", "neutral"
+        txt = f"chciwość ({fng}/100) — kupuj wg planu, bez zwiększania kwot"
     else:
-        t, txt = "warn", f"ekstremalna chciwość ({fng}/100) — rynek rozgrzany"
+        fng_word, t = "skrajna chciwość", "warn"
+        txt = f"skrajna chciwość ({fng}/100) — rynek rozgrzany"
     signals.append({"label": "Nastrój rynku", "tone": t, "text": txt})
+    nastroj_signal = {"label": "Nastrój", "tone": t, "text": f"{fng_word} · {fng}/100"}
 
+    # 2. Cena vs 3 mies. (pozycja w zakresie 90d)
     ppct = round(pos_90d * 100)
     if pos_90d <= 0.25:
-        t, txt = "good", f"nisko w zakresie 3 mies. ({ppct}%) — kupujesz blisko lokalnego dołka"
+        t2, txt = "good", f"nisko w zakresie 3 mies. ({ppct}%) — kupujesz blisko lokalnego dołka"
     elif pos_90d >= 0.75:
-        t, txt = "warn", f"blisko szczytu zakresu 3 mies. ({ppct}%) — kupujesz wysoko"
+        t2, txt = "warn", f"blisko szczytu zakresu 3 mies. ({ppct}%) — kupujesz wysoko"
     else:
-        t, txt = "neutral", f"w środku zakresu 3 mies. ({ppct}%)"
-    signals.append({"label": "Cena vs 3 mies.", "tone": t, "text": txt})
+        t2, txt = "neutral", f"w środku zakresu 3 mies. ({ppct}%)"
+    signals.append({"label": "Cena vs 3 mies.", "tone": t2, "text": txt})
 
+    # 3. Trend 30 dni
     if pct_30d <= -10:
-        t, txt = "good", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz taniej niż miesiąc temu"
+        t3, txt = "good", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz taniej niż miesiąc temu"
     elif pct_30d >= 10:
-        t, txt = "warn", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz drożej niż miesiąc temu"
+        t3, txt = "warn", f"{fmt_pct(pct_30d)} przez miesiąc — kupujesz drożej niż miesiąc temu"
     else:
-        t, txt = "neutral", f"{fmt_pct(pct_30d)} przez miesiąc — bez dużych zmian"
-    signals.append({"label": "Trend 30 dni", "tone": t, "text": txt})
+        t3, txt = "neutral", f"{fmt_pct(pct_30d)} przez miesiąc — bez dużych zmian"
+    signals.append({"label": "Trend 30 dni", "tone": t3, "text": txt})
 
-    dir_txt = {"up": "nastrój może się wzmacniać", "down": "nastrój może się osłabiać",
-               "flat": "nastrój raczej stabilny"}[forecast["direction"]]
+    # 4. Prognoza okazji na 7 dni (zawsze neutralna kropka — prognoza to nie fakt)
+    dir_txt = {"up": "okno zakupowe może się poprawić",
+               "down": "okno zakupowe może się domykać",
+               "flat": "okno raczej bez zmian"}[forecast["direction"]]
     conf_txt = {"low": "niska", "medium": "średnia", "high": "wysoka"}[forecast["confidence"]]
     signals.append({"label": "Prognoza 7 dni", "tone": "neutral",
-                    "text": f"{dir_txt} (pewność: {conf_txt}) — odczyt nastroju, nie ceny"})
+                    "text": f"{dir_txt} (pewność: {conf_txt}) — prognoza okazji, nie ceny"})
+
+    # Skrótowa "Cena" na home: łączy pozycję w 90d i trend 30d w jednej linijce.
+    # Kropka (tone) pochodzi WPROST z dwóch detalowych sygnałów cenowych (jedno
+    # źródło prawdy) — zielona tylko gdy któryś sprzyja i żaden nie przemawia
+    # przeciw — żeby kolor na home zgadzał się z kolorem o jedno tapnięcie dalej.
+    if pos_90d <= 0.25:
+        pos_word = "nisko w 90d"
+    elif pos_90d >= 0.75:
+        pos_word = "wysoko w 90d"
+    else:
+        pos_word = "śr. zakresu 90d"
+    price_tones = {t2, t3}
+    if "good" in price_tones and "warn" not in price_tones:
+        price_tone = "good"
+    elif "warn" in price_tones and "good" not in price_tones:
+        price_tone = "warn"
+    else:
+        price_tone = "neutral"
+    price_signal = {"label": "Cena", "tone": price_tone,
+                    "text": f"{pos_word} · {fmt_pct(pct_30d)}/30d"}
 
     if level == "okazja":
         # "stoi nisko" tylko gdy dane to potwierdzają — okazja może wynikać
@@ -471,150 +436,26 @@ def build_verdict(name, level, decision, fng, pct_30d, pos_90d, forecast):
         else:
             headline = ("Rynek jest w strachu — dla strategii stałych zakupów (DCA) "
                         "to statystycznie lepszy dzień niż zwykle.")
-        sublabel, flag = "dobry moment — rynek w strachu", "wyjątkowa okazja"
+        sublabel = "dobry moment na zakup — rynek w strachu"
     elif level == "wstrzymaj":
         headline = (f"Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy {name} "
                     f"i poczekać na spokojniejszy moment.")
-        sublabel, flag = "rynek rozgrzany — przeczekaj", ""
+        sublabel = "drogo — rozważ przeczekanie"
     else:
         headline = (f"Zwykły dzień na rynku — ani okazja, ani przegrzanie. "
                     f"Regularna, stała kwota DCA w {name} to tu najlepsza strategia.")
-        sublabel, flag = "normalny dzień DCA", ""
+        sublabel = "zwykły dzień DCA"
 
-    return {"decision": decision, "level": level, "sublabel": sublabel, "flag": flag,
-            "fng": fng, "headline": headline, "signals": signals}
+    return {"decision": decision, "level": level, "word": opp_word(level),
+            "sublabel": sublabel, "opp": opp, "fng": fng,
+            "headline": headline, "signals": signals,
+            "home_signals": [nastroj_signal, price_signal]}
 
 
-# ---------- News & events (etap 4) ----------
+# ---------- Wspólny User-Agent (BSC RPC w sekcji on-chain wymaga "przeglądarkowego") ----------
+# News/events (etap 4) usunięte z UI w redesignie 2026-06-15 — nie pobieramy ich już wcale.
 
 NEWS_USER_AGENT = "Mozilla/5.0 (cryptoflop/0.2; +https://cryptoflop.vercel.app)"
-
-TAG_KEYWORDS = {
-    "Binance": ["binance", "bnb", "changpeng", "cz "],
-    "Regulacje": ["sec ", "cftc", "regulat", "lawsuit", "approve", "ruling", "court", "fine ", "clarity act", " ban ",
-                  "bill", "congress", "senate", "legislation", "sanction"],
-    "Makro": ["fed ", "fomc", " rate", "inflation", "cpi", "treasury", "powell", "dollar", "fed's", "interest rate"],
-    "On-chain": ["etf", "wallet", "flow", "transfer", "halving", "mempool", "tokeniz", "spot bitcoin", "spot ether", "whale"],
-}
-
-ASSET_KEYWORDS = {
-    "btc": ["bitcoin", "btc", "halving"],
-    "bnb": ["bnb", "binance"],
-}
-
-
-def fetch_rss(url, source_name):
-    """Fetch RSS, return list of {title, url, published_dt, source}."""
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": NEWS_USER_AGENT})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            content = r.read()
-        root = ET.fromstring(content)
-        items = []
-        for item in root.iter("item"):
-            title_el = item.find("title")
-            link_el = item.find("link")
-            pubdate_el = item.find("pubDate")
-            if title_el is None or link_el is None or pubdate_el is None:
-                continue
-            try:
-                dt = parsedate_to_datetime(pubdate_el.text)
-                if dt.tzinfo is None:
-                    dt = dt.replace(tzinfo=timezone.utc)
-            except Exception:
-                continue
-            items.append({
-                "title": (title_el.text or "").strip(),
-                "url": (link_el.text or "").strip(),
-                "published_dt": dt,
-                "source": source_name,
-            })
-        return items
-    except Exception as e:
-        print(f"RSS fetch failed ({source_name}): {e}")
-        return []
-
-
-def fetch_binance_news():
-    """Fetch Binance announcements (type=1 = listings)."""
-    try:
-        url = ("https://www.binance.com/bapi/composite/v1/public/cms/article/"
-               "list/query?type=1&pageNo=1&pageSize=15")
-        req = urllib.request.Request(url, headers={"User-Agent": NEWS_USER_AGENT})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            data = json.loads(r.read())
-        items = []
-        for catalog in data.get("data", {}).get("catalogs", []):
-            for art in catalog.get("articles", []):
-                ts_ms = art.get("releaseDate", 0)
-                code = art.get("code", "")
-                title = (art.get("title") or "").strip()
-                if not ts_ms or not code or not title:
-                    continue
-                dt = datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc)
-                items.append({
-                    "title": title,
-                    "url": f"https://www.binance.com/en/support/announcement/{code}",
-                    "published_dt": dt,
-                    "source": "Binance",
-                })
-        return items
-    except Exception as e:
-        print(f"Binance news fetch failed: {e}")
-        return []
-
-
-def tag_event(text):
-    t = text.lower()
-    tags = []
-    for tag, keywords in TAG_KEYWORDS.items():
-        if any(k in t for k in keywords):
-            tags.append(tag)
-    return tags
-
-
-def event_assets(text, tags):
-    """Return which asset detail pages should show this event."""
-    t = text.lower()
-    assets = []
-    for asset, keywords in ASSET_KEYWORDS.items():
-        if any(k in t for k in keywords):
-            assets.append(asset)
-    # Makro & Regulacje affect everyone
-    if "Regulacje" in tags or "Makro" in tags:
-        if "btc" not in assets: assets.append("btc")
-        if "bnb" not in assets: assets.append("bnb")
-    # If nothing matched explicitly, show on both
-    if not assets:
-        assets = ["btc", "bnb"]
-    return assets
-
-
-def fetch_all_events(max_total=15, max_age_hours=24):
-    """Fetch from all news sources, filter by recency, tag, return sorted list."""
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
-    raw = []
-    raw += fetch_rss("https://www.coindesk.com/arc/outboundfeeds/rss?outputType=xml", "CoinDesk")
-    raw += fetch_rss("https://cointelegraph.com/rss", "CoinTelegraph")
-    raw += fetch_binance_news()
-
-    events = []
-    for item in raw:
-        if item["published_dt"] < cutoff:
-            continue
-        tags = tag_event(item["title"])
-        assets = event_assets(item["title"], tags)
-        events.append({
-            "title": item["title"],
-            "url": item["url"],
-            "published_at": item["published_dt"].isoformat(),
-            "source": item["source"],
-            "tags": tags,
-            "assets": assets,
-        })
-
-    events.sort(key=lambda e: e["published_at"], reverse=True)
-    return events[:max_total]
 
 
 # ---------- On-chain net flows (etap 3) ----------
@@ -948,96 +789,36 @@ def main():
     else:
         bnb_vs_btc_7d = 0.0
 
-    cg = fetch_json("https://api.coingecko.com/api/v3/global")
-    btc_dom = cg["data"]["market_cap_percentage"]["btc"]
-
     fng_resp = fetch_json("https://api.alternative.me/fng/?limit=1")
     fng = int(fng_resp["data"][0]["value"])
-    fng_classification = fng_resp["data"][0]["value_classification"]
 
     print(f"  BTC: ${btc_price:.0f} ({btc_24h:+.1f}% 24h)")
     print(f"  BNB: ${bnb_price:.0f} ({bnb_24h:+.1f}% 24h)")
-    print(f"  BTC dominance: {btc_dom:.1f}%   F&G: {fng}")
+    print(f"  F&G: {fng}")
 
-    cyc = cycle_score(datetime.now())
-    # Score "dziś": F&G + zmiana 24h (skala ±6%). BNB z mniejszą wagą F&G —
-    # indeks jest BTC-centryczny, a BNB ma własną dynamikę.
-    s24_btc = score_from_pct(btc_24h, PCT_FULL_SCALE["24h"])
-    s24_bnb = score_from_pct(bnb_24h, PCT_FULL_SCALE["24h"])
-    btc_score = (fng + 2 * s24_btc) // 3
-    bnb_score = (fng + 3 * s24_bnb) // 4
-
-    s30_btc = score_from_pct(btc_30d, PCT_FULL_SCALE["30d"])
-    s30_bnb = score_from_pct(bnb_30d, PCT_FULL_SCALE["30d"])
     pos90_btc = position_in_range(btc_prices)
     pos90_bnb = position_in_range(bnb_prices)
 
-    btc_level = dca_verdict_level(btc_score, fng, s30_btc)
-    bnb_level = dca_verdict_level(bnb_score, fng, s30_bnb)
+    # Główna liczba 0-100 to WYNIK OKAZJI do kupna (high = strach/tanio =
+    # zielony = kupuj), nie sentyment. Werdykt 3-stopniowy wynika wprost z niego.
+    opp_btc = opportunity_score("btc", fng, pos90_btc, btc_30d)
+    opp_bnb = opportunity_score("bnb", fng, pos90_bnb, bnb_30d)
+    btc_level = opp_level(opp_btc)
+    bnb_level = opp_level(opp_bnb)
     btc_dca = "NIE" if btc_level == "wstrzymaj" else "TAK"
     bnb_dca = "NIE" if bnb_level == "wstrzymaj" else "TAK"
 
-    fng_pl_map = {
-        "Extreme Fear": "ekstremalny strach",
-        "Fear": "strach",
-        "Neutral": "rynek neutralny",
-        "Greed": "chciwość",
-        "Extreme Greed": "ekstremalna chciwość",
-    }
-    fng_pl = fng_pl_map.get(fng_classification, fng_classification.lower())
     months_since_halving = int((datetime.now() - HALVING_DATE).days / 30.4)
-    if months_since_halving < 12:
-        cycle_state = "cykl wciąż w fazie wzrostu"
-    elif months_since_halving < 18:
-        cycle_state = "cykl w dojrzałej fazie wzrostu"
-    elif months_since_halving < 24:
-        cycle_state = "cykl bliski historycznego szczytu"
-    else:
-        cycle_state = "cykl po szczycie historycznym"
-
-    narrative = (
-        f'<span class="coin-btc">BTC</span> <strong>{fmt_pct(btc_24h)}</strong>, '
-        f'<span class="coin-bnb">BNB</span> <strong>{fmt_pct(bnb_24h)}</strong> w ostatnich 24h. '
-        f'Fear &amp; Greed: <strong>{fng}</strong> ({fng_pl}). '
-        f'{months_since_halving} {months_pl(months_since_halving)} po halvingu — {cycle_state}.'
-    )
-
-    btc_dom_pl = f"{btc_dom:.1f}".replace(".", ",")
-    btc_narrative = (
-        f'BTC <strong>{fmt_pct(btc_24h)}</strong> w 24h, <strong>{fmt_pct(btc_7d)}</strong> w 7d. '
-        f'Wolumen <strong>{fmt_pct(btc_vol_vs_7d)}</strong> względem średniej z 7 dni. '
-        f'Dominacja <strong>{btc_dom_pl}%</strong> rynku. '
-        f'Fear &amp; Greed: <strong>{fng}</strong> ({fng_pl}).'
-    )
-
-    if bnb_vs_btc_7d > 1.5:
-        ratio_phrase = "<strong>silniejszy od BTC</strong> w ostatnim tygodniu"
-    elif bnb_vs_btc_7d < -1.5:
-        ratio_phrase = "<strong>słabszy niż BTC</strong> w ostatnim tygodniu"
-    else:
-        ratio_phrase = "porusza się <strong>razem z BTC</strong> w ostatnim tygodniu"
-
-    bnb_narrative = (
-        f'BNB <strong>{fmt_pct(bnb_24h)}</strong> w 24h, <strong>{fmt_pct(bnb_7d)}</strong> w 7d. '
-        f'Wolumen <strong>{fmt_pct(bnb_vol_vs_7d)}</strong> vs średnia tygodniowa. '
-        f'BNB/BTC ratio <strong>{fmt_pct(bnb_vs_btc_7d)}</strong> w 7d — {ratio_phrase}.'
-    )
 
     btc_vol_30d_avg = sum(btc_vols[-31:-1]) / 30 if len(btc_vols) >= 31 else btc_vol_7d_avg
     bnb_vol_30d_avg = sum(bnb_vols[-31:-1]) / 30 if len(bnb_vols) >= 31 else bnb_vol_7d_avg
 
-    print("Fetching news (etap 4)...")
-    events = fetch_all_events()
-    print(f"  Got {len(events)} events from last 24h")
-
     history = load_history()
-    btc_hist = push_score(history, "btc", btc_score)
-    bnb_hist = push_score(history, "bnb", bnb_score)
-    btc_dca_hist = push_dca(history, "btc_dca", btc_dca, btc_level)
-    bnb_dca_hist = push_dca(history, "bnb_dca", bnb_dca, bnb_level)
+    btc_hist = push_score(history, "btc", opp_btc)
+    bnb_hist = push_score(history, "bnb", opp_bnb)
 
-    # Baza forecastu = średnia z ostatnich refreshy (~1-2 dni), nie chwilowy
-    # score zdominowany przez zmianę 24h, która jutro resetuje się do szumu.
+    # Baza prognozy = średnia wyniku okazji z ostatnich refreshy (odporna na
+    # szum 24h), nie chwilowa wartość zdominowana przez ruch 24h.
     btc_base = round(sum(btc_hist[-7:]) / len(btc_hist[-7:]))
     bnb_base = round(sum(bnb_hist[-7:]) / len(bnb_hist[-7:]))
     btc_forecast = build_forecast(btc_base, btc_prices, btc_vol, btc_vol_30d_avg, fng,
@@ -1045,19 +826,19 @@ def main():
     bnb_forecast = build_forecast(bnb_base, bnb_prices, bnb_vol, bnb_vol_30d_avg, fng,
                                   rel_strength_7d=bnb_vs_btc_7d)
 
-    btc_verdict = build_verdict("BTC", btc_level, btc_dca, fng, btc_30d, pos90_btc, btc_forecast)
-    bnb_verdict = build_verdict("BNB", bnb_level, bnb_dca, fng, bnb_30d, pos90_bnb, bnb_forecast)
+    btc_verdict = build_verdict("btc", "BTC", opp_btc, btc_level, btc_dca, fng,
+                                btc_30d, pos90_btc, btc_forecast)
+    bnb_verdict = build_verdict("bnb", "BNB", opp_bnb, bnb_level, bnb_dca, fng,
+                                bnb_30d, pos90_bnb, bnb_forecast)
 
-    btc_time = asset_time_block("btc", history, btc_score, btc_7d, btc_30d, btc_90d, cyc)
-    bnb_time = asset_time_block("bnb", history, bnb_score, bnb_7d, bnb_30d, bnb_90d, cyc)
-
-    print("Fetching on-chain (etap 3)...")
-    btc_onchain = btc_netflow_block(history, fetch_btc_onchain())
-    bnb_onchain = bnb_netflow_block(history, fetch_bnb_onchain())
-    if btc_onchain.get("available"):
-        print(f"  BTC net flow {btc_onchain['window_h']}h: {btc_onchain['net_btc']:+} BTC")
-    if bnb_onchain.get("available"):
-        print(f"  BNB net flow {bnb_onchain['window_h']}h: {bnb_onchain['net_bnb']:+} BNB")
+    # On-chain liczymy tylko gdy aktywne są alerty Telegram (jedyny konsument).
+    # Audyt uznał on-chain za "martwy czujnik", więc znikł z UI; bez Telegramu
+    # pomijamy też fetch — mniej połączeń sieciowych i powierzchni błędu.
+    btc_onchain = bnb_onchain = {}
+    if os.environ.get("TELEGRAM_BOT_TOKEN"):
+        print("Fetching on-chain (dla alertów)...")
+        btc_onchain = btc_netflow_block(history, fetch_btc_onchain())
+        bnb_onchain = bnb_netflow_block(history, fetch_bnb_onchain())
 
     print("Telegram alerts (etap 5)...")
     build_and_send_alerts(history, btc_24h, bnb_24h, fng, btc_dca, bnb_dca,
@@ -1069,64 +850,28 @@ def main():
     data = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "header_label": header_label,
-        "narrative": narrative,
-        "events": events,
         "assets": [
             {
                 "key": "btc",
                 "name": "BTC",
                 "sub": "Bitcoin",
-                "score": btc_score,
-                "delta": delta(btc_hist),
-                "mood": mood_label(btc_score),
-                "history": btc_hist,
                 "price": fmt_price(btc_price),
                 "price_change_24h": round(btc_24h, 1),
-                "narrative": btc_narrative,
-                "time": btc_time,
-                "stats": [
-                    {"label": "Cena", "value": fmt_price(btc_price),
-                     "changes": [
-                         {"tf": "24h", "val": round(btc_24h, 1)},
-                         {"tf": "7d", "val": round(btc_7d, 1)},
-                         {"tf": "30d", "val": round(btc_30d, 1)},
-                     ]},
-                    {"label": "Wolumen 24h", "value": fmt_volume(btc_vol), "change": round(btc_vol_vs_7d)},
-                    {"label": "Dominacja", "value": f"{btc_dom:.1f}%".replace(".", ","), "change": None},
-                ],
-                "dca": {"decision": btc_dca, "history": btc_dca_hist},
+                "opp": opp_btc,
+                "opp_label": opp_label(opp_btc),
                 "verdict": btc_verdict,
                 "forecast": btc_forecast,
-                "onchain": btc_onchain,
             },
             {
                 "key": "bnb",
                 "name": "BNB",
                 "sub": "Binance Coin",
-                "score": bnb_score,
-                "delta": delta(bnb_hist),
-                "mood": mood_label(bnb_score),
-                "history": bnb_hist,
                 "price": fmt_price(bnb_price),
                 "price_change_24h": round(bnb_24h, 1),
-                "narrative": bnb_narrative,
-                "time": bnb_time,
-                "stats": [
-                    {"label": "Cena", "value": fmt_price(bnb_price),
-                     "changes": [
-                         {"tf": "24h", "val": round(bnb_24h, 1)},
-                         {"tf": "7d", "val": round(bnb_7d, 1)},
-                         {"tf": "30d", "val": round(bnb_30d, 1)},
-                     ]},
-                    {"label": "Wolumen 24h", "value": fmt_volume(bnb_vol), "change": round(bnb_vol_vs_7d)},
-                    {"label": "BNB / BTC",
-                     "value": fmt_pct(bnb_vs_btc_7d),
-                     "change": round(bnb_vs_btc_7d, 1), "changeUnit": "7d"},
-                ],
-                "dca": {"decision": bnb_dca, "history": bnb_dca_hist},
+                "opp": opp_bnb,
+                "opp_label": opp_label(opp_bnb),
                 "verdict": bnb_verdict,
                 "forecast": bnb_forecast,
-                "onchain": bnb_onchain,
             },
         ],
     }
@@ -1134,8 +879,8 @@ def main():
     DATA_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2))
 
-    print(f"BTC: {btc_score}/100 ({mood_label(btc_score)}), DCA: {btc_dca} ({btc_level})")
-    print(f"BNB: {bnb_score}/100 ({mood_label(bnb_score)}), DCA: {bnb_dca} ({bnb_level})")
+    print(f"BTC okazja: {opp_btc}/100 ({opp_label(opp_btc)}) — {opp_word(btc_level)} [{btc_level}]")
+    print(f"BNB okazja: {opp_bnb}/100 ({opp_label(opp_bnb)}) — {opp_word(bnb_level)} [{bnb_level}]")
     print(f"Wrote {DATA_FILE.name} and {HISTORY_FILE.name}")
 
 

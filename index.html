@@ -48,133 +48,52 @@
   .wrap { max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
   .view.hidden { display: none; }
 
-  header.top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
   header.top .brand { display: flex; align-items: center; color: #ffffff; }
   header.top .brand .brand-logo { height: 34px; width: auto; display: block; }
   header.top .date-block { text-align: right; line-height: 1.3; }
   header.top .date { color: var(--muted); font-size: 13px; }
   header.top .date-refresh { color: var(--muted-2); font-size: 11px; margin-top: 2px; letter-spacing: 0.02em; }
 
-  /* HOME — widgety BTC + BNB stackowane, każdy 2 kolumny (score + DCA) połączone hairline */
-  .widgets { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  /* HOME — jeden kafelek na asset: wynik OKAZJI (zielony = kupuj) + 2 sygnały */
+  .widgets { display: flex; flex-direction: column; gap: 16px; }
   .asset-card {
-    width: 100%; text-align: left;
-    display: grid; grid-template-columns: 1fr 1fr;
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    overflow: hidden;
+    width: 100%; text-align: left; display: block;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px 22px;
     transition: background 120ms, border-color 120ms, transform 120ms ease;
   }
   button.asset-card:hover { background: var(--panel-2); border-color: #2f384a; }
   button.asset-card:active { transform: scale(0.997); }
-  /* Static widget on detail pages — no hover/press, just visual */
-  div.asset-card { margin-bottom: 18px; cursor: default; }
-  .asset-card .score-pane { border-right: 1px solid var(--border); }
-  .asset-card .pane { padding: 22px 24px; display: flex; flex-direction: column; }
-  .asset-card .pane-head {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--muted); margin-bottom: 14px;
-  }
-  .asset-card .pane-head .asset-name-strong { color: var(--text); font-size: 13px; letter-spacing: 0.08em; }
 
-  .asset-card .score-pane .score-row { display: flex; align-items: baseline; gap: 18px; }
-  .asset-card .score-pane .asset-score { font-size: 60px; font-weight: 700; line-height: 0.95; color: var(--cell-color); letter-spacing: -0.02em; }
-  .asset-card .score-pane .asset-trend { font-size: 22px; font-weight: 700; color: var(--cell-color); }
-  .asset-card .score-pane .asset-spark { display: block; width: 100%; height: 36px; margin-top: 12px; opacity: 0.9; }
-  .asset-card .score-pane .asset-spark polyline { stroke: var(--cell-color); stroke-width: 2; fill: none; }
-  .asset-card .score-pane .asset-spark .dot { fill: var(--cell-color); }
-  .asset-card .score-pane .asset-mood { font-size: 15px; font-weight: 600; color: var(--text); margin-top: 14px; }
-  .asset-card .score-pane .forecast-badge {
-    font-size: 11px; color: var(--muted); margin-top: 6px;
-    display: flex; align-items: center; gap: 6px;
-    letter-spacing: 0.02em; flex-wrap: wrap;
-  }
-  .asset-card .score-pane .forecast-badge .arrow { font-size: 13px; font-weight: 700; color: var(--cell-color); }
-  .asset-card .score-pane .forecast-badge .range { color: var(--text); font-weight: 500; }
-  .asset-card .score-pane .forecast-badge .conf { color: var(--muted-2); }
-  .asset-card .score-pane .forecast-badge .badge-prefix,
-  .asset-card .score-pane .forecast-badge .badge-sep { color: var(--muted-2); }
-  .asset-card .score-pane .asset-price-row {
-    display: flex; align-items: baseline; gap: 12px;
-    margin-top: auto; padding-top: 14px;
-  }
-  .asset-card .score-pane .asset-price { font-size: 16px; font-weight: 600; color: var(--text); }
-  .asset-card .score-pane .asset-price-change { font-size: 12px; font-weight: 600; }
-  .asset-card .score-pane .asset-price-change.up { color: var(--pos); }
-  .asset-card .score-pane .asset-price-change.down { color: var(--neg); }
-  .asset-card .score-pane .asset-price-change.flat { color: var(--muted-2); }
+  .ac-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .ac-name { font-size: 13px; color: var(--muted); letter-spacing: 0.01em; }
+  .ac-name strong { color: var(--text); font-weight: 600; }
+  .ac-price { font-size: 14px; color: var(--text); font-weight: 600; white-space: nowrap; }
+  .ac-price .ac-chg { color: var(--muted-2); font-weight: 500; font-size: 12px; margin-left: 7px; }
 
-  .asset-card .dca-pane .dca-two-col {
-    display: grid; grid-template-columns: 1fr 0.7fr; gap: 14px; margin-bottom: 18px;
-    align-items: end;
-  }
-  .asset-card .dca-pane .dca-col { display: flex; flex-direction: column; gap: 6px; }
-  .asset-card .dca-pane .dca-col-label {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-2);
-  }
-  .asset-card .dca-pane .dca-value { font-size: 36px; font-weight: 700; line-height: 1; color: var(--pos); letter-spacing: -0.01em; }
-  .asset-card .dca-pane .dca-value.no { color: var(--neg); }
-  .asset-card .dca-pane .dca-col:nth-child(2) .dca-value { font-size: 25px; }
-  .asset-card .dca-pane .dca-col:nth-child(2) .dca-col-label { font-size: 9px; }
-  .asset-card .dca-pane .dca-history-label {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted-2); margin-top: auto; margin-bottom: 8px;
-  }
-  .asset-card .dca-pane .dca-strip { display: flex; gap: 2px; height: 14px; margin-bottom: 8px; }
-  .asset-card .dca-pane .dca-strip .day { flex: 1; border-radius: 1.5px; }
-  .asset-card .dca-pane .dca-strip .day.yes { background: var(--pos); }
-  .asset-card .dca-pane .dca-strip .day.no { background: var(--neg); }
-  .asset-card .dca-pane .dca-strip .day.opp { background: var(--accent); }
-  .asset-card .dca-pane .dca-flag {
-    font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--accent); font-weight: 700; margin-top: 4px;
-  }
-  .asset-card .dca-pane .dca-history-summary { font-size: 11px; color: var(--muted); }
-  .asset-card .dca-pane .dca-history-summary strong { color: var(--text); font-weight: 600; }
+  .ac-hero { display: flex; align-items: baseline; gap: 14px; }
+  .ac-opp { font-size: 64px; font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; color: var(--opp-color); }
+  .ac-word { font-size: 24px; font-weight: 700; letter-spacing: 0.01em; color: var(--opp-color); }
+  .ac-scale { font-size: 13px; color: var(--muted-2); font-weight: 500; align-self: flex-end; margin-bottom: 4px; }
+  .ac-sub { margin-top: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+  .ac-sub.opp { color: var(--accent); font-weight: 600; }
 
-  /* Hero narrative */
-  .hero-narrative {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 22px 24px;
-  }
-  .hero-narrative .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 8px; }
-  .hero-narrative p { margin: 0; font-size: 14.5px; color: #c8cdd9; line-height: 1.6; }
-  .hero-narrative p strong { color: #fff; font-weight: 600; }
-  .coin-btc { color: #f7931a; font-weight: 600; }
-  .coin-bnb { color: #f0b90b; font-weight: 600; }
+  .ac-signals { margin-top: 18px; border-top: 1px solid var(--border); }
+  .ac-sig { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .ac-sig:last-child { border-bottom: none; padding-bottom: 0; }
+  .ac-sig-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-2); width: 60px; flex-shrink: 0; }
+  .ac-sig-text { font-size: 13.5px; color: var(--text); flex: 1; }
+  .sig-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .sig-dot.good { background: var(--pos); }
+  .sig-dot.warn { background: var(--neg); }
+  .sig-dot.neutral { background: var(--c-45); }
 
-  /* DETAIL VIEW */
-  .detail-top { margin-bottom: 18px; }
-  .detail-top .back {
-    font-size: 22px; color: var(--text); width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 8px;
-  }
-  .detail-top .back:hover { background: var(--panel); }
-  .detail-top .asset-title { display: flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 600; }
-  .detail-top .asset-title .muted { color: var(--muted); font-weight: 400; font-size: 13px; }
-  .detail-top .dots { display: flex; gap: 6px; }
-  .detail-top .dots .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--border); cursor: pointer; transition: background 120ms;
-  }
-  .detail-top .dots .dot:hover { background: var(--muted-2); }
-  .detail-top .dots .dot.active { background: var(--text); }
-
+  /* DETAIL panels (swipe pager) */
   .swipe-container { overflow: hidden; touch-action: pan-y; user-select: none; }
-  .swipe-track {
-    display: flex; width: 200%;
-    transform: translateX(0);
-    will-change: transform;
-  }
+  .swipe-track { display: flex; width: 200%; transform: translateX(0); will-change: transform; }
   .detail-panel { width: 50%; flex-shrink: 0; padding-right: 12px; }
   .detail-panel:last-child { padding-right: 0; padding-left: 12px; }
-
-  .detail-narrative {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 18px 22px; margin-bottom: 24px;
-  }
-  .detail-narrative p { margin: 0; font-size: 14px; color: #c8cdd9; line-height: 1.6; }
-  .detail-narrative p strong { color: #fff; font-weight: 600; }
 
   h3.section {
     font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
@@ -186,53 +105,19 @@
   }
   section.block { margin-bottom: 24px; }
 
-  /* Time strip */
-  .strip.time { display: grid; gap: 8px; grid-template-columns: repeat(5, 1fr); }
-  .cell {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 12px 12px;
-  }
-  .cell .cell-name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 8px; white-space: nowrap; }
-  .cell .cell-score-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-  .cell .cell-trend { font-size: 14px; font-weight: 700; line-height: 1; color: var(--cell-color); }
-  .cell .cell-score { font-size: 26px; font-weight: 700; line-height: 1; color: var(--cell-color); }
-  .cell .cell-spark { display: block; width: 100%; height: 18px; margin-bottom: 8px; opacity: 0.85; }
-  .cell .cell-spark polyline { stroke: var(--cell-color); stroke-width: 1.5; fill: none; }
-  .cell .cell-spark .dot { fill: var(--cell-color); }
-  .cell .cell-mood { font-size: 11px; color: var(--text); opacity: 0.9; min-height: 32px; }
-
-  /* Stats */
-  .stats-grid { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
-  .stat {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 16px;
-  }
-  .stat .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 12px; }
-  .stat .stat-value { font-size: 19px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -0.01em; }
-  .stat .stat-change { font-size: 12px; font-weight: 600; margin-top: 6px; }
-  .stat .stat-change.up { color: #4ade80; }
-  .stat .stat-change.down { color: #f87171; }
-  .stat .stat-change.flat { color: var(--muted-2); }
-  .stat-changes { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
-  .stat-tf-row { display: flex; justify-content: space-between; gap: 8px; }
-  .stat-tf { color: var(--muted-2); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px; }
-  .stat-tf-val { font-weight: 600; font-size: 12px; }
-  .stat-tf-val.up { color: #4ade80; }
-  .stat-tf-val.down { color: #f87171; }
-  .stat-tf-val.flat { color: var(--muted-2); }
-
-  /* Verdict card — "Czy warto dziś kupić?" (prosty widok dla nie-tradera) */
+  /* Werdykt "Czy warto dziś kupić?" — hero detalu (wynik okazji + skala + 4 sygnały) */
   .verdict-block {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 20px 22px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 22px;
   }
-  .verdict-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .verdict-word { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--pos); }
-  .verdict-word.no { color: var(--neg); }
-  .verdict-sub { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .vb-price { font-size: 13px; color: var(--muted-2); margin-bottom: 14px; }
+  .verdict-row { display: flex; align-items: baseline; gap: 14px; }
+  .verdict-opp { font-size: 60px; font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; color: var(--opp-color); }
+  .verdict-word { font-size: 26px; font-weight: 700; color: var(--opp-color); }
+  .verdict-sub { margin-top: 10px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
   .verdict-sub.opp { color: var(--accent); }
-  .verdict-headline { margin: 12px 0 0; font-size: 14px; color: #c8cdd9; line-height: 1.6; }
-  .scale-wrap { margin-top: 18px; }
+  .verdict-headline { margin: 14px 0 0; font-size: 14px; color: #c8cdd9; line-height: 1.6; }
+  .scale-wrap { margin-top: 20px; }
   .scale-bar {
     position: relative; height: 8px; border-radius: 4px;
     background: linear-gradient(90deg, #dc2626 0%, #ef4444 15%, #f97316 30%, #9ca3af 45%, #9ca3af 55%, #84cc16 62%, #4ade80 70%, #22c55e 78%, #16a34a 88%, #15803d 100%);
@@ -246,55 +131,34 @@
     display: flex; justify-content: space-between; margin-top: 6px;
     font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-2);
   }
-  .signal-list { list-style: none; margin: 16px 0 0; padding: 0; }
+  .signal-list { list-style: none; margin: 18px 0 0; padding: 0; }
   .signal-list li {
     display: flex; align-items: baseline; gap: 10px; padding: 10px 0;
     border-bottom: 1px solid var(--border); font-size: 13px;
   }
   .signal-list li:last-child { border-bottom: none; padding-bottom: 2px; }
-  .sig-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; align-self: center; }
-  .sig-dot.good { background: var(--pos); }
-  .sig-dot.warn { background: var(--neg); }
-  .sig-dot.neutral { background: var(--c-45); }
+  .signal-list .sig-dot { align-self: center; }
   .sig-label {
     color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
-    flex-shrink: 0; width: 92px;
+    flex-shrink: 0; width: 96px;
   }
   .sig-text { color: var(--text); line-height: 1.45; }
   .verdict-foot {
     margin-top: 14px; font-size: 11px; color: var(--muted-2); font-style: italic; line-height: 1.5;
   }
 
-  /* Details expander (iOS Settings-style row) */
-  .details-toggle {
-    width: 100%; display: flex; align-items: center; justify-content: space-between;
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--text);
-    transition: background 120ms, transform 120ms ease;
-  }
-  .details-toggle:hover { background: var(--panel-2); }
-  .details-toggle:active { transform: scale(0.997); }
-  .details-toggle .chevron {
-    color: var(--muted-2); font-size: 17px; font-weight: 600;
-    transition: transform 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-  .details-toggle.open .chevron { transform: rotate(90deg); }
-  .details-content { display: none; margin-top: 20px; }
-  .details-content.open { display: block; }
-
-  /* Forecast block (w Szczegółach) — pełna spec z design.md: pasmo +
-     konwikcja + rozbicie reguł + disclaimer */
+  /* Prognoza okazji 7d — pasmo + konwikcja + rozbicie reguł + disclaimer */
   .forecast-block {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
     padding: 16px 20px;
   }
   .forecast-block .fc-head {
     display: flex; align-items: baseline; gap: 10px;
     font-size: 16px; color: var(--text); font-weight: 600; letter-spacing: -0.01em;
   }
-  .forecast-block .fc-head .fc-arrow {
-    font-size: 20px; color: var(--cell-color); font-weight: 700; line-height: 1;
-  }
+  /* Strzałka kierunku w wyciszonym szarym, NIE na skali okazji — zielona
+     strzałka "okno się domyka" (↘) byłaby sprzeczna (zielony = kupuj). */
+  .forecast-block .fc-head .fc-arrow { font-size: 20px; color: var(--muted-2); font-weight: 700; line-height: 1; }
   .forecast-block .fc-head .fc-conf { font-size: 12px; color: var(--muted); font-weight: 400; }
   .fc-rules { list-style: none; margin: 12px 0 0; padding: 0; }
   .fc-rules li {
@@ -309,64 +173,7 @@
   .fc-rule-delta.zero { color: var(--muted-2); }
   .fc-rule-note { color: var(--muted); line-height: 1.4; }
   .fc-sum { margin-top: 10px; font-size: 12px; color: var(--muted); }
-  .fc-disclaimer {
-    margin-top: 12px; font-size: 11px; font-style: italic; color: var(--muted-2); line-height: 1.5;
-  }
-
-  /* Events / Wydarzenia (etap 4) */
-  .events-block {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 4px 20px;
-  }
-  .events-list { list-style: none; padding: 0; margin: 0; }
-  .events-list li {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .events-list li:last-child { border-bottom: none; }
-  .ev-meta {
-    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-    margin-bottom: 6px; font-size: 11px; color: var(--muted-2);
-  }
-  .ev-when { color: var(--muted-2); }
-  .ev-tag {
-    font-size: 9px; padding: 2px 7px; border-radius: 4px;
-    background: var(--panel-2); color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
-  }
-  .ev-tag.ev-tag-binance { color: #f0b90b; background: rgba(240, 185, 11, 0.12); }
-  .ev-tag.ev-tag-regulacje { color: #ef4444; background: rgba(239, 68, 68, 0.12); }
-  .ev-tag.ev-tag-makro { color: #4ade80; background: rgba(74, 222, 128, 0.12); }
-  .ev-tag.ev-tag-onchain { color: #c4a878; background: rgba(196, 168, 120, 0.12); }
-  .ev-title {
-    display: block;
-    color: var(--text); font-size: 14px; font-weight: 500;
-    text-decoration: none; line-height: 1.4;
-    transition: opacity 120ms;
-  }
-  .ev-title:hover { opacity: 0.7; }
-  .ev-source { font-size: 11px; color: var(--muted-2); margin-top: 4px; }
-  .events-empty {
-    padding: 18px 0; text-align: center;
-    font-size: 12px; color: var(--muted-2); font-style: italic;
-  }
-
-  /* On-chain block (etap 3) */
-  .onchain-block {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 16px 20px;
-  }
-  .onchain-block .oc-flow {
-    display: flex; align-items: baseline; gap: 10px;
-    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
-  }
-  .onchain-block .oc-flow .oc-label { font-size: 13px; font-weight: 500; color: var(--muted); }
-  .onchain-block .oc-flow .oc-value.inflow { color: var(--neg); }
-  .onchain-block .oc-flow .oc-value.outflow { color: var(--pos); }
-  .onchain-block .oc-flow .oc-value.flat { color: var(--text); }
-  .onchain-block .oc-flow .oc-value.muted { color: var(--muted-2); }
-  .onchain-block .oc-signal { margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.5; }
-  .onchain-block .oc-pending { font-size: 12px; color: var(--muted-2); font-style: italic; }
+  .fc-disclaimer { margin-top: 12px; font-size: 11px; font-style: italic; color: var(--muted-2); line-height: 1.5; }
 
   footer {
     margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border);
@@ -379,26 +186,21 @@
   .copyright { width: 100%; text-align: center; padding-top: 18px; margin-top: 14px; border-top: 1px solid var(--border); color: var(--muted-2); font-size: 11px; }
 
   /* ===== iOS-NATIVE MODAL SHEET (per Apple HIG) ===== */
-
-  /* Sheet pokazuje peek 10pt parent view — iOS 17+ pattern */
   #detail-view {
     position: fixed; top: 10px; left: 0; right: 0; bottom: 0;
     overflow-y: auto; overflow-x: hidden;
     background: var(--panel);
     border-top-left-radius: 20px; border-top-right-radius: 20px;
     transform: translateY(calc(100% + 10px));
-    /* iOS spring-style ease */
     transition: transform 460ms cubic-bezier(0.32, 0.72, 0, 1);
     z-index: 150;
     will-change: transform;
     -webkit-overflow-scrolling: touch;
-    /* Soft shadow above (depth) — iOS sheets nie mają hard shadow */
     box-shadow: 0 -1px 0 rgba(255,255,255,0.04), 0 -16px 40px rgba(0, 0, 0, 0.45);
   }
   #detail-view.hidden { display: block !important; pointer-events: none; }
   #detail-view:not(.hidden) { transform: translateY(0); pointer-events: auto; }
 
-  /* Backdrop — iOS uses ~rgba(0,0,0,0.4) for sheet dim */
   .sheet-backdrop {
     position: fixed; inset: 0; background: rgba(0,0,0,0.4);
     opacity: 0; pointer-events: none;
@@ -414,7 +216,6 @@
     overflow: hidden;
   }
 
-  /* Sheet header — iOS Material: thin blur + saturate (Liquid Glass-y) */
   .sheet-header {
     position: sticky; top: 0; z-index: 10;
     background: rgba(28, 35, 48, 0.72);
@@ -423,23 +224,17 @@
     border-top-left-radius: 20px; border-top-right-radius: 20px;
     border-bottom: 0.5px solid rgba(255,255,255,0.08);
   }
-
-  /* Grabber — 36×5pt, ~50% alpha, 5pt from top per HIG */
   .sheet-handle {
     width: 36px; height: 5px; border-radius: 2.5px;
     background: rgba(255, 255, 255, 0.45);
     margin: 5px auto 0;
   }
-
-  /* Nav bar — 44pt height (HIG touch target) */
   .sheet-nav {
     display: grid; grid-template-columns: 1fr auto 1fr;
     align-items: center; gap: 8px;
     padding: 6px 8px 8px;
     min-height: 44px;
   }
-
-  /* iOS-native close button (X) — circle pill w prawym górnym rogu */
   .sheet-close-x {
     display: inline-flex; align-items: center; justify-content: center;
     width: 44px; height: 44px;
@@ -459,81 +254,31 @@
     transition: background 120ms;
   }
   .sheet-close-x:hover .x-mark { background: rgba(255, 255, 255, 0.2); }
-
-  /* iOS bar title — 17pt semibold, optional caption pod (Stocks-style) */
   .asset-title {
     text-align: center; display: flex; flex-direction: column;
     align-items: center; line-height: 1.1; justify-self: center;
   }
-  .asset-title-name {
-    font-size: 17px; font-weight: 600; color: var(--text);
-    letter-spacing: -0.02em;
-  }
-  .asset-title-sub {
-    font-size: 11px; color: var(--muted); font-weight: 400;
-    margin-top: 1px; letter-spacing: 0.01em;
-  }
+  .asset-title-name { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .asset-title-sub { font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 1px; letter-spacing: 0.01em; }
   .nav-spacer { width: 44px; justify-self: start; }
-
   .sheet-content { padding: 18px 24px 40px; }
 
   @media (max-width: 600px) {
-    .wrap { padding: 24px 12px 60px; }
+    .wrap { padding: 24px 14px 60px; }
     header.top { margin-bottom: 26px; gap: 12px; }
     header.top .brand .brand-logo { height: 29px; }
     header.top .date { font-size: 12px; }
-    .widgets { gap: 10px; margin-bottom: 14px; }
-
-    /* Compact widget: side-by-side, very tight */
-    .asset-card { grid-template-columns: 1fr 1fr; }
-    .asset-card .score-pane { border-right: 1px solid var(--border); border-bottom: none; }
-    .asset-card .pane { padding: 12px 12px; }
-    .asset-card .pane-head { font-size: 9px; margin-bottom: 8px; letter-spacing: 0.1em; }
-
-    /* Score pane compact */
-    .asset-card .score-pane .asset-score { font-size: 36px; }
-    .asset-card .score-pane .asset-trend { font-size: 14px; }
-    .asset-card .score-pane .asset-spark { height: 22px; margin-top: 6px; }
-    .asset-card .score-pane .asset-mood { font-size: 12px; margin-top: 8px; }
-    .asset-card .score-pane .forecast-badge {
-      font-size: 9px; margin-top: 4px; gap: 4px;
-    }
-    .asset-card .score-pane .forecast-badge .arrow { font-size: 11px; }
-    /* Konwikcja (.conf) zostaje widoczna także na mobile — pasmo bez
-       konwikcji łamie zasady forecastu z design.md */
-    .asset-card .score-pane .forecast-badge .badge-prefix,
-    .asset-card .score-pane .forecast-badge .badge-sep { display: none; }
-    .asset-card .score-pane .asset-price-row { padding-top: 8px; }
-    .asset-card .score-pane .asset-price { font-size: 12px; }
-    .asset-card .score-pane .asset-price-change { font-size: 10px; }
-
-    /* DCA pane: side-by-side, "Za 7 dni" 30% mniejsze (1fr : 0.7fr) */
-    .asset-card .dca-pane .dca-two-col {
-      grid-template-columns: 1fr 0.7fr;
-      gap: 8px; margin-bottom: 10px;
-    }
-    .asset-card .dca-pane .dca-value { font-size: 22px; }
-    .asset-card .dca-pane .dca-col:nth-child(2) .dca-value { font-size: 15px; }
-    .asset-card .dca-pane .dca-col-label { font-size: 9px; }
-    .asset-card .dca-pane .dca-col:nth-child(2) .dca-col-label { font-size: 8px; }
-    .asset-card .dca-pane .dca-strip { height: 8px; margin-bottom: 6px; }
-    .asset-card .dca-pane .dca-history-label { font-size: 9px; margin-bottom: 4px; }
-    .asset-card .dca-pane .dca-history-summary { font-size: 10px; }
-
-    /* Detail page mobile */
-    .strip.time { grid-template-columns: repeat(2, 1fr); }
-    .stats-grid { grid-template-columns: 1fr; }
+    .widgets { gap: 12px; }
+    .asset-card { padding: 18px 18px; }
+    .ac-opp { font-size: 52px; }
+    .ac-word { font-size: 21px; }
+    .verdict-opp { font-size: 50px; }
+    .verdict-word { font-size: 22px; }
+    .sig-label { width: 84px; }
     .detail-panel { padding-right: 6px; }
     .detail-panel:last-child { padding-left: 6px; }
     .sheet-content { padding: 14px 16px 32px; }
     .sheet-nav { padding: 4px 12px 10px; }
-  }
-
-  /* Very narrow phones (<380px): fallback to stack */
-  @media (max-width: 380px) {
-    .asset-card { grid-template-columns: 1fr; }
-    .asset-card .score-pane { border-right: none; border-bottom: 1px solid var(--border); }
-    .asset-card .dca-pane .dca-two-col { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -555,11 +300,6 @@
     </header>
 
     <div class="widgets" id="home-widgets"></div>
-
-    <section class="hero-narrative">
-      <div class="label">Co się dzieje</div>
-      <p id="home-narrative"></p>
-    </section>
   </div>
 
   <!-- DETAIL VIEW (iOS-style modal sheet) -->
@@ -588,7 +328,7 @@
 
       <footer>
         <div class="legend">
-          Skala 0–100:
+          Skala okazji 0–100:
           <span class="swatch" style="background:var(--c-0)"></span>
           <span class="swatch" style="background:var(--c-15)"></span>
           <span class="swatch" style="background:var(--c-30)"></span>
@@ -598,10 +338,7 @@
           <span class="swatch" style="background:var(--c-75)"></span>
           <span class="swatch" style="background:var(--c-85)"></span>
           <span class="swatch" style="background:var(--c-100)"></span>
-          <span class="lbl">0 strach · 50 spokój · 100 mania</span>
-        </div>
-        <div class="legend">
-          Skala zmian: <strong>↑ 5</strong><span class="lbl">wzrost</span>·<strong>↓ 5</strong><span class="lbl">spadek</span>·<span class="lbl">vs poprzednie odświeżenie (zwykle 2–5h)</span>
+          <span class="lbl">0 drogo · 50 neutralnie · 100 okazja (zielony = kupuj)</span>
         </div>
         <div class="copyright">© 2026 Marcin Gałęcki</div>
       </footer>
@@ -626,49 +363,12 @@ function scoreColor(s){
   return "var(--c-100)";
 }
 
-function deltaPill(delta) {
-  if (delta === 0 || delta === null || delta === undefined) return null;
-  if (delta > 0) return { cls:"up",   text:`↑ ${delta}` };
-  return                 { cls:"down", text:`↓ ${Math.abs(delta)}` };
-}
-
-function trendSpanHtml(delta, cls="cell-trend") {
-  const d = deltaPill(delta);
-  return d ? `<span class="${cls} ${d.cls}">${d.text}</span>` : "";
-}
-
-function sparklineSvg(values, w=100, h=22, cls="cell-spark") {
-  if (!values || values.length < 2) return "";
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = (max - min) || 1;
-  const pad = 2;
-  const usableH = h - pad * 2;
-  const points = values.map((v, i) => {
-    const x = (i / (values.length - 1)) * w;
-    const y = pad + (1 - (v - min) / range) * usableH;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(" ");
-  const lastX = w;
-  const lastY = pad + (1 - (values[values.length-1] - min) / range) * usableH;
-  return `<svg class="${cls}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-    <polyline points="${points}" />
-    <circle class="dot" cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="1.8" />
-  </svg>`;
-}
-
-function pctChangeClass(v) {
-  if (v > 0) return "up";
-  if (v < 0) return "down";
-  return "flat";
-}
 function fmtPct(v) {
   const sign = v > 0 ? "+" : "";
   const valStr = (typeof v === "number") ? String(v).replace(".", ",") : v;
   return `${sign}${valStr}%`;
 }
 
-/* ---------- ASSET WIDGET (used on home and at top of each detail page) ---------- */
 function forecastArrow(direction) {
   if (direction === "up") return "↗";
   if (direction === "down") return "↘";
@@ -680,81 +380,31 @@ function confLabelPl(c) {
   return "niska";
 }
 
-function forecastBadgeHtml(forecast) {
-  if (!forecast) return "";
-  const [lo, hi] = forecast.score_range;
-  const midColor = scoreColor(Math.round((lo + hi) / 2));
-  return `
-    <div class="forecast-badge" style="--cell-color:${midColor}">
-      <span class="arrow">${forecastArrow(forecast.direction)}</span>
-      <span class="badge-prefix">za 7d:</span>
-      <span class="range">${lo}–${hi}</span>
-      <span class="badge-sep">·</span>
-      <span class="conf">${confLabelPl(forecast.confidence)}</span>
-    </div>
-  `;
-}
-
-function dcaIn7d(asset) {
-  if (!asset.forecast) return null;
-  // Decyzję liczy fetch.py (jedno źródło prawdy); fallback dla starego
-  // data.json używa tego samego progu 80, co reguła w build_forecast.
-  if (asset.forecast.dca_in_7d) return asset.forecast.dca_in_7d;
-  return asset.forecast.score_expected >= 80 ? "NIE" : "TAK";
+/* ---------- HOME CARD ---------- */
+function homeSignalsHtml(v) {
+  return (v.home_signals || []).map(s => `
+    <div class="ac-sig">
+      <span class="ac-sig-label">${s.label}</span>
+      <span class="ac-sig-text">${s.text}</span>
+      <span class="sig-dot ${s.tone}"></span>
+    </div>`).join("");
 }
 
 function assetCardInnerHtml(asset) {
-  const pctCls = pctChangeClass(asset.price_change_24h);
-  const dca = asset.dca || { decision: "—", history: [] };
-  const yes = dca.history.filter(v => v >= 1).length;
-  const no = dca.history.length - yes;
-  // 0 = NIE, 1 = TAK, 2 = TAK-okazja (złoty)
-  const days = dca.history.map(v => `<span class="day ${v === 0 ? 'no' : v === 2 ? 'opp' : 'yes'}"></span>`).join("");
-  const flagText = asset.verdict
-    ? (asset.verdict.flag !== undefined
-        ? asset.verdict.flag
-        : (asset.verdict.level === "okazja" ? "wyjątkowa okazja" : ""))
-    : "";
-  const dcaFlag = flagText ? `<div class="dca-flag">${flagText}</div>` : "";
-  const dca7d = dcaIn7d(asset);
-  const dca7dCol = dca7d ? `
-    <div class="dca-col">
-      <div class="dca-col-label">Za 7 dni</div>
-      <div class="dca-value ${dca7d === 'TAK' ? '' : 'no'}">${dca7d}</div>
-    </div>` : "";
-  const priceHtml = asset.price ? `
-      <div class="asset-price-row">
-        <span class="asset-price">${asset.price}</span>
-        ${asset.price_change_24h !== undefined ? `<span class="asset-price-change ${pctCls}">${fmtPct(asset.price_change_24h)} 24h</span>` : ""}
-      </div>` : "";
+  const v = asset.verdict || {};
+  const subCls = v.level === "okazja" ? "opp" : "";
   return `
-    <div class="pane score-pane">
-      <div class="pane-head">
-        <span class="asset-name-strong">${asset.name}</span> · ${asset.sub}
-      </div>
-      <div class="score-row">
-        <div class="asset-score">${asset.score}</div>
-        ${trendSpanHtml(asset.delta, "asset-trend")}
-      </div>
-      ${sparklineSvg(asset.history, 300, 36, "asset-spark")}
-      <div class="asset-mood">${asset.mood}</div>
-      ${forecastBadgeHtml(asset.forecast)}
-      ${priceHtml}
+    <div class="ac-head">
+      <span class="ac-name"><strong>${asset.name}</strong> · ${asset.sub}</span>
+      <span class="ac-price">${asset.price}<span class="ac-chg">${fmtPct(asset.price_change_24h)} 24h</span></span>
     </div>
-    <div class="pane dca-pane">
-      <div class="pane-head">Kupić ${asset.name}?</div>
-      <div class="dca-two-col">
-        <div class="dca-col">
-          <div class="dca-col-label">Dziś</div>
-          <div class="dca-value ${dca.decision === 'TAK' ? '' : 'no'}">${dca.decision}</div>
-          ${dcaFlag}
-        </div>
-        ${dca7dCol}
-      </div>
-      <div class="dca-history-label">Ostatnie 30 dni</div>
-      <div class="dca-strip">${days}</div>
-      <div class="dca-history-summary"><strong>${yes}</strong> dni TAK · <strong>${no}</strong> NIE</div>
+    <div class="ac-hero">
+      <span class="ac-opp">${asset.opp}</span>
+      <span class="ac-word">${v.word || ""}</span>
+      <span class="ac-scale">/100</span>
     </div>
+    <div class="ac-sub ${subCls}">${v.sublabel || asset.opp_label || ""}</div>
+    <div class="ac-signals">${homeSignalsHtml(v)}</div>
   `;
 }
 
@@ -762,16 +412,8 @@ function renderHomeWidget(asset) {
   const card = document.createElement("button");
   card.className = "asset-card";
   card.dataset.asset = asset.key;
-  card.style.setProperty("--cell-color", scoreColor(asset.score));
+  card.style.setProperty("--opp-color", scoreColor(asset.opp));
   card.addEventListener("click", () => navigate(asset.key));
-  card.innerHTML = assetCardInnerHtml(asset);
-  return card;
-}
-
-function renderDetailWidget(asset) {
-  const card = document.createElement("div");
-  card.className = "asset-card";
-  card.style.setProperty("--cell-color", scoreColor(asset.score));
   card.innerHTML = assetCardInnerHtml(asset);
   return card;
 }
@@ -783,300 +425,91 @@ function renderHome(data) {
     const hhmm = t.toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit" });
     document.getElementById("home-refresh").textContent = `odśw. ${hhmm}`;
   }
-  document.getElementById("home-narrative").innerHTML = data.narrative;
   const widgets = document.getElementById("home-widgets");
   widgets.innerHTML = "";
   data.assets.forEach(a => widgets.appendChild(renderHomeWidget(a)));
 }
 
 /* ---------- DETAIL ---------- */
-function renderTimeCell(item) {
-  const div = document.createElement("div");
-  div.className = "cell";
-  div.style.setProperty("--cell-color", scoreColor(item.score));
-  div.innerHTML = `
-    <div class="cell-name">${item.name}${item.sub ? ` · ${item.sub}` : ""}</div>
-    <div class="cell-score-row">
-      <div class="cell-score">${item.score}</div>
-      ${trendSpanHtml(item.delta)}
-    </div>
-    ${sparklineSvg(item.history)}
-    <div class="cell-mood">${item.mood}</div>
-  `;
-  return div;
-}
-
-function renderStat(s) {
-  const stat = document.createElement("div");
-  stat.className = "stat";
-  let changeHtml = "";
-  if (Array.isArray(s.changes)) {
-    const rows = s.changes.map(c => {
-      const cls = pctChangeClass(c.val);
-      return `<div class="stat-tf-row"><span class="stat-tf">${c.tf}</span><span class="stat-tf-val ${cls}">${fmtPct(c.val)}</span></div>`;
-    }).join("");
-    changeHtml = `<div class="stat-changes">${rows}</div>`;
-  } else if (s.change !== null && s.change !== undefined) {
-    const cls = pctChangeClass(s.change);
-    const unit = s.changeUnit || "%";
-    const valStr = (typeof s.change === "number") ? String(s.change).replace(".", ",") : s.change;
-    const sign = s.change > 0 ? "+" : "";
-    changeHtml = `<div class="stat-change ${cls}">${sign}${valStr} ${unit}</div>`;
-  }
-  stat.innerHTML = `
-    <div class="stat-label">${s.label}</div>
-    <div class="stat-value">${s.value}</div>
-    ${changeHtml}
-  `;
-  return stat;
-}
-
-function formatRelativeTime(iso) {
-  const date = new Date(iso);
-  const now = new Date();
-  const diffMin = Math.max(0, Math.floor((now - date) / 60000));
-  if (diffMin < 1) return "teraz";
-  if (diffMin < 60) return `${diffMin} min temu`;
-  const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return `${diffHr}h temu`;
-  const diffDay = Math.floor(diffHr / 24);
-  return `${diffDay}d temu`;
-}
-
-function tagClass(tag) {
-  return "ev-tag-" + tag.toLowerCase().replace("-", "");
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
-
-function renderEventsBlock(asset, allEvents) {
-  if (!allEvents || allEvents.length === 0) return "";
-  const events = allEvents.filter(e => (e.assets || []).includes(asset.key)).slice(0, 6);
-  let inner;
-  if (events.length === 0) {
-    inner = `<div class="events-empty">Brak istotnych wydarzeń dla ${asset.name} w ostatnich 24h.</div>`;
-  } else {
-    inner = `<ul class="events-list">` + events.map(e => {
-      const tagsHtml = (e.tags || []).map(t =>
-        `<span class="ev-tag ${tagClass(t)}">${t}</span>`
-      ).join("");
-      return `
-        <li>
-          <div class="ev-meta">
-            <span class="ev-when">${formatRelativeTime(e.published_at)}</span>
-            ${tagsHtml}
-          </div>
-          <a class="ev-title" href="${e.url}" target="_blank" rel="noopener">${escapeHtml(e.title)}</a>
-          <div class="ev-source">${e.source}</div>
-        </li>
-      `;
-    }).join("") + `</ul>`;
-  }
-  return `
-    <h3 class="section">Wydarzenia · ostatnie 24h</h3>
-    <p class="section-sub">Top nagłówki z CoinDesk, CoinTelegraph i Binance z ostatnich 24h (tagowanie automatyczne).</p>
-    <div class="events-block">${inner}</div>
-  `;
-}
-
-function renderOnchainBlock(asset) {
-  const oc = asset.onchain;
-  if (!oc) return "";
-  if (!oc.available) {
-    return `
-      <h3 class="section">On-chain · Binance</h3>
-      <div class="onchain-block"><div class="oc-pending">${oc.note || "Brak danych on-chain."}</div></div>
-    `;
-  }
-  // Kolor wg wartości znormalizowanej do 24h i progu z fetch.py (okno
-  // bywa 2-4 dni). Wyciszony szary (muted), gdy stan to "brak danych":
-  // śledzone adresy nieaktywne albo okno pomiaru za krótkie.
-  const net = asset.key === "btc" ? oc.net_btc : oc.net_bnb;
-  const per24 = oc.net_per24 !== undefined ? oc.net_per24 : net;
-  const thr = oc.threshold_24h || (asset.key === "btc" ? 50 : 2000);
-  let cls;
-  if (oc.short_window || (asset.key === "btc" && oc.coverage === "low")) cls = "muted";
-  else cls = per24 > thr ? "inflow" : per24 < -thr ? "outflow" : "flat";
-  const sign = net > 0 ? "+" : "";
-  const unit = asset.key === "btc" ? "BTC" : "BNB";
-  const netStr = (sign + net.toLocaleString("pl-PL")).replace(/,/g, " ");
-  const srcCount = asset.key === "btc" ? "4" : "3";
-  return `
-    <h3 class="section">On-chain · ostatnie ${oc.window_h}h</h3>
-    <p class="section-sub">Zmiana salda ${srcCount} publicznych portfeli Binance — przybliżenie (wycinek przepływów giełdy), mempool.space / BSC RPC.</p>
-    <div class="onchain-block">
-      <div class="oc-flow">
-        <span class="oc-label">Zmiana salda śledzonych portfeli:</span>
-        <span class="oc-value ${cls}">${netStr} ${unit}</span>
-      </div>
-      <div class="oc-signal">${oc.signal}</div>
-    </div>
-  `;
-}
-
 function renderVerdictBlock(asset) {
-  // Karta "Czy warto dziś kupić?" — werdykt + skala + 4 sygnały prostym
-  // językiem (treść generuje fetch.py). Brak verdict = stary data.json.
   const v = asset.verdict;
   if (!v) return null;
-  const section = document.createElement("section");
-  section.className = "block";
-  const wordCls = v.decision === "NIE" ? "no" : "";
-  // Etykiety poziomu emituje fetch.py (sublabel/flag); subMap to tylko
-  // fallback dla data.json sprzed tej zmiany.
-  const subMap = {
-    okazja: "dobry moment — rynek w strachu",
-    tak: "normalny dzień DCA",
-    wstrzymaj: "rynek rozgrzany — przeczekaj",
-  };
-  const sublabel = v.sublabel || subMap[v.level] || "";
+  const opp = (v.opp !== undefined) ? v.opp : asset.opp;
   const subCls = v.level === "okazja" ? "opp" : "";
-  // Marker = Fear & Greed (to on niesie werdykt i pasuje do podpisów
-  // strach/spokój/mania); score widgetu to inna, mieszana metryka.
-  const scaleVal = v.fng !== undefined ? v.fng : asset.score;
   const rows = (v.signals || []).map(s => `
     <li>
       <span class="sig-dot ${s.tone}"></span>
       <span class="sig-label">${s.label}</span>
       <span class="sig-text">${s.text}</span>
     </li>`).join("");
+  const section = document.createElement("section");
+  section.className = "block";
   section.innerHTML = `
     <h3 class="section">Czy warto dziś kupić?</h3>
-    <p class="section-sub">Cztery sygnały, które wystarczą: nastrój rynku, czy jest tanio, trend miesiąca i najbliższy tydzień.</p>
-    <div class="verdict-block">
+    <p class="section-sub">Jeden wynik okazji (zielony = kupuj) i cztery sygnały: nastrój rynku, czy tanio, trend miesiąca, najbliższy tydzień.</p>
+    <div class="verdict-block" style="--opp-color:${scoreColor(opp)}">
+      <div class="vb-price">${asset.price} · ${fmtPct(asset.price_change_24h)} 24h</div>
       <div class="verdict-row">
-        <span class="verdict-word ${wordCls}">${v.decision}</span>
-        <span class="verdict-sub ${subCls}">${sublabel}</span>
+        <span class="verdict-opp">${opp}</span>
+        <span class="verdict-word">${v.word || ""}</span>
       </div>
+      <div class="verdict-sub ${subCls}">${v.sublabel || ""}</div>
       <p class="verdict-headline">${v.headline}</p>
       <div class="scale-wrap">
-        <div class="scale-bar"><div class="scale-marker" style="left:clamp(8px, ${scaleVal}%, calc(100% - 8px)); background:${scoreColor(scaleVal)}"></div></div>
-        <div class="scale-labels"><span>strach</span><span>spokój</span><span>mania</span></div>
+        <div class="scale-bar"><div class="scale-marker" style="left:clamp(8px, ${opp}%, calc(100% - 8px)); background:${scoreColor(opp)}"></div></div>
+        <div class="scale-labels"><span>drogo</span><span>neutralnie</span><span>okazja</span></div>
       </div>
       <ul class="signal-list">${rows}</ul>
-      <div class="verdict-foot">Zielona kropka — sprzyja zakupowi · szara — neutralna · czerwona — przemawia przeciw. Rules-based odczyt nastroju rynku — nie porada inwestycyjna i nie prognoza ceny.</div>
+      <div class="verdict-foot">Zielona kropka — sprzyja zakupowi · szara — neutralna · czerwona — przemawia przeciw. Rules-based ocena okazji do zakupu — nie porada inwestycyjna i nie prognoza ceny.</div>
     </div>
   `;
   return section;
 }
 
 function renderForecastBlock(asset) {
-  // Pełna spec z design.md: pasmo + konwikcja + rozbicie regła-po-regle +
-  // stały disclaimer. Bez tipów sugerujących kierunek CENY.
   const f = asset.forecast;
   if (!f) return "";
   const [lo, hi] = f.score_range;
-  const midColor = scoreColor(Math.round((lo + hi) / 2));
   const arrow = forecastArrow(f.direction);
   const rules = (f.rules || []).map(r => {
     const cls = r.delta > 0 ? "pos" : r.delta < 0 ? "neg" : "zero";
     const sign = r.delta > 0 ? "+" : "";
     return `<li><span class="fc-rule-name">${r.name}</span><span class="fc-rule-delta ${cls}">${sign}${r.delta}</span><span class="fc-rule-note">${r.note}</span></li>`;
   }).join("");
-  const base = f.score_base !== undefined ? f.score_base : f.score_now;
+  const base = f.score_base;
   const totalSign = f.total_delta > 0 ? "+" : "";
   return `
-    <h3 class="section">Prognoza sentymentu · 7 dni</h3>
-    <p class="section-sub">Dokąd może przesunąć się nastrój (0–100) w tydzień — zawsze pasmo, nie punkt.</p>
-    <div class="forecast-block" style="--cell-color:${midColor}">
+    <h3 class="section">Prognoza okazji · 7 dni</h3>
+    <p class="section-sub">Czy okno zakupowe (0–100) raczej się poprawi czy domknie w tydzień — zawsze pasmo, nie punkt.</p>
+    <div class="forecast-block">
       <div class="fc-head">
         <span class="fc-arrow">${arrow}</span>
         <span>pasmo ${lo}–${hi}</span>
         <span class="fc-conf">pewność: ${confLabelPl(f.confidence)}</span>
       </div>
       <ul class="fc-rules">${rules}</ul>
-      <div class="fc-sum">Suma reguł: ${totalSign}${f.total_delta} od bazy ${base} (baza = średnia score z ostatnich odświeżeń, odporna na szum 24h)</div>
-      <div class="fc-disclaimer">Forecast to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku.</div>
+      <div class="fc-sum">Suma reguł: ${totalSign}${f.total_delta} od bazy ${base} (baza = średnia okazji z ostatnich odświeżeń, odporna na szum 24h)</div>
+      <div class="fc-disclaimer">Prognoza okazji to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku.</div>
     </div>
   `;
 }
 
-function renderDetailPanel(panelEl, asset, allEvents) {
+function renderDetailPanel(panelEl, asset) {
   panelEl.dataset.asset = asset.key;
-
-  // Widget (same as home: score + DCA hairline-joined)
-  const widget = renderDetailWidget(asset);
-
-  // Karta "Czy warto dziś kupić?" — jedyna rzecz, którą nie-trader musi przeczytać
   const verdict = renderVerdictBlock(asset);
-
-  // Narrative
-  const narr = document.createElement("section");
-  narr.className = "detail-narrative";
-  narr.innerHTML = `<p>${asset.narrative || "Czekam na świeże dane z najbliższego odświeżenia."}</p>`;
-
-  // Time strip
-  const timeBlock = document.createElement("section");
-  timeBlock.className = "block";
-  timeBlock.innerHTML = `
-    <h3 class="section">Sentyment w czasie</h3>
-    <p class="section-sub">Jak nastrój ${asset.name} zmienia się w różnych horyzontach — od ostatnich 24h po cykl od halvingu.</p>
-    <div class="strip time"></div>
-  `;
-  const strip = timeBlock.querySelector(".strip.time");
-  (asset.time || []).forEach(t => strip.appendChild(renderTimeCell(t)));
-
-  // Metryki
-  const metrics = document.createElement("section");
-  metrics.className = "block";
-  metrics.innerHTML = `
-    <h3 class="section">Metryki</h3>
-    <div class="stats-grid"></div>
-  `;
-  const statsGrid = metrics.querySelector(".stats-grid");
-  asset.stats.forEach(s => statsGrid.appendChild(renderStat(s)));
-
-  // Forecast 7d (pełna spec: pasmo + konwikcja + reguły + disclaimer)
   const forecast = document.createElement("section");
   forecast.className = "block";
   forecast.innerHTML = renderForecastBlock(asset);
 
-  // On-chain (etap 3)
-  const onchain = document.createElement("section");
-  onchain.className = "block";
-  onchain.innerHTML = renderOnchainBlock(asset);
-
-  // Events / Wydarzenia (etap 4)
-  const events = document.createElement("section");
-  events.className = "block";
-  events.innerHTML = renderEventsBlock(asset, allEvents);
-
   panelEl.innerHTML = "";
-  panelEl.appendChild(widget);
   if (verdict) panelEl.appendChild(verdict);
-
-  // Sekcje eksperckie schowane pod "Szczegóły i metryki" (iOS Settings-style).
-  // Stary data.json (bez verdict): pokazujemy wszystko rozwinięte jak dawniej.
-  const content = document.createElement("div");
-  content.className = "details-content";
-  [narr, timeBlock, metrics, forecast, onchain, events].forEach(el => content.appendChild(el));
-
-  if (verdict) {
-    const wrap = document.createElement("section");
-    wrap.className = "block";
-    const toggle = document.createElement("button");
-    toggle.className = "details-toggle";
-    toggle.innerHTML = `<span>Szczegóły i metryki</span><span class="chevron">›</span>`;
-    toggle.addEventListener("click", () => {
-      toggle.classList.toggle("open");
-      content.classList.toggle("open");
-    });
-    wrap.appendChild(toggle);
-    wrap.appendChild(content);
-    panelEl.appendChild(wrap);
-  } else {
-    content.classList.add("open");
-    panelEl.appendChild(content);
-  }
+  panelEl.appendChild(forecast);
 }
 
 function renderDetail(data) {
   const panels = document.querySelectorAll(".detail-panel");
-  const events = data.events || [];
   data.assets.forEach((a, i) => {
-    if (panels[i]) renderDetailPanel(panels[i], a, events);
+    if (panels[i]) renderDetailPanel(panels[i], a);
   });
 }
 
@@ -1131,7 +564,6 @@ function navigate(route) {
 
 function navigateDetail(idx) {
   setActivePanel(idx, true);
-  // Replace state so swipe doesn't pollute history
   const newHash = `#/${ASSETS[idx]}`;
   if (window.location.hash !== newHash) {
     history.replaceState(null, "", newHash);
@@ -1230,7 +662,7 @@ fetch("data.json?_t=" + Date.now())
   })
   .catch(err => {
     console.error("Failed to load data.json:", err);
-    document.getElementById("home-narrative").textContent = "Błąd ładowania danych.";
+    document.getElementById("home-widgets").textContent = "Błąd ładowania danych.";
   });
 </script>
 </body>

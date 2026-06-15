@@ -152,9 +152,26 @@ Wieloagentowy audyt (16 potwierdzonych findingów) wykazał m.in.: martwy binarn
 - On-chain: fetch wszystko-albo-nic + sanityzacja ring buffera (kumulatywne sumy nie mogą maleć), sygnał "coverage low" gdy śledzone adresy nieaktywne, progi znormalizowane per 24h (BNB: 0,5% śledzonego salda), etykieta "zmiana salda śledzonych portfeli" zamiast "net flow → Binance"
 - cycle_score spójny z forecast_cycle (od mies. 24 opada z 50 o 4/mies. — poniżej pasma "Spokój" od ~25,4 mies.; wcześniej wisiał przy 51 mimo narracji "po szczycie, bearish")
 
+## Redesign 2026-06-15 — narzędzie buy-centryczne (WAŻNE: nadpisuje część decyzji wyżej)
+
+Cel od użytkownika: *„uprość do dwóch metryk per BTC/BNB na home, za dużo metryk i opisów; zielony = kolor największej szansy żeby kupić; w podglądzie coina max 4 metryki; zoptymalizuj reguły kiedy kupić. To narzędzie używane raz dziennie, żeby zorientować się jak kurs i czy warto dziś kupić."*
+
+**Kluczowa zmiana koncepcyjna:** główna liczba 0–100 to już **WYNIK OKAZJI do kupna**, nie „sentyment". High = rynek w strachu + tanio + wyprzedany = **zielony = kupuj**. Używa tej samej palety kolorów (high=zielony), więc kolor niesie wprost jedno znaczenie. To eliminuje dawną sprzeczność (zielony=chciwość, choć dla DCA-kupującego najlepiej kupować w strachu). **Sentyment/mood (Krew…Mania) wycofany z UI.**
+
+- **`opportunity_score(asset, fng, pos_90d, pct_30d)`** w `fetch.py`: ważona suma `100-F&G`, `100-pozycja_w_90d`, `opp_from_pct(trend_30d)`. Wagi per-asset (`OPP_WEIGHTS`): BTC 0.45/0.30/0.25 (F&G ciężki, bo indeks BTC-centryczny), BNB 0.35/0.35/0.30 (własna dynamika cenowa).
+- **Werdykt 3-stopniowy z progów** (`opp_level`, jedno źródło prawdy): `OPP_OKAZJA=74` → **OKAZJA**, `OPP_TAK=42` → **KUP**, niżej → **CZEKAJ**. Skalibrowane backtestem na ~6 mies. realnych cen + F&G: BTC ~30/53/15%, BNB ~40/46/13% (okazja/tak/wstrzymaj). OKAZJA jest wyjątkowa, KUP to codzienność, CZEKAJ realnie zapala się na szczytach (cena na 100% zakresu 90d) — dawny binarny próg dawał 0× NIE.
+- **Forecast 7d przeramowany na OKAZJĘ** (nie sentyment, nie cenę): direction up=okno się poprawia, down=domyka. **Wszystkie znaki reguł odwrócone** względem wersji sentymentowej (wzrost ceny obniża okazję, odbicie ze strachu obniża okazję, faza po szczycie cyklu podnosi okazję). Reszta spec (pasmo+konwikcja+rozbicie+disclaimer) bez zmian — patrz `design.md`.
+- **Home**: 1 kafelek/asset = cena (mute) + wielki wynik okazji + słowo OKAZJA/KUP/CZEKAJ + podtytuł + **dokładnie 2 sygnały** (Nastrój=F&G, Cena=pozycja90d·trend30d). Usunięte: sparkline, mood, badge forecastu, panel DCA, pasek 30 dni, narracja.
+- **Detal**: tylko karta werdyktu (wynik + skala „drogo/neutralnie/okazja" + 4 sygnały) + prognoza okazji 7d. Usunięte: siatka 5 horyzontów, siatka metryk, on-chain, newsy, narracja, zwijane „Szczegóły".
+- **Kolor**: zielony/czerwony zarezerwowane dla sygnału zakupu. Zmiana ceny 24h w nagłówku jest **wyciszona szarym** (sam znak), żeby czerwony spadek nie konkurował z „zielony=kupuj".
+- **`data.json` odchudzone**: usunięte `narrative`, `events`, per-asset `time`/`stats`/`onchain`/`mood`/`score`/`history`/`dca`. Nowe pola per-asset: `opp`, `opp_label`, `verdict` (z `word`, `sublabel`, `opp`, `home_signals`), `forecast`.
+- **Backend**: on-chain liczony tylko gdy ustawiony `TELEGRAM_BOT_TOKEN` (jedyny konsument — alerty); inaczej fetch pomijany. News (`fetch_all_events`) i on-chain nie trafiają do UI. `history.json` zmigrowano (serie score `btc`/`bnb` zresetowane — zmieniły sens z sentymentu na okazję). Martwe helpery sentymentu (`mood_label`, `score_from_pct`, `cycle_score`, `asset_time_block`, `PCT_FULL_SCALE`) pozostają zdefiniowane, ale nieużywane.
+
+> Sekcje „Decyzje produktowe", „Skala sentymentu" i opisy struktury home/detalu **powyżej** opisują stan sprzed tego redesignu — czytaj je przez pryzmat tej sekcji.
+
 ## Status: plan wykonany
 
-Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost.
+Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost. Aktualny kształt produktu definiuje **Redesign 2026-06-15** (wyżej).
 
 **Aktywacja Telegram (opcjonalna, gdy użytkownik zechce):**
 1. Telegram → @BotFather → `/newbot` → skopiuj token

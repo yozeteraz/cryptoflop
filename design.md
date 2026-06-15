@@ -27,7 +27,8 @@
 
 ### Kolory
 - Paleta minimalna (patrz `colors.md`). System colors iOS: red dla danger/negative, green dla success/positive, gray dla neutral.
-- **Kolor niesie znaczenie**: czerwony = strach/spadek, zielony = chciwość/wzrost, szary = spokój/neutralny.
+- **Kolor niesie znaczenie (od 2026-06-15): ZIELONY = okazja do kupna, CZERWONY = drogo/przegrzane, SZARY = neutralnie.** Główna liczba 0–100 to wynik OKAZJI (high = strach/tanio = zielony = kupuj), nie sentyment.
+- **Zielony/czerwony są zarezerwowane dla sygnału zakupu.** Kierunek ceny 24h pokazujemy w nagłówku kafelka **wyciszonym szarym** (sam znak +/−), żeby czerwony spadek ceny nie konkurował z „zielony = kupuj". Kropki sygnałów: zielona = sprzyja zakupowi, czerwona = przeciw, szara = neutralna.
 - Nie używamy koloru "ozdobnie". Każdy kolor coś znaczy.
 
 ### Interaktywność (mobile-first)
@@ -61,39 +62,51 @@
 4. Czy interakcja używa natywnego gestu, czy wymyśla coś nowego? (Nowe = zła droga.)
 5. Czy w stanie pustym/błędu element nadal wygląda spokojnie? (Pełne danych ≠ jedyny stan.)
 
-## Karta „Czy warto dziś kupić?" (dodane 2026-06-12)
+## Redesign „okazja do kupna" (2026-06-15)
 
-Pierwsza sekcja pod widgetem na detalu — jedyne, co nie-trader musi przeczytać. Reszta (narracja, siatka czasu, metryki, forecast, on-chain, newsy) żyje pod zwijanym wierszem „Szczegóły i metryki" (wzorzec iOS Settings, chevron).
+Narzędzie służy do JEDNEGO: raz dziennie zerknąć, jak wygląda kurs i **czy warto dziś dokupić**. Cała aplikacja jest teraz buy-centryczna, nie „sentyment-centryczna".
 
-1. **Werdykt słowem**: TAK (zielony) / NIE (czerwony) + podtytuł poziomu: „dobry moment — rynek w strachu" (okazja, złoty akcent) / „normalny dzień DCA" / „rynek rozgrzany — przeczekaj".
-2. **Pasek skali 0–100** (gradient palety, marker w kolorze score) z podpisami strach/spokój/mania — wizualna kotwica zamiast gołej liczby. To pasek, nie gauge/dial.
-3. **4 sygnały prostym językiem**, każdy z kropką: zielona = sprzyja zakupowi, szara = neutralna, czerwona = przemawia przeciw. Stały zestaw: Nastrój rynku (F&G) · Cena vs 3 mies. (pozycja w zakresie 90d) · Trend 30 dni · Prognoza 7 dni (zawsze szara — prognoza to nie fakt).
-4. **Stopka**: legenda kropek + „nie porada inwestycyjna i nie prognoza ceny". Nie znika.
-5. Cała treść (werdykt, headline, sygnały) generowana w `fetch.py` → `verdict` w data.json. JS niczego nie interpretuje.
+### Home — minimalizm (2 metryki per asset)
 
-## Rules-based forecast (dodane 2026-05-13)
+Jeden kafelek na asset (BTC, BNB), full-width, stackowane. Zawartość:
+1. **Nagłówek**: `BTC · Bitcoin` (lewo) + cena + zmiana 24h **wyciszona szarym** (prawo).
+2. **Hero**: wielka liczba okazji 0–100 w kolorze skali (zielony = kupuj) + słowo-werdykt **OKAZJA / KUP / CZEKAJ** w tym samym kolorze + `/100`.
+3. **Podtytuł 1-zdaniowy**: „dobry moment na zakup — rynek w strachu" (okazja, złoty akcent) / „zwykły dzień DCA" / „drogo — rozważ przeczekanie".
+4. **Dokładnie 2 sygnały** (hairline): **Nastrój** (F&G) i **Cena** (pozycja w 90d · zmiana 30d), każdy z kropką zielona/szara/czerwona.
 
-Predykcja kierunku **sentymentu** (nie ceny) w horyzoncie 7 dni. To nie szklana kula — to probabilistyczna ekstrapolacja czterech składowych: wolumen, mean reversion, momentum oraz cykl halvingu (BTC) / siła relatywna BNB/BTC (BNB). Baza prognozy to średnia score z ostatnich odświeżeń (odporna na szum 24h). Frame'ujemy ostro żeby user nie traktował tego jak sygnał handlowy.
+Usunięte z home (było „za dużo"): sparkline, mood label, badge forecastu, panel DCA, pasek 30 dni, narracja „Co się dzieje".
+
+### Detal coina — max 4 metryki
+
+Po tapnięciu kafelka (iOS sheet, swipe BTC↔BNB). Tylko dwa bloki:
+1. **Karta „Czy warto dziś kupić?"** = hero detalu: cena (mute), wielka liczba okazji + słowo-werdykt, podtytuł, headline, **pasek skali 0–100** (gradient palety, marker w kolorze okazji) z podpisami **drogo / neutralnie / okazja**, oraz **4 sygnały** (= 4 metryki): Nastrój rynku · Cena vs 3 mies. · Trend 30 dni · Prognoza 7 dni (zawsze szara kropka). Stopka: legenda kropek + „nie porada inwestycyjna i nie prognoza ceny".
+2. **Prognoza okazji 7d** (patrz niżej).
+
+Usunięte z detalu: siatka 5 horyzontów, osobna siatka metryk, on-chain (martwy czujnik wg audytu), newsy, narracja, zwijany „Szczegóły".
+
+Cała treść (werdykt, headline, sygnały, home_signals) generowana w `fetch.py` → `verdict` w data.json. JS niczego nie interpretuje.
+
+## Rules-based forecast — OKAZJI (dodane 2026-05-13, przeramowane 2026-06-15)
+
+Predykcja kierunku **okazji do kupna** (nie ceny, nie „sentymentu") w horyzoncie 7 dni: czy okno zakupowe raczej się **poprawi** (up) czy **domknie** (down). To nie szklana kula — to probabilistyczna ekstrapolacja czterech składowych: wolumen, mean reversion, momentum oraz cykl halvingu (BTC) / siła relatywna BNB/BTC (BNB). **Uwaga przy edycji reguł:** delty dotyczą OKAZJI, nie ceny — wzrost ceny OBNIŻA okazję, odbicie ze strachu OBNIŻA okazję, faza po szczycie cyklu PODNOSI okazję. Baza prognozy to średnia wyniku okazji z ostatnich odświeżeń (odporna na szum 24h).
 
 ### Co MUSI być na ekranie kiedy pokazujemy forecast
 
-1. **Pasmo, nie pojedynczy punkt**. Nigdy „score będzie 48". Zawsze „pasmo 42–56".
+1. **Pasmo, nie pojedynczy punkt**. Nigdy „okazja będzie 48". Zawsze „pasmo 42–56".
 2. **Konwikcja jawna**. Zawsze obok pasma: `low / medium / high`. Konwikcja wynika z agreement między regułami — im bardziej zgodne, tym węższe pasmo i wyższa konwikcja.
-3. **Rozbicie regła-po-regle na detalu**. Cztery wiersze: nazwa reguły · delta · krótka note wyjaśniająca. Suma. To jest "show your work" — user widzi *dlaczego* forecast jest taki.
-4. **Disclaimer**. 11px, italic, muted. Tekst: „Forecast to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku." Disclaimer nie znika nigdy.
+3. **Rozbicie regła-po-regle na detalu**. Wiersze: nazwa reguły · delta · krótka note wyjaśniająca. Suma. To "show your work" — user widzi *dlaczego* forecast jest taki.
+4. **Disclaimer**. 11px, italic, muted: „Prognoza okazji to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku." Nie znika nigdy.
 
 ### Czego NIE robimy
 
-- **Nie pokazujemy** mocnych słów „BUY / SELL / KUPUJ TERAZ". Forecast jest stwierdzeniem o setupu, nie nakazem.
-- **Nie używamy** klasycznych czerwono-zielonych „signal" kolorów dla strzałki direction. Strzałka jest w kolorze sentymentu mid-range, neutralna emocjonalnie.
-- **Nie pokazujemy** prognozy CENY w $$. Nigdy. Inny produkt, inne zasady, nie ten projekt.
-- **Nie pokazujemy** historical accuracy ("75% poprzednich forecastów się sprawdziło") — to wydawałoby gwarancję, której nie ma.
+- **Nie pokazujemy** mocnych słów „BUY / SELL / KUPUJ TERAZ". Werdykt OKAZJA/KUP/CZEKAJ to ocena stanu, nie nakaz intraday.
+- **Nie używamy** żadnych kolorów niosących ocenę dla strzałki direction. Strzałka jest w **wyciszonym szarym** (`--muted-2`) — zielona strzałka „okno się domyka" (↘) byłaby sprzeczna, skoro zielony = kupuj. Strzałka tylko wskazuje kierunek, nie ocenia.
+- **Nie pokazujemy** prognozy CENY w $$. Nigdy.
+- **Nie pokazujemy** historical accuracy — to udawałoby gwarancję, której nie ma.
 
 ### Estetyka
 
-- Badge na widget home: jeden wiersz, 11px muted. Format: `↗ za 7d: 42–56 · medium`. Strzałka w kolorze sentymentu pasma środkowego, nie systemowo zielony/czerwony.
-- Sekcja na detalu: ten sam wzorzec co Metryki (panel + hairlines), nie wyróżnia się wizualnie — forecast to JEDNA Z metryk, nie centralny element.
-- Reguły jako lista: nazwa (muted) · delta (pos/neg/neutral kolor numeryczny) · note (muted mniejszy font).
+- Sekcja na detalu: ten sam wzorzec co karta werdyktu (panel + hairlines). Reguły jako lista: nazwa (muted) · delta (pos/neg/neutral kolor numeryczny) · note (muted mniejszy font).
 
 ---
 

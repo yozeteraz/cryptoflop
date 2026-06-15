@@ -30,21 +30,23 @@ Pełna paleta używana w mockupie dashboardu. Podzielona na warstwy: brand, UI/t
 
 ---
 
-## Skala sentymentu (0–100)
+## Skala OKAZJI do kupna (0–100)
 
-Od paniki (czerwień) przez spokój (szary) do euforii (zieleń). Szary w środku to **świadoma decyzja** — neutralność nie powinna być żółta/oliwkowa, bo to sugeruje ostrzeżenie. Pomarańcz i limonka jako „przedmuchy" wokół neutrum.
+> **Zmiana 2026-06-15:** ta sama paleta, ale znaczenie odwrócone. Główna liczba 0–100 to teraz **wynik okazji do kupna**, nie „sentyment". **Zielony = największa szansa na zakup** (rynek w strachu i tanio). Czerwony = drogo / przegrzane (słaby moment na dokup). Hexy bez zmian — zmienił się sens, który niosą.
 
-| Score | Hex | Znaczenie | Mood label |
+Od „drogo / przegrzane" (czerwień) przez „neutralnie" (szary) do „okazja" (zieleń). Szary w środku to **świadoma decyzja** — neutralność nie jest żółta/oliwkowa, bo to sugerowałoby ostrzeżenie. Pomarańcz i limonka jako „przedmuchy" wokół neutrum.
+
+| OPP | Hex | Znaczenie | Label okazji |
 |---|---|---|---|
-| 0   | `#dc2626` | Najniższy — głęboka panika | Krew / kapitulacja |
-| 15  | `#ef4444` | Mocny strach | Wyprzedaż |
-| 30  | `#f97316` | Negatyw, ostrzeżenie | Słabość / niepokój |
-| 45  | `#9ca3af` | **Neutrum** | Spokój |
-| 55  | `#84cc16` | Wczesny pozytyw | Wzmocnienie |
-| 65  | `#4ade80` | Pozytyw | Siła |
-| 75  | `#22c55e` | Mocny pozytyw | Hossa |
-| 85  | `#16a34a` | Bardzo silny pozytyw | Mocna hossa |
-| 100 | `#15803d` | Najwyższy — euforia | Mania |
+| 0   | `#dc2626` | Najgorszy moment — przegrzane | Przegrzane |
+| 15  | `#ef4444` | Drogo | Drogo |
+| 30  | `#f97316` | Raczej drogo | Raczej drogo |
+| 45  | `#9ca3af` | **Neutrum** — zwykły dzień | Zwykły dzień |
+| 55  | `#84cc16` | Lekko sprzyja zakupom | Sprzyja zakupom |
+| 65  | `#4ade80` | Sprzyja zakupom | Sprzyja zakupom |
+| 75  | `#22c55e` | Dobra okazja (rynek w strachu) | Dobra okazja |
+| 85  | `#16a34a` | Bardzo dobra okazja | Wyjątkowa okazja |
+| 100 | `#15803d` | Najlepszy moment — głęboki strach + tanio | Wyjątkowa okazja |
 
 ## Wskaźniki zmian (delta — strzałki, % zmian)
 
