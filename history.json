@@ -7,6 +7,7 @@
       79,
       77,
       76,
+      78,
       78
     ],
     "bnb": [
@@ -16,7 +17,8 @@
       71,
       70,
       69,
-      73
+      73,
+      72
     ]
   },
   "score_version": "opportunity_v1",
@@ -82,7 +84,7 @@
     76,
     73,
     71,
-    73
+    72
   ],
   "btc_opp_daily_last_date": "2026-06-16",
   "bnb_opp_daily_last_date": "2026-06-16"
