@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-19T21:08:04.971322+00:00",
+  "fetched_at": "2026-06-19T22:54:58.049564+00:00",
   "header_label": "piątek, 19 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 108",
-      "price_change_24h": 0.1,
+      "price": "$63 273",
+      "price_change_24h": 0.7,
       "opp": 87,
       "opp_label": "Dobra okazja",
       "opp_30d": [
@@ -64,7 +64,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-18,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-18,3% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -81,25 +81,25 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-18,5%/30d · taniej niż miesiąc temu"
+            "text": "-18,3%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 88,
+        "score_base": 87,
         "score_range": [
-          84,
-          100
+          81,
+          97
         ],
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 4,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-35% vs 30d) — słabe potwierdzenie"
+            "delta": 0,
+            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem"
           },
           {
             "name": "Mean reversion",
@@ -124,7 +124,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$580",
-      "price_change_24h": 0.2,
+      "price_change_24h": 0.3,
       "opp": 84,
       "opp_label": "Dobra okazja",
       "opp_30d": [
@@ -181,7 +181,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-10,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-10,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -198,7 +198,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-10,5%/30d · taniej niż miesiąc temu"
+            "text": "-10,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -216,7 +216,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-25% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-27% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -231,7 +231,7 @@
           {
             "name": "BNB/BTC",
             "delta": 2,
-            "note": "BNB/BTC -3,2% w 7d — relatywna słabość, większy rabat vs BTC"
+            "note": "BNB/BTC -3,4% w 7d — relatywna słabość, większy rabat vs BTC"
           }
         ]
       }
