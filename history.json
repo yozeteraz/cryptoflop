@@ -22,7 +22,8 @@
       84,
       88,
       87,
-      87
+      87,
+      88
     ],
     "bnb": [
       68,
@@ -46,12 +47,12 @@
       80,
       85,
       85,
-      84
+      84,
+      85
     ]
   },
   "score_version": "opportunity_v1",
   "btc_opp_daily": [
-    51,
     52,
     58,
     56,
@@ -80,10 +81,10 @@
     79,
     78,
     81,
-    87
+    87,
+    88
   ],
   "bnb_opp_daily": [
-    49,
     46,
     50,
     48,
@@ -112,8 +113,9 @@
     71,
     72,
     74,
-    84
+    84,
+    85
   ],
-  "btc_opp_daily_last_date": "2026-06-18",
-  "bnb_opp_daily_last_date": "2026-06-18"
+  "btc_opp_daily_last_date": "2026-06-19",
+  "bnb_opp_daily_last_date": "2026-06-19"
 }
