@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-22T17:38:51.672809+00:00",
+  "fetched_at": "2026-06-22T20:44:45.874894+00:00",
   "header_label": "poniedziałek, 22 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 403",
-      "price_change_24h": 0.6,
+      "price": "$64 432",
+      "price_change_24h": 0.8,
       "opp": 81,
       "opp_label": "Sprzyja zakupom",
       "opp_30d": [
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-20% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -123,9 +123,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$593",
-      "price_change_24h": 0.7,
-      "opp": 78,
+      "price": "$591",
+      "price_change_24h": 0.3,
+      "opp": 79,
       "opp_label": "Sprzyja zakupom",
       "opp_30d": [
         46,
@@ -157,14 +157,14 @@
         84,
         79,
         79,
-        78
+        79
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 78,
+        "opp": 79,
         "fng": 20,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -176,12 +176,12 @@
           {
             "label": "Cena vs 3 mies.",
             "tone": "good",
-            "text": "nisko w zakresie 3 mies. (15%) — kupujesz blisko lokalnego dołka"
+            "text": "nisko w zakresie 3 mies. (13%) — kupujesz blisko lokalnego dołka"
           },
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-9,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-9,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -198,16 +198,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-9,5%/30d · taniej niż miesiąc temu"
+            "text": "-9,8%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 78,
+        "score_base": 79,
         "score_range": [
-          69,
-          85
+          70,
+          86
         ],
         "direction": "flat",
         "confidence": "medium",
@@ -231,7 +231,7 @@
           {
             "name": "BNB/BTC",
             "delta": 0,
-            "note": "BNB/BTC -1,0% w 7d — porusza się z rynkiem"
+            "note": "BNB/BTC -1,4% w 7d — porusza się z rynkiem"
           }
         ]
       }
