@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-23T15:45:47.262290+00:00",
+  "fetched_at": "2026-06-23T17:51:10.174091+00:00",
   "header_label": "wtorek, 23 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 229",
-      "price_change_24h": -4.2,
+      "price": "$62 427",
+      "price_change_24h": -3.3,
       "opp": 85,
       "opp_label": "Dobra okazja",
       "opp_30d": [
@@ -59,12 +59,12 @@
           {
             "label": "Cena vs 3 mies.",
             "tone": "good",
-            "text": "nisko w zakresie 3 mies. (6%) — kupujesz blisko lokalnego dołka"
+            "text": "nisko w zakresie 3 mies. (7%) — kupujesz blisko lokalnego dołka"
           },
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-19,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-18,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -81,16 +81,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-19,2%/30d · taniej niż miesiąc temu"
+            "text": "-18,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 83,
+        "score_base": 84,
         "score_range": [
-          76,
-          92
+          77,
+          93
         ],
         "direction": "flat",
         "confidence": "medium",
@@ -104,7 +104,7 @@
           {
             "name": "Mean reversion",
             "delta": -5,
-            "note": "F&G 23 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (6%) — odbicie prawdopodobne"
+            "note": "F&G 23 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (7%) — odbicie prawdopodobne"
           },
           {
             "name": "Momentum",
@@ -123,8 +123,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$573",
-      "price_change_24h": -4.1,
+      "price": "$574",
+      "price_change_24h": -3.5,
       "opp": 84,
       "opp_label": "Dobra okazja",
       "opp_30d": [
@@ -181,7 +181,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-12,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-12,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -198,16 +198,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-12,7%/30d · taniej niż miesiąc temu"
+            "text": "-12,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 81,
+        "score_base": 82,
         "score_range": [
-          70,
-          86
+          71,
+          87
         ],
         "direction": "down",
         "confidence": "medium",
@@ -231,7 +231,7 @@
           {
             "name": "BNB/BTC",
             "delta": 0,
-            "note": "BNB/BTC -0,1% w 7d — porusza się z rynkiem"
+            "note": "BNB/BTC -0,3% w 7d — porusza się z rynkiem"
           }
         ]
       }
