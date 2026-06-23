@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-23T22:10:00.453310+00:00",
+  "fetched_at": "2026-06-23T23:54:35.079497+00:00",
   "header_label": "wtorek, 23 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 642",
-      "price_change_24h": -2.5,
+      "price": "$62 658",
+      "price_change_24h": -2.0,
       "opp": 84,
       "opp_label": "Dobra okazja",
       "opp_30d": [
@@ -87,19 +87,19 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 84,
+        "score_base": 85,
         "score_range": [
           77,
           93
         ],
         "direction": "flat",
         "confidence": "medium",
-        "total_delta": 1,
+        "total_delta": 0,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)"
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-11% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -123,8 +123,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$577",
-      "price_change_24h": -2.3,
+      "price": "$578",
+      "price_change_24h": -2.0,
       "opp": 83,
       "opp_label": "Sprzyja zakupom",
       "opp_30d": [
@@ -204,10 +204,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 83,
+        "score_base": 84,
         "score_range": [
-          72,
-          88
+          73,
+          89
         ],
         "direction": "down",
         "confidence": "medium",
@@ -216,7 +216,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-40% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-39% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -231,7 +231,7 @@
           {
             "name": "BNB/BTC",
             "delta": 0,
-            "note": "BNB/BTC -0,0% w 7d — porusza się z rynkiem"
+            "note": "BNB/BTC +0,0% w 7d — porusza się z rynkiem"
           }
         ]
       }
