@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-25T17:10:56.910770+00:00",
+  "fetched_at": "2026-06-25T19:57:22.644630+00:00",
   "header_label": "czwartek, 25 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$59 164",
-      "price_change_24h": -0.9,
+      "price": "$59 251",
+      "price_change_24h": -1.0,
       "opp": 93,
       "opp_label": "Wyjątkowa okazja",
       "opp_30d": [
@@ -64,7 +64,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-22,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-21,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -81,15 +81,15 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-22,0%/30d · taniej niż miesiąc temu"
+            "text": "-21,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 91,
+        "score_base": 92,
         "score_range": [
-          84,
+          85,
           100
         ],
         "direction": "up",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +36% vs 30d — okno zakupowe się otwiera przekonująco"
+            "note": "Ruch w dół z wolumenem +22% vs 30d — okno zakupowe się otwiera przekonująco"
           },
           {
             "name": "Mean reversion",
@@ -186,7 +186,7 @@
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się domykać (pewność: niska) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -206,17 +206,17 @@
         "horizon_days": 7,
         "score_base": 89,
         "score_range": [
-          77,
-          99
+          76,
+          98
         ],
-        "direction": "flat",
+        "direction": "down",
         "confidence": "low",
-        "total_delta": -1,
+        "total_delta": -2,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-4% vs 30d)"
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-12% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
@@ -231,7 +231,7 @@
           {
             "name": "BNB/BTC",
             "delta": 0,
-            "note": "BNB/BTC +1,8% w 7d — porusza się z rynkiem"
+            "note": "BNB/BTC +1,6% w 7d — porusza się z rynkiem"
           }
         ]
       }
