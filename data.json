@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-25T21:47:17.797110+00:00",
+  "fetched_at": "2026-06-25T23:16:14.079049+00:00",
   "header_label": "czwartek, 25 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$59 854",
-      "price_change_24h": -1.8,
+      "price": "$59 849",
+      "price_change_24h": -1.6,
       "opp": 93,
       "opp_30d": [
         64,
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+18% vs 30d)"
+            "note": "Ruch w dół z umiarkowanym wolumenem (+19% vs 30d)"
           },
           {
             "name": "Powrót do średniej",
@@ -175,7 +175,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-14,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-14,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -187,7 +187,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-14,8%/30d · taniej niż miesiąc temu"
+            "text": "-14,7%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -221,7 +221,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,6% w 7d — porusza się z rynkiem"
+            "note": "BNB względem Bitcoina +1,7% w 7d — porusza się z rynkiem"
           }
         ]
       }
