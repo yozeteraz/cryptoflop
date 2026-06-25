@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-06-25T00:09:58.467293+00:00",
+  "fetched_at": "2026-06-25T05:03:34.852108+00:00",
   "header_label": "czwartek, 25 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 979",
-      "price_change_24h": -2.8,
-      "opp": 92,
+      "price": "$61 333",
+      "price_change_24h": -2.2,
+      "opp": 91,
       "opp_label": "Wyjątkowa okazja",
       "opp_30d": [
         64,
@@ -40,14 +40,14 @@
         83,
         84,
         90,
-        92
+        91
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "dobry moment na zakup — rynek w strachu",
-        "opp": 92,
+        "opp": 91,
         "fng": 12,
         "headline": "Rynek jest w strachu, a BTC jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
@@ -59,17 +59,17 @@
           {
             "label": "Cena vs 3 mies.",
             "tone": "good",
-            "text": "nisko w zakresie 3 mies. (1%) — kupujesz blisko lokalnego dołka"
+            "text": "nisko w zakresie 3 mies. (2%) — kupujesz blisko lokalnego dołka"
           },
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-21,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-19,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się poprawić (pewność: niska) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -81,20 +81,20 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-21,1%/30d · taniej niż miesiąc temu"
+            "text": "-19,1%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 90,
+        "score_base": 91,
         "score_range": [
-          80,
+          84,
           100
         ],
-        "direction": "flat",
+        "direction": "up",
         "confidence": "low",
-        "total_delta": 1,
+        "total_delta": 4,
         "rules": [
           {
             "name": "Wolumen",
@@ -104,12 +104,12 @@
           {
             "name": "Mean reversion",
             "delta": -7,
-            "note": "F&G 12 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (1%) — odbicie prawdopodobne"
+            "note": "F&G 12 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (2%) — odbicie prawdopodobne"
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)"
+            "delta": 3,
+            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje"
           },
           {
             "name": "Cykl",
@@ -123,10 +123,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$564",
-      "price_change_24h": -2.4,
-      "opp": 90,
-      "opp_label": "Wyjątkowa okazja",
+      "price": "$568",
+      "price_change_24h": -1.6,
+      "opp": 88,
+      "opp_label": "Dobra okazja",
       "opp_30d": [
         52,
         56,
@@ -157,14 +157,14 @@
         80,
         83,
         88,
-        90
+        88
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "dobry moment na zakup — rynek w strachu",
-        "opp": 90,
+        "opp": 88,
         "fng": 12,
         "headline": "Rynek jest w strachu, a BNB jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
@@ -176,12 +176,12 @@
           {
             "label": "Cena vs 3 mies.",
             "tone": "good",
-            "text": "nisko w zakresie 3 mies. (0%) — kupujesz blisko lokalnego dołka"
+            "text": "nisko w zakresie 3 mies. (3%) — kupujesz blisko lokalnego dołka"
           },
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-14,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-13,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -198,7 +198,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-14,8%/30d · taniej niż miesiąc temu"
+            "text": "-13,4%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -206,32 +206,32 @@
         "horizon_days": 7,
         "score_base": 88,
         "score_range": [
-          72,
-          94
+          75,
+          97
         ],
         "direction": "down",
         "confidence": "low",
-        "total_delta": -5,
+        "total_delta": -2,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-21% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Mean reversion",
             "delta": -7,
-            "note": "F&G 12 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (0%) — odbicie prawdopodobne"
+            "note": "F&G 12 (strach) — rynek wyprzedany, odbicie domyka okno; Cena w dnie zakresu 90d (3%) — odbicie prawdopodobne"
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)"
+            "delta": 3,
+            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje"
           },
           {
             "name": "BNB/BTC",
             "delta": 0,
-            "note": "BNB/BTC -0,8% w 7d — porusza się z rynkiem"
+            "note": "BNB/BTC +0,7% w 7d — porusza się z rynkiem"
           }
         ]
       }
