@@ -14,7 +14,7 @@
     --border:    #232b3a;
     --text:      #e6e9ef;
     --muted:     #8a93a6;
-    --muted-2:   #6b7385;
+    --muted-2:   #7d8597;  /* podbite z #6b7385 do progu WCAG AA (~4.6:1 na panelu) — audyt 2026-06-25 */
     --accent:    #c4a878;
 
     --c-0:   #dc2626;
@@ -127,7 +127,9 @@
   .scale-wrap { margin-top: 20px; }
   .scale-bar {
     position: relative; height: 8px; border-radius: 4px;
-    background: linear-gradient(90deg, #dc2626 0%, #ef4444 15%, #f97316 30%, #9ca3af 45%, #9ca3af 55%, #84cc16 62%, #4ade80 70%, #22c55e 78%, #16a34a 88%, #15803d 100%);
+    /* Przystanki wyrównane do punktów łamania scoreColor (16/28/42/54/66/76/84/90),
+       żeby marker (kolor = scoreColor) zawsze siedział na pasku w swoim kolorze. */
+    background: linear-gradient(90deg, #dc2626 8%, #ef4444 22%, #f97316 35%, #9ca3af 48%, #84cc16 60%, #4ade80 71%, #22c55e 80%, #16a34a 87%, #15803d 95%);
     opacity: 0.85;
   }
   .scale-marker {
@@ -358,16 +360,20 @@
 </div>
 
 <script>
+/* Punkty łamania zsynchronizowane z progami werdyktu (OPP_TAK=42, OPP_OKAZJA=84,
+   "wyjątkowa"=90) — audyt 2026-06-25. Dzięki temu: pomarańcz "drogo" kończy się
+   dokładnie na progu KUP (42), więc kolor nigdy nie maluje KUP na "drogo"; OKAZJA
+   (>=84) dostaje własną głębszą zieleń (c-85), a "wyjątkowa" (>=90) najgłębszą. */
 function scoreColor(s){
-  if (s<15)  return "var(--c-0)";
-  if (s<30)  return "var(--c-15)";
-  if (s<45)  return "var(--c-30)";
-  if (s<55)  return "var(--c-45)";
-  if (s<65)  return "var(--c-55)";
-  if (s<75)  return "var(--c-65)";
-  if (s<85)  return "var(--c-75)";
-  if (s<95)  return "var(--c-85)";
-  return "var(--c-100)";
+  if (s<16)  return "var(--c-0)";   // Przegrzane
+  if (s<28)  return "var(--c-15)";  // Drogo
+  if (s<42)  return "var(--c-30)";  // Raczej drogo (pomarańcz kończy się na progu KUP)
+  if (s<54)  return "var(--c-45)";  // KUP — neutralny szary
+  if (s<66)  return "var(--c-55)";  // KUP — lime
+  if (s<76)  return "var(--c-65)";  // KUP — zieleń
+  if (s<84)  return "var(--c-75)";  // KUP górny — mocna zieleń
+  if (s<90)  return "var(--c-85)";  // OKAZJA — głęboka zieleń
+  return "var(--c-100)";            // Wyjątkowa okazja — najgłębsza zieleń
 }
 
 function fmtPct(v) {
@@ -421,7 +427,7 @@ function assetCardInnerHtml(asset) {
       <span class="ac-word">${v.word || ""}</span>
       <span class="ac-scale">/100</span>
     </div>
-    <div class="ac-sub ${subCls}">${v.sublabel || asset.opp_label || ""}</div>
+    <div class="ac-sub ${subCls}">${v.sublabel || ""}</div>
     <div class="ac-signals">${homeSignalsHtml(v)}</div>
     ${strip30Html(asset.opp_30d)}
   `;
@@ -465,7 +471,7 @@ function renderVerdictBlock(asset) {
   section.className = "block";
   section.innerHTML = `
     <h3 class="section">Czy warto dziś kupić?</h3>
-    <p class="section-sub">Jeden wynik okazji (zielony = kupuj) i cztery sygnały: nastrój rynku, czy tanio, trend miesiąca, najbliższy tydzień.</p>
+    <p class="section-sub">Jeden wynik okazji (zielony = kupuj) i sygnały prostym językiem: nastrój rynku, czy tanio i trend miesiąca; prognoza tygodnia w bloku niżej.</p>
     <div class="verdict-block" style="--opp-color:${scoreColor(opp)}">
       <div class="vb-price">${asset.price} · ${fmtPct(asset.price_change_24h)} 24h</div>
       <div class="verdict-row">
@@ -489,6 +495,9 @@ function renderForecastBlock(asset) {
   const f = asset.forecast;
   if (!f) return "";
   const [lo, hi] = f.score_range;
+  // Pasmo przyklejone do krawędzi skali pokazujemy jednostronnie ("≥ 85"),
+  // bo "[85,100]" udawało przedział z martwym górnym końcem (audyt 2026-06-25).
+  const bandTxt = f.clamped === "hi" ? `≥ ${lo}` : f.clamped === "lo" ? `≤ ${hi}` : `pasmo ${lo}–${hi}`;
   const arrow = forecastArrow(f.direction);
   const rules = (f.rules || []).map(r => {
     const cls = r.delta > 0 ? "pos" : r.delta < 0 ? "neg" : "zero";
@@ -503,7 +512,7 @@ function renderForecastBlock(asset) {
     <div class="forecast-block">
       <div class="fc-head">
         <span class="fc-arrow">${arrow}</span>
-        <span>pasmo ${lo}–${hi}</span>
+        <span>${bandTxt}</span>
         <span class="fc-conf">pewność: ${confLabelPl(f.confidence)}</span>
       </div>
       <ul class="fc-rules">${rules}</ul>
@@ -653,6 +662,39 @@ function attachSwipe() {
   });
 }
 
+/* Swipe-down-to-dismiss na nagłówku arkusza — grabber afordancja iOS (audyt
+   2026-06-25). Pionowy gest tylko na .sheet-header, więc nie koliduje z
+   poziomym pagerem (w .sheet-content) ani ze scrollem treści. */
+function attachSheetDismiss() {
+  const sheet = document.getElementById("detail-view");
+  const header = document.getElementById("sheet-header");
+  let startY = 0, dy = 0, dragging = false;
+
+  header.addEventListener("touchstart", e => {
+    if (e.touches.length !== 1) return;
+    startY = e.touches[0].clientY;
+    dy = 0; dragging = true;
+    sheet.style.transition = "none";
+  }, { passive: true });
+
+  header.addEventListener("touchmove", e => {
+    if (!dragging) return;
+    dy = e.touches[0].clientY - startY;
+    if (dy < 0) dy = dy / 4;            // opór przy ciągnięciu w górę
+    sheet.style.transform = `translateY(${dy}px)`;
+  }, { passive: true });
+
+  function release() {
+    if (!dragging) return;
+    dragging = false;
+    sheet.style.transition = "";        // przywróć CSS (snap z powrotem / slide-down)
+    sheet.style.transform = "";         // oddaj kontrolę CSS-owi
+    if (dy > 90) navigate("home");      // próg zamknięcia
+  }
+  header.addEventListener("touchend", release, { passive: true });
+  header.addEventListener("touchcancel", release, { passive: true });
+}
+
 /* Keyboard arrows on detail */
 document.addEventListener("keydown", e => {
   if (routeFromHash() === "home") return;
@@ -677,11 +719,20 @@ fetch("data.json?_t=" + Date.now())
     renderHome(data);
     renderDetail(data);
     attachSwipe();
+    attachSheetDismiss();
     applyRoute(routeFromHash());
   })
   .catch(err => {
     console.error("Failed to load data.json:", err);
-    document.getElementById("home-widgets").textContent = "Błąd ładowania danych.";
+    const dateEl = document.getElementById("home-date");
+    if (dateEl) dateEl.textContent = "—";
+    document.getElementById("home-widgets").innerHTML = `
+      <div class="asset-card" style="text-align:center; color:var(--muted); cursor:default;">
+        Nie udało się załadować danych rynku.
+        <div style="margin-top:14px;">
+          <button onclick="location.reload()" style="color:var(--accent); font-size:13px; font-weight:600;">Spróbuj ponownie</button>
+        </div>
+      </div>`;
   });
 </script>
 </body>

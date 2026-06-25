@@ -187,6 +187,20 @@ def push_daily_opp(history, key, opp):
     return list(arr)
 
 
+def okazja_streak(daily, threshold=None):
+    """Ile ostatnich DNI z rzędu (z dziennej serii okazji) wynik >= próg OKAZJA.
+    Służy do ramki "okno otwarte od N dni — akumuluj wg planu" zamiast codziennego
+    superlatywu "wyjątkowa okazja" w utrzymującej się bessie (audyt 2026-06-25)."""
+    th = OPP_OKAZJA if threshold is None else threshold
+    s = 0
+    for v in reversed(daily):
+        if v >= th:
+            s += 1
+        else:
+            break
+    return s
+
+
 def forecast_volume(price_change_7d, vol_now, vol_30d_avg):
     """Wolumen POTWIERDZA ruch ceny. Cena w górę z wolumenem => okazja maleje
     (drożeje przekonująco); cena w dół z wolumenem => okazja rośnie. Delta
@@ -206,15 +220,29 @@ def forecast_volume(price_change_7d, vol_now, vol_30d_avg):
         return (-3 * direction, f"Ruch {kierunek_s} z umiarkowanym wolumenem ({pct_str} vs 30d)")
 
 
-def forecast_mean_reversion(fng, prices):
+def forecast_mean_reversion(fng, prices, trend30=0.0):
     """Skrajności wracają do średniej. Strach/tanio (wysoka okazja DZIŚ) zwykle
     odbija => okazja MALEJE (okno się domyka). Chciwość/drogo => korekta może
-    OTWORZYĆ lepsze okno => okazja rośnie. Delta dotyczy okazji."""
+    OTWORZYĆ lepsze okno => okazja rośnie. Delta dotyczy okazji.
+
+    BRAMKA TRENDU (audyt 2026-06-25): w utrzymanym trendzie spadkowym
+    (trend30 <= CHEAP_30D_PCT ORAZ cena wciąż przy dnie 90d) zakład o odbicie
+    jest systematycznie błędny — to właśnie ujemny wkład tej reguły mylił
+    kierunek prognozy 0/3 razy w realnym oknie 15-25.06 (strach pogłębiał się,
+    a okazja rosła). W takim reżimie wyciszamy kontrariański (ujemny) wkład."""
+    pos = None
+    if len(prices) >= 90:
+        window = prices[-90:]
+        lo, hi = min(window), max(window)
+        if hi > lo:
+            pos = (prices[-1] - lo) / (hi - lo)
+    strong_downtrend = trend30 <= CHEAP_30D_PCT and pos is not None and pos < 0.15
+
     delta_v = 0
     notes = []
     if fng <= 35:
         d = min(4, round((35 - fng) * 0.2))
-        if d:
+        if d and not strong_downtrend:
             delta_v -= d
             notes.append(f"F&G {fng} (strach) — rynek wyprzedany, odbicie domyka okno")
     elif fng >= 65:
@@ -223,18 +251,16 @@ def forecast_mean_reversion(fng, prices):
             delta_v += d
             notes.append(f"F&G {fng} (chciwość) — korekta może otworzyć lepsze okno")
 
-    if len(prices) >= 90:
-        window = prices[-90:]
-        lo, hi = min(window), max(window)
-        if hi > lo:
-            pos = (prices[-1] - lo) / (hi - lo)
-            if pos > 0.9:
-                delta_v += 3
-                notes.append(f"Cena w szczycie zakresu 90d ({pos*100:.0f}%) — przestrzeń do spadku")
-            elif pos < 0.1:
-                delta_v -= 3
-                notes.append(f"Cena w dnie zakresu 90d ({pos*100:.0f}%) — odbicie prawdopodobne")
+    if pos is not None:
+        if pos > 0.9:
+            delta_v += 3
+            notes.append("Cena przy szczycie zakresu 90d — przestrzeń do spadku")
+        elif pos < 0.1 and not strong_downtrend:
+            delta_v -= 3
+            notes.append("Cena przy dnie zakresu 90d — odbicie prawdopodobne")
 
+    if strong_downtrend:
+        notes.append("trwały trend spadkowy — reguła odbicia wyciszona (w trendzie myli kierunek)")
     if not notes:
         return (0, f"F&G {fng} i pozycja w 90d range neutralne")
     return (delta_v, "; ".join(notes))
@@ -298,10 +324,10 @@ def forecast_relative_strength(rel_7d):
     drożeje względem BTC => mniejszy rabat (okazja maleje); słabość => większy
     rabat względem BTC (okazja rośnie)."""
     if rel_7d > 3:
-        return (-2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna siła, mniejszy rabat")
+        return (-2, f"BNB względem Bitcoina {fmt_pct(rel_7d)} w 7d — relatywna siła, mniejszy rabat")
     if rel_7d < -3:
-        return (2, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — relatywna słabość, większy rabat vs BTC")
-    return (0, f"BNB/BTC {fmt_pct(rel_7d)} w 7d — porusza się z rynkiem")
+        return (2, f"BNB względem Bitcoina {fmt_pct(rel_7d)} w 7d — relatywna słabość, większy rabat")
+    return (0, f"BNB względem Bitcoina {fmt_pct(rel_7d)} w 7d — porusza się z rynkiem")
 
 
 def compose_forecast(score_base, deltas_with_notes):
@@ -313,7 +339,12 @@ def compose_forecast(score_base, deltas_with_notes):
     deltas = [r["delta"] for r in deltas_with_notes]
     total = max(-30, min(30, sum(deltas)))
     expected = max(0, min(100, score_base + total))
-    active = sum(1 for d in deltas if d != 0)
+
+    # Reguły STRUKTURALNE (np. faza cyklu — stała przez miesiące) nie są
+    # "głosem" świadczącym o zgodzie sygnałów dzień-do-dnia, więc nie podbijają
+    # bramki konwikcji. Inaczej stałe +3 sztucznie robiło z prognozy "pewną".
+    active = sum(1 for r in deltas_with_notes
+                 if r["delta"] != 0 and not r.get("structural"))
 
     spread = max(deltas) - min(deltas)
     all_same_sign = all(d >= 0 for d in deltas) or all(d <= 0 for d in deltas)
@@ -326,12 +357,24 @@ def compose_forecast(score_base, deltas_with_notes):
 
     lo = max(0, expected - width // 2)
     hi = min(100, expected + width // 2)
+    # Pasmo przycięte do krawędzi skali raportujemy jednostronnie ("≥85"),
+    # bo "[85,100]" udaje przedział, którego górny koniec jest praktycznie
+    # nieosiągalny (F&G=0 ∧ pos=0 ∧ trend≤-25% naraz) — to fikcyjna precyzja.
+    clamped = "hi" if expected + width // 2 > 100 else \
+              "lo" if expected - width // 2 < 0 else None
+
+    # Konwikcja: gdy o kierunku decyduje dominujący (co do wielkości) głos
+    # "Powrót do średniej" — czyli kontrariański zakład o odbicie — nie wolno
+    # wystawiać "high". To właśnie ten zakład mylił kierunek 0/3 w trendzie.
+    nonzero = [r for r in deltas_with_notes if r["delta"] != 0]
+    dominant = max(nonzero, key=lambda r: abs(r["delta"]), default=None)
+    reversion_drives = dominant is not None and dominant["name"] == "Powrót do średniej"
 
     # Konwikcja wymaga zgody między AKTYWNYMI regułami — milczące reguły
     # (delta 0) to brak głosu, nie zgoda. [0,0,0,-3] ma być "low", nie "high".
     if active <= 1 or width >= 22:
         confidence = "low"
-    elif active >= 3 and width <= 12 and abs(total) >= 6:
+    elif active >= 3 and width <= 12 and abs(total) >= 6 and not reversion_drives:
         confidence = "high"
     else:
         confidence = "medium"
@@ -348,33 +391,37 @@ def compose_forecast(score_base, deltas_with_notes):
         "horizon_days": 7,
         "score_base": score_base,
         "score_range": [lo, hi],
+        "clamped": clamped,
         "direction": direction_s,
         "confidence": confidence,
         "total_delta": total,
-        "rules": deltas_with_notes,
+        # Strip kluczy wewnętrznych (structural) — do UI idzie tylko name/delta/note.
+        "rules": [{"name": r["name"], "delta": r["delta"], "note": r["note"]}
+                  for r in deltas_with_notes],
     }
 
 
 def build_forecast(score_base, prices, vol_now, vol_30d_avg, fng,
-                   months_since_halving=None, rel_strength_7d=None):
+                   months_since_halving=None, rel_strength_7d=None, trend30=0.0):
     """Prognoza OKAZJI (nie ceny, nie sentymentu) na 7 dni: czy okno zakupowe
     raczej się poprawi czy domknie. Cykl halvingu wchodzi tylko do BTC; BNB
     zamiast tego dostaje regułę siły relatywnej BNB/BTC."""
     pct_7d = pct_change_from_prices(prices, 7) if len(prices) >= 8 else 0.0
     d_vol, n_vol = forecast_volume(pct_7d, vol_now, vol_30d_avg)
-    d_mr, n_mr = forecast_mean_reversion(fng, prices)
+    d_mr, n_mr = forecast_mean_reversion(fng, prices, trend30)
     d_mom, n_mom = forecast_momentum(prices)
     rules = [
-        {"name": "Wolumen",        "delta": d_vol, "note": n_vol},
-        {"name": "Mean reversion", "delta": d_mr,  "note": n_mr},
-        {"name": "Momentum",       "delta": d_mom, "note": n_mom},
+        {"name": "Wolumen",            "delta": d_vol, "note": n_vol},
+        {"name": "Powrót do średniej", "delta": d_mr,  "note": n_mr},
+        {"name": "Momentum",           "delta": d_mom, "note": n_mom},
     ]
     if months_since_halving is not None:
         d_cyc, n_cyc = forecast_cycle(months_since_halving)
-        rules.append({"name": "Cykl", "delta": d_cyc, "note": n_cyc})
+        # structural: stała przez miesiące — nie liczy się jako głos w konwikcji.
+        rules.append({"name": "Cykl", "delta": d_cyc, "note": n_cyc, "structural": True})
     if rel_strength_7d is not None:
         d_rel, n_rel = forecast_relative_strength(rel_strength_7d)
-        rules.append({"name": "BNB/BTC", "delta": d_rel, "note": n_rel})
+        rules.append({"name": "Siła BNB vs BTC", "delta": d_rel, "note": n_rel})
     return compose_forecast(score_base, rules)
 
 
@@ -392,7 +439,8 @@ def position_in_range(prices, days=90):
     return (prices[-1] - lo) / (hi - lo)
 
 
-def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, forecast):
+def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d,
+                  forecast, okazja_streak_days=0):
     """Karta "Czy warto dziś kupić?" — werdykt + 4 sygnały prostym językiem,
     plus 2 skrótowe sygnały na home (Nastrój + Cena). Tone: good = sprzyja
     zakupowi dziś, warn = przemawia przeciw, neutral. Wszystko generuje Python
@@ -418,15 +466,16 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, 
     signals.append({"label": "Nastrój rynku", "tone": t, "text": txt})
     nastroj_signal = {"label": "Nastrój", "tone": t, "text": f"{fng_word} · {fng}/100"}
 
-    # 2. Cena vs 3 mies. (pozycja w zakresie 90d) — pasma z pos_band()
-    ppct = round(pos_90d * 100)
+    # 2. Cena vs 3 mies. (pozycja w zakresie 90d) — pasma z pos_band().
+    # Opis SŁOWNY, bez surowego "(0%)" — laik czytał "0%" jako "zero zmiany",
+    # co kłóciło się ze słowem "nisko" (audyt 2026-06-25).
     band = pos_band(pos_90d)
     if band == "nisko":
-        t2, txt = "good", f"nisko w zakresie 3 mies. ({ppct}%) — kupujesz blisko lokalnego dołka"
+        t2, txt = "good", "przy dolnej granicy zakresu 3 mies. — kupujesz blisko lokalnego dołka"
     elif band == "wysoko":
-        t2, txt = "warn", f"blisko szczytu zakresu 3 mies. ({ppct}%) — kupujesz wysoko"
+        t2, txt = "warn", "przy górnej granicy zakresu 3 mies. — kupujesz wysoko"
     else:
-        t2, txt = "neutral", f"w środku zakresu 3 mies. ({ppct}%)"
+        t2, txt = "neutral", "w środku zakresu 3 mies."
     signals.append({"label": "Cena vs 3 mies.", "tone": t2, "text": txt})
 
     # 3. Trend 30 dni — próg "good" = CHEAP_30D_PCT (ten sam co kropka "Cena" na home)
@@ -438,13 +487,17 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, 
         t3, txt = "neutral", f"{fmt_pct(pct_30d)} przez miesiąc — bez dużych zmian"
     signals.append({"label": "Trend 30 dni", "tone": t3, "text": txt})
 
-    # 4. Prognoza okazji na 7 dni (zawsze neutralna kropka — prognoza to nie fakt)
-    dir_txt = {"up": "okno zakupowe może się poprawić",
-               "down": "okno zakupowe może się domykać",
-               "flat": "okno raczej bez zmian"}[forecast["direction"]]
-    conf_txt = {"low": "niska", "medium": "średnia", "high": "wysoka"}[forecast["confidence"]]
-    signals.append({"label": "Prognoza 7 dni", "tone": "neutral",
-                    "text": f"{dir_txt} (pewność: {conf_txt}) — prognoza okazji, nie ceny"})
+    # 4. Prognoza okazji na 7 dni (neutralna kropka — prognoza to nie fakt).
+    # POMIJANA jako sygnał, gdy werdykt to OKAZJA: "okno może się domykać" tuż
+    # pod "dobry moment na zakup" czyta się sprzecznie, a pełny blok prognozy
+    # (z konwikcją + rozbiciem reguł) i tak jest niżej na detalu (audyt 2026-06-25).
+    if level != "okazja":
+        dir_txt = {"up": "okno zakupowe może się poprawić",
+                   "down": "okno zakupowe może się domykać",
+                   "flat": "okno raczej bez zmian"}[forecast["direction"]]
+        conf_txt = {"low": "niska", "medium": "średnia", "high": "wysoka"}[forecast["confidence"]]
+        signals.append({"label": "Prognoza 7 dni", "tone": "neutral",
+                        "text": f"{dir_txt} (pewność: {conf_txt}) — prognoza okazji, nie ceny"})
 
     # Skrótowa "Cena" na home: kropka I tekst liczone z TEGO SAMEGO (trend 30d,
     # próg CHEAP_30D_PCT), więc kolor zawsze zgadza się z tekstem. "Taniej niż
@@ -459,15 +512,25 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d, 
     price_signal = {"label": "Cena", "tone": price_tone, "text": price_txt}
 
     if level == "okazja":
-        # Wariant "tańszy niż miesiąc temu" odpalany TYM SAMYM progiem co kropka
-        # "Cena" na home (CHEAP_30D_PCT) — nagłówek i kropka nie mogą się kłócić.
-        if pct_30d <= CHEAP_30D_PCT:
-            headline = (f"Rynek jest w strachu, a {name} jest tańszy niż miesiąc temu — dla strategii "
-                        f"stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.")
+        # Gdy OKAZJA utrzymuje się od kilku dni (realny krach), codzienne
+        # "wyjątkowa okazja, kup!" jest niewykonalne przy DCA ~$100/mc i wypala
+        # słowo. Przeramowujemy na AKUMULACJĘ wg planu — bez pośpiechu, bez
+        # zwiększania kwot. Bez zmiany score/progów (audyt 2026-06-25).
+        if okazja_streak_days >= 3:
+            sublabel = f"okno otwarte od {okazja_streak_days} dni — akumuluj wg planu"
+            headline = (f"Rynek od kilku dni jest w strachu i {name} pozostaje tani — okno zakupowe "
+                        f"jest otwarte już {okazja_streak_days} dni. Dla DCA to dobry okres na zakupy "
+                        f"zgodnie z planem, bez pośpiechu i bez zwiększania kwot.")
         else:
-            headline = ("Rynek jest w strachu — dla strategii stałych zakupów (DCA) "
-                        "to statystycznie lepszy dzień niż zwykle.")
-        sublabel = "dobry moment na zakup — rynek w strachu"
+            # Wariant "tańszy niż miesiąc temu" odpalany TYM SAMYM progiem co kropka
+            # "Cena" na home (CHEAP_30D_PCT) — nagłówek i kropka nie mogą się kłócić.
+            if pct_30d <= CHEAP_30D_PCT:
+                headline = (f"Rynek jest w strachu, a {name} jest tańszy niż miesiąc temu — dla strategii "
+                            f"stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.")
+            else:
+                headline = ("Rynek jest w strachu — dla strategii stałych zakupów (DCA) "
+                            "to statystycznie lepszy dzień niż zwykle.")
+            sublabel = "dobry moment na zakup — rynek w strachu"
     elif level == "wstrzymaj":
         headline = (f"Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy {name} "
                     f"i poczekać na spokojniejszy moment.")
@@ -849,20 +912,22 @@ def main():
     bnb_hist = push_score(history, "bnb", opp_bnb)
     btc_opp_daily = push_daily_opp(history, "btc_opp_daily", opp_btc)
     bnb_opp_daily = push_daily_opp(history, "bnb_opp_daily", opp_bnb)
+    btc_okazja_streak = okazja_streak(btc_opp_daily)
+    bnb_okazja_streak = okazja_streak(bnb_opp_daily)
 
     # Baza prognozy = średnia wyniku okazji z ostatnich refreshy (odporna na
     # szum 24h), nie chwilowa wartość zdominowana przez ruch 24h.
     btc_base = round(sum(btc_hist[-7:]) / len(btc_hist[-7:]))
     bnb_base = round(sum(bnb_hist[-7:]) / len(bnb_hist[-7:]))
     btc_forecast = build_forecast(btc_base, btc_prices, btc_vol, btc_vol_30d_avg, fng,
-                                  months_since_halving=months_since_halving)
+                                  months_since_halving=months_since_halving, trend30=btc_30d)
     bnb_forecast = build_forecast(bnb_base, bnb_prices, bnb_vol, bnb_vol_30d_avg, fng,
-                                  rel_strength_7d=bnb_vs_btc_7d)
+                                  rel_strength_7d=bnb_vs_btc_7d, trend30=bnb_30d)
 
     btc_verdict = build_verdict("btc", "BTC", opp_btc, btc_level, btc_dca, fng,
-                                btc_30d, pos90_btc, btc_forecast)
+                                btc_30d, pos90_btc, btc_forecast, btc_okazja_streak)
     bnb_verdict = build_verdict("bnb", "BNB", opp_bnb, bnb_level, bnb_dca, fng,
-                                bnb_30d, pos90_bnb, bnb_forecast)
+                                bnb_30d, pos90_bnb, bnb_forecast, bnb_okazja_streak)
 
     # On-chain liczymy tylko gdy aktywne są alerty Telegram (jedyny konsument).
     # Audyt uznał on-chain za "martwy czujnik", więc znikł z UI; bez Telegramu
@@ -891,7 +956,6 @@ def main():
                 "price": fmt_price(btc_price),
                 "price_change_24h": round(btc_24h, 1),
                 "opp": opp_btc,
-                "opp_label": opp_label(opp_btc),
                 "opp_30d": btc_opp_daily,
                 "verdict": btc_verdict,
                 "forecast": btc_forecast,
@@ -903,7 +967,6 @@ def main():
                 "price": fmt_price(bnb_price),
                 "price_change_24h": round(bnb_24h, 1),
                 "opp": opp_bnb,
-                "opp_label": opp_label(opp_bnb),
                 "opp_30d": bnb_opp_daily,
                 "verdict": bnb_verdict,
                 "forecast": bnb_forecast,

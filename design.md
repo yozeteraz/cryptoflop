@@ -80,7 +80,7 @@ Usunięte z home (było „za dużo"): sparkline, mood label, badge forecastu, p
 ### Detal coina — max 4 metryki
 
 Po tapnięciu kafelka (iOS sheet, swipe BTC↔BNB). Tylko dwa bloki:
-1. **Karta „Czy warto dziś kupić?"** = hero detalu: cena (mute), wielka liczba okazji + słowo-werdykt, podtytuł, headline, **pasek skali 0–100** (gradient palety, marker w kolorze okazji) z podpisami **drogo / neutralnie / okazja**, oraz **4 sygnały** (= 4 metryki): Nastrój rynku · Cena vs 3 mies. · Trend 30 dni · Prognoza 7 dni (zawsze szara kropka). Stopka: legenda kropek + „nie porada inwestycyjna i nie prognoza ceny".
+1. **Karta „Czy warto dziś kupić?"** = hero detalu: cena (mute), wielka liczba okazji + słowo-werdykt, podtytuł, headline, **pasek skali 0–100** (gradient palety, marker w kolorze okazji) z podpisami **drogo / neutralnie / okazja**, oraz **sygnały** (max 4): Nastrój rynku · Cena vs 3 mies. · Trend 30 dni · Prognoza 7 dni (szara kropka). **Od audytu 2026-06-25: sygnał „Prognoza 7 dni" znika z karty, gdy werdykt to OKAZJA** — „okno się domyka" tuż pod „dobry moment na zakup" czytało się sprzecznie, a pełny blok prognozy (z konwikcją + rozbiciem) i tak jest niżej. Przy KUP/CZEKAJ prognoza zostaje (4 sygnały). Stopka: legenda kropek + „nie porada inwestycyjna i nie prognoza ceny".
 2. **Prognoza okazji 7d** (patrz niżej).
 
 Usunięte z detalu: siatka 5 horyzontów, osobna siatka metryk, on-chain (martwy czujnik wg audytu), newsy, narracja, zwijany „Szczegóły".
@@ -108,6 +108,41 @@ Predykcja kierunku **okazji do kupna** (nie ceny, nie „sentymentu") w horyzonc
 ### Estetyka
 
 - Sekcja na detalu: ten sam wzorzec co karta werdyktu (panel + hairlines). Reguły jako lista: nazwa (muted) · delta (pos/neg/neutral kolor numeryczny) · note (muted mniejszy font).
+
+## Audyt 2026-06-25 — poprawki UX/craft (po 10 dniach realnych danych)
+
+Wdrożone po dwóch audytach UX + audycie reguł predykcyjnych. Wszystkie findingi
+po adwersarialnej weryfikacji wyszły minor/nit (żadnego blockera) — to polish.
+
+- **Kolor = werdykt (synchronizacja progów):** `scoreColor()` ma teraz punkty
+  łamania zsynchronizowane z progami werdyktu (`OPP_TAK=42`, `OPP_OKAZJA=84`,
+  „wyjątkowa"=90): 16/28/42/54/66/76/84/90. Pomarańcz „drogo" kończy się dokładnie
+  na progu KUP (42), więc kolor nigdy nie maluje KUP na „drogo"; OKAZJA dostaje
+  własną głębszą zieleń (c-85), „wyjątkowa" najgłębszą (c-100). Przystanki
+  `.scale-bar` wyrównane do tych samych punktów (marker siedzi na pasku w swoim kolorze).
+- **Karta werdyktu:** sygnał „Prognoza 7 dni" znika, gdy werdykt = OKAZJA (patrz wyżej).
+- **Prognoza — pasmo jednostronne:** gdy pasmo przyklei się do krawędzi skali,
+  pokazujemy je jednostronnie („≥ 85") zamiast `[85,100]` (fikcyjna precyzja). Pole
+  `forecast.clamped` w data.json: `"hi" | "lo" | null`.
+- **„Trwała OKAZJA":** gdy okno OKAZJI jest otwarte ≥3 dni (streak z `*_opp_daily`),
+  podtytuł i headline zmieniają się na akumulacyjne („okno otwarte od N dni — akumuluj
+  wg planu"), bo codzienne „wyjątkowa okazja, kup!" jest niewykonalne przy DCA ~$100/mc.
+  Bez zmiany score/progów.
+- **Dostępność:** `--muted-2` podbite `#6b7385 → #7d8597` (WCAG AA, ~4,6:1 na panelu).
+- **Gest natywny:** swipe-down-to-dismiss na nagłówku arkusza (grabber to teraz
+  prawdziwa afordancja, zamknięcie kciukiem od dołu). Tylko na `.sheet-header`, nie
+  koliduje z poziomym pagerem.
+- **Stan błędu:** wystylizowana karta + placeholder daty + „Spróbuj ponownie" zamiast
+  surowego tekstu (check „błąd nadal wygląda spokojnie").
+- **Treść:** nazwy reguł po polsku („Powrót do średniej", „Siła BNB vs BTC");
+  pozycja w 90d opisana słownie zamiast surowego „(0%)".
+
+### Zaakceptowane wyjątki od reguł powyżej (kod ≠ litera dokumentu, świadomie)
+
+- **Modal sheet MA unoszący cień** (`0 -16px 40px rgba(0,0,0,.45)`) mimo reguły
+  „bez drop shadow" — to standard iOS dla arkusza wysuwanego znad treści. Karty
+  na home nadal bez cienia.
+- **Radius kart = 16px** (w paśmie 12–18px; trzecia, teraz udokumentowana wartość obok 14/18).
 
 ---
 

@@ -170,6 +170,40 @@ Cel od użytkownika: *„uprość do dwóch metryk per BTC/BNB na home, za dużo
 
 > Sekcje „Decyzje produktowe", „Skala sentymentu" i opisy struktury home/detalu **powyżej** opisują stan sprzed tego redesignu — czytaj je przez pryzmat tej sekcji.
 
+## Audyt 2026-06-25 — wdrożone poprawki (2× UX + reguły predykcyjne po 10 dniach realnych danych)
+
+Dwa niezależne audyty UX (soczewka realnego użytkownika + soczewka iOS HIG/craft/a11y) +
+audyt reguł predykcyjnych na 76 realnych odświeżeniach (15–25.06). Wszystkie findingi po
+adwersarialnej weryfikacji wyszły **minor/nit — zero blockerów**. Rdzeń `opportunity_score`
+potwierdzony jako zdrowy (kontrariański: cena BTC/BNB −11%, okazja rosła 78→93 / 70→90).
+**Świadomie NIE ruszono `OPP_WEIGHTS`, `opportunity_score`, progów `OPP_OKAZJA`/`OPP_TAK`** —
+backtest zdrowy, a adaptacyjny próg wygasiłby sygnał w najlepszym oknie DCA (sprzeczne z „narzędzie ma decydować").
+
+Jak reguły się sprawdziły (5 zdań, dane realne): rdzeń kontrariański zadziałał — okazja rosła
+gdy ceny spadały. Ale OKAZJA odpaliła w 47% dni (BTC) / 41% (BNB) zamiast zakładanych ~8–13%
+(F&G tkwił 12–23 cały okres). Prognozy 7d z 15–18.06 trafiły zły kierunek 0/3 (mean-reversion
+obstawiał odbicie, którego w trendzie nie ma), jedna z konwikcją „high". Wynik saturuje przy
+90–93 (2 z 3 składowych w suficie). CZEKAJ 0/76 — artefakt bessy, nie martwy próg.
+
+**Wdrożone poprawki (`fetch.py` + `index.html` + `design.md`):**
+- **Forecast — bramka trendu:** `forecast_mean_reversion` wycisza ujemny (kontrariański)
+  wkład, gdy `trend30 ≤ CHEAP_30D_PCT` ORAZ cena przy dnie 90d (pos<0,15). To on mylił kierunek.
+- **Forecast — uczciwa konwikcja:** nie „high", gdy dominującym głosem jest „Powrót do średniej"
+  (kontrariański zakład). Reguła „Cykl" oznaczona `structural` — nie liczy się do `active`
+  (bramki konwikcji), bo jest stała przez miesiące. Strip `structural` z output (do UI idzie name/delta/note).
+- **Forecast — pasmo jednostronne:** `forecast.clamped` (`hi`/`lo`/`null`); UI renderuje „≥ 85"
+  zamiast martwego „[85,100]".
+- **Werdykt:** sygnał „Prognoza 7 dni" znika przy OKAZJA (sprzeczność „okno się domyka" pod
+  „dobry moment"). „Trwała OKAZJA" (streak ≥3 dni z `*_opp_daily`, `okazja_streak`) → headline/sublabel
+  akumulacyjne („okno otwarte od N dni — akumuluj wg planu"). Opis pozycji 90d słowny (bez surowego „(0%)").
+- **UI/craft:** `scoreColor` zsynchronizowany z progami werdyktu (16/28/42/54/66/76/84/90) +
+  `.scale-bar` wyrównany; `--muted-2` `#6b7385→#7d8597` (WCAG AA); swipe-down-to-dismiss na arkuszu;
+  wystylizowany stan błędu; nazwy reguł po polsku; usunięte martwe pole `opp_label` z data.json.
+- **Dokumentacja:** wyjątki zapisane w `design.md` (cień arkusza, radius 16px).
+
+> Backend zweryfikowany testem jednostkowym (bez sieci) + end-to-end na żywych API. Zmiany na
+> gałęzi `audit-fixes-2026-06-25`; `data.json`/`history.json` zostają w gestii crona (regeneruje nowym kodem).
+
 ## Status: plan wykonany
 
 Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost. Aktualny kształt produktu definiuje **Redesign 2026-06-15** (wyżej).
