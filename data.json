@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-06-26T20:45:18.492629+00:00",
+  "fetched_at": "2026-06-26T22:11:35.567083+00:00",
   "header_label": "piątek, 26 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$59 571",
-      "price_change_24h": 0.3,
-      "opp": 92,
+      "price": "$59 803",
+      "price_change_24h": -0.0,
+      "opp": 91,
       "opp_30d": [
         64,
         65,
@@ -39,14 +39,14 @@
         84,
         90,
         93,
-        92
+        91
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "okno otwarte od 4 dni — akumuluj wg planu",
-        "opp": 92,
+        "opp": 91,
         "fng": 13,
         "headline": "Rynek od kilku dni jest w strachu i BTC pozostaje tani — okno zakupowe jest otwarte już 4 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-19,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-19,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,13 +75,13 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-19,9%/30d · taniej niż miesiąc temu"
+            "text": "-19,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 92,
+        "score_base": 91,
         "score_range": [
           94,
           100
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+15% vs 30d)"
+            "note": "Ruch w dół z umiarkowanym wolumenem (+12% vs 30d)"
           },
           {
             "name": "Powrót do średniej",
@@ -118,8 +118,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$564",
-      "price_change_24h": 1.8,
+      "price": "$567",
+      "price_change_24h": 1.3,
       "opp": 87,
       "opp_30d": [
         56,
@@ -175,7 +175,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-12,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-12,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -187,16 +187,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-12,9%/30d · taniej niż miesiąc temu"
+            "text": "-12,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 88,
+        "score_base": 87,
         "score_range": [
-          84,
-          100
+          83,
+          99
         ],
         "clamped": null,
         "direction": "up",
