@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-27T10:05:58.885820+00:00",
+  "fetched_at": "2026-06-27T12:08:06.403979+00:00",
   "header_label": "sobota, 27 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 336",
-      "price_change_24h": 1.1,
+      "price": "$60 240",
+      "price_change_24h": 1.5,
       "opp": 89,
       "opp_30d": [
         65,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-18,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-18,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-18,0%/30d · taniej niż miesiąc temu"
+            "text": "-18,1%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-24% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
@@ -118,9 +118,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$564",
-      "price_change_24h": 0.1,
-      "opp": 86,
+      "price": "$562",
+      "price_change_24h": 0.6,
+      "opp": 87,
       "opp_30d": [
         53,
         30,
@@ -151,14 +151,14 @@
         88,
         90,
         87,
-        86
+        87
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "okno otwarte od 4 dni — akumuluj wg planu",
-        "opp": 86,
+        "opp": 87,
         "fng": 15,
         "headline": "Rynek od kilku dni jest w strachu i BNB pozostaje tani — okno zakupowe jest otwarte już 4 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
@@ -175,7 +175,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-11,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-11,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -187,7 +187,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-11,6%/30d · taniej niż miesiąc temu"
+            "text": "-11,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -206,7 +206,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-30% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-37% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
@@ -221,7 +221,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +2,2% w 7d — porusza się z rynkiem"
+            "note": "BNB względem Bitcoina +2,0% w 7d — porusza się z rynkiem"
           }
         ]
       }
