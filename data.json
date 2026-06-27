@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-27T14:27:49.385958+00:00",
+  "fetched_at": "2026-06-27T16:03:11.605612+00:00",
   "header_label": "sobota, 27 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 536",
-      "price_change_24h": 0.8,
+      "price": "$60 711",
+      "price_change_24h": 0.6,
       "opp": 88,
       "opp_30d": [
         65,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-17,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-17,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-17,7%/30d · taniej niż miesiąc temu"
+            "text": "-17,4%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-37% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
@@ -118,8 +118,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$563",
-      "price_change_24h": 0.0,
+      "price": "$564",
+      "price_change_24h": -0.2,
       "opp": 86,
       "opp_30d": [
         53,
@@ -175,7 +175,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-11,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-11,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -187,7 +187,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-11,6%/30d · taniej niż miesiąc temu"
+            "text": "-11,5%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -206,7 +206,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-49% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
