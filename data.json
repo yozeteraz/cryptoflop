@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-06-27T16:03:11.605612+00:00",
+  "fetched_at": "2026-06-27T18:01:03.904506+00:00",
   "header_label": "sobota, 27 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 711",
-      "price_change_24h": 0.6,
-      "opp": 88,
+      "price": "$60 454",
+      "price_change_24h": 0.8,
+      "opp": 89,
       "opp_30d": [
         65,
         62,
@@ -39,14 +39,14 @@
         90,
         93,
         91,
-        88
+        89
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "okno otwarte od 5 dni — akumuluj wg planu",
-        "opp": 88,
+        "opp": 89,
         "fng": 15,
         "headline": "Rynek od kilku dni jest w strachu i BTC pozostaje tani — okno zakupowe jest otwarte już 5 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-17,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-17,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-17,4%/30d · taniej niż miesiąc temu"
+            "text": "-17,8%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-50% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
@@ -118,8 +118,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$564",
-      "price_change_24h": -0.2,
+      "price": "$563",
+      "price_change_24h": -0.8,
       "opp": 86,
       "opp_30d": [
         53,
@@ -175,7 +175,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-11,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-11,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -187,7 +187,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-11,5%/30d · taniej niż miesiąc temu"
+            "text": "-11,8%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -206,7 +206,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-49% vs 30d) — słabe potwierdzenie"
+            "note": "Ruch w dół bez wolumenu (-51% vs 30d) — słabe potwierdzenie"
           },
           {
             "name": "Powrót do średniej",
@@ -221,7 +221,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,7% w 7d — porusza się z rynkiem"
+            "note": "BNB względem Bitcoina +1,8% w 7d — porusza się z rynkiem"
           }
         ]
       }
