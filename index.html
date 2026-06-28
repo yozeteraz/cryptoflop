@@ -194,6 +194,11 @@
   .fc-sum { margin-top: 10px; font-size: 12px; color: var(--muted); }
   .fc-disclaimer { margin-top: 12px; font-size: 11px; font-style: italic; color: var(--muted-2); line-height: 1.5; }
 
+  /* Barograf na detalu — linia 30d + stożek prognozy */
+  .fc-baro { margin: 2px 0 16px; }
+  .fc-baro-svg { width: 100%; height: auto; display: block; }
+  .fc-baro-axis { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--muted-2); letter-spacing: 0.02em; }
+
   footer {
     margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border);
     color: var(--muted-2); font-size: 11px;
@@ -520,6 +525,42 @@ function renderVerdictBlock(asset) {
   return section;
 }
 
+/* Barograf — okazja 30 dni jako linia na pasmach pogodowych (zielone=OKAZJA ≥84,
+   szare=KUP 42–84, czerwone=drogo <42), a prognoza 7d to jej PRZEDŁUŻENIE w przód
+   (zakreskowany stożek = niepewność, środkowa kreska = oczekiwany kierunek).
+   Jeden ślad: 30 dni za tobą + 7 dni przed. Zaadoptowane z konceptu v2 (2026-06-28). */
+function buildBaro(opp30, f) {
+  if (!opp30 || opp30.length < 2) return "";
+  const W = 360, H = 104, padL = 3, padR = 3, padT = 8, padB = 4;
+  const today = opp30.length - 1, maxIdx = today + 7;
+  const cl = v => Math.max(0, Math.min(100, v));
+  const xF = i => padL + i * (W - padL - padR) / maxIdx;
+  const yF = v => padT + (1 - cl(v) / 100) * (H - padT - padB);
+  let s = `<svg viewBox="0 0 ${W} ${H}" class="fc-baro-svg" aria-hidden="true">`;
+  s += `<defs><pattern id="fchatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--accent)" stroke-width="1" opacity="0.55"/></pattern></defs>`;
+  // pasma pogodowe (te same progi co werdykt: 42 / 84)
+  s += `<rect x="0" y="${yF(100).toFixed(1)}" width="${W}" height="${(yF(84) - yF(100)).toFixed(1)}" fill="var(--c-75)" opacity="0.13"/>`;
+  s += `<rect x="0" y="${yF(84).toFixed(1)}" width="${W}" height="${(yF(42) - yF(84)).toFixed(1)}" fill="var(--c-45)" opacity="0.07"/>`;
+  s += `<rect x="0" y="${yF(42).toFixed(1)}" width="${W}" height="${(yF(0) - yF(42)).toFixed(1)}" fill="var(--c-30)" opacity="0.10"/>`;
+  [42, 84].forEach(v => { s += `<line x1="0" y1="${yF(v).toFixed(1)}" x2="${W}" y2="${yF(v).toFixed(1)}" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4"/>`; });
+  // ślad przeszłości (30 dni)
+  const pts = opp30.map((v, i) => `${xF(i).toFixed(1)},${yF(v).toFixed(1)}`).join(" ");
+  s += `<polyline points="${pts}" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>`;
+  // separator "dziś"
+  const xT = xF(today), yT = yF(opp30[today]);
+  s += `<line x1="${xT.toFixed(1)}" y1="${padT}" x2="${xT.toFixed(1)}" y2="${H - padB}" stroke="var(--muted-2)" stroke-width="1" opacity="0.55"/>`;
+  // stożek prognozy (przedłużenie śladu w przód)
+  if (f && f.score_range) {
+    const lo = f.score_range[0], hi = f.score_range[1], xE = xF(maxIdx);
+    s += `<path d="M${xT.toFixed(1)},${yT.toFixed(1)} L${xE.toFixed(1)},${yF(hi).toFixed(1)} L${xE.toFixed(1)},${yF(lo).toFixed(1)} Z" fill="url(#fchatch)" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>`;
+    const mid = (lo + hi) / 2;
+    s += `<line x1="${xT.toFixed(1)}" y1="${yT.toFixed(1)}" x2="${xE.toFixed(1)}" y2="${yF(mid).toFixed(1)}" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="2 3" opacity="0.75"/>`;
+  }
+  s += `<circle cx="${xT.toFixed(1)}" cy="${yT.toFixed(1)}" r="2.6" fill="var(--text)"/>`;
+  s += `</svg>`;
+  return s;
+}
+
 function renderForecastBlock(asset) {
   const f = asset.forecast;
   if (!f) return "";
@@ -537,8 +578,12 @@ function renderForecastBlock(asset) {
   const totalSign = f.total_delta > 0 ? "+" : "";
   return `
     <h3 class="section">Prognoza okazji · 7 dni</h3>
-    <p class="section-sub">Czy okno zakupowe (0–100) raczej się poprawi czy domknie w tydzień — zawsze pasmo, nie punkt.</p>
+    <p class="section-sub">Okazja (0–100) z ostatnich 30 dni jako linia, a prognoza tygodnia to jej przedłużenie w przód — zakreskowany stożek (szerszy = mniej pewny). To prognoza okna zakupowego, nie ceny.</p>
     <div class="forecast-block">
+      <div class="fc-baro">
+        ${buildBaro(asset.opp_30d, f)}
+        <div class="fc-baro-axis"><span>30 dni temu</span><span>dziś → +7 dni (prognoza)</span></div>
+      </div>
       <div class="fc-head">
         <span class="fc-arrow">${arrow}</span>
         <span>${bandTxt}</span>
