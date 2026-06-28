@@ -198,6 +198,11 @@
   .fc-baro { margin: 2px 0 16px; }
   .fc-baro-svg { width: 100%; height: auto; display: block; }
   .fc-baro-axis { display: flex; justify-content: space-between; margin-top: 7px; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted-2); }
+  .fc-baro-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 10px; color: var(--muted); }
+  .fc-baro-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+  .fc-baro-legend .lg-line { width: 15px; height: 2px; background: var(--text); opacity: 0.9; border-radius: 1px; }
+  .fc-baro-legend .lg-zone { width: 11px; height: 11px; border-radius: 3px; background: var(--c-75); opacity: 0.45; }
+  .fc-baro-legend .lg-fc { width: 15px; height: 0; border-top: 1.5px dashed var(--accent); }
 
   footer {
     margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border);
@@ -545,10 +550,10 @@ function smoothPath(pts) {
 
 function buildBaro(opp30, f) {
   if (!opp30 || opp30.length < 2) return "";
-  const W = 360, H = 110, padL = 2, padR = 2, padT = 9, padB = 3;
+  const W = 360, H = 110, gutterL = 18, padR = 3, padT = 9, padB = 3;
   const today = opp30.length - 1, maxIdx = today + 7;
   const cl = v => Math.max(0, Math.min(100, v));
-  const xF = i => padL + i * (W - padL - padR) / maxIdx;
+  const xF = i => gutterL + i * (W - gutterL - padR) / maxIdx;
   const yF = v => padT + (1 - cl(v) / 100) * (H - padT - padB);
   const baseY = (H - padB).toFixed(1);
   const pts = opp30.map((v, i) => [xF(i), yF(v)]);
@@ -559,7 +564,7 @@ function buildBaro(opp30, f) {
 
   let s = `<svg viewBox="0 0 ${W} ${H}" class="fc-baro-svg" aria-hidden="true">`;
   s += `<defs>`;
-  s += `<clipPath id="fcclip"><rect x="0" y="0" width="${W}" height="${H}" rx="11" ry="11"/></clipPath>`;
+  s += `<clipPath id="fcclip"><rect x="${gutterL}" y="0" width="${W - gutterL}" height="${H}" rx="10" ry="10"/></clipPath>`;
   s += `<linearGradient id="fcarea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${zc}" stop-opacity="0.32"/><stop offset="0.72" stop-color="${zc}" stop-opacity="0.05"/><stop offset="1" stop-color="${zc}" stop-opacity="0"/></linearGradient>`;
   if (f && f.score_range) {
     const xE = xF(maxIdx);
@@ -568,11 +573,11 @@ function buildBaro(opp30, f) {
   s += `</defs>`;
   s += `<g clip-path="url(#fcclip)">`;
   // pasma pogodowe — stonowane (progi werdyktu 42 / 84)
-  s += `<rect x="0" y="${yF(100).toFixed(1)}" width="${W}" height="${(yF(84) - yF(100)).toFixed(1)}" fill="var(--c-75)" opacity="0.10"/>`;
-  s += `<rect x="0" y="${yF(84).toFixed(1)}" width="${W}" height="${(yF(42) - yF(84)).toFixed(1)}" fill="var(--c-45)" opacity="0.045"/>`;
-  s += `<rect x="0" y="${yF(42).toFixed(1)}" width="${W}" height="${(yF(0) - yF(42)).toFixed(1)}" fill="var(--c-30)" opacity="0.07"/>`;
+  s += `<rect x="${gutterL}" y="${yF(100).toFixed(1)}" width="${W - gutterL}" height="${(yF(84) - yF(100)).toFixed(1)}" fill="var(--c-75)" opacity="0.10"/>`;
+  s += `<rect x="${gutterL}" y="${yF(84).toFixed(1)}" width="${W - gutterL}" height="${(yF(42) - yF(84)).toFixed(1)}" fill="var(--c-45)" opacity="0.045"/>`;
+  s += `<rect x="${gutterL}" y="${yF(42).toFixed(1)}" width="${W - gutterL}" height="${(yF(0) - yF(42)).toFixed(1)}" fill="var(--c-30)" opacity="0.07"/>`;
   // jedna delikatna linia odniesienia: próg OKAZJA (84)
-  s += `<line x1="0" y1="${yF(84).toFixed(1)}" x2="${W}" y2="${yF(84).toFixed(1)}" stroke="var(--c-75)" stroke-width="0.6" opacity="0.28"/>`;
+  s += `<line x1="${gutterL}" y1="${yF(84).toFixed(1)}" x2="${W}" y2="${yF(84).toFixed(1)}" stroke="var(--c-75)" stroke-width="0.6" opacity="0.28"/>`;
   // stożek prognozy — miękki gradient zanikający w przyszłość
   if (f && f.score_range) {
     const lo = f.score_range[0], hi = f.score_range[1], xE = xF(maxIdx), mid = (lo + hi) / 2;
@@ -587,7 +592,13 @@ function buildBaro(opp30, f) {
   // kropka "dziś" z halo
   s += `<circle cx="${xT.toFixed(1)}" cy="${yT.toFixed(1)}" r="5" fill="var(--text)" opacity="0.16"/>`;
   s += `<circle cx="${xT.toFixed(1)}" cy="${yT.toFixed(1)}" r="2.4" fill="var(--text)"/>`;
-  s += `</g></svg>`;
+  s += `</g>`;
+  // podziałka osi Y (poza clipem) — skala okazji 0–100 z progami werdyktu
+  [[100, "100"], [84, "84"], [42, "42"], [0, "0"]].forEach(([v, t]) => {
+    let y = yF(v); if (v === 100) y += 3; else if (v === 0) y -= 2;
+    s += `<text x="${gutterL - 4}" y="${y.toFixed(1)}" font-size="7" fill="var(--muted-2)" text-anchor="end" dominant-baseline="middle">${t}</text>`;
+  });
+  s += `</svg>`;
   return s;
 }
 
@@ -613,6 +624,11 @@ function renderForecastBlock(asset) {
       <div class="fc-baro">
         ${buildBaro(asset.opp_30d, f)}
         <div class="fc-baro-axis"><span>30 dni temu</span><span>dziś → +7 dni (prognoza)</span></div>
+        <div class="fc-baro-legend">
+          <span class="lg"><span class="lg-line"></span>okazja · 30 dni</span>
+          <span class="lg"><span class="lg-zone"></span>strefa okazji (≥84)</span>
+          <span class="lg"><span class="lg-fc"></span>prognoza 7 dni</span>
+        </div>
       </div>
       <div class="fc-head">
         <span class="fc-arrow">${arrow}</span>
