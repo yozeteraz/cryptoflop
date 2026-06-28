@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-28T20:59:03.104139+00:00",
+  "fetched_at": "2026-06-28T21:01:47.397943+00:00",
   "header_label": "niedziela, 28 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$59 576",
-      "price_change_24h": -1.0,
+      "price": "$59 565",
+      "price_change_24h": -1.1,
       "opp": 89,
       "opp_30d": [
         62,
@@ -44,7 +44,7 @@
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
-        "word": "OKAZJA",
+        "word": "AKUMULUJ",
         "sublabel": "okno otwarte od 6 dni — akumuluj wg planu",
         "opp": 89,
         "fng": 18,
@@ -81,10 +81,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 88,
+        "score_base": 89,
         "score_range": [
-          87,
-          99
+          88,
+          100
         ],
         "clamped": null,
         "direction": "up",
@@ -156,7 +156,7 @@
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
-        "word": "OKAZJA",
+        "word": "AKUMULUJ",
         "sublabel": "okno otwarte od 5 dni — akumuluj wg planu",
         "opp": 87,
         "fng": 18,
@@ -221,7 +221,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,2% w 7d — porusza się z rynkiem"
+            "note": "BNB względem Bitcoina -0,1% w 7d — porusza się z rynkiem"
           }
         ]
       }
