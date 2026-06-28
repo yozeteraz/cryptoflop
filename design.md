@@ -28,7 +28,7 @@
 ### Kolory
 - Paleta minimalna (patrz `colors.md`). System colors iOS: red dla danger/negative, green dla success/positive, gray dla neutral.
 - **Kolor niesie znaczenie (od 2026-06-15): ZIELONY = okazja do kupna, CZERWONY = drogo/przegrzane, SZARY = neutralnie.** Główna liczba 0–100 to wynik OKAZJI (high = strach/tanio = zielony = kupuj), nie sentyment.
-- **Zielony/czerwony są zarezerwowane dla sygnału zakupu.** Kierunek ceny 24h pokazujemy w nagłówku kafelka **wyciszonym szarym** (sam znak +/−), żeby czerwony spadek ceny nie konkurował z „zielony = kupuj". Kropki sygnałów: zielona = sprzyja zakupowi, czerwona = przeciw, szara = neutralna.
+- **Zielony/czerwony niosą dwa znaczenia — rozdzielone kontekstem.** (1) Wynik okazji + kropki sygnałów: zielony = sprzyja zakupowi, czerwony = przeciw (logika kontrariańska). (2) **Zmiana ceny 24h w nagłówku: standardowe kolorowanie giełdowe — wzrost = zielony, spadek = czerwony** (na życzenie użytkownika 2026-06-28; wcześniej była wyciszona szarym). Świadomie akceptujemy wynikającą z tego pozorną sprzeczność: w dniu spadku ceny czerwone „−1,3% 24h" stoi obok zielonego wyniku okazji (bo dla DCA-kupującego tańsza cena = lepsza okazja). Kropki sygnałów: zielona = sprzyja zakupowi, czerwona = przeciw, szara = neutralna.
 - Nie używamy koloru "ozdobnie". Każdy kolor coś znaczy.
 
 ### Interaktywność (mobile-first)
@@ -69,7 +69,7 @@ Narzędzie służy do JEDNEGO: raz dziennie zerknąć, jak wygląda kurs i **czy
 ### Home — minimalizm (2 metryki per asset)
 
 Jeden kafelek na asset (BTC, BNB), full-width, stackowane. Zawartość:
-1. **Nagłówek**: `BTC · Bitcoin` (lewo) + cena + zmiana 24h **wyciszona szarym** (prawo).
+1. **Nagłówek**: `BTC · Bitcoin` (lewo) + cena + zmiana 24h **kolorowana giełdowo: wzrost zielony / spadek czerwony** (prawo; od 2026-06-28, wcześniej szara).
 2. **Hero**: wielka liczba okazji 0–100 w kolorze skali (zielony = kupuj) + słowo-werdykt **OKAZJA / KUP / CZEKAJ** w tym samym kolorze + `/100`.
 3. **Podtytuł 1-zdaniowy**: „dobry moment na zakup — rynek w strachu" (okazja, złoty akcent) / „zwykły dzień DCA" / „drogo — rozważ przeczekanie".
 4. **Dokładnie 2 sygnały** (hairline): **Nastrój** (F&G) i **Cena** (trend 30d — „−14,7%/30d · taniej niż miesiąc temu"), każdy z kropką zielona/szara/czerwona. Kropka i tekst „Cena" liczone z jednego progu `CHEAP_30D_PCT=−8%`, więc kolor zawsze pasuje do słów. Pozycja w zakresie 90d zeszła na detal (sygnał „Cena vs 3 mies.").

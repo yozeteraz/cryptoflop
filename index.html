@@ -71,6 +71,11 @@
   .ac-name strong { color: var(--text); font-weight: 600; }
   .ac-price { font-size: 14px; color: var(--text); font-weight: 600; white-space: nowrap; }
   .ac-price .ac-chg { color: var(--muted-2); font-weight: 500; font-size: 12px; margin-left: 7px; }
+  /* Zmiana ceny 24h: wzrost=zielony, spadek=czerwony (na życzenie 2026-06-28).
+     Kolorujemy samą liczbę; sufiks "24h" zostaje wyciszony. */
+  .chg-pos  { color: var(--pos); font-weight: 600; }
+  .chg-neg  { color: var(--neg); font-weight: 600; }
+  .chg-flat { color: var(--muted-2); font-weight: 600; }
 
   .ac-hero { display: flex; align-items: baseline; gap: 14px; }
   .ac-opp { font-size: 64px; font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; color: var(--opp-color); }
@@ -376,6 +381,10 @@ function scoreColor(s){
   return "var(--c-100)";            // Wyjątkowa okazja — najgłębsza zieleń
 }
 
+function chgClass(v) {
+  return v > 0 ? "chg-pos" : v < 0 ? "chg-neg" : "chg-flat";
+}
+
 function fmtPct(v) {
   const sign = v > 0 ? "+" : "";
   const valStr = (typeof v === "number") ? String(v).replace(".", ",") : v;
@@ -420,7 +429,7 @@ function assetCardInnerHtml(asset) {
   return `
     <div class="ac-head">
       <span class="ac-name"><strong>${asset.name}</strong> · ${asset.sub}</span>
-      <span class="ac-price">${asset.price}<span class="ac-chg">${fmtPct(asset.price_change_24h)} 24h</span></span>
+      <span class="ac-price">${asset.price}<span class="ac-chg"><span class="${chgClass(asset.price_change_24h)}">${fmtPct(asset.price_change_24h)}</span> 24h</span></span>
     </div>
     <div class="ac-hero">
       <span class="ac-opp">${asset.opp}</span>
@@ -473,7 +482,7 @@ function renderVerdictBlock(asset) {
     <h3 class="section">Czy warto dziś kupić?</h3>
     <p class="section-sub">Jeden wynik okazji (zielony = kupuj) i sygnały prostym językiem: nastrój rynku, czy tanio i trend miesiąca; prognoza tygodnia w bloku niżej.</p>
     <div class="verdict-block" style="--opp-color:${scoreColor(opp)}">
-      <div class="vb-price">${asset.price} · ${fmtPct(asset.price_change_24h)} 24h</div>
+      <div class="vb-price">${asset.price} · <span class="${chgClass(asset.price_change_24h)}">${fmtPct(asset.price_change_24h)}</span> 24h</div>
       <div class="verdict-row">
         <span class="verdict-opp">${opp}</span>
         <span class="verdict-word">${v.word || ""}</span>
