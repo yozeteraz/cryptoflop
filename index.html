@@ -572,7 +572,7 @@ function buildBaro(opp30, f) {
   s += `<rect x="0" y="${yF(84).toFixed(1)}" width="${W}" height="${(yF(42) - yF(84)).toFixed(1)}" fill="var(--c-45)" opacity="0.045"/>`;
   s += `<rect x="0" y="${yF(42).toFixed(1)}" width="${W}" height="${(yF(0) - yF(42)).toFixed(1)}" fill="var(--c-30)" opacity="0.07"/>`;
   // jedna delikatna linia odniesienia: próg OKAZJA (84)
-  s += `<line x1="0" y1="${yF(84).toFixed(1)}" x2="${W}" y2="${yF(84).toFixed(1)}" stroke="var(--c-75)" stroke-width="1" opacity="0.22"/>`;
+  s += `<line x1="0" y1="${yF(84).toFixed(1)}" x2="${W}" y2="${yF(84).toFixed(1)}" stroke="var(--c-75)" stroke-width="0.6" opacity="0.28"/>`;
   // stożek prognozy — miękki gradient zanikający w przyszłość
   if (f && f.score_range) {
     const lo = f.score_range[0], hi = f.score_range[1], xE = xF(maxIdx), mid = (lo + hi) / 2;
@@ -580,7 +580,7 @@ function buildBaro(opp30, f) {
     s += `<line x1="${xT.toFixed(1)}" y1="${yT.toFixed(1)}" x2="${xE.toFixed(1)}" y2="${yF(mid).toFixed(1)}" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="1.5 3.5" stroke-linecap="round" opacity="0.6"/>`;
   }
   // separator "dziś" (subtelny)
-  s += `<line x1="${xT.toFixed(1)}" y1="${padT}" x2="${xT.toFixed(1)}" y2="${baseY}" stroke="var(--muted-2)" stroke-width="1" opacity="0.26"/>`;
+  s += `<line x1="${xT.toFixed(1)}" y1="${padT}" x2="${xT.toFixed(1)}" y2="${baseY}" stroke="var(--muted-2)" stroke-width="0.6" opacity="0.3"/>`;
   // wypełnienie + gładka krzywa
   s += `<path d="${areaPath}" fill="url(#fcarea)"/>`;
   s += `<path d="${linePath}" fill="none" stroke="var(--text)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.92"/>`;
