@@ -137,6 +137,32 @@ po adwersarialnej weryfikacji wyszły minor/nit (żadnego blockera) — to polis
 - **Treść:** nazwy reguł po polsku („Powrót do średniej", „Siła BNB vs BTC");
   pozycja w 90d opisana słownie zamiast surowego „(0%)".
 
+## Audyt 2026-06-28 — UX + metoda predykcji (po pełnym przeglądzie)
+
+Audyt całości (backend `fetch.py`, `index.html`, `zasady.html`, design system) z weryfikacją
+empiryczną na żywych danych. **Zero błędów krytycznych/logicznych** — kod dojrzały. Temat
+dominujący: **saturacja wyniku okazji w utrzymanej bessie** (2 z 3 składowych przy suficie →
+zakres ~74–95, OKAZJA 47–66% dni vs cel 8–13%). Metoda potwierdzona jako poprawna przez pełny
+cykl (8→92, wszystkie 3 werdykty). **Rdzeń `opportunity_score`/wagi/progi świadomie NIE
+ruszone** — to wierne raportowanie realnego, długiego okna DCA, a adaptacyjny próg wygasiłby
+sygnał w najlepszym oknie (sprzeczne z „narzędzie ma decydować"). Saturacja to problem
+komunikacji, nie kalibracji → adresowana po stronie UX (poniżej). Wdrożone 3 drobne poprawki:
+
+- **Kierunek prognozy bez stałej „Cykl" (A2):** `direction` liczony z reguł NIE-strukturalnych
+  (`dir_delta` = suma delt bez `structural`). Cykl wciąż wpływa na położenie pasma (przez
+  `total`→`expected`), ale nie napędza już strzałki. Wcześniej w bessie, gdy bramka wyciszała
+  „Powrót do średniej", stałe +3 cyklu samo dawało „↗ okno się poprawi" mimo neutralnej
+  dynamiki 7d. **Uwaga:** linia „Suma reguł: +X" nadal pokazuje `total` (z cyklem), bo to ona
+  wyjaśnia arytmetykę pasma (`baza+total=środek`); strzałka to osobny glif o dynamice 7d.
+  Gdy się rozjeżdżają (rzadko), rozbicie reguł na detalu pokazuje wiersz Cykl z jego deltą.
+- **Słowo OKAZJA → AKUMULUJ przy trwałym oknie (B3):** przy streaku ≥3 dni (ten sam próg co
+  reframe podtytułu z 06-25) wielkie słowo-werdykt zmienia się na „AKUMULUJ". Dokończenie
+  streak-reframe — codzienne „OKAZJA" w długiej bessie wypalało słowo; „AKUMULUJ" wierniej
+  oddaje, co robi DCA-er (dokłada wg planu). Kolor/score/progi bez zmian; KUP/CZEKAJ nietknięte.
+- **Wolumen — bazy zweryfikowane (A4):** `vol_now` (rolling 24h z `simple/price`) vs ostatni
+  pełny dzień z `market_chart` = 0,98x → bazy PORÓWNYWALNE, reguła Wolumen poprawna. Odczyty
+  „−55% vs 30d" są realne (30d avg zawyżony przez wcześniejsze dni krachu), nie artefakt. Bez zmian.
+
 ### Zaakceptowane wyjątki od reguł powyżej (kod ≠ litera dokumentu, świadomie)
 
 - **Modal sheet MA unoszący cień** (`0 -16px 40px rgba(0,0,0,.45)`) mimo reguły

@@ -204,6 +204,31 @@ obstawiał odbicie, którego w trendzie nie ma), jedna z konwikcją „high". Wy
 > Backend zweryfikowany testem jednostkowym (bez sieci) + end-to-end na żywych API. Zmiany na
 > gałęzi `audit-fixes-2026-06-25`; `data.json`/`history.json` zostają w gestii crona (regeneruje nowym kodem).
 
+## Audyt 2026-06-28 — UX + metoda predykcji (pełny przegląd)
+
+Audyt całości z weryfikacją empiryczną (siatka scenariuszy + żywe API). **Zero błędów
+krytycznych/logicznych** — kod dojrzały po trzech wcześniejszych audytach. Temat dominujący:
+**saturacja `opportunity_score` w utrzymanej bessie** — w reżimie głębokiego strachu 2 z 3
+składowych (`100-F&G`, `100-pos90`) są przy suficie naraz, więc zakres kurczy się do ~74–95,
+a OKAZJA pada w 47–66% dni (cel: 8–13%). **Metoda potwierdzona jako poprawna przez pełny cykl**
+(dno 92 → odbicie 70 → środek 49 → hossa 24 → euforia 8; wszystkie 3 werdykty się pojawiają).
+**Rdzeń (`opportunity_score`, `OPP_WEIGHTS`, progi) świadomie NIE ruszony** — saturacja to
+wierne raportowanie realnego, długiego okna DCA podczas krachu, nie błąd; adaptacyjny próg
+wygasiłby sygnał w najlepszym oknie (sprzeczne z „narzędzie ma decydować"). To problem
+komunikacji, nie kalibracji. Wdrożone 3 drobne poprawki (`fetch.py` + `zasady.html` + `design.md`):
+
+- **A2 — kierunek prognozy bez stałej „Cykl":** `direction` z reguł nie-strukturalnych
+  (`dir_delta`); Cykl wpływa już tylko na pasmo (`expected`), nie na strzałkę. W bessie, gdy
+  bramka wyciszała „Powrót do średniej", stałe +3 cyklu samo wymuszało „↗ okno się poprawi".
+- **B3 — słowo OKAZJA → AKUMULUJ przy streaku ≥3 dni:** dokończenie streak-reframe z 06-25
+  (wcześniej zmieniał się tylko podtytuł/headline; teraz też wielkie słowo). Score/progi bez zmian.
+- **A4 — wolumen zweryfikowany (bez zmian):** `vol_now` ≈ ostatni pełny dzień (0,98x) → bazy
+  porównywalne; „−55% vs 30d" realne (30d avg zawyżony przez wcześniejsze dni krachu), nie artefakt.
+
+> Backend zweryfikowany testem jednostkowym (bez sieci) na zmienionych funkcjach. `data.json`/
+> `history.json` w gestii crona (od następnego runa słowo będzie „AKUMULUJ", strzałka prognozy
+> odzwierciedli dynamikę 7d). Zmiany w working tree na `main` (niezacommitowane).
+
 ## Status: plan wykonany
 
 Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost. Aktualny kształt produktu definiuje **Redesign 2026-06-15** (wyżej).

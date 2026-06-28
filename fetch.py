@@ -379,10 +379,16 @@ def compose_forecast(score_base, deltas_with_notes):
     else:
         confidence = "medium"
 
+    # Kierunek strzałki liczymy z reguł NIE-strukturalnych (audyt 2026-06-28).
+    # Cykl (structural) to stała przez miesiące — wpływa na POŁOŻENIE pasma
+    # (przez total -> expected), ale nie powinien NAPĘDZAĆ strzałki "↗ okno się
+    # poprawi". W utrzymanej bessie, gdy bramka wycisza "Powrót do średniej",
+    # stałe +3 cyklu samo przeważało kierunek mimo neutralnej dynamiki 7d.
     # direction "up" = OKAZJA rośnie (lepsze okno zakupowe), "down" = okno się domyka.
-    if total > 1:
+    dir_delta = sum(r["delta"] for r in deltas_with_notes if not r.get("structural"))
+    if dir_delta > 1:
         direction_s = "up"
-    elif total < -1:
+    elif dir_delta < -1:
         direction_s = "down"
     else:
         direction_s = "flat"
@@ -540,7 +546,14 @@ def build_verdict(asset_key, name, opp, level, decision, fng, pct_30d, pos_90d,
                     f"Regularna, stała kwota DCA w {name} to tu najlepsza strategia.")
         sublabel = "zwykły dzień DCA"
 
-    return {"decision": decision, "level": level, "word": opp_word(level),
+    # Słowo-werdykt: przy TRWAŁEJ okazji (streak >=3 dni, ten sam próg co reframe
+    # podtytułu) wielkie słowo zmienia się z "OKAZJA" na "AKUMULUJ" — dokończenie
+    # streak-reframe z 2026-06-25 (audyt 2026-06-28). Codzienne "OKAZJA" w długiej
+    # bessie wypala słowo; "AKUMULUJ" wierniej oddaje, co realnie robi DCA-er:
+    # dokłada wg planu, bez gonienia (spójne z sublabel "akumuluj wg planu").
+    word = "AKUMULUJ" if (level == "okazja" and okazja_streak_days >= 3) else opp_word(level)
+
+    return {"decision": decision, "level": level, "word": word,
             "sublabel": sublabel, "opp": opp, "fng": fng,
             "headline": headline, "signals": signals,
             "home_signals": [nastroj_signal, price_signal]}
