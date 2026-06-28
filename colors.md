@@ -48,13 +48,20 @@ Od „drogo / przegrzane" (czerwień) przez „neutralnie" (szary) do „okazja"
 | 85  | `#16a34a` | Bardzo dobra okazja | Wyjątkowa okazja |
 | 100 | `#15803d` | Najlepszy moment — głęboki strach + tanio | Wyjątkowa okazja |
 
-## Wskaźniki zmian (delta — strzałki, % zmian)
+## Wskaźniki zmian — DWA rejestry koloru (2026-06-28)
 
-| Rola | Hex |
-|---|---|
-| Pozytywna zmiana | `#22c55e` (lub `#4ade80` w pillach) |
-| Negatywna zmiana | `#ef4444` (lub `#f87171` w pillach) |
-| Bez zmian | `#6b7385` (szary) |
+Zielony/czerwony niosą dwa różne znaczenia, więc mają dwie różne intensywności —
+żeby się nie zlewały na jednej karcie:
+
+| Rejestr | Rola | Hex | Uwaga |
+|---|---|---|---|
+| **Wynik (głośny)** | wynik okazji + kropki sygnałów | `--pos #22c55e` / `--neg #ef4444` | pełna saturacja — to bohater karty |
+| **Status (cichy)** | zmiana ceny 24h w nagłówku | `--chg-up #5fa87d` / `--chg-down #d07b72` | **stonowane**: szałwiowa zieleń + glinkowa czerwień; kierunek czyta się, ale nie kradnie uwagi wielkiej liczbie |
+| Bez zmian (0%) | — | `#7d8597` (szary) | |
+
+Powód rozdziału: `--pos` to dokładnie ten sam hex co `--c-75` (zielony „Dobra okazja"
+na skali wyniku). Gdyby zmiana 24h używała tej samej vivid zieleni, czytałaby się jak
+drugi „sygnał kupna" obok wielkiej liczby. Stonowany rejestr `--chg-*` to rozwiązuje.
 
 ---
 
@@ -85,7 +92,7 @@ Od „drogo / przegrzane" (czerwień) przez „neutralnie" (szary) do „okazja"
   /* Text */
   --text: #e6e9ef;
   --muted: #8a93a6;
-  --muted-2: #6b7385;
+  --muted-2: #7d8597;   /* podbite do WCAG AA (2026-06-25) */
 
   /* Sentiment scale 0–100 */
   --c-0:   #dc2626;
@@ -98,8 +105,11 @@ Od „drogo / przegrzane" (czerwień) przez „neutralnie" (szary) do „okazja"
   --c-85:  #16a34a;
   --c-100: #15803d;
 
-  /* Change indicators */
+  /* Change indicators — wynik (głośny) */
   --pos: #22c55e;
   --neg: #ef4444;
+  /* Zmiana ceny 24h — status (cichy, stonowany rejestr) */
+  --chg-up:   #5fa87d;
+  --chg-down: #d07b72;
 }
 ```

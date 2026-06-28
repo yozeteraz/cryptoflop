@@ -28,6 +28,11 @@
     --c-100: #15803d;
     --pos: #22c55e;
     --neg: #ef4444;
+    /* Zmiana ceny 24h — własny, STONOWANY rejestr (niższa saturacja niż vivid
+       zieleń/czerwień wyniku okazji). Kierunek ceny czyta się od razu, ale nie
+       konkuruje z wielką liczbą "kupuj" ani z kropkami sygnałów (2026-06-28). */
+    --chg-up:   #5fa87d;
+    --chg-down: #d07b72;
   }
 
   * { box-sizing: border-box; }
@@ -73,9 +78,9 @@
   .ac-price .ac-chg { color: var(--muted-2); font-weight: 500; font-size: 12px; margin-left: 7px; }
   /* Zmiana ceny 24h: wzrost=zielony, spadek=czerwony (na życzenie 2026-06-28).
      Kolorujemy samą liczbę; sufiks "24h" zostaje wyciszony. */
-  .chg-pos  { color: var(--pos); font-weight: 600; }
-  .chg-neg  { color: var(--neg); font-weight: 600; }
-  .chg-flat { color: var(--muted-2); font-weight: 600; }
+  .chg-pos  { color: var(--chg-up); font-weight: 500; }
+  .chg-neg  { color: var(--chg-down); font-weight: 500; }
+  .chg-flat { color: var(--muted-2); font-weight: 500; }
 
   .ac-hero { display: flex; align-items: baseline; gap: 14px; }
   .ac-opp { font-size: 64px; font-weight: 700; line-height: 0.88; letter-spacing: -0.02em; color: var(--opp-color); }
@@ -199,6 +204,15 @@
   .legend .lbl { color: var(--muted-2); font-size: 10px; margin: 0 4px; }
   .copyright { width: 100%; text-align: center; padding-top: 18px; margin-top: 14px; border-top: 1px solid var(--border); color: var(--muted-2); font-size: 11px; }
 
+  /* Stopka home — link do "Zasady działania" */
+  footer.home-foot {
+    margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+    color: var(--muted-2); font-size: 12px;
+  }
+  .home-foot-link { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 120ms, border-color 120ms; }
+  .home-foot-link:hover { color: var(--text); border-bottom-color: var(--muted); }
+
   /* ===== iOS-NATIVE MODAL SHEET (per Apple HIG) ===== */
   #detail-view {
     position: fixed; top: 10px; left: 0; right: 0; bottom: 0;
@@ -314,6 +328,12 @@
     </header>
 
     <div class="widgets" id="home-widgets"></div>
+
+    <footer class="home-foot">
+      <a class="home-foot-link" href="zasady.html">Zasady działania</a>
+      <span aria-hidden="true">·</span>
+      <span class="home-foot-copy">© 2026 Marcin Gałęcki</span>
+    </footer>
   </div>
 
   <!-- DETAIL VIEW (iOS-style modal sheet) -->

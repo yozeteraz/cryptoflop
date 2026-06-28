@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CryptoFlop — Zasady działania</title>
+<link rel="icon" type="image/svg+xml" href="logo/cryptoflop-monogram.svg">
+<style>
+  :root {
+    --bg:        #0d1117;
+    --panel:     #161c27;
+    --panel-2:   #1c2330;
+    --border:    #232b3a;
+    --text:      #e6e9ef;
+    --muted:     #8a93a6;
+    --muted-2:   #7d8597;
+    --accent:    #c4a878;
+
+    --c-0:#dc2626; --c-15:#ef4444; --c-30:#f97316; --c-45:#9ca3af;
+    --c-55:#84cc16; --c-65:#4ade80; --c-75:#22c55e; --c-85:#16a34a; --c-100:#15803d;
+    --pos:#22c55e; --neg:#ef4444; --chg-up:#5fa87d; --chg-down:#d07b72;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(196,168,120,0.04), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(63,93,98,0.06), transparent 60%);
+    color: var(--text);
+    font-family: "Helvetica Neue", "Helvetica", "Arial", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px; line-height: 1.6;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 44px 24px 96px; }
+
+  /* Header */
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+  .brand-logo { height: 30px; width: auto; color: #fff; display: block; }
+  .back-link {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: 980px; padding: 7px 14px;
+    transition: color 120ms, border-color 120ms, background 120ms;
+  }
+  .back-link:hover { color: var(--text); border-color: #2f384a; background: var(--panel); }
+
+  h1.title { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 22px 0 6px; }
+  p.lede { font-size: 16px; color: var(--muted); margin: 0 0 8px; max-width: 60ch; }
+
+  /* Sections */
+  section { margin-top: 40px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; margin: 0 0 4px; }
+  h2 + .sub { font-size: 13px; color: var(--muted-2); margin: 0 0 18px; }
+  h3 { font-size: 17px; font-weight: 600; margin: 22px 0 6px; letter-spacing: -0.01em; }
+  p { margin: 10px 0; color: #c8cdd9; }
+  strong { color: var(--text); font-weight: 600; }
+  .muted { color: var(--muted); }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px 22px; margin: 16px 0;
+  }
+  .card.tight { padding: 16px 18px; }
+
+  /* Formula / ingredient rows */
+  .ingredient { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .ingredient:last-child { border-bottom: none; }
+  .ing-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .ing-body { flex: 1; }
+  .ing-name { font-weight: 600; color: var(--text); }
+  .ing-weight { float: right; font-size: 12px; color: var(--muted-2); font-variant-numeric: tabular-nums; }
+  .ing-desc { font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+  /* Verdict chips */
+  .verdicts { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .vrow { display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .vrow:last-child { border-bottom: none; }
+  .vword { font-weight: 700; font-size: 16px; width: 88px; flex-shrink: 0; }
+  .vrange { font-size: 12px; color: var(--muted-2); width: 56px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .vdesc { font-size: 14px; color: var(--muted); }
+
+  /* Scale bar demo */
+  .scale-demo { margin: 16px 0 4px; }
+  .scale-bar { position: relative; height: 10px; border-radius: 5px; opacity: 0.9;
+    background: linear-gradient(90deg, #dc2626 8%, #ef4444 22%, #f97316 35%, #9ca3af 48%, #84cc16 60%, #4ade80 71%, #22c55e 80%, #16a34a 87%, #15803d 95%); }
+  .scale-ticks { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--muted-2); }
+
+  /* Live example box */
+  #example { display: none; }
+  .ex-grid { display: flex; gap: 14px; flex-wrap: wrap; }
+  .ex-asset { flex: 1; min-width: 200px; }
+  .ex-top { display: flex; align-items: baseline; gap: 10px; }
+  .ex-opp { font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+  .ex-word { font-size: 17px; font-weight: 700; }
+  .ex-name { font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .ex-sig { font-size: 13px; color: var(--muted); margin-top: 8px; display: flex; gap: 8px; align-items: baseline; }
+  .ex-sig .d { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; }
+  .dot.good { background: var(--pos); } .dot.warn { background: var(--neg); } .dot.neutral { background: var(--c-45); }
+
+  ul.clean { list-style: none; padding: 0; margin: 12px 0; }
+  ul.clean li { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14.5px; color: #c8cdd9; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li b { color: var(--text); }
+
+  .callout {
+    background: var(--panel-2); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 12px; padding: 16px 18px; margin: 18px 0; font-size: 14.5px; color: #c8cdd9;
+  }
+  .callout strong { color: var(--accent); }
+
+  footer.foot { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--border); color: var(--muted-2); font-size: 12px; line-height: 1.7; }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 28px 16px 72px; }
+    h1.title { font-size: 25px; }
+    .ing-weight { float: none; display: block; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <svg class="brand-logo" viewBox="0 0 720 120" xmlns="http://www.w3.org/2000/svg" aria-label="CryptoFlop">
+      <text x="360" y="60" text-anchor="middle" dominant-baseline="central" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500" font-size="96" letter-spacing="-1.44" fill="currentColor">CryptoFlop</text>
+    </svg>
+    <a class="back-link" href="index.html">← Wróć</a>
+  </header>
+
+  <h1 class="title">Zasady działania</h1>
+  <p class="lede">Jak CryptoFlop liczy „okazję do kupna" i prognozę — bez magii, bez szklanej kuli. Wszystko to proste reguły na publicznych danych. Czytaj to jako pomoc w wyrobieniu intuicji, <strong>nie</strong> jako poradę inwestycyjną.</p>
+
+  <!-- CO TO JEST -->
+  <section>
+    <h2>Po co to jest</h2>
+    <p class="sub">Jedno pytanie, raz dziennie.</p>
+    <p>CryptoFlop odpowiada na jedno: <strong>czy dziś to dobry moment, żeby dokupić</strong> w ramach regularnych, stałych zakupów (DCA — Dollar-Cost Averaging) w BTC i BNB. Narzędzie jest <strong>kontrariańskie</strong>: najlepiej kupować, gdy rynek jest w strachu i tanio, a nie gdy wszyscy są w euforii. Dlatego główna liczba rośnie, gdy robi się <em>taniej i straszniej</em> — odwrotnie niż nastrój tłumu.</p>
+    <div class="callout">
+      <strong>Czego NIE robimy:</strong> nie przewidujemy ceny, nie podajemy „kup/sprzedaj teraz", nie obiecujemy zysków. Rynek jest w dużej mierze efektywny i krótkoterminowo emocjonalny — nie da się go „przewidzieć". Pokazujemy stan, nie wyrocznię.
+    </div>
+  </section>
+
+  <!-- WYNIK OKAZJI -->
+  <section>
+    <h2>Wynik okazji · 0–100</h2>
+    <p class="sub">Wielka liczba na każdej karcie. Zielony = kupuj.</p>
+    <p>To <strong>nie</strong> jest „sentyment" ani prognoza ceny. To złożona ocena, jak dobry jest dziś moment na zakup, w skali 0–100. <strong>Wyżej = lepsza okazja</strong> (rynek w strachu, cena nisko). Kolor niesie to wprost:</p>
+
+    <div class="scale-demo">
+      <div class="scale-bar"></div>
+      <div class="scale-ticks"><span>0 · drogo</span><span>50 · neutralnie</span><span>100 · okazja</span></div>
+    </div>
+
+    <h3>Z czego się składa</h3>
+    <p>Wynik to ważona suma trzech kontrariańskich składowych. Każda jest tym wyższa, im lepiej dla kupującego:</p>
+    <div class="card">
+      <div class="ingredient">
+        <span class="ing-dot" style="background:var(--c-75)"></span>
+        <div class="ing-body">
+          <span class="ing-weight">BTC 45% · BNB 35%</span>
+          <div class="ing-name">Nastrój rynku — Fear &amp; Greed Index</div>
+          <div class="ing-desc">Publiczny indeks strachu i chciwości (0–100). Im większy <strong>strach</strong>, tym wyższa okazja. Waży najwięcej dla BTC, bo ten indeks jest „BTC-centryczny".</div>
+        </div>
+      </div>
+      <div class="ingredient">
+        <span class="ing-dot" style="background:var(--c-65)"></span>
+        <div class="ing-body">
+          <span class="ing-weight">BTC 30% · BNB 35%</span>
+          <div class="ing-name">Pozycja ceny w zakresie 90 dni</div>
+          <div class="ing-desc">Gdzie jest dzisiejsza cena między najniższą a najwyższą z ostatnich 3 miesięcy. <strong>Przy dnie</strong> zakresu = wysoka okazja, przy szczycie = niska.</div>
+        </div>
+      </div>
+      <div class="ingredient">
+        <span class="ing-dot" style="background:var(--c-55)"></span>
+        <div class="ing-body">
+          <span class="ing-weight">BTC 25% · BNB 30%</span>
+          <div class="ing-name">Trend 30 dni</div>
+          <div class="ing-desc">Zmiana ceny przez ostatni miesiąc. Spadek = kupujesz taniej niż miesiąc temu = wyższa okazja. Pełna skala przy ok. −25% (i więcej).</div>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="font-size:13.5px">BNB ma własną dynamikę cenową (realna firma za projektem), więc jego sygnały cenowe ważą u niego mocniej, a wspólny indeks strachu — trochę mniej.</p>
+  </section>
+
+  <!-- PRZYKLAD NA DZIS (live) -->
+  <section id="example">
+    <h2>Przykład na dziś</h2>
+    <p class="sub">Zaciągnięte z bieżących danych aplikacji.</p>
+    <div class="card ex-grid" id="example-grid"></div>
+    <p class="muted" style="font-size:13px">To te same liczby, które widzisz na stronie głównej — tu tylko z etykietą „skąd się biorą".</p>
+  </section>
+
+  <!-- WERDYKT -->
+  <section>
+    <h2>Werdykt · jedno słowo</h2>
+    <p class="sub">Wynik 0–100 zamienia się na decyzję.</p>
+    <p>Żeby nie trzeba było interpretować liczby, wynik mapuje się na jedno z trzech słów (progi skalibrowane na ~6 miesiącach realnych danych):</p>
+    <div class="card verdicts">
+      <div class="vrow"><span class="vword" style="color:var(--c-100)">OKAZJA</span><span class="vrange">84–100</span><span class="vdesc"><strong>Rzadki, wyjątkowy dzień</strong> — głęboki strach i tanio naraz. Statystycznie lepszy moment na zakup niż zwykle.</span></div>
+      <div class="vrow"><span class="vword" style="color:var(--c-65)">KUP</span><span class="vrange">42–83</span><span class="vdesc"><strong>Zwykły dzień DCA</strong> — ani okazja, ani przegrzanie. Kupuj regularną, stałą kwotę wg planu.</span></div>
+      <div class="vrow"><span class="vword" style="color:var(--c-30)">CZEKAJ</span><span class="vrange">0–41</span><span class="vdesc"><strong>Rynek rozgrzany</strong> — rozsądniej wstrzymać dodatkowe zakupy i poczekać na spokojniejszy moment.</span></div>
+    </div>
+    <p class="muted" style="font-size:13.5px">„OKAZJA" jest celowo rzadka — gdyby zapalała się codziennie, słowo by nic nie znaczyło. W długiej bessie potrafi się utrzymywać przez wiele dni z rzędu; wtedy podtytuł zmienia się na „okno otwarte od N dni — akumuluj wg planu" (nie ma sensu gonić zakupów codziennie przy stałym budżecie miesięcznym).</p>
+  </section>
+
+  <!-- 4 SYGNALY -->
+  <section>
+    <h2>Cztery sygnały</h2>
+    <p class="sub">Na detalu coina — rozłożenie werdyktu na czynniki, prostym językiem.</p>
+    <ul class="clean">
+      <li><span class="dot good"></span> &nbsp;<b>Nastrój rynku</b> — odczyt Fear &amp; Greed prostym słowem (skrajny strach … skrajna chciwość).</li>
+      <li><span class="dot neutral"></span> &nbsp;<b>Cena vs 3 mies.</b> — czy stoisz blisko dna, w środku, czy przy szczycie 3-miesięcznego zakresu.</li>
+      <li><span class="dot good"></span> &nbsp;<b>Trend 30 dni</b> — taniej czy drożej niż miesiąc temu.</li>
+      <li><span class="dot neutral"></span> &nbsp;<b>Prognoza 7 dni</b> — w którą stronę zmierza okno zakupowe (patrz niżej).</li>
+    </ul>
+    <p class="muted" style="font-size:13.5px">Kropka mówi szybko: <span class="dot good"></span> zielona = sprzyja zakupowi, <span class="dot neutral"></span> szara = neutralna, <span class="dot warn"></span> czerwona = przemawia przeciw.</p>
+  </section>
+
+  <!-- PROGNOZA -->
+  <section>
+    <h2>Prognoza okazji · 7 dni</h2>
+    <p class="sub">Czy okno zakupowe raczej się otworzy, czy domknie — NIE prognoza ceny.</p>
+    <p>To probabilistyczna ekstrapolacja widocznego układu, nie szklana kula. Prognozujemy kierunek <strong>okazji</strong> (czy w tydzień będzie raczej lepiej, czy gorzej kupować), zawsze jako <strong>pasmo, nie punkt</strong>, zawsze z jawną <strong>pewnością</strong> (niska / średnia / wysoka). Składa się z czterech reguł, które widać rozpisane na detalu:</p>
+    <ul class="clean">
+      <li><b>Wolumen</b> — czy ruch ceny jest potwierdzony obrotem (ruch „na wolumenie" jest bardziej wiarygodny).</li>
+      <li><b>Powrót do średniej</b> — skrajności (głęboki strach albo euforia) zwykle wracają w stronę normy.</li>
+      <li><b>Momentum</b> — ile dni z rzędu rynek idzie w jedną stronę (i czy to się nie wyczerpuje).</li>
+      <li><b>Cykl</b> (BTC) — faza po halvingu Bitcoina. &nbsp;<b>Siła BNB vs BTC</b> (BNB) — czy BNB jest mocniejszy czy słabszy od Bitcoina.</li>
+    </ul>
+    <div class="callout">
+      <strong>Uczciwie:</strong> to reguły, nie wyrocznia — spodziewaj się odchyleń przy szybkich ruchach rynku. W utrzymującym się trendzie spadkowym reguła „powrotu do średniej" jest celowo wyciszana (zakłada odbicie, którego w trendzie nie ma). Gdy pasmo dobija do krawędzi skali, pokazujemy je jednostronnie (np. „≥ 85") zamiast udawać precyzję. Strzałka kierunku jest szara — nie ocenia, tylko wskazuje.
+    </div>
+  </section>
+
+  <!-- PASEK 30 DNI -->
+  <section>
+    <h2>Pasek „ostatnie 30 dni"</h2>
+    <p class="sub">30 kostek pod każdą kartą.</p>
+    <p>Każda kostka to wartość okazji z jednego dnia, w kolorze tej samej skali (lewo = 30 dni temu, prawo = dziś). <strong>Zielona seria</strong> = okres dobrych okazji do dokupowania, <strong>czerwona</strong> = drogo. Daje kontekst pod dzisiejszą liczbę: czy dziś jest wyjątkowo, czy to po prostu kolejny dzień dobrego okna.</p>
+  </section>
+
+  <!-- KOLORY -->
+  <section>
+    <h2>Kolory</h2>
+    <p class="sub">Każdy kolor coś znaczy — nic nie jest dekoracją.</p>
+    <ul class="clean">
+      <li><span class="dot" style="background:var(--c-75)"></span> &nbsp;<b>Zielony</b> — okazja / dobry moment na zakup (im głębszy, tym lepszy).</li>
+      <li><span class="dot" style="background:var(--c-30)"></span> &nbsp;<b>Czerwony / pomarańcz</b> — drogo / rynek rozgrzany.</li>
+      <li><span class="dot" style="background:var(--c-45)"></span> &nbsp;<b>Szary</b> — neutralnie, zwykły dzień.</li>
+      <li><span style="color:var(--chg-up); font-weight:600">↑</span> / <span style="color:var(--chg-down); font-weight:600">↓</span> &nbsp;<b>Zmiana ceny 24h</b> — stonowany zielony/czerwony (wzrost/spadek). Celowo bledszy niż wynik okazji, żeby nie konkurował z wielką liczbą. Uwaga: spadek ceny jest czerwony, choć dla kupującego oznacza <em>lepszą</em> okazję — to dwa różne języki na jednej karcie.</li>
+    </ul>
+  </section>
+
+  <footer class="foot">
+    <strong style="color:var(--muted)">Dane:</strong> ceny i wolumeny z CoinGecko, Fear &amp; Greed z alternative.me. Odświeżane automatycznie co kilka godzin.<br>
+    To narzędzie osobiste i edukacyjne — nie porada inwestycyjna, nie prognoza ceny. Decyzje podejmujesz sam.<br>
+    © 2026 Marcin Gałęcki · <a href="index.html">CryptoFlop</a>
+  </footer>
+
+</div>
+
+<script>
+function scoreColor(s){
+  if (s<16) return "var(--c-0)"; if (s<28) return "var(--c-15)"; if (s<42) return "var(--c-30)";
+  if (s<54) return "var(--c-45)"; if (s<66) return "var(--c-55)"; if (s<76) return "var(--c-65)";
+  if (s<84) return "var(--c-75)"; if (s<90) return "var(--c-85)"; return "var(--c-100)";
+}
+/* Żywy przykład „na dziś" — zaciąga te same data.json co aplikacja. Jeśli się nie uda, sekcja zostaje ukryta. */
+fetch("data.json?_t=" + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    const grid = document.getElementById("example-grid");
+    grid.innerHTML = (data.assets || []).map(a => {
+      const v = a.verdict || {};
+      const sigs = (v.home_signals || []).map(s =>
+        `<div class="ex-sig"><span class="d ${s.tone}" style="background:${s.tone==='good'?'var(--pos)':s.tone==='warn'?'var(--neg)':'var(--c-45)'}"></span><span><b style="color:var(--text)">${s.label}:</b> ${s.text}</span></div>`
+      ).join("");
+      return `<div class="ex-asset">
+        <div class="ex-name">${a.name} · ${a.price}</div>
+        <div class="ex-top"><span class="ex-opp" style="color:${scoreColor(a.opp)}">${a.opp}</span><span class="ex-word" style="color:${scoreColor(a.opp)}">${v.word||""}</span></div>
+        ${sigs}
+      </div>`;
+    }).join("");
+    if ((data.assets||[]).length) document.getElementById("example").style.display = "block";
+  })
+  .catch(() => {});
+</script>
+</body>
+</html>
