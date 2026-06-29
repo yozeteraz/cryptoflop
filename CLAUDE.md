@@ -229,6 +229,27 @@ komunikacji, nie kalibracji. Wdrożone 3 drobne poprawki (`fetch.py` + `zasady.h
 > `history.json` w gestii crona (od następnego runa słowo będzie „AKUMULUJ", strzałka prognozy
 > odzwierciedli dynamikę 7d). Zmiany w working tree na `main` (niezacommitowane).
 
+## Audyt 2026-06-29 — domknięcie po weryfikacji wieloagentowej
+
+Workflow weryfikacyjny pakietu z 06-28 (9 soczewek × adwersarialna weryfikacja) padł na limicie
+sesji, ale faza FIND się dokończyła — findingi odzyskane z transkryptów. Rdzeń potwierdzony jako
+zdrowy; B3/A4 czyste; wykryto REGRESJĘ z A2 + potwierdzono B1. Wdrożone:
+
+- **A2′ (superseduje A2 z 06-28):** Cykl (structural) całkowicie poza sumą/pasmem/kierunkiem
+  prognozy — na 7 dni jego wkład jest znikomy, a poprzedni split (kierunek bez Cyklu, pasmo z
+  Cyklem) dawał jawną sprzeczność „strzałka vs stożek/suma" (modal w bessie). Strzałka = suma =
+  stożek na jednej bazie; Cykl jako kontekst w rozbiciu (kropka „·", nie chip delty).
+- **Pasek „30 dni" → słupki o wysokości (B1):** wysokość = okazja, kolor absolutny bez zmian.
+  Saturacja w bessie spłaszczała sam kolor („zielona ściana", BTC stdev 8,3); wysokość przywraca
+  kontrast. `title="okazja N/100"` na słupku (domyka a11y color-only). Zastępuje „30 kostek"
+  z redesignu 06-15.
+- Pozostałe findingi (a11y: arkusz bez role=dialog/focus-trap/inert; brak izolacji sekcji w
+  renderze; dwa sygnały cenowe na detalu; granica dnia UTC; nity) — ZIDENTYFIKOWANE, niewdrożone,
+  do decyzji. Straszący „a11y: słowo nie przechodzi WCAG" okazał się przesadzony (duży bold → AA-large OK).
+
+> data.json/history.json zregenerowane lokalnie nowym kodem (AKUMULUJ + spójna prognoza),
+> dalej w gestii crona.
+
 ## Status: plan wykonany
 
 Wszystkie etapy poza odrzuconym etapem 2 (płatne API) są gotowe i zdeployowane. Projekt jest w pełni funkcjonalny i zero-cost. Aktualny kształt produktu definiuje **Redesign 2026-06-15** (wyżej).

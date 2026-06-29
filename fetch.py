@@ -336,17 +336,22 @@ def compose_forecast(score_base, deltas_with_notes):
     score_base to WYGŁADZONA baza (średnia z ostatnich refreshy), nie chwilowy
     score zdominowany przez zmianę 24h — pasmo nie może być węższe niż szum
     samej bazy między odświeżeniami (min. 12 pkt)."""
-    deltas = [r["delta"] for r in deltas_with_notes]
+    # Reguły STRUKTURALNE (Cykl — stała przez miesiące) NIE wchodzą do sumy,
+    # pasma ani kierunku (audyt 2026-06-29). Na horyzoncie 7 dni ich realny wkład
+    # jest znikomy (~1 pkt), a wliczanie stałej +3 tworzyło sprzeczność
+    # "strzałka ↘ vs stożek/suma ↗" (strzałka liczyła nie-strukturalne, a stożek
+    # i 'Suma reguł' — total z Cyklem). Teraz wszystko na jednej, nie-strukturalnej
+    # bazie; Cykl zostaje wyłącznie jako KONTEKST w rozbiciu reguł (bez chipu delty).
+    # Skutek uboczny (pożądany): structural nie przecieka już też do bramki
+    # konwikcji przez spread/width.
+    directional = [r for r in deltas_with_notes if not r.get("structural")]
+    deltas = [r["delta"] for r in directional]
     total = max(-30, min(30, sum(deltas)))
     expected = max(0, min(100, score_base + total))
 
-    # Reguły STRUKTURALNE (np. faza cyklu — stała przez miesiące) nie są
-    # "głosem" świadczącym o zgodzie sygnałów dzień-do-dnia, więc nie podbijają
-    # bramki konwikcji. Inaczej stałe +3 sztucznie robiło z prognozy "pewną".
-    active = sum(1 for r in deltas_with_notes
-                 if r["delta"] != 0 and not r.get("structural"))
+    active = sum(1 for r in directional if r["delta"] != 0)
 
-    spread = max(deltas) - min(deltas)
+    spread = (max(deltas) - min(deltas)) if deltas else 0
     all_same_sign = all(d >= 0 for d in deltas) or all(d <= 0 for d in deltas)
     if all_same_sign and spread <= 5:
         width = 12
@@ -366,7 +371,7 @@ def compose_forecast(score_base, deltas_with_notes):
     # Konwikcja: gdy o kierunku decyduje dominujący (co do wielkości) głos
     # "Powrót do średniej" — czyli kontrariański zakład o odbicie — nie wolno
     # wystawiać "high". To właśnie ten zakład mylił kierunek 0/3 w trendzie.
-    nonzero = [r for r in deltas_with_notes if r["delta"] != 0]
+    nonzero = [r for r in directional if r["delta"] != 0]
     dominant = max(nonzero, key=lambda r: abs(r["delta"]), default=None)
     reversion_drives = dominant is not None and dominant["name"] == "Powrót do średniej"
 
@@ -379,16 +384,12 @@ def compose_forecast(score_base, deltas_with_notes):
     else:
         confidence = "medium"
 
-    # Kierunek strzałki liczymy z reguł NIE-strukturalnych (audyt 2026-06-28).
-    # Cykl (structural) to stała przez miesiące — wpływa na POŁOŻENIE pasma
-    # (przez total -> expected), ale nie powinien NAPĘDZAĆ strzałki "↗ okno się
-    # poprawi". W utrzymanej bessie, gdy bramka wycisza "Powrót do średniej",
-    # stałe +3 cyklu samo przeważało kierunek mimo neutralnej dynamiki 7d.
+    # Kierunek = znak sumy (już bez Cyklu) -> spójny ze stożkiem i 'Sumą reguł',
+    # i nie napędzany stałą cyklu (audyt 2026-06-29).
     # direction "up" = OKAZJA rośnie (lepsze okno zakupowe), "down" = okno się domyka.
-    dir_delta = sum(r["delta"] for r in deltas_with_notes if not r.get("structural"))
-    if dir_delta > 1:
+    if total > 1:
         direction_s = "up"
-    elif dir_delta < -1:
+    elif total < -1:
         direction_s = "down"
     else:
         direction_s = "flat"
@@ -401,8 +402,9 @@ def compose_forecast(score_base, deltas_with_notes):
         "direction": direction_s,
         "confidence": confidence,
         "total_delta": total,
-        # Strip kluczy wewnętrznych (structural) — do UI idzie tylko name/delta/note.
-        "rules": [{"name": r["name"], "delta": r["delta"], "note": r["note"]}
+        # structural=True dla Cyklu -> UI renderuje go jako kontekst (bez chipu delty).
+        "rules": [{"name": r["name"], "delta": r["delta"], "note": r["note"],
+                   "structural": bool(r.get("structural"))}
                   for r in deltas_with_notes],
     }
 

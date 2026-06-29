@@ -163,6 +163,26 @@ komunikacji, nie kalibracji → adresowana po stronie UX (poniżej). Wdrożone 3
   pełny dzień z `market_chart` = 0,98x → bazy PORÓWNYWALNE, reguła Wolumen poprawna. Odczyty
   „−55% vs 30d" są realne (30d avg zawyżony przez wcześniejsze dni krachu), nie artefakt. Bez zmian.
 
+## Audyt 2026-06-29 — domknięcie (weryfikacja wieloagentowa)
+
+Weryfikacja pakietu z 06-28 (9 soczewek) wykazała REGRESJĘ z poprawki A2 i potwierdziła
+finding B1 (płaski pasek). Wdrożone:
+
+- **A2′ — Cykl całkowicie poza prognozą kierunkową (superseduje A2 z 06-28):** reguła
+  strukturalna (Cykl) NIE wchodzi już do sumy, pasma ANI kierunku — na 7 dni jej realny wkład
+  to ~1 pkt, nie +3. Poprzednie A2 (kierunek bez Cyklu, ale pasmo/suma z Cyklem) tworzyło JAWNĄ
+  sprzeczność „strzałka ↘ vs stożek/suma ↗" (2 findery: major, stan modalny w bessie). Teraz
+  strzałka = znak sumy = kierunek stożka = jedna nie-strukturalna baza. Cykl zostaje w rozbiciu
+  reguł jako KONTEKST: kropka „·" zamiast chipu delty, linia sumy dopisuje „Cykl to kontekst
+  strukturalny (poza sumą 7d)". Bonus: structural nie przecieka też do konwikcji (spread/width
+  liczone tylko z reguł kierunkowych).
+- **Pasek „30 dni" → słupki o wysokości (finding B1):** kostki zastąpione słupkami, wysokość =
+  wynik okazji (podłoga 6%), kolor wciąż absolutny (scoreColor). Przy saturacji w bessie sam
+  kolor traci kontrast (BTC stdev 8,3 — „zielona ściana"); wysokość przywraca falowanie
+  dzień-do-dnia bez łamania zasady „kolor = okazja". Każdy słupek ma `title="okazja N/100"`
+  (domyka też a11y „pasek kodował znaczenie tylko kolorem"). `.ac-strip` 16→40px, align-items
+  flex-end, słupki zaokrąglone tylko u góry.
+
 ### Zaakceptowane wyjątki od reguł powyżej (kod ≠ litera dokumentu, świadomie)
 
 - **Modal sheet MA unoszący cień** (`0 -16px 40px rgba(0,0,0,.45)`) mimo reguły

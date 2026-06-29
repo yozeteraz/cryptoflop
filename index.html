@@ -102,8 +102,11 @@
   /* Pasek "ostatnie 30 dni" — okazja dzień po dniu (kolor na skali okazji) */
   .ac-strip-wrap { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
   .ac-strip-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-2); margin-bottom: 8px; }
-  .ac-strip { display: flex; gap: 2px; height: 16px; }
-  .ac-strip .ac-day { flex: 1; border-radius: 1.5px; }
+  /* Słupki o wysokości = wynik okazji (0–100); kolor wciąż absolutny (skala okazji).
+     Wysokość przywraca kontrast dzień-do-dnia, którego sam kolor traci przy saturacji
+     w bessie (audyt 2026-06-29). Słupki rosną od wspólnej linii bazowej u dołu. */
+  .ac-strip { display: flex; gap: 2px; height: 40px; align-items: flex-end; }
+  .ac-strip .ac-day { flex: 1; min-height: 2px; border-radius: 1.5px 1.5px 0 0; }
   .ac-strip-axis { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--muted-2); letter-spacing: 0.02em; }
 
   /* DETAIL panels (swipe pager) */
@@ -444,7 +447,13 @@ function homeSignalsHtml(v) {
 
 function strip30Html(opp30) {
   if (!opp30 || opp30.length < 2) return "";
-  const days = opp30.map(o => `<span class="ac-day" style="background:${scoreColor(o)}"></span>`).join("");
+  // Wysokość słupka = wynik okazji (mała podłoga 6%, by dzień ~0 też był widoczny);
+  // kolor = scoreColor (skala absolutna, zielony = okazja).
+  const days = opp30.map(o => {
+    const v = Math.max(0, Math.min(100, o));
+    const h = (6 + v * 0.94).toFixed(1);
+    return `<span class="ac-day" style="height:${h}%;background:${scoreColor(o)}" title="okazja ${o}/100"></span>`;
+  }).join("");
   return `
     <div class="ac-strip-wrap">
       <div class="ac-strip-label">Ostatnie 30 dni — okazja</div>
@@ -611,11 +620,17 @@ function renderForecastBlock(asset) {
   const bandTxt = f.clamped === "hi" ? `≥ ${lo}` : f.clamped === "lo" ? `≤ ${hi}` : `pasmo ${lo}–${hi}`;
   const arrow = forecastArrow(f.direction);
   const rules = (f.rules || []).map(r => {
+    if (r.structural) {
+      // Reguła strukturalna (Cykl) — kontekst, nie wkład liczbowy w prognozę 7d.
+      // Kropka zamiast chipu delty, żeby nikt nie dodawał jej do "Sumy reguł".
+      return `<li><span class="fc-rule-name">${r.name}</span><span class="fc-rule-delta zero" title="kontekst strukturalny — poza sumą 7d">·</span><span class="fc-rule-note">${r.note}</span></li>`;
+    }
     const cls = r.delta > 0 ? "pos" : r.delta < 0 ? "neg" : "zero";
     const sign = r.delta > 0 ? "+" : "";
     return `<li><span class="fc-rule-name">${r.name}</span><span class="fc-rule-delta ${cls}">${sign}${r.delta}</span><span class="fc-rule-note">${r.note}</span></li>`;
   }).join("");
   const base = f.score_base;
+  const hasStructural = (f.rules || []).some(r => r.structural);
   const totalSign = f.total_delta > 0 ? "+" : "";
   return `
     <h3 class="section">Prognoza okazji · 7 dni</h3>
@@ -636,7 +651,7 @@ function renderForecastBlock(asset) {
         <span class="fc-conf">pewność: ${confLabelPl(f.confidence)}</span>
       </div>
       <ul class="fc-rules">${rules}</ul>
-      <div class="fc-sum">Suma reguł: ${totalSign}${f.total_delta} od bazy ${base} (baza = średnia okazji z ostatnich odświeżeń, odporna na szum 24h)</div>
+      <div class="fc-sum">Suma reguł: ${totalSign}${f.total_delta} od bazy ${base}${hasStructural ? " · Cykl to kontekst strukturalny (poza sumą 7d)" : ""}. Baza = średnia okazji z ostatnich odświeżeń, odporna na szum 24h.</div>
       <div class="fc-disclaimer">Prognoza okazji to rule-based ekstrapolacja z widocznego setupu — nie sygnał handlowy i nie prognoza ceny. Spodziewaj się odchyleń przy szybkich zmianach rynku.</div>
     </div>
   `;
