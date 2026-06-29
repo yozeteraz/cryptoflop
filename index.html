@@ -659,14 +659,22 @@ function renderForecastBlock(asset) {
 
 function renderDetailPanel(panelEl, asset) {
   panelEl.dataset.asset = asset.key;
-  const verdict = renderVerdictBlock(asset);
-  const forecast = document.createElement("section");
-  forecast.className = "block";
-  forecast.innerHTML = renderForecastBlock(asset);
+  // Izolacja: błąd renderu JEDNEGO panelu nie może wywrócić home ani drugiego
+  // panelu (audyt 2026-06-29). Wcześniej wyjątek tutaj leciał aż do .catch
+  // bootstrapa i kasował już wyrenderowany home błędem "nie udało się załadować".
+  try {
+    const verdict = renderVerdictBlock(asset);
+    const forecast = document.createElement("section");
+    forecast.className = "block";
+    forecast.innerHTML = renderForecastBlock(asset);
 
-  panelEl.innerHTML = "";
-  if (verdict) panelEl.appendChild(verdict);
-  panelEl.appendChild(forecast);
+    panelEl.innerHTML = "";
+    if (verdict) panelEl.appendChild(verdict);
+    panelEl.appendChild(forecast);
+  } catch (err) {
+    console.error("renderDetailPanel failed for", asset && asset.key, err);
+    panelEl.innerHTML = `<section class="block"><div class="verdict-block" style="text-align:center; color:var(--muted)">Nie udało się wyświetlić szczegółów ${(asset && asset.name) || "tego aktywa"}.</div></section>`;
+  }
 }
 
 function renderDetail(data) {
