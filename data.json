@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-06-30T09:30:41.632112+00:00",
+  "fetched_at": "2026-06-30T12:06:44.660471+00:00",
   "header_label": "wtorek, 30 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$59 215",
-      "price_change_24h": -1.1,
-      "opp": 90,
+      "price": "$58 974",
+      "price_change_24h": -2.4,
+      "opp": 91,
       "opp_30d": [
         72,
         89,
@@ -39,14 +39,14 @@
         89,
         89,
         90,
-        90
+        91
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "AKUMULUJ",
         "sublabel": "okno otwarte od 8 dni — akumuluj wg planu",
-        "opp": 90,
+        "opp": 91,
         "fng": 15,
         "headline": "Rynek od kilku dni jest w strachu i BTC pozostaje tani — okno zakupowe jest otwarte już 8 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-19,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-19,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-19,5%/30d · taniej niż miesiąc temu"
+            "text": "-19,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -83,18 +83,18 @@
         "horizon_days": 7,
         "score_base": 90,
         "score_range": [
-          87,
-          99
+          86,
+          98
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "low",
-        "total_delta": 3,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-10% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -122,9 +122,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$550",
-      "price_change_24h": -0.5,
-      "opp": 93,
+      "price": "$546",
+      "price_change_24h": -1.4,
+      "opp": 94,
       "opp_30d": [
         41,
         60,
@@ -155,14 +155,14 @@
         87,
         87,
         92,
-        93
+        94
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "AKUMULUJ",
         "sublabel": "okno otwarte od 7 dni — akumuluj wg planu",
-        "opp": 93,
+        "opp": 94,
         "fng": 15,
         "headline": "Rynek od kilku dni jest w strachu i BNB pozostaje tani — okno zakupowe jest otwarte już 7 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-22,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-22,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,16 +191,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-22,4%/30d · taniej niż miesiąc temu"
+            "text": "-22,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 91,
+        "score_base": 92,
         "score_range": [
-          87,
-          99
+          88,
+          100
         ],
         "clamped": null,
         "direction": "up",
@@ -210,7 +210,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-31% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-32% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -228,7 +228,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +0,8% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,5% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
