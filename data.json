@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-06-30T21:26:27.114865+00:00",
+  "fetched_at": "2026-06-30T23:09:49.034171+00:00",
   "header_label": "wtorek, 30 czerwca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$58 454",
-      "price_change_24h": -3.0,
+      "price": "$58 537",
+      "price_change_24h": -2.9,
       "opp": 91,
       "opp_30d": [
         72,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-20,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-20,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-20,6%/30d · taniej niż miesiąc temu"
+            "text": "-20,5%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -122,8 +122,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$544",
-      "price_change_24h": -2.8,
+      "price": "$545",
+      "price_change_24h": -2.6,
       "opp": 94,
       "opp_30d": [
         41,
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-23,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-23,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,7 +191,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-23,2%/30d · taniej niż miesiąc temu"
+            "text": "-23,1%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -228,7 +228,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +0,9% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +1,0% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
