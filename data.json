@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-01T19:51:10.920579+00:00",
+  "fetched_at": "2026-07-01T21:26:00.784893+00:00",
   "header_label": "środa, 1 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 099",
-      "price_change_24h": 2.5,
+      "price": "$60 341",
+      "price_change_24h": 3.1,
       "opp": 88,
       "opp_30d": [
         89,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-15,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-15,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,16 +75,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-15,8%/30d · taniej niż miesiąc temu"
+            "text": "-15,4%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 90,
+        "score_base": 89,
         "score_range": [
-          87,
-          99
+          86,
+          98
         ],
         "clamped": null,
         "direction": "up",
@@ -122,8 +122,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$551",
-      "price_change_24h": 0.8,
+      "price": "$553",
+      "price_change_24h": 1.7,
       "opp": 92,
       "opp_30d": [
         60,
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-20,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-20,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,7 +191,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-20,4%/30d · taniej niż miesiąc temu"
+            "text": "-20,1%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -210,7 +210,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-15% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
