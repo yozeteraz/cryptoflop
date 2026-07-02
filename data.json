@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-02T19:21:04.447354+00:00",
+  "fetched_at": "2026-07-02T21:03:24.372163+00:00",
   "header_label": "czwartek, 2 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$61 494",
-      "price_change_24h": 2.1,
+      "price": "$61 544",
+      "price_change_24h": 2.4,
       "opp": 79,
       "opp_30d": [
         92,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +27% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +30% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -127,7 +127,7 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$559",
+      "price": "$558",
       "price_change_24h": 1.0,
       "opp": 84,
       "opp_30d": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-14,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-14,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -196,16 +196,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-14,1%/30d · taniej niż miesiąc temu"
+            "text": "-14,2%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 85,
+        "score_base": 84,
         "score_range": [
-          81,
-          93
+          80,
+          92
         ],
         "clamped": null,
         "direction": "up",
@@ -233,7 +233,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,1% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,3% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
