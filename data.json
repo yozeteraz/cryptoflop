@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-02T03:22:53.478635+00:00",
+  "fetched_at": "2026-07-02T07:29:13.218839+00:00",
   "header_label": "czwartek, 2 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 267",
-      "price_change_24h": 2.5,
+      "price": "$60 095",
+      "price_change_24h": 2.4,
       "opp": 82,
       "opp_30d": [
         92,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-9,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-9,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-9,6%/30d · taniej niż miesiąc temu"
+            "text": "-9,8%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 88,
+        "score_base": 86,
         "score_range": [
-          79,
-          91
+          77,
+          89
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+13% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+18% vs 30d)",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$550",
-      "price_change_24h": 0.3,
+      "price": "$548",
+      "price_change_24h": 0.4,
       "opp": 87,
       "opp_30d": [
         72,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-15,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-15,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -196,13 +196,13 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-15,4%/30d · taniej niż miesiąc temu"
+            "text": "-15,7%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 92,
+        "score_base": 91,
         "score_range": [
           88,
           100
@@ -210,12 +210,12 @@
         "clamped": null,
         "direction": "up",
         "confidence": "low",
-        "total_delta": 2,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-13% vs 30d) — słabe potwierdzenie",
+            "delta": 3,
+            "note": "Ruch w dół z umiarkowanym wolumenem (-7% vs 30d)",
             "structural": false
           },
           {
