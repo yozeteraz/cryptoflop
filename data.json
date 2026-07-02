@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-02T12:55:44.642784+00:00",
+  "fetched_at": "2026-07-02T15:14:22.315916+00:00",
   "header_label": "czwartek, 2 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$61 502",
-      "price_change_24h": 5.2,
+      "price": "$61 518",
+      "price_change_24h": 2.8,
       "opp": 79,
       "opp_30d": [
         92,
@@ -86,10 +86,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 84,
+        "score_base": 83,
         "score_range": [
-          70,
-          82
+          69,
+          81
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +34% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +28% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$562",
-      "price_change_24h": 3.7,
+      "price": "$561",
+      "price_change_24h": 1.8,
       "opp": 83,
       "opp_30d": [
         72,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-13,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-13,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-13,6%/30d · taniej niż miesiąc temu"
+            "text": "-13,7%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 88,
+        "score_base": 87,
         "score_range": [
-          82,
-          94
+          81,
+          93
         ],
         "clamped": null,
         "direction": "flat",
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -2,6% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,8% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
