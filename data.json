@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-03T17:23:15.404399+00:00",
+  "fetched_at": "2026-07-03T19:18:01.050313+00:00",
   "header_label": "piątek, 3 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 153",
-      "price_change_24h": 0.6,
+      "price": "$62 208",
+      "price_change_24h": 1.2,
       "opp": 75,
       "opp_30d": [
         93,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,9% przez miesiąc — bez dużych zmian"
+            "text": "-2,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,9%/30d · bez dużych zmian"
+            "text": "-2,8%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 76,
+        "score_base": 75,
         "score_range": [
-          62,
-          74
+          61,
+          73
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-20% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-24% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$567",
-      "price_change_24h": 0.8,
-      "opp": 79,
+      "price": "$569",
+      "price_change_24h": 1.8,
+      "opp": 78,
       "opp_30d": [
         78,
         88,
@@ -160,14 +160,14 @@
         94,
         92,
         85,
-        79
+        78
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 79,
+        "opp": 78,
         "fng": 21,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-8,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-8,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-8,6%/30d · taniej niż miesiąc temu"
+            "text": "-8,2%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 80,
+        "score_base": 79,
         "score_range": [
-          71,
-          87
+          70,
+          86
         ],
         "clamped": null,
         "direction": "flat",
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,5% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,2% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
