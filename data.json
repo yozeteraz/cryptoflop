@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-07-09T22:20:17.867252+00:00",
-  "header_label": "czwartek, 9 lipca",
+  "fetched_at": "2026-07-10T00:02:27.412909+00:00",
+  "header_label": "piątek, 10 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 281",
-      "price_change_24h": 1.7,
+      "price": "$63 172",
+      "price_change_24h": 1.6,
       "opp": 70,
       "opp_30d": [
-        94,
         89,
         88,
         85,
@@ -39,6 +38,7 @@
         67,
         69,
         74,
+        70,
         70
       ],
       "verdict": {
@@ -47,13 +47,13 @@
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
         "opp": 70,
-        "fng": 22,
+        "fng": 23,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (22/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (23/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+2,6% przez miesiąc — bez dużych zmian"
+            "text": "+2,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -75,12 +75,12 @@
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 22/100"
+            "text": "skrajny strach · 23/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+2,6%/30d · bez dużych zmian"
+            "text": "+2,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -88,24 +88,24 @@
         "horizon_days": 7,
         "score_base": 71,
         "score_range": [
-          60,
-          76
+          61,
+          77
         ],
         "clamped": null,
         "direction": "down",
         "confidence": "medium",
-        "total_delta": -3,
+        "total_delta": -2,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-8% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-7% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 22 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": -2,
+            "note": "F&G 23 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$570",
-      "price_change_24h": 0.5,
+      "price": "$568",
+      "price_change_24h": 0.0,
       "opp": 75,
       "opp_30d": [
-        85,
         78,
         79,
         76,
@@ -160,6 +159,7 @@
         66,
         71,
         77,
+        75,
         75
       ],
       "verdict": {
@@ -168,13 +168,13 @@
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
         "opp": 75,
-        "fng": 22,
+        "fng": 23,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (22/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (23/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,24 +184,24 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-3,9% przez miesiąc — bez dużych zmian"
+            "text": "-4,2% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 22/100"
+            "text": "skrajny strach · 23/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-3,9%/30d · bez dużych zmian"
+            "text": "-4,2%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,24 +209,24 @@
         "horizon_days": 7,
         "score_base": 75,
         "score_range": [
-          65,
-          81
+          66,
+          82
         ],
         "clamped": null,
-        "direction": "down",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": -2,
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-28% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-29% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 22 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": -2,
+            "note": "F&G 23 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,8% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -0,9% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
