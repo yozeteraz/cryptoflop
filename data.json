@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-11T15:53:44.037033+00:00",
+  "fetched_at": "2026-07-11T16:55:17.779131+00:00",
   "header_label": "sobota, 11 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 027",
-      "price_change_24h": 0.1,
-      "opp": 69,
+      "price": "$64 075",
+      "price_change_24h": -0.1,
+      "opp": 68,
       "opp_30d": [
         88,
         85,
@@ -39,14 +39,14 @@
         74,
         70,
         68,
-        69
+        68
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 69,
+        "opp": 68,
         "fng": 26,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,7% przez miesiąc — bez dużych zmian"
+            "text": "+0,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,7%/30d · bez dużych zmian"
+            "text": "+0,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-37% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-38% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$579",
-      "price_change_24h": 1.0,
+      "price_change_24h": 0.4,
       "opp": 72,
       "opp_30d": [
         79,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-39% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-40% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
