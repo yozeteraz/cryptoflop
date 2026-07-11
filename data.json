@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-11T20:08:49.122945+00:00",
+  "fetched_at": "2026-07-11T21:46:15.669062+00:00",
   "header_label": "sobota, 11 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 244",
-      "price_change_24h": 0.7,
+      "price": "$64 306",
+      "price_change_24h": 0.5,
       "opp": 68,
       "opp_30d": [
         88,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,1% przez miesiąc — bez dużych zmian"
+            "text": "+1,2% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,1%/30d · bez dużych zmian"
+            "text": "+1,2%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-45% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-49% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$580",
-      "price_change_24h": 0.8,
+      "price": "$581",
+      "price_change_24h": 0.9,
       "opp": 71,
       "opp_30d": [
         79,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-4,1% przez miesiąc — bez dużych zmian"
+            "text": "-4,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-4,1%/30d · bez dużych zmian"
+            "text": "-4,0%/30d · bez dużych zmian"
           }
         ]
       },
