@@ -1,12 +1,12 @@
 {
-  "fetched_at": "2026-07-12T15:57:19.699221+00:00",
+  "fetched_at": "2026-07-12T17:02:06.436688+00:00",
   "header_label": "niedziela, 12 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 128",
+      "price": "$64 127",
       "price_change_24h": 0.0,
       "opp": 68,
       "opp_30d": [
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-32% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-33% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$581",
-      "price_change_24h": 0.2,
+      "price_change_24h": 0.3,
       "opp": 71,
       "opp_30d": [
         76,
