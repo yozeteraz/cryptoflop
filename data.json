@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-12T02:33:13.888250+00:00",
+  "fetched_at": "2026-07-12T05:55:37.736492+00:00",
   "header_label": "niedziela, 12 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 046",
-      "price_change_24h": 0.0,
-      "opp": 68,
+      "price": "$63 924",
+      "price_change_24h": -0.3,
+      "opp": 69,
       "opp_30d": [
         85,
         80,
@@ -39,14 +39,14 @@
         70,
         68,
         69,
-        68
+        69
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 68,
+        "opp": 69,
         "fng": 26,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,8% przez miesiąc — bez dużych zmian"
+            "text": "+0,6% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,8%/30d · bez dużych zmian"
+            "text": "+0,6%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-39% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-37% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$573",
-      "price_change_24h": -0.1,
+      "price_change_24h": -0.4,
       "opp": 73,
       "opp_30d": [
         76,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-36% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-40% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,5% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,3% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
