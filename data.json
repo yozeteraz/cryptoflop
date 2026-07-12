@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-12T11:57:15.360395+00:00",
+  "fetched_at": "2026-07-12T13:27:33.114430+00:00",
   "header_label": "niedziela, 12 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 972",
-      "price_change_24h": -0.3,
+      "price": "$64 006",
+      "price_change_24h": -0.2,
       "opp": 69,
       "opp_30d": [
         85,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-22% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-23% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,7 +127,7 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$580",
+      "price": "$581",
       "price_change_24h": 0.1,
       "opp": 71,
       "opp_30d": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-4,0% przez miesiąc — bez dużych zmian"
+            "text": "-3,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-4,0%/30d · bez dużych zmian"
+            "text": "-3,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-35% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-29% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -2,3% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,2% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
