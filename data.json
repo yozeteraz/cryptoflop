@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-13T10:23:30.389043+00:00",
+  "fetched_at": "2026-07-13T13:21:25.919284+00:00",
   "header_label": "poniedziałek, 13 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 043",
-      "price_change_24h": -1.3,
-      "opp": 70,
+      "price": "$62 379",
+      "price_change_24h": -2.5,
+      "opp": 72,
       "opp_30d": [
         80,
         79,
@@ -39,14 +39,14 @@
         68,
         69,
         69,
-        70
+        72
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 70,
+        "opp": 72,
         "fng": 28,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,1% przez miesiąc — bez dużych zmian"
+            "text": "-3,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,1%/30d · bez dużych zmian"
+            "text": "-3,1%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 69,
+        "score_base": 70,
         "score_range": [
-          65,
-          81
+          66,
+          82
         ],
         "clamped": null,
         "direction": "up",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-25% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-19% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$570",
-      "price_change_24h": -0.8,
-      "opp": 74,
+      "price": "$567",
+      "price_change_24h": -2.4,
+      "opp": 75,
       "opp_30d": [
         73,
         71,
@@ -160,14 +160,14 @@
         72,
         73,
         73,
-        74
+        75
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 74,
+        "opp": 75,
         "fng": 28,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-6,5% przez miesiąc — bez dużych zmian"
+            "text": "-7,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-6,5%/30d · bez dużych zmian"
+            "text": "-7,0%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 73,
+        "score_base": 74,
         "score_range": [
-          66,
-          82
+          67,
+          83
         ],
         "clamped": null,
         "direction": "flat",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-24% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-29% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -1,1% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -0,6% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
