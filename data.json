@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-07-14T23:52:01.299648+00:00",
-  "header_label": "wtorek, 14 lipca",
+  "fetched_at": "2026-07-15T02:12:13.387572+00:00",
+  "header_label": "środa, 15 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 976",
-      "price_change_24h": 4.4,
+      "price": "$64 690",
+      "price_change_24h": 3.6,
       "opp": 70,
       "opp_30d": [
-        79,
         78,
         81,
         87,
@@ -39,6 +38,7 @@
         69,
         69,
         72,
+        70,
         70
       ],
       "verdict": {
@@ -47,13 +47,13 @@
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
         "opp": 70,
-        "fng": 22,
+        "fng": 25,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (22/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (25/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,1% przez miesiąc — bez dużych zmian"
+            "text": "-2,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -75,12 +75,12 @@
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 22/100"
+            "text": "skrajny strach · 25/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,1%/30d · bez dużych zmian"
+            "text": "-2,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -89,29 +89,29 @@
         "score_base": 71,
         "score_range": [
           60,
-          76
+          72
         ],
         "clamped": null,
         "direction": "down",
         "confidence": "medium",
-        "total_delta": -3,
+        "total_delta": -5,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+7% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+10% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 22 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": -2,
+            "note": "F&G 25 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 3,
-            "note": "3 dni z rzędu w dół — kontynuacja, rynek tanieje",
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$582",
-      "price_change_24h": 2.8,
+      "price": "$580",
+      "price_change_24h": 2.0,
       "opp": 73,
       "opp_30d": [
-        71,
         72,
         74,
         84,
@@ -160,6 +159,7 @@
         73,
         73,
         75,
+        73,
         73
       ],
       "verdict": {
@@ -168,13 +168,13 @@
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
         "opp": 73,
-        "fng": 22,
+        "fng": 25,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (22/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (25/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-5,5% przez miesiąc — bez dużych zmian"
+            "text": "-6,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -196,43 +196,43 @@
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 22/100"
+            "text": "skrajny strach · 25/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-5,5%/30d · bez dużych zmian"
+            "text": "-6,0%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 74,
+        "score_base": 73,
         "score_range": [
-          63,
-          79
+          62,
+          74
         ],
         "clamped": null,
         "direction": "down",
         "confidence": "medium",
-        "total_delta": -3,
+        "total_delta": -5,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-5% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-1% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 22 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": -2,
+            "note": "F&G 25 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 3,
-            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje",
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
             "structural": false
           },
           {
