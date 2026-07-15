@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-15T21:57:41.199522+00:00",
+  "fetched_at": "2026-07-15T23:00:32.015695+00:00",
   "header_label": "środa, 15 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 784",
-      "price_change_24h": 0.3,
-      "opp": 70,
+      "price": "$64 830",
+      "price_change_24h": 0.1,
+      "opp": 69,
       "opp_30d": [
         78,
         81,
@@ -39,14 +39,14 @@
         69,
         72,
         70,
-        70
+        69
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 70,
+        "opp": 69,
         "fng": 25,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,3% przez miesiąc — bez dużych zmian"
+            "text": "-2,2% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,3%/30d · bez dużych zmian"
+            "text": "-2,2%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-2% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-1% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$581",
-      "price_change_24h": 0.0,
+      "price_change_24h": -0.0,
       "opp": 73,
       "opp_30d": [
         72,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-3% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-4% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -1,8% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -1,9% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
