@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-18T11:00:48.596226+00:00",
+  "fetched_at": "2026-07-18T13:08:43.436891+00:00",
   "header_label": "sobota, 18 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 964",
-      "price_change_24h": 1.4,
-      "opp": 69,
+      "price": "$64 094",
+      "price_change_24h": 2.1,
+      "opp": 68,
       "opp_30d": [
         87,
         81,
@@ -39,14 +39,14 @@
         69,
         71,
         69,
-        69
+        68
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 69,
+        "opp": 68,
         "fng": 25,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,7% przez miesiąc — bez dużych zmian"
+            "text": "+1,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,7%/30d · bez dużych zmian"
+            "text": "+1,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$569",
-      "price_change_24h": 1.0,
+      "price": "$570",
+      "price_change_24h": 2.2,
       "opp": 72,
       "opp_30d": [
         84,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,6% przez miesiąc — bez dużych zmian"
+            "text": "-1,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,6%/30d · bez dużych zmian"
+            "text": "-1,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-11% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-23% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
