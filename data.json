@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-19T10:25:25.190441+00:00",
+  "fetched_at": "2026-07-19T11:55:43.360434+00:00",
   "header_label": "niedziela, 19 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 558",
-      "price_change_24h": 0.9,
+      "price": "$64 423",
+      "price_change_24h": 0.6,
       "opp": 67,
       "opp_30d": [
         81,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,6% przez miesiąc — bez dużych zmian"
+            "text": "+1,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,6%/30d · bez dużych zmian"
+            "text": "+1,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-44% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-43% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$568",
-      "price_change_24h": -0.1,
+      "price": "$567",
+      "price_change_24h": -0.4,
       "opp": 72,
       "opp_30d": [
         79,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-38% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-35% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -2,3% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,1% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
