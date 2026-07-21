@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-21T19:17:40.236272+00:00",
+  "fetched_at": "2026-07-21T21:05:56.248211+00:00",
   "header_label": "wtorek, 21 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$66 284",
-      "price_change_24h": 1.8,
+      "price": "$66 299",
+      "price_change_24h": 1.6,
       "opp": 64,
       "opp_30d": [
         83,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,8% przez miesiąc — bez dużych zmian"
+            "text": "+4,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,8%/30d · bez dużych zmian"
+            "text": "+4,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+11% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+8% vs 30d)",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$573",
-      "price_change_24h": 0.2,
+      "price": "$572",
+      "price_change_24h": 0.1,
       "opp": 72,
       "opp_30d": [
         80,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-3% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-5% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,5% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,6% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
