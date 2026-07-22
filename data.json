@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-07-22T05:47:33.393356+00:00",
+  "fetched_at": "2026-07-22T08:24:33.500281+00:00",
   "header_label": "środa, 22 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$65 944",
-      "price_change_24h": 0.4,
-      "opp": 62,
+      "price": "$66 086",
+      "price_change_24h": -0.3,
+      "opp": 61,
       "opp_30d": [
         84,
         90,
@@ -39,14 +39,14 @@
         66,
         65,
         64,
-        62
+        61
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 62,
+        "opp": 61,
         "fng": 33,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+3,1% przez miesiąc — bez dużych zmian"
+            "text": "+3,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+3,1%/30d · bez dużych zmian"
+            "text": "+3,3%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+13% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+14% vs 30d)",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$569",
-      "price_change_24h": -1.0,
+      "price": "$570",
+      "price_change_24h": -1.4,
       "opp": 71,
       "opp_30d": [
         83,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-3,5% przez miesiąc — bez dużych zmian"
+            "text": "-3,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-3,5%/30d · bez dużych zmian"
+            "text": "-3,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-3% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)",
             "structural": false
           },
           {
