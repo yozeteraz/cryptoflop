@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-24T15:23:29.848173+00:00",
+  "fetched_at": "2026-07-24T17:27:42.817639+00:00",
   "header_label": "piątek, 24 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 006",
-      "price_change_24h": -1.3,
+      "price": "$64 065",
+      "price_change_24h": -1.1,
       "opp": 66,
       "opp_30d": [
         93,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,9% przez miesiąc — bez dużych zmian"
+            "text": "+5,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,9%/30d · bez dużych zmian"
+            "text": "+5,0%/30d · bez dużych zmian"
           }
         ]
       },
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$561",
-      "price_change_24h": -0.8,
+      "price_change_24h": -1.1,
       "opp": 72,
       "opp_30d": [
         90,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-18% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
