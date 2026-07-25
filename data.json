@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-25T04:07:17.946175+00:00",
+  "fetched_at": "2026-07-25T07:12:54.633305+00:00",
   "header_label": "sobota, 25 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 054",
-      "price_change_24h": -2.0,
+      "price": "$63 965",
+      "price_change_24h": -2.6,
       "opp": 65,
       "opp_30d": [
         91,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+7,2% przez miesiąc — bez dużych zmian"
+            "text": "+7,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+7,2%/30d · bez dużych zmian"
+            "text": "+7,1%/30d · bez dużych zmian"
           }
         ]
       },
@@ -88,18 +88,18 @@
         "horizon_days": 7,
         "score_base": 65,
         "score_range": [
-          61,
-          77
+          60,
+          76
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 4,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-11% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$565",
-      "price_change_24h": -0.6,
+      "price": "$564",
+      "price_change_24h": -1.0,
       "opp": 71,
       "opp_30d": [
         87,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,9% przez miesiąc — bez dużych zmian"
+            "text": "+0,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,9%/30d · bez dużych zmian"
+            "text": "+0,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 71,
         "score_range": [
-          67,
-          83
+          66,
+          82
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 4,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-10% vs 30d)",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-12% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
