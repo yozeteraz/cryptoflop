@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-25T19:08:13.316505+00:00",
+  "fetched_at": "2026-07-25T20:49:07.064253+00:00",
   "header_label": "sobota, 25 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 375",
-      "price_change_24h": 0.4,
+      "price": "$64 266",
+      "price_change_24h": 0.3,
       "opp": 64,
       "opp_30d": [
         91,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+7,8% przez miesiąc — bez dużych zmian"
+            "text": "+7,6% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+7,8%/30d · bez dużych zmian"
+            "text": "+7,6%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-46% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$568",
-      "price_change_24h": 0.7,
+      "price_change_24h": 0.6,
       "opp": 70,
       "opp_30d": [
         87,
@@ -207,10 +207,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 71,
+        "score_base": 70,
         "score_range": [
-          64,
-          80
+          63,
+          79
         ],
         "clamped": null,
         "direction": "flat",
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +0,3% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,4% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
