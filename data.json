@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-26T11:17:26.124752+00:00",
+  "fetched_at": "2026-07-26T13:16:00.656930+00:00",
   "header_label": "niedziela, 26 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 465",
-      "price_change_24h": 0.7,
+      "price": "$64 377",
+      "price_change_24h": 0.5,
       "opp": 65,
       "opp_30d": [
         89,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+7,4% przez miesiąc — bez dużych zmian"
+            "text": "+7,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+7,4%/30d · bez dużych zmian"
+            "text": "+7,3%/30d · bez dużych zmian"
           }
         ]
       },
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$571",
-      "price_change_24h": 1.0,
+      "price": "$570",
+      "price_change_24h": 0.6,
       "opp": 71,
       "opp_30d": [
         87,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,6% przez miesiąc — bez dużych zmian"
+            "text": "+0,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,6%/30d · bez dużych zmian"
+            "text": "+0,5%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 70,
+        "score_base": 71,
         "score_range": [
-          62,
-          74
+          63,
+          75
         ],
         "clamped": null,
         "direction": "down",
