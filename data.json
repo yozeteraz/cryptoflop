@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-27T20:19:51.553833+00:00",
+  "fetched_at": "2026-07-27T22:04:08.838457+00:00",
   "header_label": "poniedziałek, 27 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 874",
-      "price_change_24h": 0.4,
+      "price": "$64 646",
+      "price_change_24h": -0.6,
       "opp": 62,
       "opp_30d": [
         89,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,1% przez miesiąc — bez dużych zmian"
+            "text": "+7,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,1%/30d · bez dużych zmian"
+            "text": "+7,7%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 61,
+        "score_base": 62,
         "score_range": [
-          54,
-          66
+          55,
+          67
         ],
         "clamped": null,
         "direction": "flat",
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$575",
-      "price_change_24h": 0.3,
-      "opp": 68,
+      "price": "$573",
+      "price_change_24h": -0.4,
+      "opp": 69,
       "opp_30d": [
         87,
         92,
@@ -160,14 +160,14 @@
         71,
         70,
         69,
-        68
+        69
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 68,
+        "opp": 69,
         "fng": 30,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,4% przez miesiąc — bez dużych zmian"
+            "text": "+1,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,4%/30d · bez dużych zmian"
+            "text": "+1,0%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 68,
         "score_range": [
-          59,
-          71
+          61,
+          73
         ],
         "clamped": null,
-        "direction": "down",
-        "confidence": "medium",
-        "total_delta": -3,
+        "direction": "flat",
+        "confidence": "low",
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
+            "delta": 0,
+            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
             "structural": false
           },
           {
