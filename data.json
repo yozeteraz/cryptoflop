@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-07-27T23:59:59.271461+00:00",
-  "header_label": "poniedziałek, 27 lipca",
+  "fetched_at": "2026-07-28T03:26:07.796894+00:00",
+  "header_label": "wtorek, 28 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 728",
-      "price_change_24h": -2.5,
-      "opp": 64,
+      "price": "$63 258",
+      "price_change_24h": -3.1,
+      "opp": 65,
       "opp_30d": [
-        89,
         90,
         91,
         88,
@@ -39,21 +38,22 @@
         65,
         64,
         63,
-        64
+        64,
+        65
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 64,
-        "fng": 30,
+        "opp": 65,
+        "fng": 29,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "strach (30/100) — sprzyja regularnym zakupom"
+            "text": "strach (29/100) — sprzyja regularnym zakupom"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -68,14 +68,14 @@
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się poprawić (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "strach · 30/100"
+            "text": "strach · 29/100"
           },
           {
             "label": "Cena",
@@ -86,32 +86,32 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 62,
+        "score_base": 63,
         "score_range": [
-          53,
-          69
+          57,
+          73
         ],
         "clamped": null,
-        "direction": "flat",
+        "direction": "up",
         "confidence": "medium",
-        "total_delta": -1,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+1% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+0% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": -1,
-            "note": "F&G 30 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "note": "F&G 29 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": -3,
-            "note": "2 dni z rzędu w górę — kontynuacja, rynek drożeje",
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
             "structural": false
           },
           {
@@ -128,10 +128,9 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$566",
-      "price_change_24h": -1.6,
-      "opp": 71,
+      "price_change_24h": -1.2,
+      "opp": 69,
       "opp_30d": [
-        87,
         92,
         94,
         92,
@@ -160,21 +159,22 @@
         71,
         70,
         69,
-        71
+        71,
+        69
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 71,
-        "fng": 30,
+        "opp": 69,
+        "fng": 29,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "strach (30/100) — sprzyja regularnym zakupom"
+            "text": "strach (29/100) — sprzyja regularnym zakupom"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,2% przez miesiąc — bez dużych zmian"
+            "text": "+2,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -196,12 +196,12 @@
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "strach · 30/100"
+            "text": "strach · 29/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,2%/30d · bez dużych zmian"
+            "text": "+2,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,24 +209,24 @@
         "horizon_days": 7,
         "score_base": 69,
         "score_range": [
-          62,
-          78
+          61,
+          77
         ],
         "clamped": null,
         "direction": "flat",
         "confidence": "medium",
-        "total_delta": 1,
+        "total_delta": 0,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
+            "delta": 3,
+            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": -1,
-            "note": "F&G 30 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "note": "F&G 29 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
@@ -237,8 +237,8 @@
           },
           {
             "name": "Siła BNB vs BTC",
-            "delta": 0,
-            "note": "BNB względem Bitcoina +1,5% w 7d — porusza się z rynkiem",
+            "delta": -2,
+            "note": "BNB względem Bitcoina +3,7% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
