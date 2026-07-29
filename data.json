@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-29T21:58:34.109588+00:00",
+  "fetched_at": "2026-07-29T23:03:29.634182+00:00",
   "header_label": "środa, 29 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 669",
-      "price_change_24h": -0.5,
+      "price": "$63 861",
+      "price_change_24h": 0.3,
       "opp": 65,
       "opp_30d": [
         91,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,8% przez miesiąc — bez dużych zmian"
+            "text": "+6,2% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,8%/30d · bez dużych zmian"
+            "text": "+6,2%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+7% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+8% vs 30d)",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$568",
-      "price_change_24h": -0.6,
+      "price": "$570",
+      "price_change_24h": 0.4,
       "opp": 69,
       "opp_30d": [
         94,
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,6% przez miesiąc — bez dużych zmian"
+            "text": "+2,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,6%/30d · bez dużych zmian"
+            "text": "+2,1%/30d · bez dużych zmian"
           }
         ]
       },
@@ -210,17 +210,17 @@
         "score_base": 69,
         "score_range": [
           60,
-          76
+          72
         ],
         "clamped": null,
-        "direction": "flat",
+        "direction": "down",
         "confidence": "medium",
-        "total_delta": -1,
+        "total_delta": -3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-15% vs 30d) — słabe potwierdzenie",
+            "delta": 0,
+            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +3,2% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +3,4% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
