@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-31T22:02:39.153793+00:00",
+  "fetched_at": "2026-07-31T23:59:32.431925+00:00",
   "header_label": "piątek, 31 lipca",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 879",
-      "price_change_24h": -2.8,
+      "price": "$62 816",
+      "price_change_24h": -3.0,
       "opp": 67,
       "opp_30d": [
         79,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+7,4% przez miesiąc — bez dużych zmian"
+            "text": "+7,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+7,4%/30d · bez dużych zmian"
+            "text": "+7,3%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+14% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+12% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$586",
-      "price_change_24h": -0.7,
+      "price_change_24h": -0.9,
       "opp": 64,
       "opp_30d": [
         85,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +28% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +26% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +7,0% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +7,1% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
