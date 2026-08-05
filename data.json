@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-05T02:17:25.131203+00:00",
+  "fetched_at": "2026-08-05T05:43:51.719915+00:00",
   "header_label": "środa, 5 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 414",
-      "price_change_24h": 1.1,
+      "price": "$64 316",
+      "price_change_24h": 0.8,
       "opp": 68,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,6% przez miesiąc — bez dużych zmian"
+            "text": "+0,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,6%/30d · bez dużych zmian"
+            "text": "+0,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-8% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-9% vs 30d)",
             "structural": false
           },
           {
@@ -127,7 +127,7 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$602",
+      "price": "$601",
       "price_change_24h": 2.0,
       "opp": 63,
       "opp_30d": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+2,8% przez miesiąc — bez dużych zmian"
+            "text": "+2,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+2,8%/30d · bez dużych zmian"
+            "text": "+2,7%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 66,
+        "score_base": 65,
         "score_range": [
-          50,
-          62
+          49,
+          61
         ],
         "clamped": null,
         "direction": "down",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+10% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+18% vs 30d)",
             "structural": false
           },
           {
