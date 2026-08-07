@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-07T10:59:09.602908+00:00",
+  "fetched_at": "2026-08-07T11:50:55.626028+00:00",
   "header_label": "piątek, 7 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 845",
-      "price_change_24h": 0.5,
+      "price": "$64 987",
+      "price_change_24h": 0.7,
       "opp": 64,
       "opp_30d": [
         70,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,2% przez miesiąc — bez dużych zmian"
+            "text": "+4,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,2%/30d · bez dużych zmian"
+            "text": "+4,4%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 66,
+        "score_base": 65,
         "score_range": [
-          57,
-          69
+          56,
+          68
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-22% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-21% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$590",
-      "price_change_24h": -0.4,
-      "opp": 64,
+      "price": "$591",
+      "price_change_24h": -0.5,
+      "opp": 63,
       "opp_30d": [
         75,
         72,
@@ -160,14 +160,14 @@
         66,
         65,
         66,
-        64
+        63
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 64,
+        "opp": 63,
         "fng": 29,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+3,8% przez miesiąc — bez dużych zmian"
+            "text": "+3,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+3,8%/30d · bez dużych zmian"
+            "text": "+3,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 64,
         "score_range": [
-          57,
-          69
+          54,
+          66
         ],
         "clamped": null,
-        "direction": "flat",
-        "confidence": "low",
-        "total_delta": -1,
+        "direction": "down",
+        "confidence": "medium",
+        "total_delta": -4,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
+            "delta": -3,
+            "note": "Ruch w górę z umiarkowanym wolumenem (-2% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -2,6% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,7% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
