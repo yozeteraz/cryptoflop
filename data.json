@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-08T15:26:15.254242+00:00",
+  "fetched_at": "2026-08-08T16:29:58.808233+00:00",
   "header_label": "sobota, 8 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$65 035",
-      "price_change_24h": 0.1,
+      "price": "$65 034",
+      "price_change_24h": 0.2,
       "opp": 63,
       "opp_30d": [
         68,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-40% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-43% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$605",
-      "price_change_24h": 2.3,
+      "price": "$604",
+      "price_change_24h": 2.0,
       "opp": 59,
       "opp_30d": [
         72,
@@ -207,10 +207,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 61,
+        "score_base": 60,
         "score_range": [
-          51,
-          63
+          50,
+          62
         ],
         "clamped": null,
         "direction": "down",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+3% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+4% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,4% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -0,5% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
