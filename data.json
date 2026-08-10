@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-10T16:58:47.919671+00:00",
+  "fetched_at": "2026-08-10T17:54:30.953239+00:00",
   "header_label": "poniedziałek, 10 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 784",
-      "price_change_24h": -2.2,
+      "price": "$63 864",
+      "price_change_24h": -2.0,
       "opp": 67,
       "opp_30d": [
         69,
@@ -63,12 +63,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,0% przez miesiąc — bez dużych zmian"
+            "text": "+0,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -80,26 +80,26 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,0%/30d · bez dużych zmian"
+            "text": "+0,1%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 65,
+        "score_base": 66,
         "score_range": [
-          58,
-          70
+          57,
+          69
         ],
         "clamped": null,
-        "direction": "flat",
-        "confidence": "low",
-        "total_delta": -1,
+        "direction": "down",
+        "confidence": "medium",
+        "total_delta": -3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
+            "delta": -2,
+            "note": "Ruch w górę bez wolumenu (-12% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$598",
-      "price_change_24h": -1.6,
-      "opp": 62,
+      "price": "$600",
+      "price_change_24h": -1.4,
+      "opp": 61,
       "opp_30d": [
         73,
         75,
@@ -160,14 +160,14 @@
         63,
         60,
         60,
-        62
+        61
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 62,
+        "opp": 61,
         "fng": 30,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,1% przez miesiąc — bez dużych zmian"
+            "text": "+4,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,1%/30d · bez dużych zmian"
+            "text": "+4,4%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 60,
+        "score_base": 61,
         "score_range": [
-          47,
-          59
+          48,
+          60
         ],
         "clamped": null,
         "direction": "down",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+5% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+6% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,2% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +1,3% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
