@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-11T17:04:03.759595+00:00",
+  "fetched_at": "2026-08-11T18:57:54.015329+00:00",
   "header_label": "wtorek, 11 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 469",
-      "price_change_24h": -0.5,
+      "price": "$63 289",
+      "price_change_24h": -0.9,
       "opp": 68,
       "opp_30d": [
         72,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,4% przez miesiąc — bez dużych zmian"
+            "text": "-0,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,4%/30d · bez dużych zmian"
+            "text": "-0,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-11% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-14% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$609",
-      "price_change_24h": 1.9,
+      "price_change_24h": 1.5,
       "opp": 59,
       "opp_30d": [
         75,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +21% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +24% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +3,7% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +4,0% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
