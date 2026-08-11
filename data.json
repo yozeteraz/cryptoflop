@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-08-11T12:57:49.383365+00:00",
+  "fetched_at": "2026-08-11T14:20:57.226589+00:00",
   "header_label": "wtorek, 11 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 300",
+      "price": "$64 197",
       "price_change_24h": -0.8,
-      "opp": 66,
+      "opp": 67,
       "opp_30d": [
         72,
         70,
@@ -39,14 +39,14 @@
         64,
         65,
         67,
-        66
+        67
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 66,
+        "opp": 67,
         "fng": 29,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,9% przez miesiąc — bez dużych zmian"
+            "text": "+0,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,9%/30d · bez dużych zmian"
+            "text": "+0,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$612",
-      "price_change_24h": 1.5,
+      "price": "$611",
+      "price_change_24h": 1.6,
       "opp": 58,
       "opp_30d": [
         75,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+6,6% przez miesiąc — bez dużych zmian"
+            "text": "+6,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+6,6%/30d · bez dużych zmian"
+            "text": "+6,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 60,
         "score_range": [
-          48,
-          60
+          50,
+          62
         ],
         "clamped": null,
         "direction": "down",
         "confidence": "medium",
-        "total_delta": -6,
+        "total_delta": -4,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -5,
-            "note": "Ruch w górę z wolumenem +21% vs 30d — okno zakupowe się domyka przekonująco",
+            "delta": -3,
+            "note": "Ruch w górę z umiarkowanym wolumenem (+15% vs 30d)",
             "structural": false
           },
           {
