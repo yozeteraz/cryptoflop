@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-13T21:41:31.543002+00:00",
+  "fetched_at": "2026-08-13T22:38:07.954251+00:00",
   "header_label": "czwartek, 13 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 431",
-      "price_change_24h": -0.0,
+      "price": "$63 528",
+      "price_change_24h": 0.3,
       "opp": 68,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,4% przez miesiąc — bez dużych zmian"
+            "text": "-2,2% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,4%/30d · bez dużych zmian"
+            "text": "-2,2%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$611",
-      "price_change_24h": 0.2,
+      "price_change_24h": 0.1,
       "opp": 59,
       "opp_30d": [
         73,
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +4,5% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +4,3% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
