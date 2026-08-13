@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-13T22:38:07.954251+00:00",
+  "fetched_at": "2026-08-13T23:38:06.090337+00:00",
   "header_label": "czwartek, 13 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 528",
-      "price_change_24h": 0.3,
+      "price": "$63 419",
+      "price_change_24h": 0.0,
       "opp": 68,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,2% przez miesiąc — bez dużych zmian"
+            "text": "-2,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,2%/30d · bez dużych zmian"
+            "text": "-2,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,7 +127,7 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$611",
+      "price": "$610",
       "price_change_24h": 0.1,
       "opp": 59,
       "opp_30d": [
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-9% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-10% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +4,3% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +4,4% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
