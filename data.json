@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-14T20:27:45.851338+00:00",
+  "fetched_at": "2026-08-14T21:21:54.624849+00:00",
   "header_label": "piątek, 14 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 891",
-      "price_change_24h": -0.8,
+      "price": "$62 833",
+      "price_change_24h": -0.9,
       "opp": 69,
       "opp_30d": [
         71,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,8% przez miesiąc — bez dużych zmian"
+            "text": "-2,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,8%/30d · bez dużych zmian"
+            "text": "-2,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-9% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-10% vs 30d)",
             "structural": false
           },
           {
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,4% przez miesiąc — bez dużych zmian"
+            "text": "+4,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,4%/30d · bez dużych zmian"
+            "text": "+4,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +5,6% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +5,8% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
