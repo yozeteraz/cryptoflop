@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-15T16:20:03.005685+00:00",
+  "fetched_at": "2026-08-15T17:17:29.307403+00:00",
   "header_label": "sobota, 15 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 010",
-      "price_change_24h": 0.0,
+      "price": "$63 036",
+      "price_change_24h": -0.1,
       "opp": 66,
       "opp_30d": [
         69,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-43% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-46% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+6,7% przez miesiąc — bez dużych zmian"
+            "text": "+6,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+6,7%/30d · bez dużych zmian"
+            "text": "+6,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-22% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-21% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
