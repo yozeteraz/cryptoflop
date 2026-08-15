@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-15T08:24:28.887502+00:00",
+  "fetched_at": "2026-08-15T09:22:25.429710+00:00",
   "header_label": "sobota, 15 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 000",
-      "price_change_24h": 0.3,
+      "price": "$62 913",
+      "price_change_24h": 0.1,
       "opp": 66,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,2% przez miesiąc — bez dużych zmian"
+            "text": "-1,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,2%/30d · bez dużych zmian"
+            "text": "-1,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-21% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$610",
-      "price_change_24h": 0.6,
+      "price_change_24h": 0.3,
       "opp": 56,
       "opp_30d": [
         74,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-18% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +4,7% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +4,8% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
