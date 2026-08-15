@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-15T10:19:19.097276+00:00",
+  "fetched_at": "2026-08-15T11:17:17.950187+00:00",
   "header_label": "sobota, 15 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$62 958",
-      "price_change_24h": 0.2,
+      "price": "$62 968",
+      "price_change_24h": 0.3,
       "opp": 66,
       "opp_30d": [
         69,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-23% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-24% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$611",
-      "price_change_24h": 0.7,
+      "price_change_24h": 1.3,
       "opp": 56,
       "opp_30d": [
         74,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+6,7% przez miesiąc — bez dużych zmian"
+            "text": "+6,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+6,7%/30d · bez dużych zmian"
+            "text": "+6,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-17% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-19% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +4,8% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +4,9% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
