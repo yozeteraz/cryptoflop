@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-15T03:35:51.990541+00:00",
+  "fetched_at": "2026-08-15T04:27:04.349356+00:00",
   "header_label": "sobota, 15 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 032",
-      "price_change_24h": -0.5,
+      "price": "$63 067",
+      "price_change_24h": -0.4,
       "opp": 66,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,2% przez miesiąc — bez dużych zmian"
+            "text": "-1,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,2%/30d · bez dużych zmian"
+            "text": "-1,1%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 68,
+        "score_base": 67,
         "score_range": [
-          64,
-          76
+          63,
+          75
         ],
         "clamped": null,
         "direction": "up",
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$610",
-      "price_change_24h": -0.3,
+      "price_change_24h": -0.2,
       "opp": 56,
       "opp_30d": [
         74,
@@ -207,10 +207,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 59,
+        "score_base": 58,
         "score_range": [
-          49,
-          61
+          48,
+          60
         ],
         "clamped": null,
         "direction": "down",
