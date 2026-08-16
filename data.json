@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-16T18:24:28.502219+00:00",
+  "fetched_at": "2026-08-16T19:19:09.618865+00:00",
   "header_label": "niedziela, 16 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 112",
-      "price_change_24h": 0.2,
+      "price": "$63 127",
+      "price_change_24h": 0.1,
       "opp": 66,
       "opp_30d": [
         67,
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-58% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-60% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$605",
-      "price_change_24h": -0.7,
+      "price_change_24h": -0.8,
       "opp": 57,
       "opp_30d": [
         72,
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +3,2% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +3,1% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
