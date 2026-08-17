@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-17T20:23:17.342580+00:00",
+  "fetched_at": "2026-08-17T21:22:37.775597+00:00",
   "header_label": "poniedziałek, 17 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 269",
-      "price_change_24h": 1.9,
+      "price": "$64 325",
+      "price_change_24h": 2.1,
       "opp": 65,
       "opp_30d": [
         66,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,8% przez miesiąc — bez dużych zmian"
+            "text": "-0,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,8%/30d · bez dużych zmian"
+            "text": "-0,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+3% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+4% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$605",
-      "price_change_24h": -0.0,
+      "price_change_24h": 0.1,
       "opp": 59,
       "opp_30d": [
         71,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+4% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+3% vs 30d)",
             "structural": false
           },
           {
