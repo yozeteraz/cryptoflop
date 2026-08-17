@@ -1,12 +1,12 @@
 {
-  "fetched_at": "2026-08-17T11:21:42.688255+00:00",
+  "fetched_at": "2026-08-17T12:38:02.849589+00:00",
   "header_label": "poniedziałek, 17 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 592",
+      "price": "$63 555",
       "price_change_24h": 1.0,
       "opp": 67,
       "opp_30d": [
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-30% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-27% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$604",
-      "price_change_24h": -0.3,
+      "price_change_24h": -0.4,
       "opp": 59,
       "opp_30d": [
         71,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+6,0% przez miesiąc — bez dużych zmian"
+            "text": "+5,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+6,0%/30d · bez dużych zmian"
+            "text": "+5,9%/30d · bez dużych zmian"
           }
         ]
       },
