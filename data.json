@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-17T02:56:58.107199+00:00",
+  "fetched_at": "2026-08-17T03:51:58.138187+00:00",
   "header_label": "poniedziałek, 17 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 363",
-      "price_change_24h": 0.5,
+      "price": "$63 317",
+      "price_change_24h": 0.4,
       "opp": 67,
       "opp_30d": [
         66,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,2% przez miesiąc — bez dużych zmian"
+            "text": "-2,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,2%/30d · bez dużych zmian"
+            "text": "-2,3%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 66,
+        "score_base": 67,
         "score_range": [
-          59,
-          75
+          60,
+          76
         ],
         "clamped": null,
         "direction": "flat",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-47% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$604",
-      "price_change_24h": -0.4,
+      "price_change_24h": -0.3,
       "opp": 59,
       "opp_30d": [
         71,
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,8% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +1,9% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
