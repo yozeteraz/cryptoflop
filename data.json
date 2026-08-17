@@ -1,12 +1,12 @@
 {
-  "fetched_at": "2026-08-17T09:37:41.013827+00:00",
+  "fetched_at": "2026-08-17T10:29:01.192497+00:00",
   "header_label": "poniedziałek, 17 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 285",
+      "price": "$63 287",
       "price_change_24h": 0.5,
       "opp": 67,
       "opp_30d": [
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-33% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-34% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$603",
-      "price_change_24h": -0.6,
+      "price": "$604",
+      "price_change_24h": -0.4,
       "opp": 59,
       "opp_30d": [
         71,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-3% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-1% vs 30d)",
             "structural": false
           },
           {
