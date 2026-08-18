@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-18T11:22:10.065014+00:00",
+  "fetched_at": "2026-08-18T12:39:29.858527+00:00",
   "header_label": "wtorek, 18 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 278",
-      "price_change_24h": 1.0,
+      "price": "$64 215",
+      "price_change_24h": 1.1,
       "opp": 60,
       "opp_30d": [
         65,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,6% przez miesiąc — bez dużych zmian"
+            "text": "-0,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,6%/30d · bez dużych zmian"
+            "text": "-0,7%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 61,
+        "score_base": 60,
         "score_range": [
-          52,
-          64
+          51,
+          63
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-2% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-3% vs 30d)",
             "structural": false
           },
           {
@@ -127,7 +127,7 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$602",
+      "price": "$601",
       "price_change_24h": -0.5,
       "opp": 56,
       "opp_30d": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,4% przez miesiąc — bez dużych zmian"
+            "text": "+5,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,4%/30d · bez dużych zmian"
+            "text": "+5,3%/30d · bez dużych zmian"
           }
         ]
       },
