@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-08-18T13:39:47.919124+00:00",
+  "fetched_at": "2026-08-18T14:30:04.781147+00:00",
   "header_label": "wtorek, 18 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 061",
-      "price_change_24h": 0.6,
-      "opp": 61,
+      "price": "$64 873",
+      "price_change_24h": 2.1,
+      "opp": 59,
       "opp_30d": [
         65,
         64,
@@ -39,14 +39,14 @@
         66,
         66,
         65,
-        61
+        59
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 61,
+        "opp": 59,
         "fng": 41,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -57,13 +57,13 @@
           },
           {
             "label": "Cena vs 3 mies.",
-            "tone": "good",
-            "text": "przy dolnej granicy zakresu 3 mies. — kupujesz blisko lokalnego dołka"
+            "tone": "neutral",
+            "text": "w środku zakresu 3 mies."
           },
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,9% przez miesiąc — bez dużych zmian"
+            "text": "+0,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,9%/30d · bez dużych zmian"
+            "text": "+0,3%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 61,
+        "score_base": 60,
         "score_range": [
-          52,
-          64
+          51,
+          63
         ],
         "clamped": null,
         "direction": "down",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-3% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+2% vs 30d)",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$600",
-      "price_change_24h": -0.9,
-      "opp": 57,
+      "price": "$603",
+      "price_change_24h": -0.3,
+      "opp": 56,
       "opp_30d": [
         72,
         72,
@@ -160,14 +160,14 @@
         57,
         58,
         59,
-        57
+        56
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 57,
+        "opp": 56,
         "fng": 41,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,1% przez miesiąc — bez dużych zmian"
+            "text": "+5,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,1%/30d · bez dużych zmian"
+            "text": "+5,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-6% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-4% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,5% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -4,2% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
