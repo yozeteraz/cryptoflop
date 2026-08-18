@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-08-18T22:20:02.086006+00:00",
+  "fetched_at": "2026-08-18T23:18:53.044055+00:00",
   "header_label": "wtorek, 18 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 540",
+      "price": "$64 661",
       "price_change_24h": 0.5,
-      "opp": 60,
+      "opp": 59,
       "opp_30d": [
         65,
         64,
@@ -39,14 +39,14 @@
         66,
         66,
         65,
-        60
+        59
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 60,
+        "opp": 59,
         "fng": 41,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-0,2% przez miesiąc — bez dużych zmian"
+            "text": "-0,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-0,2%/30d · bez dużych zmian"
+            "text": "-0,0%/30d · bez dużych zmian"
           }
         ]
       },
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,6% przez miesiąc — bez dużych zmian"
+            "text": "+5,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,6%/30d · bez dużych zmian"
+            "text": "+5,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,7% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,8% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
