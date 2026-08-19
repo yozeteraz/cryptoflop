@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-08-19T06:38:56.299989+00:00",
+  "fetched_at": "2026-08-19T07:35:11.587388+00:00",
   "header_label": "środa, 19 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$64 236",
-      "price_change_24h": -0.2,
-      "opp": 59,
+      "price": "$64 298",
+      "price_change_24h": 0.2,
+      "opp": 58,
       "opp_30d": [
         64,
         62,
@@ -39,14 +39,14 @@
         66,
         65,
         59,
-        59
+        58
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 59,
+        "opp": 58,
         "fng": 46,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,5% przez miesiąc — bez dużych zmian"
+            "text": "-1,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,5%/30d · bez dużych zmian"
+            "text": "-1,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-22% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-21% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$601",
-      "price_change_24h": -0.5,
+      "price": "$602",
+      "price_change_24h": -0.2,
       "opp": 54,
       "opp_30d": [
         72,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,4% przez miesiąc — bez dużych zmian"
+            "text": "+5,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,4%/30d · bez dużych zmian"
+            "text": "+5,5%/30d · bez dużych zmian"
           }
         ]
       },
