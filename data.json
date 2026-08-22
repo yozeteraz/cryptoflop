@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-22T15:17:42.416312+00:00",
+  "fetched_at": "2026-08-22T16:19:46.622337+00:00",
   "header_label": "sobota, 22 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$76 935",
-      "price_change_24h": -1.0,
+      "price": "$77 096",
+      "price_change_24h": 0.1,
       "opp": 18,
       "opp_30d": [
         65,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+18,3% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+18,6% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+18,3%/30d · drożej niż miesiąc temu"
+            "text": "+18,6%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +96% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +90% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$691",
-      "price_change_24h": 1.5,
-      "opp": 18,
+      "price": "$693",
+      "price_change_24h": 2.3,
+      "opp": 17,
       "opp_30d": [
         71,
         70,
@@ -160,14 +160,14 @@
         46,
         32,
         18,
-        18
+        17
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 18,
+        "opp": 17,
         "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+21,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+22,2% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+21,8%/30d · drożej niż miesiąc temu"
+            "text": "+22,2%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +281% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +279% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
