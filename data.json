@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-23T17:17:40.913810+00:00",
+  "fetched_at": "2026-08-23T18:24:39.690171+00:00",
   "header_label": "niedziela, 23 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$77 211",
-      "price_change_24h": -0.1,
+      "price": "$77 308",
+      "price_change_24h": -0.0,
       "opp": 19,
       "opp_30d": [
         64,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+20,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+20,6% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+20,5%/30d · drożej niż miesiąc temu"
+            "text": "+20,6%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+16% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+18% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$699",
-      "price_change_24h": 0.3,
+      "price_change_24h": 0.2,
       "opp": 17,
       "opp_30d": [
         70,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+23,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+23,9% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+23,8%/30d · drożej niż miesiąc temu"
+            "text": "+23,9%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +50% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +52% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
