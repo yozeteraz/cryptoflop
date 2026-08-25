@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-25T18:35:46.623370+00:00",
+  "fetched_at": "2026-08-25T19:28:40.030190+00:00",
   "header_label": "wtorek, 25 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$79 174",
-      "price_change_24h": 0.3,
+      "price": "$79 050",
+      "price_change_24h": 0.2,
       "opp": 14,
       "opp_30d": [
         64,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+21,2% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+21,0% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+21,2%/30d · drożej niż miesiąc temu"
+            "text": "+21,0%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +67% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +65% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$700",
-      "price_change_24h": -0.5,
+      "price": "$699",
+      "price_change_24h": -0.6,
       "opp": 15,
       "opp_30d": [
         71,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+21,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+21,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+21,8%/30d · drożej niż miesiąc temu"
+            "text": "+21,5%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 16,
+        "score_base": 15,
         "score_range": [
-          10,
-          26
+          9,
+          25
         ],
         "clamped": null,
         "direction": "up",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +44% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +43% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
