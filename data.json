@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-08-26T21:43:20.556662+00:00",
-  "header_label": "środa, 26 sierpnia",
+  "fetched_at": "2026-08-27T02:53:43.998290+00:00",
+  "header_label": "czwartek, 27 sierpnia",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$78 738",
-      "price_change_24h": 0.2,
-      "opp": 17,
+      "price": "$78 769",
+      "price_change_24h": -0.4,
+      "opp": 14,
       "opp_30d": [
-        64,
         65,
         62,
         67,
@@ -39,21 +38,22 @@
         19,
         13,
         14,
-        17
+        17,
+        14
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 17,
-        "fng": 65,
+        "opp": 14,
+        "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (65/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (71/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+23,7% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+23,3% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -75,18 +75,18 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 65/100"
+            "text": "chciwość · 71/100"
           },
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+23,7%/30d · drożej niż miesiąc temu"
+            "text": "+23,3%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 18,
+        "score_base": 17,
         "score_range": [
           10,
           26
@@ -94,18 +94,18 @@
         "clamped": null,
         "direction": "flat",
         "confidence": "medium",
-        "total_delta": 0,
+        "total_delta": 1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+6% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+5% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": 3,
-            "note": "Cena przy szczycie zakresu 90d — przestrzeń do spadku",
+            "delta": 4,
+            "note": "F&G 71 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$702",
-      "price_change_24h": 1.4,
-      "opp": 16,
+      "price": "$703",
+      "price_change_24h": 0.8,
+      "opp": 14,
       "opp_30d": [
-        68,
         69,
         61,
         64,
@@ -160,21 +159,22 @@
         16,
         14,
         16,
-        16
+        16,
+        14
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 16,
-        "fng": 65,
+        "opp": 14,
+        "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (65/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (71/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+24,2% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+23,2% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -196,12 +196,12 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 65/100"
+            "text": "chciwość · 71/100"
           },
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+24,2%/30d · drożej niż miesiąc temu"
+            "text": "+23,2%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -209,24 +209,24 @@
         "horizon_days": 7,
         "score_base": 17,
         "score_range": [
-          9,
-          25
+          10,
+          26
         ],
         "clamped": null,
         "direction": "flat",
         "confidence": "medium",
-        "total_delta": 0,
+        "total_delta": 1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+12% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+15% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": 3,
-            "note": "Cena przy szczycie zakresu 90d — przestrzeń do spadku",
+            "delta": 4,
+            "note": "F&G 71 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -1,4% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -0,4% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
