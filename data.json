@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-02T21:35:05.999222+00:00",
+  "fetched_at": "2026-09-02T23:50:49.833980+00:00",
   "header_label": "środa, 2 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$77 231",
-      "price_change_24h": 0.3,
+      "price": "$77 176",
+      "price_change_24h": -0.5,
       "opp": 23,
       "opp_30d": [
         69,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+21,7% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+21,6% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+21,7%/30d · drożej niż miesiąc temu"
+            "text": "+21,6%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 22,
+        "score_base": 23,
         "score_range": [
-          19,
-          31
+          20,
+          32
         ],
         "clamped": null,
         "direction": "up",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-1% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-3% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$687",
-      "price_change_24h": 1.1,
+      "price_change_24h": 0.6,
       "opp": 23,
       "opp_30d": [
         66,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-1% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (-2% vs 30d)",
             "structural": false
           },
           {
