@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-06T20:19:33.157041+00:00",
+  "fetched_at": "2026-09-06T22:40:41.187180+00:00",
   "header_label": "niedziela, 6 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$79 800",
-      "price_change_24h": 0.1,
+      "price": "$79 972",
+      "price_change_24h": 0.2,
       "opp": 15,
       "opp_30d": [
         64,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+23,0% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+23,3% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+23,0%/30d · drożej niż miesiąc temu"
+            "text": "+23,3%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-35% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-33% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$749",
-      "price_change_24h": -3.0,
+      "price": "$751",
+      "price_change_24h": -2.4,
       "opp": 12,
       "opp_30d": [
         60,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+26,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+26,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+26,5%/30d · drożej niż miesiąc temu"
+            "text": "+26,8%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 11,
+        "score_base": 12,
         "score_range": [
           0,
-          20
+          21
         ],
         "clamped": "lo",
         "direction": "down",
