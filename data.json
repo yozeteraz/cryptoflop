@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-09-06T22:40:41.187180+00:00",
-  "header_label": "niedziela, 6 września",
+  "fetched_at": "2026-09-07T00:40:47.114257+00:00",
+  "header_label": "poniedziałek, 7 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$79 972",
-      "price_change_24h": 0.2,
+      "price": "$80 119",
+      "price_change_24h": 0.3,
       "opp": 15,
       "opp_30d": [
-        64,
         65,
         67,
         68,
@@ -39,6 +38,7 @@
         16,
         15,
         14,
+        15,
         15
       ],
       "verdict": {
@@ -47,13 +47,13 @@
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
         "opp": 15,
-        "fng": 73,
+        "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (73/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (71/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+23,3% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+23,4% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -75,12 +75,12 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 73/100"
+            "text": "chciwość · 71/100"
           },
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+23,3%/30d · drożej niż miesiąc temu"
+            "text": "+23,4%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -88,24 +88,24 @@
         "horizon_days": 7,
         "score_base": 15,
         "score_range": [
-          10,
-          26
+          9,
+          25
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 3,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-33% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-29% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": 5,
-            "note": "F&G 73 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
+            "delta": 4,
+            "note": "F&G 71 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$751",
-      "price_change_24h": -2.4,
+      "price": "$752",
+      "price_change_24h": -2.0,
       "opp": 12,
       "opp_30d": [
-        60,
         60,
         62,
         56,
@@ -160,6 +159,7 @@
         14,
         12,
         9,
+        12,
         12
       ],
       "verdict": {
@@ -168,13 +168,13 @@
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
         "opp": 12,
-        "fng": 73,
+        "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (73/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (71/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+26,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+25,3% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -196,12 +196,12 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 73/100"
+            "text": "chciwość · 71/100"
           },
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+26,8%/30d · drożej niż miesiąc temu"
+            "text": "+25,3%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -210,23 +210,23 @@
         "score_base": 12,
         "score_range": [
           0,
-          21
+          20
         ],
         "clamped": "lo",
         "direction": "down",
         "confidence": "low",
-        "total_delta": -2,
+        "total_delta": -3,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +36% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +32% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": 5,
-            "note": "F&G 73 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
+            "delta": 4,
+            "note": "F&G 71 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +6,5% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +6,7% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
