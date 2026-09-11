@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-09-11T16:54:15.282491+00:00",
+  "fetched_at": "2026-09-11T19:27:24.249668+00:00",
   "header_label": "piątek, 11 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$77 890",
-      "price_change_24h": 1.1,
-      "opp": 25,
+      "price": "$77 236",
+      "price_change_24h": 0.1,
+      "opp": 27,
       "opp_30d": [
         68,
         69,
@@ -39,14 +39,14 @@
         20,
         21,
         22,
-        25
+        27
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 25,
+        "opp": 27,
         "fng": 56,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+22,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+21,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+22,8%/30d · drożej niż miesiąc temu"
+            "text": "+21,8%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 24,
+        "score_base": 25,
         "score_range": [
-          22,
-          34
+          23,
+          35
         ],
         "clamped": null,
         "direction": "up",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+14% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+16% vs 30d)",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$731",
-      "price_change_24h": 3.2,
-      "opp": 24,
+      "price": "$725",
+      "price_change_24h": 1.6,
+      "opp": 26,
       "opp_30d": [
         59,
         60,
@@ -160,14 +160,14 @@
         13,
         22,
         26,
-        24
+        26
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 24,
+        "opp": 26,
         "fng": 56,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+19,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+18,9% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,26 +201,26 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+19,8%/30d · drożej niż miesiąc temu"
+            "text": "+18,9%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 26,
+        "score_base": 27,
         "score_range": [
-          16,
-          32
+          20,
+          36
         ],
         "clamped": null,
-        "direction": "down",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": -2,
+        "total_delta": 1,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+14% vs 30d)",
+            "delta": 0,
+            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
             "structural": false
           },
           {
