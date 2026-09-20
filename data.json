@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-09-19T22:39:11.415098+00:00",
-  "header_label": "sobota, 19 września",
+  "fetched_at": "2026-09-20T00:38:00.864910+00:00",
+  "header_label": "niedziela, 20 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$81 101",
+      "price": "$81 252",
       "price_change_24h": 0.0,
-      "opp": 20,
+      "opp": 24,
       "opp_30d": [
-        16,
         18,
         19,
         13,
@@ -39,14 +38,15 @@
         32,
         33,
         24,
-        20
+        20,
+        24
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 20,
+        "opp": 24,
         "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -62,8 +62,8 @@
           },
           {
             "label": "Trend 30 dni",
-            "tone": "warn",
-            "text": "+11,1% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "tone": "neutral",
+            "text": "+3,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -79,27 +79,27 @@
           },
           {
             "label": "Cena",
-            "tone": "warn",
-            "text": "+11,1%/30d · drożej niż miesiąc temu"
+            "tone": "neutral",
+            "text": "+3,8%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 20,
+        "score_base": 21,
         "score_range": [
-          11,
-          27
+          14,
+          30
         ],
         "clamped": null,
         "direction": "flat",
         "confidence": "medium",
-        "total_delta": -1,
+        "total_delta": 1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-26% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-25% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -110,8 +110,8 @@
           },
           {
             "name": "Momentum",
-            "delta": -3,
-            "note": "3 dni z rzędu w górę — kontynuacja, rynek drożeje",
+            "delta": -1,
+            "note": "4 dni z rzędu w górę — momentum stygnie",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$760",
-      "price_change_24h": -0.3,
-      "opp": 17,
+      "price": "$762",
+      "price_change_24h": -0.1,
+      "opp": 19,
       "opp_30d": [
-        18,
         17,
         16,
         14,
@@ -160,14 +159,15 @@
         28,
         25,
         18,
-        17
+        17,
+        19
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 17,
+        "opp": 19,
         "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+16,1% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+10,9% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się poprawić (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+16,1%/30d · drożej niż miesiąc temu"
+            "text": "+10,9%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 16,
         "score_range": [
-          7,
-          23
+          10,
+          26
         ],
         "clamped": null,
-        "direction": "flat",
+        "direction": "up",
         "confidence": "medium",
-        "total_delta": -1,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-12% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-20% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -231,14 +231,14 @@
           },
           {
             "name": "Momentum",
-            "delta": -3,
-            "note": "3 dni z rzędu w górę — kontynuacja, rynek drożeje",
+            "delta": 0,
+            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
             "structural": false
           },
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,4% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,6% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
