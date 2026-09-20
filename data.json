@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-20T20:25:10.542372+00:00",
+  "fetched_at": "2026-09-20T22:57:54.641754+00:00",
   "header_label": "niedziela, 20 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$81 111",
-      "price_change_24h": -0.2,
+      "price": "$81 203",
+      "price_change_24h": -0.0,
       "opp": 24,
       "opp_30d": [
         18,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+3,6% przez miesiąc — bez dużych zmian"
+            "text": "+3,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+3,6%/30d · bez dużych zmian"
+            "text": "+3,7%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 24,
+        "score_base": 25,
         "score_range": [
-          17,
-          33
+          18,
+          34
         ],
         "clamped": null,
         "direction": "flat",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-24% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-25% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$767",
-      "price_change_24h": 0.7,
-      "opp": 18,
+      "price": "$775",
+      "price_change_24h": 1.8,
+      "opp": 17,
       "opp_30d": [
         17,
         16,
@@ -160,14 +160,14 @@
         25,
         18,
         17,
-        18
+        17
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 18,
+        "opp": 17,
         "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+11,7% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+12,8% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się poprawić (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+11,7%/30d · drożej niż miesiąc temu"
+            "text": "+12,8%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 20,
         "score_range": [
-          14,
-          30
+          13,
+          29
         ],
         "clamped": null,
-        "direction": "up",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": 2,
+        "total_delta": 1,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-11% vs 30d) — słabe potwierdzenie",
+            "delta": -3,
+            "note": "Ruch w górę z umiarkowanym wolumenem (-6% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,5% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +2,4% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
