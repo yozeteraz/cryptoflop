@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-09-21T12:22:15.156090+00:00",
+  "fetched_at": "2026-09-21T18:27:45.174532+00:00",
   "header_label": "poniedziałek, 21 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$85 183",
-      "price_change_24h": 6.0,
-      "opp": 21,
+      "price": "$85 937",
+      "price_change_24h": 5.8,
+      "opp": 20,
       "opp_30d": [
         19,
         13,
@@ -39,14 +39,14 @@
         24,
         20,
         24,
-        21
+        20
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 21,
+        "opp": 20,
         "fng": 70,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+10,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+11,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+10,5%/30d · drożej niż miesiąc temu"
+            "text": "+11,5%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +40% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +81% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$791",
-      "price_change_24h": 5.1,
-      "opp": 17,
+      "price": "$800",
+      "price_change_24h": 4.0,
+      "opp": 16,
       "opp_30d": [
         16,
         14,
@@ -160,14 +160,14 @@
         18,
         17,
         17,
-        17
+        16
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 17,
+        "opp": 16,
         "fng": 70,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+13,7% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+15,0% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+13,7%/30d · drożej niż miesiąc temu"
+            "text": "+15,0%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 19,
+        "score_base": 18,
         "score_range": [
-          7,
-          29
+          6,
+          28
         ],
         "clamped": null,
         "direction": "flat",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -5,
-            "note": "Ruch w górę z wolumenem +44% vs 30d — okno zakupowe się domyka przekonująco",
+            "note": "Ruch w górę z wolumenem +76% vs 30d — okno zakupowe się domyka przekonująco",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +0,7% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +1,0% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
