@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-09-26T03:30:43.268214+00:00",
+  "fetched_at": "2026-09-26T09:05:31.889113+00:00",
   "header_label": "sobota, 26 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$84 011",
-      "price_change_24h": -0.1,
-      "opp": 25,
+      "price": "$84 192",
+      "price_change_24h": -0.4,
+      "opp": 24,
       "opp_30d": [
         18,
         20,
@@ -39,14 +39,14 @@
         24,
         24,
         25,
-        25
+        24
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 25,
+        "opp": 24,
         "fng": 74,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+4,7% przez miesiąc — bez dużych zmian"
+            "text": "+4,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+4,7%/30d · bez dużych zmian"
+            "text": "+4,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+10% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-0% vs 30d)",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$775",
-      "price_change_24h": 0.5,
+      "price": "$773",
+      "price_change_24h": -0.3,
       "opp": 22,
       "opp_30d": [
         17,
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,8% przez miesiąc — bez dużych zmian"
+            "text": "+8,6% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się poprawić (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,8%/30d · bez dużych zmian"
+            "text": "+8,6%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,24 +209,24 @@
         "horizon_days": 7,
         "score_base": 22,
         "score_range": [
-          16,
-          32
+          13,
+          29
         ],
         "clamped": null,
-        "direction": "up",
+        "direction": "flat",
         "confidence": "medium",
-        "total_delta": 2,
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-0% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (-7% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": 5,
-            "note": "F&G 74 (chciwość) — korekta może otworzyć lepsze okno; Cena przy szczycie zakresu 90d — przestrzeń do spadku",
+            "delta": 2,
+            "note": "F&G 74 (chciwość) — korekta może otworzyć lepsze okno",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -1,6% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,1% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
