@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-27T17:28:26.469024+00:00",
+  "fetched_at": "2026-09-27T20:52:13.144330+00:00",
   "header_label": "niedziela, 27 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$84 423",
-      "price_change_24h": 0.4,
+      "price": "$84 548",
+      "price_change_24h": 0.8,
       "opp": 24,
       "opp_30d": [
         20,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,5% przez miesiąc — bez dużych zmian"
+            "text": "+8,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,5%/30d · bez dużych zmian"
+            "text": "+8,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$776",
-      "price_change_24h": 0.4,
+      "price": "$777",
+      "price_change_24h": 1.2,
       "opp": 21,
       "opp_30d": [
         20,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+12,2% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+12,4% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+12,2%/30d · drożej niż miesiąc temu"
+            "text": "+12,4%/30d · drożej niż miesiąc temu"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 22,
         "score_range": [
-          22,
+          18,
           34
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 6,
+        "total_delta": 4,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
+            "delta": -2,
+            "note": "Ruch w górę bez wolumenu (-31% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
