@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-27T20:52:13.144330+00:00",
+  "fetched_at": "2026-09-27T23:38:11.672385+00:00",
   "header_label": "niedziela, 27 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$84 548",
-      "price_change_24h": 0.8,
+      "price": "$84 389",
+      "price_change_24h": 0.0,
       "opp": 24,
       "opp_30d": [
         20,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,7% przez miesiąc — bez dużych zmian"
+            "text": "+8,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,7%/30d · bez dużych zmian"
+            "text": "+8,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$777",
-      "price_change_24h": 1.2,
+      "price_change_24h": 0.6,
       "opp": 21,
       "opp_30d": [
         20,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+12,4% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+12,5% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+12,4%/30d · drożej niż miesiąc temu"
+            "text": "+12,5%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 22,
+        "score_base": 21,
         "score_range": [
-          18,
-          34
+          17,
+          33
         ],
         "clamped": null,
         "direction": "up",
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,4% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -3,2% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
