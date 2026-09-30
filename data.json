@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-30T14:45:17.441334+00:00",
+  "fetched_at": "2026-09-30T19:49:26.092340+00:00",
   "header_label": "środa, 30 września",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$83 580",
-      "price_change_24h": -0.3,
+      "price": "$83 792",
+      "price_change_24h": 0.3,
       "opp": 26,
       "opp_30d": [
         20,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+6,4% przez miesiąc — bez dużych zmian"
+            "text": "+6,6% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+6,4%/30d · bez dużych zmian"
+            "text": "+6,6%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+13% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+10% vs 30d)",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$765",
-      "price_change_24h": 0.1,
-      "opp": 24,
+      "price": "$767",
+      "price_change_24h": 1.7,
+      "opp": 23,
       "opp_30d": [
         23,
         23,
@@ -160,14 +160,14 @@
         21,
         23,
         24,
-        24
+        23
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 24,
+        "opp": 23,
         "fng": 71,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "warn",
-            "text": "+10,7% przez miesiąc — kupujesz drożej niż miesiąc temu"
+            "text": "+10,9% przez miesiąc — kupujesz drożej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "warn",
-            "text": "+10,7%/30d · drożej niż miesiąc temu"
+            "text": "+10,9%/30d · drożej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 23,
+        "score_base": 24,
         "score_range": [
-          21,
-          33
+          22,
+          34
         ],
         "clamped": null,
         "direction": "up",
