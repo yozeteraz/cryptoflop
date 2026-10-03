@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-03T19:43:40.257922+00:00",
+  "fetched_at": "2026-10-03T22:40:07.263563+00:00",
   "header_label": "sobota, 3 października",
   "assets": [
     {
@@ -7,7 +7,7 @@
       "name": "BTC",
       "sub": "Bitcoin",
       "price": "$84 775",
-      "price_change_24h": 0.7,
+      "price_change_24h": 0.3,
       "opp": 27,
       "opp_30d": [
         15,
@@ -86,10 +86,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 26,
+        "score_base": 27,
         "score_range": [
-          23,
-          35
+          24,
+          36
         ],
         "clamped": null,
         "direction": "up",
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$788",
-      "price_change_24h": 2.9,
+      "price_change_24h": 2.8,
       "opp": 23,
       "opp_30d": [
         12,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-35% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w górę bez wolumenu (-36% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
