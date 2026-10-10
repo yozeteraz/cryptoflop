@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-10T15:41:33.608209+00:00",
+  "fetched_at": "2026-10-10T19:44:16.974885+00:00",
   "header_label": "sobota, 10 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$82 957",
-      "price_change_24h": 0.0,
+      "price": "$83 015",
+      "price_change_24h": 0.8,
       "opp": 29,
       "opp_30d": [
         27,
@@ -86,10 +86,10 @@
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 32,
+        "score_base": 31,
         "score_range": [
-          28,
-          40
+          27,
+          39
         ],
         "clamped": null,
         "direction": "up",
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-45% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-50% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$750",
-      "price_change_24h": 1.4,
+      "price": "$751",
+      "price_change_24h": 1.7,
       "opp": 31,
       "opp_30d": [
         26,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+5,9% przez miesiąc — bez dużych zmian"
+            "text": "+6,0% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+5,9%/30d · bez dużych zmian"
+            "text": "+6,0%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 35,
+        "score_base": 34,
         "score_range": [
-          31,
-          43
+          30,
+          42
         ],
         "clamped": null,
         "direction": "up",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-46% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-49% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
