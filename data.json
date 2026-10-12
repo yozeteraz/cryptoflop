@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-10-12T00:13:02.390652+00:00",
+  "fetched_at": "2026-10-12T06:57:42.084075+00:00",
   "header_label": "poniedziałek, 12 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$83 664",
-      "price_change_24h": 0.9,
-      "opp": 26,
+      "price": "$84 084",
+      "price_change_24h": 1.2,
+      "opp": 25,
       "opp_30d": [
         25,
         22,
@@ -39,14 +39,14 @@
         33,
         29,
         30,
-        26
+        25
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 26,
+        "opp": 25,
         "fng": 69,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,3% przez miesiąc — bez dużych zmian"
+            "text": "+8,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,3%/30d · bez dużych zmian"
+            "text": "+8,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-51% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-39% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$753",
-      "price_change_24h": 0.6,
-      "opp": 31,
+      "price": "$755",
+      "price_change_24h": 0.9,
+      "opp": 30,
       "opp_30d": [
         26,
         25,
@@ -160,14 +160,14 @@
         37,
         31,
         34,
-        31
+        30
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 31,
+        "opp": 30,
         "fng": 69,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+3,5% przez miesiąc — bez dużych zmian"
+            "text": "+3,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+3,5%/30d · bez dużych zmian"
+            "text": "+3,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-53% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-41% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -1,8% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,1% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
