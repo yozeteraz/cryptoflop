@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-13T13:33:39.102160+00:00",
+  "fetched_at": "2026-10-13T20:04:21.445341+00:00",
   "header_label": "wtorek, 13 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$83 391",
-      "price_change_24h": 1.1,
+      "price": "$83 185",
+      "price_change_24h": 0.5,
       "opp": 32,
       "opp_30d": [
         22,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+8,6% przez miesiąc — bez dużych zmian"
+            "text": "+8,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+8,6%/30d · bez dużych zmian"
+            "text": "+8,3%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+2% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+5% vs 30d)",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$742",
-      "price_change_24h": -0.5,
+      "price_change_24h": -0.6,
       "opp": 37,
       "opp_30d": [
         25,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-13% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-14% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -2,4% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -2,2% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
