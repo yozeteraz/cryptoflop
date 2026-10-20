@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-10-19T22:52:01.846663+00:00",
-  "header_label": "poniedziałek, 19 października",
+  "fetched_at": "2026-10-20T01:34:00.299072+00:00",
+  "header_label": "wtorek, 20 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$82 013",
-      "price_change_24h": 0.4,
-      "opp": 36,
+      "price": "$81 413",
+      "price_change_24h": -1.2,
+      "opp": 39,
       "opp_30d": [
-        24,
         20,
         17,
         24,
@@ -39,21 +38,22 @@
         32,
         36,
         39,
-        36
+        36,
+        39
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 36,
-        "fng": 59,
+        "opp": 39,
+        "fng": 55,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (59/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (55/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,24 +63,24 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+1,0% przez miesiąc — bez dużych zmian"
+            "text": "+0,4% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się poprawić (pewność: niska) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 59/100"
+            "text": "chciwość · 55/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+1,0%/30d · bez dużych zmian"
+            "text": "+0,4%/30d · bez dużych zmian"
           }
         ]
       },
@@ -88,24 +88,24 @@
         "horizon_days": 7,
         "score_base": 37,
         "score_range": [
-          31,
-          43
+          33,
+          45
         ],
         "clamped": null,
-        "direction": "flat",
+        "direction": "up",
         "confidence": "low",
-        "total_delta": 0,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": 0,
-            "note": "F&G 59 i pozycja w 90d range neutralne",
+            "note": "F&G 55 i pozycja w 90d range neutralne",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$731",
-      "price_change_24h": 1.6,
-      "opp": 42,
+      "price": "$727",
+      "price_change_24h": 0.2,
+      "opp": 45,
       "opp_30d": [
-        17,
         16,
         17,
         24,
@@ -160,21 +159,22 @@
         40,
         45,
         47,
-        42
+        42,
+        45
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 42,
-        "fng": 59,
+        "opp": 45,
+        "fng": 55,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "chciwość (59/100) — kupuj wg planu, bez zwiększania kwot"
+            "text": "chciwość (55/100) — kupuj wg planu, bez zwiększania kwot"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,24 +184,24 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-4,1% przez miesiąc — bez dużych zmian"
+            "text": "-5,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: niska) — prognoza okazji, nie ceny"
+            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "chciwość · 59/100"
+            "text": "chciwość · 55/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-4,1%/30d · bez dużych zmian"
+            "text": "-5,8%/30d · bez dużych zmian"
           }
         ]
       },
@@ -209,36 +209,36 @@
         "horizon_days": 7,
         "score_base": 44,
         "score_range": [
-          38,
-          50
+          35,
+          51
         ],
         "clamped": null,
         "direction": "flat",
-        "confidence": "low",
-        "total_delta": 0,
+        "confidence": "medium",
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 0,
-            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": 0,
-            "note": "F&G 59 i pozycja w 90d range neutralne",
+            "note": "F&G 55 i pozycja w 90d range neutralne",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": -3,
+            "note": "2 dni z rzędu w górę — kontynuacja, rynek drożeje",
             "structural": false
           },
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,5% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,1% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
