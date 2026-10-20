@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-10-20T01:34:00.299072+00:00",
+  "fetched_at": "2026-10-20T07:09:03.202817+00:00",
   "header_label": "wtorek, 20 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$81 413",
-      "price_change_24h": -1.2,
-      "opp": 39,
+      "price": "$81 727",
+      "price_change_24h": -1.3,
+      "opp": 38,
       "opp_30d": [
         20,
         17,
@@ -39,14 +39,14 @@
         36,
         39,
         36,
-        39
+        38
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 39,
+        "opp": 38,
         "fng": 55,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BTC i poczekać na spokojniejszy moment.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "+0,4% przez miesiąc — bez dużych zmian"
+            "text": "+0,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "+0,4%/30d · bez dużych zmian"
+            "text": "+0,7%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-18% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$727",
-      "price_change_24h": 0.2,
+      "price": "$730",
+      "price_change_24h": 0.3,
       "opp": 45,
       "opp_30d": [
         16,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-5,8% przez miesiąc — bez dużych zmian"
+            "text": "-5,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-5,8%/30d · bez dużych zmian"
+            "text": "-5,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-16% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-20% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
