@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-23T12:27:43.816746+00:00",
+  "fetched_at": "2026-10-23T17:41:33.343431+00:00",
   "header_label": "piątek, 23 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$81 688",
-      "price_change_24h": -0.1,
+      "price": "$81 557",
+      "price_change_24h": 0.4,
       "opp": 43,
       "opp_30d": [
         24,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-3,2% przez miesiąc — bez dużych zmian"
+            "text": "-3,3% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,16 +80,16 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-3,2%/30d · bez dużych zmian"
+            "text": "-3,3%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 39,
+        "score_base": 40,
         "score_range": [
-          33,
-          45
+          34,
+          46
         ],
         "clamped": null,
         "direction": "flat",
@@ -127,8 +127,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$746",
-      "price_change_24h": 1.8,
+      "price": "$745",
+      "price_change_24h": 2.3,
       "opp": 42,
       "opp_30d": [
         21,
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,7% przez miesiąc — bez dużych zmian"
+            "text": "-2,9% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,7%/30d · bez dużych zmian"
+            "text": "-2,9%/30d · bez dużych zmian"
           }
         ]
       },
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (-2% vs 30d)",
+            "note": "Ruch w górę z umiarkowanym wolumenem (+2% vs 30d)",
             "structural": false
           },
           {
