@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-10-25T23:47:43.574911+00:00",
-  "header_label": "niedziela, 25 października",
+  "fetched_at": "2026-10-26T03:12:14.954760+00:00",
+  "header_label": "poniedziałek, 26 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$79 981",
-      "price_change_24h": -1.0,
-      "opp": 44,
+      "price": "$79 634",
+      "price_change_24h": -1.5,
+      "opp": 46,
       "opp_30d": [
-        24,
         24,
         24,
         25,
@@ -39,21 +38,22 @@
         36,
         44,
         44,
-        44
+        44,
+        46
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 44,
-        "fng": 54,
+        "opp": 46,
+        "fng": 50,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "neutralnie (54/100)"
+            "text": "neutralnie (50/100)"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-4,9% przez miesiąc — bez dużych zmian"
+            "text": "-5,7% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -75,43 +75,43 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "neutralnie · 54/100"
+            "text": "neutralnie · 50/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-4,9%/30d · bez dużych zmian"
+            "text": "-5,7%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 43,
+        "score_base": 44,
         "score_range": [
-          42,
-          54
+          41,
+          53
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 5,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-51% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-40% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": 0,
-            "note": "F&G 54 i pozycja w 90d range neutralne",
+            "note": "F&G 50 i pozycja w 90d range neutralne",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 3,
-            "note": "3 dni z rzędu w dół — kontynuacja, rynek tanieje",
+            "delta": 1,
+            "note": "4 dni z rzędu w dół — momentum stygnie",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$737",
-      "price_change_24h": -0.3,
-      "opp": 44,
+      "price": "$736",
+      "price_change_24h": -1.1,
+      "opp": 45,
       "opp_30d": [
-        23,
         21,
         23,
         24,
@@ -160,21 +159,22 @@
         41,
         44,
         45,
-        44
+        44,
+        45
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 44,
-        "fng": 54,
+        "opp": 45,
+        "fng": 50,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "neutral",
-            "text": "neutralnie (54/100)"
+            "text": "neutralnie (50/100)"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-5,2% przez miesiąc — bez dużych zmian"
+            "text": "-4,8% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -196,18 +196,18 @@
           {
             "label": "Nastrój",
             "tone": "neutral",
-            "text": "neutralnie · 54/100"
+            "text": "neutralnie · 50/100"
           },
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-5,2%/30d · bez dużych zmian"
+            "text": "-4,8%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 43,
+        "score_base": 44,
         "score_range": [
           33,
           45
@@ -215,18 +215,18 @@
         "clamped": null,
         "direction": "down",
         "confidence": "medium",
-        "total_delta": -4,
+        "total_delta": -5,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -2,
-            "note": "Ruch w górę bez wolumenu (-13% vs 30d) — słabe potwierdzenie",
+            "delta": -3,
+            "note": "Ruch w górę z umiarkowanym wolumenem (-10% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
             "delta": 0,
-            "note": "F&G 54 i pozycja w 90d range neutralne",
+            "note": "F&G 50 i pozycja w 90d range neutralne",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": -2,
-            "note": "BNB względem Bitcoina +4,6% w 7d — relatywna siła, mniejszy rabat",
+            "note": "BNB względem Bitcoina +3,5% w 7d — relatywna siła, mniejszy rabat",
             "structural": false
           }
         ]
