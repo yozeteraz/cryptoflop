@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-10-28T10:28:46.733128+00:00",
+  "fetched_at": "2026-10-28T16:58:37.538284+00:00",
   "header_label": "środa, 28 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$81 419",
-      "price_change_24h": 2.4,
-      "opp": 42,
+      "price": "$80 554",
+      "price_change_24h": 0.1,
+      "opp": 44,
       "opp_30d": [
         25,
         26,
@@ -39,14 +39,14 @@
         44,
         46,
         46,
-        42
+        44
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 42,
+        "opp": 44,
         "fng": 51,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-2,5% przez miesiąc — bez dużych zmian"
+            "text": "-3,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-2,5%/30d · bez dużych zmian"
+            "text": "-3,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-14% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-19% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$756",
-      "price_change_24h": 2.9,
-      "opp": 39,
+      "price": "$748",
+      "price_change_24h": -0.3,
+      "opp": 41,
       "opp_30d": [
         24,
         22,
@@ -160,14 +160,14 @@
         44,
         44,
         45,
-        39
+        41
       ],
       "verdict": {
         "decision": "NIE",
         "level": "wstrzymaj",
         "word": "CZEKAJ",
         "sublabel": "drogo — rozważ przeczekanie",
-        "opp": 39,
+        "opp": 41,
         "fng": 51,
         "headline": "Rynek wygląda na rozgrzany — rozsądniej wstrzymać dziś dodatkowe zakupy BNB i poczekać na spokojniejszy moment.",
         "signals": [
@@ -184,12 +184,12 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-1,0% przez miesiąc — bez dużych zmian"
+            "text": "-2,1% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
             "tone": "neutral",
-            "text": "okno zakupowe może się domykać (pewność: wysoka) — prognoza okazji, nie ceny"
+            "text": "okno zakupowe może się domykać (pewność: średnia) — prognoza okazji, nie ceny"
           }
         ],
         "home_signals": [
@@ -201,26 +201,26 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-1,0%/30d · bez dużych zmian"
+            "text": "-2,1%/30d · bez dużych zmian"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 44,
+        "score_base": 43,
         "score_range": [
-          30,
-          42
+          32,
+          44
         ],
         "clamped": null,
         "direction": "down",
-        "confidence": "high",
-        "total_delta": -8,
+        "confidence": "medium",
+        "total_delta": -5,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": -3,
-            "note": "Ruch w górę z umiarkowanym wolumenem (+20% vs 30d)",
+            "delta": 0,
+            "note": "Ruch w cenie zbyt mały, by oceniać potwierdzenie wolumenem",
             "structural": false
           },
           {
