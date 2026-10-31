@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-10-30T22:53:58.240637+00:00",
-  "header_label": "piątek, 30 października",
+  "fetched_at": "2026-10-31T02:00:14.586217+00:00",
+  "header_label": "sobota, 31 października",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$76 885",
-      "price_change_24h": -2.5,
+      "price": "$77 299",
+      "price_change_24h": 0.8,
       "opp": 60,
       "opp_30d": [
-        22,
         23,
         27,
         24,
@@ -39,6 +38,7 @@
         46,
         43,
         47,
+        60,
         60
       ],
       "verdict": {
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-8,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-8,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,26 +80,26 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-8,0%/30d · taniej niż miesiąc temu"
+            "text": "-8,9%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 55,
+        "score_base": 58,
         "score_range": [
-          51,
-          67
+          57,
+          73
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 4,
+        "total_delta": 7,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +625% vs 30d — okno zakupowe się otwiera przekonująco",
+            "note": "Ruch w dół z wolumenem +503% vs 30d — okno zakupowe się otwiera przekonująco",
             "structural": false
           },
           {
@@ -110,8 +110,8 @@
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": 3,
+            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje",
             "structural": false
           },
           {
@@ -127,11 +127,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$699",
-      "price_change_24h": -0.5,
-      "opp": 61,
+      "price": "$706",
+      "price_change_24h": 0.5,
+      "opp": 60,
       "opp_30d": [
-        20,
         23,
         23,
         22,
@@ -160,14 +159,15 @@
         45,
         40,
         54,
-        61
+        61,
+        60
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 61,
+        "opp": 60,
         "fng": 30,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-9,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-8,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,16 +201,16 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-9,0%/30d · taniej niż miesiąc temu"
+            "text": "-8,5%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 57,
+        "score_base": 60,
         "score_range": [
-          53,
-          69
+          56,
+          72
         ],
         "clamped": null,
         "direction": "up",
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +152% vs 30d — okno zakupowe się otwiera przekonująco",
+            "note": "Ruch w dół z wolumenem +79% vs 30d — okno zakupowe się otwiera przekonująco",
             "structural": false
           },
           {
