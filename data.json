@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-11-04T02:53:57.021830+00:00",
+  "fetched_at": "2026-11-04T10:28:00.585863+00:00",
   "header_label": "środa, 4 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$76 520",
-      "price_change_24h": -0.3,
-      "opp": 60,
+      "price": "$78 490",
+      "price_change_24h": 2.1,
+      "opp": 57,
       "opp_30d": [
         23,
         27,
@@ -39,14 +39,14 @@
         57,
         58,
         62,
-        60
+        57
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 60,
+        "opp": 57,
         "fng": 34,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-10,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-8,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-10,8%/30d · taniej niż miesiąc temu"
+            "text": "-8,5%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (-7% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+13% vs 30d)",
             "structural": false
           },
           {
@@ -127,9 +127,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$689",
-      "price_change_24h": -1.0,
-      "opp": 64,
+      "price": "$703",
+      "price_change_24h": 0.7,
+      "opp": 61,
       "opp_30d": [
         25,
         27,
@@ -160,14 +160,14 @@
         58,
         61,
         65,
-        64
+        61
       ],
       "verdict": {
         "decision": "TAK",
         "level": "tak",
         "word": "KUP",
         "sublabel": "zwykły dzień DCA",
-        "opp": 64,
+        "opp": 61,
         "fng": 34,
         "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
         "signals": [
@@ -184,7 +184,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-12,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-10,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           },
           {
             "label": "Prognoza 7 dni",
@@ -201,7 +201,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-12,4%/30d · taniej niż miesiąc temu"
+            "text": "-10,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -209,18 +209,18 @@
         "horizon_days": 7,
         "score_base": 64,
         "score_range": [
-          62,
-          74
+          63,
+          75
         ],
         "clamped": null,
         "direction": "up",
         "confidence": "medium",
-        "total_delta": 4,
+        "total_delta": 5,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-14% vs 30d) — słabe potwierdzenie",
+            "delta": 3,
+            "note": "Ruch w dół z umiarkowanym wolumenem (+7% vs 30d)",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 2,
-            "note": "BNB względem Bitcoina -3,6% w 7d — relatywna słabość, większy rabat",
+            "note": "BNB względem Bitcoina -4,2% w 7d — relatywna słabość, większy rabat",
             "structural": false
           }
         ]
