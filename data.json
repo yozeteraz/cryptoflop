@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-11-07T17:25:04.178908+00:00",
+  "fetched_at": "2026-11-07T21:26:28.856369+00:00",
   "header_label": "sobota, 7 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$75 744",
-      "price_change_24h": -0.1,
+      "price": "$75 555",
+      "price_change_24h": -0.3,
       "opp": 64,
       "opp_30d": [
         33,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "neutral",
-            "text": "-7,3% przez miesiąc — bez dużych zmian"
+            "text": "-7,5% przez miesiąc — bez dużych zmian"
           },
           {
             "label": "Prognoza 7 dni",
@@ -80,7 +80,7 @@
           {
             "label": "Cena",
             "tone": "neutral",
-            "text": "-7,3%/30d · bez dużych zmian"
+            "text": "-7,5%/30d · bez dużych zmian"
           }
         ]
       },
@@ -99,7 +99,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-51% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-59% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -128,7 +128,7 @@
       "name": "BNB",
       "sub": "Binance Coin",
       "price": "$694",
-      "price_change_24h": -0.3,
+      "price_change_24h": 0.2,
       "opp": 63,
       "opp_30d": [
         37,
@@ -220,7 +220,7 @@
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-34% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-36% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -238,7 +238,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,0% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +1,2% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
