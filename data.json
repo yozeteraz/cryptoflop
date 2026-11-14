@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-11-13T20:45:23.730172+00:00",
-  "header_label": "piątek, 13 listopada",
+  "fetched_at": "2026-11-14T01:16:34.666209+00:00",
+  "header_label": "sobota, 14 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$68 857",
-      "price_change_24h": -3.6,
-      "opp": 79,
+      "price": "$68 173",
+      "price_change_24h": -3.8,
+      "opp": 85,
       "opp_30d": [
-        35,
         32,
         36,
         39,
@@ -39,21 +38,22 @@
         65,
         64,
         71,
-        79
+        79,
+        85
       ],
       "verdict": {
         "decision": "TAK",
-        "level": "tak",
-        "word": "KUP",
-        "sublabel": "zwykły dzień DCA",
-        "opp": 79,
-        "fng": 20,
-        "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BTC to tu najlepsza strategia.",
+        "level": "okazja",
+        "word": "OKAZJA",
+        "sublabel": "dobry moment na zakup — rynek w strachu",
+        "opp": 85,
+        "fng": 13,
+        "headline": "Rynek jest w strachu, a BTC jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (20/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (13/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -63,55 +63,50 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-15,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
-          },
-          {
-            "label": "Prognoza 7 dni",
-            "tone": "neutral",
-            "text": "okno zakupowe może się poprawić (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "-17,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 20/100"
+            "text": "skrajny strach · 13/100"
           },
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-15,6%/30d · taniej niż miesiąc temu"
+            "text": "-17,0%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 73,
+        "score_base": 76,
         "score_range": [
-          67,
-          83
+          69,
+          91
         ],
         "clamped": null,
         "direction": "up",
-        "confidence": "medium",
-        "total_delta": 2,
+        "confidence": "low",
+        "total_delta": 4,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +56% vs 30d — okno zakupowe się otwiera przekonująco",
+            "note": "Ruch w dół z wolumenem +53% vs 30d — okno zakupowe się otwiera przekonująco",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 20 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": -4,
+            "note": "F&G 13 (strach) — rynek wyprzedany, odbicie domyka okno",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": 3,
+            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje",
             "structural": false
           },
           {
@@ -127,11 +122,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$637",
-      "price_change_24h": -2.6,
-      "opp": 79,
+      "price": "$630",
+      "price_change_24h": -3.7,
+      "opp": 84,
       "opp_30d": [
-        40,
         40,
         45,
         47,
@@ -160,21 +154,22 @@
         66,
         63,
         73,
-        79
+        79,
+        84
       ],
       "verdict": {
         "decision": "TAK",
-        "level": "tak",
-        "word": "KUP",
-        "sublabel": "zwykły dzień DCA",
-        "opp": 79,
-        "fng": 20,
-        "headline": "Zwykły dzień na rynku — ani okazja, ani przegrzanie. Regularna, stała kwota DCA w BNB to tu najlepsza strategia.",
+        "level": "okazja",
+        "word": "OKAZJA",
+        "sublabel": "dobry moment na zakup — rynek w strachu",
+        "opp": 84,
+        "fng": 13,
+        "headline": "Rynek jest w strachu, a BNB jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
           {
             "label": "Nastrój rynku",
             "tone": "good",
-            "text": "skrajny strach (20/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
+            "text": "skrajny strach (13/100) — rynek wyprzedany, historycznie sprzyja dokupowaniu"
           },
           {
             "label": "Cena vs 3 mies.",
@@ -184,61 +179,56 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-12,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
-          },
-          {
-            "label": "Prognoza 7 dni",
-            "tone": "neutral",
-            "text": "okno raczej bez zmian (pewność: średnia) — prognoza okazji, nie ceny"
+            "text": "-13,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
           {
             "label": "Nastrój",
             "tone": "good",
-            "text": "skrajny strach · 20/100"
+            "text": "skrajny strach · 13/100"
           },
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-12,7%/30d · taniej niż miesiąc temu"
+            "text": "-13,6%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 74,
+        "score_base": 77,
         "score_range": [
-          66,
-          82
+          77,
+          89
         ],
         "clamped": null,
-        "direction": "flat",
+        "direction": "up",
         "confidence": "medium",
-        "total_delta": 0,
+        "total_delta": 6,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+17% vs 30d)",
+            "note": "Ruch w dół z umiarkowanym wolumenem (+15% vs 30d)",
             "structural": false
           },
           {
             "name": "Powrót do średniej",
-            "delta": -3,
-            "note": "F&G 20 (strach) — rynek wyprzedany, odbicie domyka okno",
+            "delta": 0,
+            "note": "trwały trend spadkowy — reguła odbicia wyciszona (w trendzie myli kierunek)",
             "structural": false
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": 3,
+            "note": "2 dni z rzędu w dół — kontynuacja, rynek tanieje",
             "structural": false
           },
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +1,2% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,7% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
