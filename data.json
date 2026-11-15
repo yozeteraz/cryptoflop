@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-11-15T00:45:07.649209+00:00",
+  "fetched_at": "2026-11-15T07:32:03.675643+00:00",
   "header_label": "niedziela, 15 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$63 774",
-      "price_change_24h": -6.6,
-      "opp": 94,
+      "price": "$64 336",
+      "price_change_24h": -4.3,
+      "opp": 93,
       "opp_30d": [
         36,
         39,
@@ -39,14 +39,14 @@
         71,
         79,
         90,
-        94
+        93
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "dobry moment na zakup — rynek w strachu",
-        "opp": 94,
+        "opp": 93,
         "fng": 10,
         "headline": "Rynek jest w strachu, a BTC jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-21,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-21,1% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,18 +75,18 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-21,8%/30d · taniej niż miesiąc temu"
+            "text": "-21,1%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 86,
+        "score_base": 88,
         "score_range": [
-          88,
+          90,
           100
         ],
-        "clamped": null,
+        "clamped": "hi",
         "direction": "up",
         "confidence": "medium",
         "total_delta": 8,
@@ -94,7 +94,7 @@
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +60% vs 30d — okno zakupowe się otwiera przekonująco",
+            "note": "Ruch w dół z wolumenem +84% vs 30d — okno zakupowe się otwiera przekonująco",
             "structural": false
           },
           {
@@ -122,9 +122,9 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$580",
-      "price_change_24h": -8.0,
-      "opp": 93,
+      "price": "$590",
+      "price_change_24h": -4.4,
+      "opp": 91,
       "opp_30d": [
         45,
         47,
@@ -155,14 +155,14 @@
         73,
         79,
         92,
-        93
+        91
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "OKAZJA",
         "sublabel": "dobry moment na zakup — rynek w strachu",
-        "opp": 93,
+        "opp": 91,
         "fng": 10,
         "headline": "Rynek jest w strachu, a BNB jest tańszy niż miesiąc temu — dla strategii stałych zakupów (DCA) to statystycznie lepszy dzień niż zwykle.",
         "signals": [
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-19,5% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-18,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,15 +191,15 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-19,5%/30d · taniej niż miesiąc temu"
+            "text": "-18,2%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 87,
+        "score_base": 88,
         "score_range": [
-          89,
+          90,
           100
         ],
         "clamped": "hi",
@@ -210,7 +210,7 @@
           {
             "name": "Wolumen",
             "delta": 5,
-            "note": "Ruch w dół z wolumenem +39% vs 30d — okno zakupowe się otwiera przekonująco",
+            "note": "Ruch w dół z wolumenem +47% vs 30d — okno zakupowe się otwiera przekonująco",
             "structural": false
           },
           {
@@ -228,7 +228,7 @@
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina -0,6% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina +0,2% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
