@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-11-22T01:53:56.698578+00:00",
+  "fetched_at": "2026-11-22T09:20:42.655426+00:00",
   "header_label": "niedziela, 22 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 072",
-      "price_change_24h": 2.0,
+      "price": "$59 705",
+      "price_change_24h": 3.4,
       "opp": 94,
       "opp_30d": [
         44,
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-25,9% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-26,4% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,7 +75,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-25,9%/30d · taniej niż miesiąc temu"
+            "text": "-26,4%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -83,18 +83,18 @@
         "horizon_days": 7,
         "score_base": 94,
         "score_range": [
-          93,
+          91,
           100
         ],
         "clamped": "hi",
         "direction": "up",
         "confidence": "low",
-        "total_delta": 5,
+        "total_delta": 3,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 5,
-            "note": "Ruch w dół z wolumenem +76% vs 30d — okno zakupowe się otwiera przekonująco",
+            "delta": 3,
+            "note": "Ruch w dół z umiarkowanym wolumenem (+17% vs 30d)",
             "structural": false
           },
           {
@@ -122,8 +122,8 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$549",
-      "price_change_24h": 2.2,
+      "price": "$545",
+      "price_change_24h": 4.4,
       "opp": 95,
       "opp_30d": [
         45,
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-25,6% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-26,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,7 +191,7 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-25,6%/30d · taniej niż miesiąc temu"
+            "text": "-26,2%/30d · taniej niż miesiąc temu"
           }
         ]
       },
@@ -199,18 +199,18 @@
         "horizon_days": 7,
         "score_base": 95,
         "score_range": [
-          92,
+          91,
           100
         ],
         "clamped": "hi",
         "direction": "up",
         "confidence": "low",
-        "total_delta": 3,
+        "total_delta": 2,
         "rules": [
           {
             "name": "Wolumen",
-            "delta": 3,
-            "note": "Ruch w dół z umiarkowanym wolumenem (+3% vs 30d)",
+            "delta": 2,
+            "note": "Ruch w dół bez wolumenu (-39% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
