@@ -1,16 +1,15 @@
 {
-  "fetched_at": "2026-11-22T23:13:50.757589+00:00",
-  "header_label": "niedziela, 22 listopada",
+  "fetched_at": "2026-11-23T05:45:05.933015+00:00",
+  "header_label": "poniedziałek, 23 listopada",
   "assets": [
     {
       "key": "btc",
       "name": "BTC",
       "sub": "Bitcoin",
-      "price": "$60 817",
-      "price_change_24h": 1.0,
-      "opp": 93,
+      "price": "$61 554",
+      "price_change_24h": 4.9,
+      "opp": 92,
       "opp_30d": [
-        44,
         44,
         46,
         46,
@@ -39,16 +38,17 @@
         95,
         95,
         93,
-        93
+        93,
+        92
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "AKUMULUJ",
-        "sublabel": "okno otwarte od 9 dni — akumuluj wg planu",
-        "opp": 93,
+        "sublabel": "okno otwarte od 10 dni — akumuluj wg planu",
+        "opp": 92,
         "fng": 11,
-        "headline": "Rynek od kilku dni jest w strachu i BTC pozostaje tani — okno zakupowe jest otwarte już 9 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
+        "headline": "Rynek od kilku dni jest w strachu i BTC pozostaje tani — okno zakupowe jest otwarte już 10 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
           {
             "label": "Nastrój rynku",
@@ -63,7 +63,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-25,0% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-23,8% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -75,26 +75,26 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-25,0%/30d · taniej niż miesiąc temu"
+            "text": "-23,8%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 94,
+        "score_base": 93,
         "score_range": [
-          90,
+          84,
           100
         ],
-        "clamped": "hi",
-        "direction": "up",
-        "confidence": "low",
-        "total_delta": 2,
+        "clamped": null,
+        "direction": "flat",
+        "confidence": "medium",
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-12% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-11% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -105,8 +105,8 @@
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": -3,
+            "note": "2 dni z rzędu w górę — kontynuacja, rynek drożeje",
             "structural": false
           },
           {
@@ -122,11 +122,10 @@
       "key": "bnb",
       "name": "BNB",
       "sub": "Binance Coin",
-      "price": "$556",
-      "price_change_24h": 1.5,
-      "opp": 94,
+      "price": "$560",
+      "price_change_24h": 4.4,
+      "opp": 93,
       "opp_30d": [
-        45,
         44,
         44,
         45,
@@ -155,16 +154,17 @@
         93,
         96,
         95,
-        94
+        94,
+        93
       ],
       "verdict": {
         "decision": "TAK",
         "level": "okazja",
         "word": "AKUMULUJ",
-        "sublabel": "okno otwarte od 9 dni — akumuluj wg planu",
-        "opp": 94,
+        "sublabel": "okno otwarte od 10 dni — akumuluj wg planu",
+        "opp": 93,
         "fng": 11,
-        "headline": "Rynek od kilku dni jest w strachu i BNB pozostaje tani — okno zakupowe jest otwarte już 9 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
+        "headline": "Rynek od kilku dni jest w strachu i BNB pozostaje tani — okno zakupowe jest otwarte już 10 dni. Dla DCA to dobry okres na zakupy zgodnie z planem, bez pośpiechu i bez zwiększania kwot.",
         "signals": [
           {
             "label": "Nastrój rynku",
@@ -179,7 +179,7 @@
           {
             "label": "Trend 30 dni",
             "tone": "good",
-            "text": "-24,7% przez miesiąc — kupujesz taniej niż miesiąc temu"
+            "text": "-24,2% przez miesiąc — kupujesz taniej niż miesiąc temu"
           }
         ],
         "home_signals": [
@@ -191,26 +191,26 @@
           {
             "label": "Cena",
             "tone": "good",
-            "text": "-24,7%/30d · taniej niż miesiąc temu"
+            "text": "-24,2%/30d · taniej niż miesiąc temu"
           }
         ]
       },
       "forecast": {
         "horizon_days": 7,
-        "score_base": 95,
+        "score_base": 94,
         "score_range": [
-          91,
+          85,
           100
         ],
         "clamped": "hi",
-        "direction": "up",
-        "confidence": "low",
-        "total_delta": 2,
+        "direction": "flat",
+        "confidence": "medium",
+        "total_delta": -1,
         "rules": [
           {
             "name": "Wolumen",
             "delta": 2,
-            "note": "Ruch w dół bez wolumenu (-47% vs 30d) — słabe potwierdzenie",
+            "note": "Ruch w dół bez wolumenu (-41% vs 30d) — słabe potwierdzenie",
             "structural": false
           },
           {
@@ -221,14 +221,14 @@
           },
           {
             "name": "Momentum",
-            "delta": 0,
-            "note": "Brak wyraźnego streaku cenowego (min. 2 pełne dni)",
+            "delta": -3,
+            "note": "2 dni z rzędu w górę — kontynuacja, rynek drożeje",
             "structural": false
           },
           {
             "name": "Siła BNB vs BTC",
             "delta": 0,
-            "note": "BNB względem Bitcoina +0,1% w 7d — porusza się z rynkiem",
+            "note": "BNB względem Bitcoina -0,1% w 7d — porusza się z rynkiem",
             "structural": false
           }
         ]
